@@ -50,6 +50,10 @@ import type {
   Run,
   RunFormatting,
   ParagraphAttrs,
+  TableRow as LayoutTableRow,
+  TableCell as LayoutTableCell,
+  CellBorders,
+  CellBorderSpec,
 } from '@eigenpal/docx-core/layout-engine/types';
 
 // Layout bridge
@@ -1002,6 +1006,177 @@ function convertDocumentRunsToFlowRuns(content: unknown[]): Run[] {
  * @param headerFooter - The header/footer document content
  * @param contentWidth - Available width for content
  */
+// OOXML border style → CSS border-style mapping (for header/footer table conversion)
+const HF_OOXML_TO_CSS_BORDER: Record<string, string> = {
+  single: 'solid',
+  double: 'double',
+  dotted: 'dotted',
+  dashed: 'dashed',
+  thick: 'solid',
+  dashSmallGap: 'dashed',
+  dotDash: 'dashed',
+  dotDotDash: 'dotted',
+  triple: 'double',
+  wave: 'solid',
+  doubleWave: 'double',
+  threeDEmboss: 'ridge',
+  threeDEngrave: 'groove',
+  outset: 'outset',
+  inset: 'inset',
+};
+
+function hfBorderSpecToCss(border?: {
+  style?: string;
+  size?: number;
+  color?: { rgb?: string };
+}): CellBorderSpec {
+  if (!border || !border.style || border.style === 'none' || border.style === 'nil') {
+    return { width: 0, style: 'none' };
+  }
+  const spec: CellBorderSpec = { style: HF_OOXML_TO_CSS_BORDER[border.style] || 'solid' };
+  const rgb = border.color?.rgb;
+  if (rgb && rgb !== 'auto') spec.color = `#${rgb}`;
+  if (border.size) spec.width = Math.max(1, Math.round((border.size / 8) * 1.333));
+  return spec;
+}
+
+function hfTwipsToPixels(twips: number): number {
+  return (twips / 1440) * 96;
+}
+
+let hfBlockCounter = 0;
+
+/**
+ * Convert a Document Table (from header/footer) to a layout TableBlock.
+ */
+function convertDocTableToTableBlock(tableObj: Record<string, unknown>): TableBlock {
+  const rows = (tableObj.rows as Array<Record<string, unknown>>) ?? [];
+  const formatting = tableObj.formatting as Record<string, unknown> | undefined;
+  const columnWidthsTwips = tableObj.columnWidths as number[] | undefined;
+
+  const layoutRows: LayoutTableRow[] = rows.map((row) => {
+    const rowFmt = row.formatting as Record<string, unknown> | undefined;
+    const cells = (row.cells as Array<Record<string, unknown>>) ?? [];
+
+    const layoutCells: LayoutTableCell[] = cells.map((cell) => {
+      const cellFmt = cell.formatting as Record<string, unknown> | undefined;
+      const cellContent = (cell.content as Array<Record<string, unknown>>) ?? [];
+
+      // Recursively convert cell content (paragraphs and nested tables)
+      const cellBlocks: FlowBlock[] = [];
+      for (const item of cellContent) {
+        if (item.type === 'paragraph' && Array.isArray(item.content)) {
+          const pFmt = item.formatting as Record<string, unknown> | undefined;
+          const attrs: ParagraphAttrs = {};
+          if (pFmt?.alignment) {
+            const align = pFmt.alignment as string;
+            if (align === 'both') attrs.alignment = 'justify';
+            else if (['left', 'center', 'right', 'justify'].includes(align))
+              attrs.alignment = align as 'left' | 'center' | 'right' | 'justify';
+          }
+          const runs = convertDocumentRunsToFlowRuns(item.content as unknown[]);
+          if (runs.length > 0) {
+            cellBlocks.push({
+              kind: 'paragraph',
+              id: `hf-tbl-p-${hfBlockCounter++}`,
+              runs,
+              attrs: Object.keys(attrs).length > 0 ? attrs : undefined,
+            } as ParagraphBlock);
+          }
+        } else if (item.type === 'table') {
+          cellBlocks.push(convertDocTableToTableBlock(item));
+        }
+      }
+
+      // Ensure at least one empty paragraph for empty cells
+      if (cellBlocks.length === 0) {
+        cellBlocks.push({
+          kind: 'paragraph',
+          id: `hf-tbl-p-${hfBlockCounter++}`,
+          runs: [{ kind: 'text' as const, text: '' }],
+        } as ParagraphBlock);
+      }
+
+      // Convert cell borders
+      let borders: CellBorders | undefined;
+      const cellBorders = cellFmt?.borders as Record<string, unknown> | undefined;
+      if (cellBorders) {
+        borders = {
+          top: hfBorderSpecToCss(
+            cellBorders.top as { style?: string; size?: number; color?: { rgb?: string } }
+          ),
+          bottom: hfBorderSpecToCss(
+            cellBorders.bottom as { style?: string; size?: number; color?: { rgb?: string } }
+          ),
+          left: hfBorderSpecToCss(
+            cellBorders.left as { style?: string; size?: number; color?: { rgb?: string } }
+          ),
+          right: hfBorderSpecToCss(
+            cellBorders.right as { style?: string; size?: number; color?: { rgb?: string } }
+          ),
+        };
+      }
+
+      // Cell padding
+      const margins = cellFmt?.margins as
+        | {
+            top?: { value?: number };
+            bottom?: { value?: number };
+            left?: { value?: number };
+            right?: { value?: number };
+          }
+        | undefined;
+      const padding = {
+        top: margins?.top?.value != null ? hfTwipsToPixels(margins.top.value) : 1,
+        right: margins?.right?.value != null ? hfTwipsToPixels(margins.right.value) : 7,
+        bottom: margins?.bottom?.value != null ? hfTwipsToPixels(margins.bottom.value) : 1,
+        left: margins?.left?.value != null ? hfTwipsToPixels(margins.left.value) : 7,
+      };
+
+      // Cell width
+      const cellWidth = cellFmt?.width as { value?: number; type?: string } | undefined;
+      const width =
+        cellWidth?.value && cellWidth.type === 'dxa' ? hfTwipsToPixels(cellWidth.value) : undefined;
+
+      // Background
+      const shading = cellFmt?.shading as { fill?: string } | undefined;
+      let background: string | undefined;
+      if (shading?.fill && shading.fill !== 'auto') background = `#${shading.fill}`;
+
+      return {
+        id: `hf-tbl-c-${hfBlockCounter++}`,
+        blocks: cellBlocks,
+        colSpan: cellFmt?.gridSpan as number | undefined,
+        width,
+        verticalAlign: cellFmt?.verticalAlign as 'top' | 'center' | 'bottom' | undefined,
+        background,
+        borders,
+        padding,
+      } as LayoutTableCell;
+    });
+
+    return {
+      id: `hf-tbl-r-${hfBlockCounter++}`,
+      cells: layoutCells,
+      height: (rowFmt?.height as { value?: number })?.value
+        ? hfTwipsToPixels((rowFmt!.height as { value: number }).value)
+        : undefined,
+      heightRule: rowFmt?.heightRule as 'auto' | 'atLeast' | 'exact' | undefined,
+      isHeader: rowFmt?.header as boolean | undefined,
+    } as LayoutTableRow;
+  });
+
+  return {
+    kind: 'table',
+    id: `hf-tbl-${hfBlockCounter++}`,
+    rows: layoutRows,
+    columnWidths: columnWidthsTwips?.map(hfTwipsToPixels),
+    width: (formatting?.width as { value?: number })?.value,
+    widthType: (formatting?.width as { type?: string })?.type,
+    justification: formatting?.justification as 'left' | 'center' | 'right' | undefined,
+  };
+}
+
 function convertHeaderFooterToContent(
   headerFooter: HeaderFooter | null | undefined,
   contentWidth: number
@@ -1043,6 +1218,10 @@ function convertHeaderFooterToContent(
         blocks.push(paragraphBlock);
       }
     }
+    // Handle Document Table type
+    else if (itemObj.type === 'table' && Array.isArray(itemObj.rows)) {
+      blocks.push(convertDocTableToTableBlock(itemObj));
+    }
   }
 
   if (blocks.length === 0) {
@@ -1072,6 +1251,9 @@ function convertHeaderFooterToContent(
   const totalHeight = measures.reduce((h, m) => {
     if (m.kind === 'paragraph') {
       return h + m.totalHeight;
+    }
+    if (m.kind === 'table') {
+      return h + (m as TableMeasure).totalHeight;
     }
     return h;
   }, 0);

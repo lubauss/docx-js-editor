@@ -565,6 +565,35 @@ function renderHeaderFooterContent(
       containerEl.appendChild(fragEl);
       cursorY += paragraphMeasure.totalHeight;
     }
+
+    // Render table blocks in headers/footers
+    else if (block?.kind === 'table' && measure?.kind === 'table') {
+      const tableBlock = block as TableBlock;
+      const tableMeasure = measure as TableMeasure;
+
+      // Create a synthetic fragment for the whole table
+      const syntheticFragment: TableFragment = {
+        kind: 'table',
+        blockId: tableBlock.id,
+        x: 0,
+        y: cursorY,
+        width: tableMeasure.totalWidth || contentWidth,
+        height: tableMeasure.totalHeight,
+        fromRow: 0,
+        toRow: tableBlock.rows.length,
+      };
+
+      const tableEl = renderTableFragment(syntheticFragment, tableBlock, tableMeasure, context, {
+        document: doc,
+      });
+
+      // Override absolute positioning from renderTableFragment — use relative flow
+      tableEl.style.position = 'relative';
+      tableEl.style.marginBottom = '0';
+
+      containerEl.appendChild(tableEl);
+      cursorY += tableMeasure.totalHeight;
+    }
   }
 
   // Render floating images with absolute positioning
