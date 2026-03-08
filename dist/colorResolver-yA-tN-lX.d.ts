@@ -1,17 +1,4 @@
-import {
-  D as Document,
-  d as DocumentBody,
-  C as SectionProperties,
-  A as AgentCommand,
-  h as AgentContext,
-  R as Range,
-  G as SelectionContext,
-  T as TextFormatting,
-  ae as ColorValue,
-  X as Theme,
-  af as ThemeColorSlot,
-  ab as ThemeColorScheme,
-} from './agentApi-DfsWRyrP.js';
+import { D as Document, d as DocumentBody, C as SectionProperties, A as AgentCommand, h as AgentContext, R as Range, G as SelectionContext, T as TextFormatting, ae as ColorValue, X as Theme, af as ThemeColorSlot, ab as ThemeColorScheme } from './agentApi-DfsWRyrP.js';
 import { f as DocxInput } from './DocumentAgent-BHR0CMGb.js';
 
 /**
@@ -42,16 +29,16 @@ type ProgressCallback = (stage: string, percent: number) => void;
  * Parsing options
  */
 interface ParseOptions {
-  /** Progress callback for tracking parsing stages */
-  onProgress?: ProgressCallback;
-  /** Whether to preload fonts (default: true) */
-  preloadFonts?: boolean;
-  /** Whether to parse headers/footers (default: true) */
-  parseHeadersFooters?: boolean;
-  /** Whether to parse footnotes/endnotes (default: true) */
-  parseNotes?: boolean;
-  /** Whether to detect template variables (default: true) */
-  detectVariables?: boolean;
+    /** Progress callback for tracking parsing stages */
+    onProgress?: ProgressCallback;
+    /** Whether to preload fonts (default: true) */
+    preloadFonts?: boolean;
+    /** Whether to parse headers/footers (default: true) */
+    parseHeadersFooters?: boolean;
+    /** Whether to parse footnotes/endnotes (default: true) */
+    parseNotes?: boolean;
+    /** Whether to detect template variables (default: true) */
+    detectVariables?: boolean;
 }
 /**
  * Parse a DOCX file into a complete Document model
@@ -107,45 +94,45 @@ declare function serializeDocument(doc: Document): string;
  * Options for template processing
  */
 interface ProcessTemplateOptions {
-  /** How to handle undefined variables */
-  nullGetter?: 'keep' | 'empty' | 'error';
-  /** Custom parser for variable names */
-  parser?: (tag: string) => {
-    get: (scope: Record<string, unknown>) => unknown;
-  };
-  /** Line breaks: keep raw \n or convert to w:br */
-  linebreaks?: boolean;
-  /** Delimiter settings */
-  delimiters?: {
-    start?: string;
-    end?: string;
-  };
+    /** How to handle undefined variables */
+    nullGetter?: 'keep' | 'empty' | 'error';
+    /** Custom parser for variable names */
+    parser?: (tag: string) => {
+        get: (scope: Record<string, unknown>) => unknown;
+    };
+    /** Line breaks: keep raw \n or convert to w:br */
+    linebreaks?: boolean;
+    /** Delimiter settings */
+    delimiters?: {
+        start?: string;
+        end?: string;
+    };
 }
 /**
  * Result of template processing
  */
 interface ProcessTemplateResult {
-  /** The processed document buffer */
-  buffer: ArrayBuffer;
-  /** Variables that were found and replaced */
-  replacedVariables: string[];
-  /** Variables that were not replaced (no value provided) */
-  unreplacedVariables: string[];
-  /** Any warnings during processing */
-  warnings: string[];
+    /** The processed document buffer */
+    buffer: ArrayBuffer;
+    /** Variables that were found and replaced */
+    replacedVariables: string[];
+    /** Variables that were not replaced (no value provided) */
+    unreplacedVariables: string[];
+    /** Any warnings during processing */
+    warnings: string[];
 }
 /**
  * Error details from template processing
  */
 interface TemplateError {
-  /** Error message */
-  message: string;
-  /** Variable name that caused the error (if applicable) */
-  variable?: string;
-  /** Error type */
-  type: 'parse' | 'render' | 'undefined' | 'unknown';
-  /** Original error */
-  originalError?: Error;
+    /** Error message */
+    message: string;
+    /** Variable name that caused the error (if applicable) */
+    variable?: string;
+    /** Error type */
+    type: 'parse' | 'render' | 'undefined' | 'unknown';
+    /** Original error */
+    originalError?: Error;
 }
 /**
  * Process a DOCX template with variable substitution
@@ -155,11 +142,7 @@ interface TemplateError {
  * @param options - Processing options
  * @returns Processed DOCX as ArrayBuffer
  */
-declare function processTemplate(
-  buffer: ArrayBuffer,
-  variables: Record<string, string>,
-  options?: ProcessTemplateOptions
-): ArrayBuffer;
+declare function processTemplate(buffer: ArrayBuffer, variables: Record<string, string>, options?: ProcessTemplateOptions): ArrayBuffer;
 /**
  * Process template with detailed result
  *
@@ -168,11 +151,7 @@ declare function processTemplate(
  * @param options - Processing options
  * @returns Detailed processing result
  */
-declare function processTemplateDetailed(
-  buffer: ArrayBuffer,
-  variables: Record<string, string>,
-  options?: ProcessTemplateOptions
-): ProcessTemplateResult;
+declare function processTemplateDetailed(buffer: ArrayBuffer, variables: Record<string, string>, options?: ProcessTemplateOptions): ProcessTemplateResult;
 /**
  * Process template and return as Blob
  *
@@ -181,11 +160,7 @@ declare function processTemplateDetailed(
  * @param options - Processing options
  * @returns Processed DOCX as Blob
  */
-declare function processTemplateAsBlob(
-  buffer: ArrayBuffer,
-  variables: Record<string, string>,
-  options?: ProcessTemplateOptions
-): Blob;
+declare function processTemplateAsBlob(buffer: ArrayBuffer, variables: Record<string, string>, options?: ProcessTemplateOptions): Blob;
 /**
  * Get all template tags in a document without processing
  *
@@ -200,9 +175,9 @@ declare function getTemplateTags(buffer: ArrayBuffer): string[];
  * @returns Validation result
  */
 declare function validateTemplate(buffer: ArrayBuffer): {
-  valid: boolean;
-  errors: TemplateError[];
-  tags: string[];
+    valid: boolean;
+    errors: TemplateError[];
+    tags: string[];
 };
 /**
  * Check if all required variables have values
@@ -230,17 +205,11 @@ declare function previewTemplate(buffer: ArrayBuffer, variables: Record<string, 
  * @param options - Processing options
  * @returns Processed DOCX as ArrayBuffer
  */
-declare function processTemplateAdvanced(
-  buffer: ArrayBuffer,
-  data: Record<string, unknown>,
-  options?: ProcessTemplateOptions
-): ArrayBuffer;
+declare function processTemplateAdvanced(buffer: ArrayBuffer, data: Record<string, unknown>, options?: ProcessTemplateOptions): ArrayBuffer;
 /**
  * Create a template processor with preset options
  */
-declare function createTemplateProcessor(
-  defaultOptions?: ProcessTemplateOptions
-): (buffer: ArrayBuffer, variables: Record<string, string>) => ArrayBuffer;
+declare function createTemplateProcessor(defaultOptions?: ProcessTemplateOptions): (buffer: ArrayBuffer, variables: Record<string, string>) => ArrayBuffer;
 
 /**
  * Create Document Utility
@@ -252,22 +221,22 @@ declare function createTemplateProcessor(
  * Options for creating an empty document
  */
 interface CreateEmptyDocumentOptions {
-  /** Page width in twips (default: 12240 = 8.5 inches) */
-  pageWidth?: number;
-  /** Page height in twips (default: 15840 = 11 inches) */
-  pageHeight?: number;
-  /** Page orientation (default: 'portrait') */
-  orientation?: 'portrait' | 'landscape';
-  /** Top margin in twips (default: 1440 = 1 inch) */
-  marginTop?: number;
-  /** Bottom margin in twips (default: 1440 = 1 inch) */
-  marginBottom?: number;
-  /** Left margin in twips (default: 1440 = 1 inch) */
-  marginLeft?: number;
-  /** Right margin in twips (default: 1440 = 1 inch) */
-  marginRight?: number;
-  /** Initial text content (default: empty string) */
-  initialText?: string;
+    /** Page width in twips (default: 12240 = 8.5 inches) */
+    pageWidth?: number;
+    /** Page height in twips (default: 15840 = 11 inches) */
+    pageHeight?: number;
+    /** Page orientation (default: 'portrait') */
+    orientation?: 'portrait' | 'landscape';
+    /** Top margin in twips (default: 1440 = 1 inch) */
+    marginTop?: number;
+    /** Bottom margin in twips (default: 1440 = 1 inch) */
+    marginBottom?: number;
+    /** Left margin in twips (default: 1440 = 1 inch) */
+    marginLeft?: number;
+    /** Right margin in twips (default: 1440 = 1 inch) */
+    marginRight?: number;
+    /** Initial text content (default: empty string) */
+    initialText?: string;
 }
 /**
  * Create an empty document with a single paragraph
@@ -300,10 +269,7 @@ declare function createEmptyDocument(options?: CreateEmptyDocumentOptions): Docu
  * @param options - Optional configuration for the document
  * @returns A new Document object with the specified text
  */
-declare function createDocumentWithText(
-  text: string,
-  options?: Omit<CreateEmptyDocumentOptions, 'initialText'>
-): Document;
+declare function createDocumentWithText(text: string, options?: Omit<CreateEmptyDocumentOptions, 'initialText'>): Document;
 
 /**
  * Command Executor
@@ -350,23 +316,23 @@ declare function executeCommands(doc: Document, commands: AgentCommand[]): Docum
  * Options for building agent context
  */
 interface AgentContextOptions {
-  /** Maximum characters per paragraph in outline (default: 100) */
-  outlineMaxChars?: number;
-  /** Maximum paragraphs to include in outline (default: 50) */
-  maxOutlineParagraphs?: number;
-  /** Include table content in context (default: false) */
-  includeTableContent?: boolean;
-  /** Include detailed formatting info (default: false) */
-  includeFormatting?: boolean;
+    /** Maximum characters per paragraph in outline (default: 100) */
+    outlineMaxChars?: number;
+    /** Maximum paragraphs to include in outline (default: 50) */
+    maxOutlineParagraphs?: number;
+    /** Include table content in context (default: false) */
+    includeTableContent?: boolean;
+    /** Include detailed formatting info (default: false) */
+    includeFormatting?: boolean;
 }
 /**
  * Options for building selection context
  */
 interface SelectionContextOptions$1 {
-  /** Characters of context before/after selection (default: 200) */
-  contextChars?: number;
-  /** Include suggested actions (default: true) */
-  includeSuggestions?: boolean;
+    /** Characters of context before/after selection (default: 200) */
+    contextChars?: number;
+    /** Include suggested actions (default: true) */
+    includeSuggestions?: boolean;
 }
 /**
  * Build agent context from a document
@@ -384,11 +350,7 @@ declare function getAgentContext(doc: Document, options?: AgentContextOptions): 
  * @param options - Selection context options
  * @returns SelectionContext object (JSON serializable)
  */
-declare function buildSelectionContext$1(
-  doc: Document,
-  range: Range,
-  options?: SelectionContextOptions$1
-): SelectionContext;
+declare function buildSelectionContext$1(doc: Document, range: Range, options?: SelectionContextOptions$1): SelectionContext;
 /**
  * Get a simple document summary for quick context
  *
@@ -408,46 +370,46 @@ declare function getDocumentSummary(doc: Document): string;
  * Options for building selection context
  */
 interface SelectionContextOptions {
-  /** Characters of context before selection (default: 200) */
-  contextCharsBefore?: number;
-  /** Characters of context after selection (default: 200) */
-  contextCharsAfter?: number;
-  /** Include suggested actions (default: true) */
-  includeSuggestions?: boolean;
-  /** Include document summary (default: true) */
-  includeDocumentSummary?: boolean;
-  /** Maximum suggested actions (default: 8) */
-  maxSuggestions?: number;
+    /** Characters of context before selection (default: 200) */
+    contextCharsBefore?: number;
+    /** Characters of context after selection (default: 200) */
+    contextCharsAfter?: number;
+    /** Include suggested actions (default: true) */
+    includeSuggestions?: boolean;
+    /** Include document summary (default: true) */
+    includeDocumentSummary?: boolean;
+    /** Maximum suggested actions (default: 8) */
+    maxSuggestions?: number;
 }
 /**
  * Extended selection context with additional details
  */
 interface ExtendedSelectionContext extends SelectionContext {
-  /** Document summary for additional context */
-  documentSummary?: string;
-  /** Selection word count */
-  wordCount?: number;
-  /** Selection character count */
-  characterCount?: number;
-  /** Is selection multi-paragraph */
-  isMultiParagraph?: boolean;
-  /** Selected paragraph indices */
-  paragraphIndices?: number[];
-  /** Language detection hint */
-  detectedLanguage?: string;
-  /** Content type hints */
-  contentType?: 'prose' | 'list' | 'heading' | 'table' | 'mixed';
+    /** Document summary for additional context */
+    documentSummary?: string;
+    /** Selection word count */
+    wordCount?: number;
+    /** Selection character count */
+    characterCount?: number;
+    /** Is selection multi-paragraph */
+    isMultiParagraph?: boolean;
+    /** Selected paragraph indices */
+    paragraphIndices?: number[];
+    /** Language detection hint */
+    detectedLanguage?: string;
+    /** Content type hints */
+    contentType?: 'prose' | 'list' | 'heading' | 'table' | 'mixed';
 }
 /**
  * Selection formatting summary
  */
 interface FormattingSummary {
-  /** Predominant formatting */
-  predominant: Partial<TextFormatting>;
-  /** Is formatting consistent across selection */
-  isConsistent: boolean;
-  /** All formatting found */
-  allFormatting: Partial<TextFormatting>[];
+    /** Predominant formatting */
+    predominant: Partial<TextFormatting>;
+    /** Is formatting consistent across selection */
+    isConsistent: boolean;
+    /** All formatting found */
+    allFormatting: Partial<TextFormatting>[];
 }
 /**
  * Build selection context for AI operations
@@ -457,11 +419,7 @@ interface FormattingSummary {
  * @param options - Selection context options
  * @returns SelectionContext object
  */
-declare function buildSelectionContext(
-  doc: Document,
-  range: Range,
-  options?: SelectionContextOptions
-): SelectionContext;
+declare function buildSelectionContext(doc: Document, range: Range, options?: SelectionContextOptions): SelectionContext;
 /**
  * Build extended selection context with additional details
  *
@@ -470,11 +428,7 @@ declare function buildSelectionContext(
  * @param options - Selection context options
  * @returns ExtendedSelectionContext object
  */
-declare function buildExtendedSelectionContext(
-  doc: Document,
-  range: Range,
-  options?: SelectionContextOptions
-): ExtendedSelectionContext;
+declare function buildExtendedSelectionContext(doc: Document, range: Range, options?: SelectionContextOptions): ExtendedSelectionContext;
 /**
  * Get formatting summary for a selection
  *
@@ -560,11 +514,7 @@ declare function formatPx(px: number): string;
  * @param defaultColor - Default color if auto or undefined (default: black)
  * @returns CSS color string (e.g., "#FF0000" or "inherit")
  */
-declare function resolveColor(
-  color: ColorValue | undefined | null,
-  theme: Theme | null | undefined,
-  defaultColor?: string
-): string;
+declare function resolveColor(color: ColorValue | undefined | null, theme: Theme | null | undefined, defaultColor?: string): string;
 /**
  * Resolve a highlight color name to CSS
  *
@@ -579,10 +529,7 @@ declare function resolveHighlightColor(highlight: string | undefined): string;
  * @param theme - Theme for resolving theme colors
  * @returns CSS color string
  */
-declare function resolveShadingColor(
-  color: ColorValue | undefined | null,
-  theme: Theme | null | undefined
-): string;
+declare function resolveShadingColor(color: ColorValue | undefined | null, theme: Theme | null | undefined): string;
 /**
  * Check if a color is effectively black
  *
@@ -590,10 +537,7 @@ declare function resolveShadingColor(
  * @param theme - Theme for resolving theme colors
  * @returns True if color resolves to black or very dark
  */
-declare function isBlack(
-  color: ColorValue | undefined | null,
-  theme: Theme | null | undefined
-): boolean;
+declare function isBlack(color: ColorValue | undefined | null, theme: Theme | null | undefined): boolean;
 /**
  * Check if a color is effectively white
  *
@@ -601,10 +545,7 @@ declare function isBlack(
  * @param theme - Theme for resolving theme colors
  * @returns True if color resolves to white or very light
  */
-declare function isWhite(
-  color: ColorValue | undefined | null,
-  theme: Theme | null | undefined
-): boolean;
+declare function isWhite(color: ColorValue | undefined | null, theme: Theme | null | undefined): boolean;
 /**
  * Get contrasting text color for a background
  *
@@ -612,10 +553,7 @@ declare function isWhite(
  * @param theme - Theme for resolving theme colors
  * @returns Black or white hex color for best contrast
  */
-declare function getContrastingColor(
-  backgroundColor: ColorValue | undefined | null,
-  theme: Theme | null | undefined
-): string;
+declare function getContrastingColor(backgroundColor: ColorValue | undefined | null, theme: Theme | null | undefined): string;
 /**
  * Parse a color string (various formats) to ColorValue
  *
@@ -631,11 +569,7 @@ declare function parseColorString(colorString: string | undefined): ColorValue |
  * @param shade - Optional shade modifier
  * @returns ColorValue object
  */
-declare function createThemeColor(
-  themeColor: ThemeColorSlot,
-  tint?: number,
-  shade?: number
-): ColorValue;
+declare function createThemeColor(themeColor: ThemeColorSlot, tint?: number, shade?: number): ColorValue;
 /**
  * Create a ColorValue from RGB hex
  *
@@ -651,11 +585,7 @@ declare function createRgbColor(hex: string): ColorValue;
  * @param percent - Percentage to darken (0-100)
  * @returns CSS color string
  */
-declare function darkenColor(
-  color: ColorValue | undefined | null,
-  theme: Theme | null | undefined,
-  percent: number
-): string;
+declare function darkenColor(color: ColorValue | undefined | null, theme: Theme | null | undefined, percent: number): string;
 /**
  * Lighten a color by a percentage
  *
@@ -664,11 +594,7 @@ declare function darkenColor(
  * @param percent - Percentage to lighten (0-100)
  * @returns CSS color string
  */
-declare function lightenColor(
-  color: ColorValue | undefined | null,
-  theme: Theme | null | undefined,
-  percent: number
-): string;
+declare function lightenColor(color: ColorValue | undefined | null, theme: Theme | null | undefined, percent: number): string;
 /**
  * Blend two colors together
  *
@@ -678,12 +604,7 @@ declare function lightenColor(
  * @param theme - Theme for resolving
  * @returns CSS color string
  */
-declare function blendColors(
-  color1: ColorValue | undefined | null,
-  color2: ColorValue | undefined | null,
-  ratio: number,
-  theme: Theme | null | undefined
-): string;
+declare function blendColors(color1: ColorValue | undefined | null, color2: ColorValue | undefined | null, ratio: number, theme: Theme | null | undefined): string;
 /**
  * Ensure a hex color string has a '#' prefix.
  */
@@ -697,16 +618,16 @@ declare function resolveHighlightToCss(value: string): string;
  * Theme color matrix cell
  */
 interface ThemeMatrixCell {
-  /** Resolved hex color (6 chars, no #) */
-  hex: string;
-  /** Theme color slot */
-  themeSlot: ThemeColorSlot;
-  /** Tint hex modifier if applicable (e.g., "CC") */
-  tint?: string;
-  /** Shade hex modifier if applicable (e.g., "BF") */
-  shade?: string;
-  /** Human-readable label (e.g., "Accent 1, Lighter 60%") */
-  label: string;
+    /** Resolved hex color (6 chars, no #) */
+    hex: string;
+    /** Theme color slot */
+    themeSlot: ThemeColorSlot;
+    /** Tint hex modifier if applicable (e.g., "CC") */
+    tint?: string;
+    /** Shade hex modifier if applicable (e.g., "BF") */
+    shade?: string;
+    /** Human-readable label (e.g., "Accent 1, Lighter 60%") */
+    label: string;
 }
 /**
  * Compute a single tinted or shaded hex color from a base color.
@@ -716,11 +637,7 @@ interface ThemeMatrixCell {
  * @param fraction - Amount (0-1). For tint: 0=no change, 1=white. For shade: 0=black, 1=no change.
  * @returns 6-character hex color (no #)
  */
-declare function getThemeTintShadeHex(
-  baseHex: string,
-  type: 'tint' | 'shade',
-  fraction: number
-): string;
+declare function getThemeTintShadeHex(baseHex: string, type: 'tint' | 'shade', fraction: number): string;
 /**
  * Generate the 10×6 theme color matrix for an advanced color picker.
  *
@@ -730,9 +647,7 @@ declare function getThemeTintShadeHex(
  * @param colorScheme - Theme color scheme (falls back to Office 2016 defaults)
  * @returns 6 rows × 10 columns of ThemeMatrixCell
  */
-declare function generateThemeTintShadeMatrix(
-  colorScheme?: ThemeColorScheme | null
-): ThemeMatrixCell[][];
+declare function generateThemeTintShadeMatrix(colorScheme?: ThemeColorScheme | null): ThemeMatrixCell[][];
 /**
  * Check if two colors are equal
  *
@@ -741,70 +656,6 @@ declare function generateThemeTintShadeMatrix(
  * @param theme - Theme for resolving
  * @returns True if colors resolve to the same value
  */
-declare function colorsEqual(
-  color1: ColorValue | undefined | null,
-  color2: ColorValue | undefined | null,
-  theme: Theme | null | undefined
-): boolean;
+declare function colorsEqual(color1: ColorValue | undefined | null, color2: ColorValue | undefined | null, theme: Theme | null | undefined): boolean;
 
-export {
-  validateTemplate as $,
-  type AgentContextOptions as A,
-  isWhite as B,
-  type CreateEmptyDocumentOptions as C,
-  lightenColor as D,
-  type ExtendedSelectionContext as E,
-  type FormattingSummary as F,
-  parseColorString as G,
-  parseDocx as H,
-  pixelsToEmu as I,
-  pixelsToTwips as J,
-  pointsToPixels as K,
-  previewTemplate as L,
-  processTemplate as M,
-  processTemplateAdvanced as N,
-  processTemplateAsBlob as O,
-  type ProcessTemplateOptions as P,
-  processTemplateDetailed as Q,
-  resolveColor as R,
-  type SelectionContextOptions$1 as S,
-  type TemplateError as T,
-  resolveHighlightColor as U,
-  resolveShadingColor as V,
-  serializeDocumentBody as W,
-  serializeDocument as X,
-  serializeSectionProperties as Y,
-  twipsToEmu as Z,
-  twipsToPixels as _,
-  type ProcessTemplateResult as a,
-  type ThemeMatrixCell as a0,
-  ensureHexPrefix as a1,
-  generateThemeTintShadeMatrix as a2,
-  getThemeTintShadeHex as a3,
-  resolveHighlightToCss as a4,
-  type SelectionContextOptions as b,
-  blendColors as c,
-  buildExtendedSelectionContext as d,
-  buildSelectionContext as e,
-  buildSelectionContext$1 as f,
-  colorsEqual as g,
-  createDocumentWithText as h,
-  createEmptyDocument as i,
-  createRgbColor as j,
-  createTemplateProcessor as k,
-  createThemeColor as l,
-  darkenColor as m,
-  emuToPixels as n,
-  emuToTwips as o,
-  executeCommand as p,
-  executeCommands as q,
-  formatPx as r,
-  getAgentContext as s,
-  getContrastingColor as t,
-  getDocumentSummary as u,
-  getMissingVariables as v,
-  getSelectionFormattingSummary as w,
-  getTemplateTags as x,
-  halfPointsToPixels as y,
-  isBlack as z,
-};
+export { validateTemplate as $, type AgentContextOptions as A, isWhite as B, type CreateEmptyDocumentOptions as C, lightenColor as D, type ExtendedSelectionContext as E, type FormattingSummary as F, parseColorString as G, parseDocx as H, pixelsToEmu as I, pixelsToTwips as J, pointsToPixels as K, previewTemplate as L, processTemplate as M, processTemplateAdvanced as N, processTemplateAsBlob as O, type ProcessTemplateOptions as P, processTemplateDetailed as Q, resolveColor as R, type SelectionContextOptions$1 as S, type TemplateError as T, resolveHighlightColor as U, resolveShadingColor as V, serializeDocumentBody as W, serializeDocument as X, serializeSectionProperties as Y, twipsToEmu as Z, twipsToPixels as _, type ProcessTemplateResult as a, type ThemeMatrixCell as a0, ensureHexPrefix as a1, generateThemeTintShadeMatrix as a2, getThemeTintShadeHex as a3, resolveHighlightToCss as a4, type SelectionContextOptions as b, blendColors as c, buildExtendedSelectionContext as d, buildSelectionContext as e, buildSelectionContext$1 as f, colorsEqual as g, createDocumentWithText as h, createEmptyDocument as i, createRgbColor as j, createTemplateProcessor as k, createThemeColor as l, darkenColor as m, emuToPixels as n, emuToTwips as o, executeCommand as p, executeCommands as q, formatPx as r, getAgentContext as s, getContrastingColor as t, getDocumentSummary as u, getMissingVariables as v, getSelectionFormattingSummary as w, getTemplateTags as x, halfPointsToPixels as y, isBlack as z };

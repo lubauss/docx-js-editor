@@ -1,506 +1,20 @@
 import { R as ReactEditorPlugin } from './react-DWls3qqH.js';
-export {
-  D as DEFAULT_SELECTION_STYLE,
-  a as DocxEditor,
-  b as DocxEditorHandle,
-  c as DocxEditorProps,
-  d as DocxEditorRef,
-  E as EditorPlugin,
-  e as ErrorBoundary,
-  f as ErrorBoundaryProps,
-  g as ErrorContextValue,
-  h as ErrorProvider,
-  H as HIGH_CONTRAST_SELECTION_STYLE,
-  i as HighlightRect,
-  P as PLUGIN_HOST_STYLES,
-  j as ParseErrorDisplay,
-  k as ParseErrorDisplayProps,
-  l as PluginContext,
-  m as PluginHost,
-  n as PluginHostProps,
-  o as PluginHostRef,
-  p as RenderAsyncOptions,
-  S as SELECTION_CSS_VARS,
-  q as SelectionHighlightConfig,
-  r as SelectionOverlayProps,
-  s as SelectionRange,
-  T as TableSelectionState,
-  U as UnsupportedFeatureWarning,
-  t as UnsupportedFeatureWarningProps,
-  u as UseAutoSaveOptions,
-  v as UseAutoSaveReturn,
-  w as UseClipboardOptions,
-  x as UseClipboardReturn,
-  y as UseSelectionHighlightOptions,
-  z as UseSelectionHighlightReturn,
-  A as UseTableSelectionOptions,
-  B as UseTableSelectionReturn,
-  C as UseWheelZoomOptions,
-  F as UseWheelZoomReturn,
-  Z as ZOOM_PRESETS,
-  G as areSelectionStylesInjected,
-  I as clampZoom,
-  J as clearSelection,
-  K as createSelectionChangeHandler,
-  L as findNearestZoomPreset,
-  M as formatZoom,
-  N as generateOverlayElements,
-  O as generateSelectionCSS,
-  Q as getHighlightRectStyle,
-  V as getMergedSelectionRects,
-  W as getNextZoomPreset,
-  X as getPreviousZoomPreset,
-  Y as getSelectedText,
-  _ as getSelectionBoundingRect,
-  $ as getSelectionRects,
-  a0 as getUserFriendlyMessage,
-  a1 as getZoomPresets,
-  a2 as hasActiveSelection,
-  a3 as highlightTextRange,
-  a4 as injectSelectionStyles,
-  a5 as isParseError,
-  a6 as isSelectionBackwards,
-  a7 as isSelectionWithin,
-  a8 as isZoomPreset,
-  a9 as mergeAdjacentRects,
-  aa as normalizeSelectionDirection,
-  ab as parseZoom,
-  ac as removeSelectionStyles,
-  ad as renderAsync,
-  ae as selectRange,
-  af as useAutoSave,
-  ag as useClipboard,
-  ah as useErrorNotifications,
-  ai as useSelectionHighlight,
-  aj as useTableSelection,
-  ak as useWheelZoom,
-} from './react-DWls3qqH.js';
-export {
-  D as DocumentAgent,
-  f as DocxInput,
-  t as toArrayBuffer,
-} from './DocumentAgent-BHR0CMGb.js';
-export {
-  A as AgentContextOptions,
-  C as CreateEmptyDocumentOptions,
-  E as ExtendedSelectionContext,
-  P as ProcessTemplateOptions,
-  a as ProcessTemplateResult,
-  b as SelectionContextOptions,
-  c as blendColors,
-  d as buildExtendedSelectionContext,
-  e as buildSelectionContext,
-  g as colorsEqual,
-  h as createDocumentWithText,
-  i as createEmptyDocument,
-  j as createRgbColor,
-  l as createThemeColor,
-  m as darkenColor,
-  n as emuToPixels,
-  o as emuToTwips,
-  p as executeCommand,
-  q as executeCommands,
-  r as formatPx,
-  s as getAgentContext,
-  t as getContrastingColor,
-  u as getDocumentSummary,
-  x as getTemplateTags,
-  y as halfPointsToPixels,
-  z as isBlack,
-  B as isWhite,
-  D as lightenColor,
-  G as parseColorString,
-  H as parseDocx,
-  I as pixelsToEmu,
-  J as pixelsToTwips,
-  K as pointsToPixels,
-  M as processTemplate,
-  O as processTemplateAsBlob,
-  Q as processTemplateDetailed,
-  R as resolveColor,
-  U as resolveHighlightColor,
-  V as resolveShadingColor,
-  W as serializeDocumentBody,
-  X as serializeDocx,
-  Y as serializeSectionProperties,
-  Z as twipsToEmu,
-  _ as twipsToPixels,
-  $ as validateTemplate,
-} from './colorResolver-yA-tN-lX.js';
-export {
-  I as InsertPosition,
-  c as canRenderFont,
-  a as countPageBreaks,
-  b as createColumnBreak,
-  d as createHorizontalRule,
-  e as createLineBreak,
-  f as createPageBreak,
-  g as createPageBreakParagraph,
-  h as createPageBreakRun,
-  i as findPageBreaks,
-  j as getLoadedFonts,
-  k as hasPageBreakBefore,
-  l as insertHorizontalRule,
-  m as insertPageBreak,
-  n as isBreakContent,
-  o as isColumnBreak,
-  p as isFontLoaded,
-  q as isFontsLoading,
-  r as isLineBreak,
-  s as isPageBreak,
-  t as loadFont,
-  u as loadFontFromBuffer,
-  v as loadFonts,
-  w as onFontsLoaded,
-  x as preloadCommonFonts,
-  y as removePageBreak,
-} from './fontLoader-BsqQnB4v.js';
-export {
-  AdvancedColorPicker,
-  AlignmentButtons,
-  AlignmentButtonsProps,
-  ColorOption,
-  ColorPicker,
-  ColorPickerProps,
-  ContextMenu,
-  ContextMenuProps,
-  DialogKeyboardShortcut,
-  FindMatch,
-  FindOptions,
-  FindReplaceDialog,
-  FindReplaceDialogProps,
-  FindReplaceOptions,
-  FindReplaceState,
-  FindResult,
-  FontOption,
-  FontPicker,
-  FontPickerProps,
-  FontSizePicker,
-  FontSizePickerProps,
-  HighlightOptions,
-  HorizontalRuler,
-  HorizontalRulerProps,
-  HyperlinkData,
-  HyperlinkDialog,
-  HyperlinkDialogProps,
-  ImageData,
-  IndicatorPosition,
-  IndicatorVariant,
-  InsertImageDialog,
-  InsertImageDialogProps,
-  InsertSymbolDialog,
-  InsertSymbolDialogProps,
-  InsertTableDialog,
-  InsertTableDialogProps,
-  KeyboardShortcutsDialog,
-  KeyboardShortcutsDialogProps,
-  LineSpacingOption,
-  LineSpacingPicker,
-  LineSpacingPickerProps,
-  ListButtons,
-  ListButtonsProps,
-  ListState,
-  LoadingIndicator,
-  LoadingIndicatorProps,
-  LoadingOperation,
-  LoadingSize,
-  LoadingVariant,
-  PasteOption,
-  PasteSpecialDialog,
-  PasteSpecialDialogProps,
-  ResponsePreview,
-  ResponsePreviewProps,
-  ResponsePreviewState,
-  ResponsiveToolbar,
-  ResponsiveToolbarGroup,
-  ResponsiveToolbarGroupProps,
-  ResponsiveToolbarProps,
-  SYMBOL_CATEGORIES,
-  ShortcutCategory,
-  StyleOption,
-  StylePicker,
-  StylePickerProps,
-  SymbolCategory,
-  TableBorderColorPicker,
-  TableBorderColorPickerProps,
-  TableBorderPicker,
-  TableBorderPickerProps,
-  TableBorderWidthPicker,
-  TableBorderWidthPickerProps,
-  TableCellFillPicker,
-  TableCellFillPickerProps,
-  TableConfig,
-  TableInsertButtons,
-  TableInsertButtonsProps,
-  TableMergeButton,
-  TableMergeButtonProps,
-  TableMoreDropdown,
-  TableMoreDropdownProps,
-  TextContextAction,
-  TextContextMenu,
-  TextContextMenuItem,
-  TextContextMenuProps,
-  Toolbar,
-  ToolbarButton,
-  ToolbarGroup,
-  ToolbarItem,
-  ToolbarItemPriority,
-  ToolbarProps,
-  ToolbarSeparator,
-  UnsavedIndicator,
-  UnsavedIndicatorProps,
-  UseFindReplaceReturn,
-  UseKeyboardShortcutsDialogOptions,
-  UseKeyboardShortcutsDialogReturn,
-  UseLoadingOptions,
-  UseLoadingReturn,
-  UsePasteSpecialOptions,
-  UsePasteSpecialReturn,
-  UseResponsiveToolbarOptions,
-  UseResponsiveToolbarReturn,
-  UseTextContextMenuOptions,
-  UseTextContextMenuReturn,
-  UseUnsavedChangesOptions,
-  UseUnsavedChangesReturn,
-  ZoomControl,
-  ZoomControlProps,
-  calculateFitDimensions,
-  clampTableConfig,
-  createChangeTracker,
-  createDefaultFindOptions,
-  createDefaultListState,
-  createDefaultTableConfig,
-  createErrorResponse,
-  createMockResponse,
-  createSearchPattern,
-  createToolbarItem,
-  createToolbarItems,
-  dataUrlToBlob,
-  delay,
-  escapeRegexString,
-  findAllMatches,
-  findInDocument,
-  findInParagraph,
-  formatFileSize,
-  formatShortcutKeys,
-  formatTableDimensions,
-  getActionShortcut,
-  getAllActions,
-  getAllCategories,
-  getAllIndicatorPositions,
-  getAllIndicatorVariants,
-  getAllLoadingSizes,
-  getAllLoadingVariants,
-  getAllPasteOptions,
-  getCategoryLabel,
-  getCommonShortcuts,
-  getDefaultActions,
-  getDefaultHighlightOptions,
-  getDefaultPasteOption,
-  getDefaultShortcuts,
-  getDefaultTextContextMenuItems,
-  getImageAcceptString,
-  getImageDimensions,
-  getLoadingVariantLabel,
-  getMarginInUnits,
-  getMatchCountText,
-  getPasteOption,
-  getRecommendedPriority,
-  getRulerDimensions,
-  getShortcutsByCategory,
-  getSupportedImageExtensions,
-  getSymbolCategories,
-  getSymbolUnicodeInfo,
-  getSymbolsByCategory,
-  getTablePresets,
-  getTextActionLabel,
-  getTextActionShortcut,
-  getVariantLabel,
-  isActionAvailable,
-  isEmptySearch,
-  isPasteSpecialShortcut,
-  isTextActionAvailable,
-  isValidImageFile,
-  isValidTableConfig,
-  parseMarginFromUnits,
-  positionToMargin,
-  replaceAllInContent,
-  replaceFirstInContent,
-  scrollToMatch,
-  searchSymbols,
-  symbolFromCodePoint,
-  useContextMenu,
-  useFindReplace,
-  useHyperlinkDialog,
-  useInsertImageDialog,
-  useInsertSymbolDialog,
-  useInsertTableDialog,
-  useKeyboardShortcutsDialog,
-  useLoading,
-  useLoadingOperations,
-  usePasteSpecial,
-  useResponsePreview,
-  useResponsiveToolbar,
-  useTextContextMenu,
-  useUnsavedChanges,
-} from './ui.js';
-export {
-  C as CLIPBOARD_TYPES,
-  a as ClipboardContent,
-  b as ClipboardOptions,
-  I as INTERNAL_CLIPBOARD_TYPE,
-  P as PageIndicatorPosition,
-  c as PageIndicatorVariant,
-  d as PageNavigator,
-  e as PageNavigatorPosition,
-  f as PageNavigatorProps,
-  g as PageNavigatorVariant,
-  h as PageNumberIndicator,
-  i as PageNumberIndicatorProps,
-  j as ParsedClipboardContent,
-  k as PrintButton,
-  l as PrintButtonProps,
-  m as PrintOptions,
-  n as PrintStyles,
-  T as TableAction,
-  o as TableContext,
-  p as TableSelection,
-  q as TableToolbar,
-  r as TableToolbarProps,
-  s as addColumn,
-  t as addRow,
-  u as calculateProgress,
-  v as calculateScrollToPage,
-  w as calculateVisiblePage,
-  x as clampPageNumber,
-  y as cleanWordHtml,
-  z as copyParagraphs,
-  A as copyRuns,
-  B as createClipboardHandlers,
-  D as createPageFormat,
-  E as createTableContext,
-  F as deleteColumn,
-  G as deleteRow,
-  H as formatPageOrdinal,
-  J as formatPageRange,
-  K as formatPrintPageRange,
-  L as getCellAt,
-  M as getColumnCount,
-  N as getDefaultPrintOptions,
-  O as getNavigationShortcuts,
-  Q as getPageProgress,
-  R as handlePasteEvent,
-  S as htmlToRuns,
-  U as isEditorHtml,
-  V as isFirstPage,
-  W as isLastPage,
-  X as isPrintSupported,
-  Y as isValidPageNumber,
-  Z as isWordHtml,
-  _ as mergeCells,
-  $ as openPrintWindow,
-  a0 as paragraphsToClipboardContent,
-  a1 as parseClipboardHtml,
-  a2 as parsePageInput,
-  a3 as parsePageRange,
-  a4 as readFromClipboard,
-  a5 as runsToClipboardContent,
-  a6 as splitCell,
-  a7 as triggerPrint,
-  a8 as writeToClipboard,
-} from './clipboard-BE8E-szx.js';
-export {
-  f as AIAction,
-  g as AIActionRequest,
-  A as AgentCommand,
-  h as AgentContext,
-  i as AgentResponse,
-  j as ApplyStyleCommand,
-  l as BlockContent,
-  a3 as BookmarkEnd,
-  a4 as BookmarkStart,
-  n as DeleteTextCommand,
-  D as Document,
-  d as DocumentBody,
-  o as DocxPackage,
-  E as Endnote,
-  a5 as Field,
-  a6 as FooterReference,
-  F as Footnote,
-  q as FormatTextCommand,
-  a7 as HeaderFooter,
-  a8 as HeaderReference,
-  H as Hyperlink,
-  I as Image,
-  r as InsertHyperlinkCommand,
-  s as InsertImageCommand,
-  t as InsertTableCommand,
-  u as InsertTextCommand,
-  L as ListLevel,
-  N as NumberingDefinitions,
-  a as Paragraph,
-  v as ParagraphContext,
-  w as ParagraphFormatting,
-  P as Position,
-  R as Range,
-  y as Relationship,
-  z as ReplaceTextCommand,
-  b as Run,
-  c as RunContent,
-  C as SectionProperties,
-  G as SelectionContext,
-  J as SetVariableCommand,
-  a9 as Shape,
-  K as Style,
-  M as StyleDefinitions,
-  Q as SuggestedAction,
-  e as Table,
-  U as TableCell,
-  V as TableRow,
-  aa as TextBox,
-  W as TextContent,
-  T as TextFormatting,
-  X as Theme,
-  ab as ThemeColorScheme,
-  ac as ThemeFont,
-  ad as ThemeFontScheme,
-} from './agentApi-DfsWRyrP.js';
+export { D as DEFAULT_SELECTION_STYLE, a as DocxEditor, b as DocxEditorHandle, c as DocxEditorProps, d as DocxEditorRef, E as EditorPlugin, e as ErrorBoundary, f as ErrorBoundaryProps, g as ErrorContextValue, h as ErrorProvider, H as HIGH_CONTRAST_SELECTION_STYLE, i as HighlightRect, P as PLUGIN_HOST_STYLES, j as ParseErrorDisplay, k as ParseErrorDisplayProps, l as PluginContext, m as PluginHost, n as PluginHostProps, o as PluginHostRef, p as RenderAsyncOptions, S as SELECTION_CSS_VARS, q as SelectionHighlightConfig, r as SelectionOverlayProps, s as SelectionRange, T as TableSelectionState, U as UnsupportedFeatureWarning, t as UnsupportedFeatureWarningProps, u as UseAutoSaveOptions, v as UseAutoSaveReturn, w as UseClipboardOptions, x as UseClipboardReturn, y as UseSelectionHighlightOptions, z as UseSelectionHighlightReturn, A as UseTableSelectionOptions, B as UseTableSelectionReturn, C as UseWheelZoomOptions, F as UseWheelZoomReturn, Z as ZOOM_PRESETS, G as areSelectionStylesInjected, I as clampZoom, J as clearSelection, K as createSelectionChangeHandler, L as findNearestZoomPreset, M as formatZoom, N as generateOverlayElements, O as generateSelectionCSS, Q as getHighlightRectStyle, V as getMergedSelectionRects, W as getNextZoomPreset, X as getPreviousZoomPreset, Y as getSelectedText, _ as getSelectionBoundingRect, $ as getSelectionRects, a0 as getUserFriendlyMessage, a1 as getZoomPresets, a2 as hasActiveSelection, a3 as highlightTextRange, a4 as injectSelectionStyles, a5 as isParseError, a6 as isSelectionBackwards, a7 as isSelectionWithin, a8 as isZoomPreset, a9 as mergeAdjacentRects, aa as normalizeSelectionDirection, ab as parseZoom, ac as removeSelectionStyles, ad as renderAsync, ae as selectRange, af as useAutoSave, ag as useClipboard, ah as useErrorNotifications, ai as useSelectionHighlight, aj as useTableSelection, ak as useWheelZoom } from './react-DWls3qqH.js';
+export { D as DocumentAgent, f as DocxInput, t as toArrayBuffer } from './DocumentAgent-BHR0CMGb.js';
+export { A as AgentContextOptions, C as CreateEmptyDocumentOptions, E as ExtendedSelectionContext, P as ProcessTemplateOptions, a as ProcessTemplateResult, b as SelectionContextOptions, c as blendColors, d as buildExtendedSelectionContext, e as buildSelectionContext, g as colorsEqual, h as createDocumentWithText, i as createEmptyDocument, j as createRgbColor, l as createThemeColor, m as darkenColor, n as emuToPixels, o as emuToTwips, p as executeCommand, q as executeCommands, r as formatPx, s as getAgentContext, t as getContrastingColor, u as getDocumentSummary, x as getTemplateTags, y as halfPointsToPixels, z as isBlack, B as isWhite, D as lightenColor, G as parseColorString, H as parseDocx, I as pixelsToEmu, J as pixelsToTwips, K as pointsToPixels, M as processTemplate, O as processTemplateAsBlob, Q as processTemplateDetailed, R as resolveColor, U as resolveHighlightColor, V as resolveShadingColor, W as serializeDocumentBody, X as serializeDocx, Y as serializeSectionProperties, Z as twipsToEmu, _ as twipsToPixels, $ as validateTemplate } from './colorResolver-yA-tN-lX.js';
+export { I as InsertPosition, c as canRenderFont, a as countPageBreaks, b as createColumnBreak, d as createHorizontalRule, e as createLineBreak, f as createPageBreak, g as createPageBreakParagraph, h as createPageBreakRun, i as findPageBreaks, j as getLoadedFonts, k as hasPageBreakBefore, l as insertHorizontalRule, m as insertPageBreak, n as isBreakContent, o as isColumnBreak, p as isFontLoaded, q as isFontsLoading, r as isLineBreak, s as isPageBreak, t as loadFont, u as loadFontFromBuffer, v as loadFonts, w as onFontsLoaded, x as preloadCommonFonts, y as removePageBreak } from './fontLoader-BsqQnB4v.js';
+export { AdvancedColorPicker, AlignmentButtons, AlignmentButtonsProps, ColorOption, ColorPicker, ColorPickerProps, ContextMenu, ContextMenuProps, DialogKeyboardShortcut, FindMatch, FindOptions, FindReplaceDialog, FindReplaceDialogProps, FindReplaceOptions, FindReplaceState, FindResult, FontOption, FontPicker, FontPickerProps, FontSizePicker, FontSizePickerProps, HighlightOptions, HorizontalRuler, HorizontalRulerProps, HyperlinkData, HyperlinkDialog, HyperlinkDialogProps, ImageData, IndicatorPosition, IndicatorVariant, InsertImageDialog, InsertImageDialogProps, InsertSymbolDialog, InsertSymbolDialogProps, InsertTableDialog, InsertTableDialogProps, KeyboardShortcutsDialog, KeyboardShortcutsDialogProps, LineSpacingOption, LineSpacingPicker, LineSpacingPickerProps, ListButtons, ListButtonsProps, ListState, LoadingIndicator, LoadingIndicatorProps, LoadingOperation, LoadingSize, LoadingVariant, PasteOption, PasteSpecialDialog, PasteSpecialDialogProps, ResponsePreview, ResponsePreviewProps, ResponsePreviewState, ResponsiveToolbar, ResponsiveToolbarGroup, ResponsiveToolbarGroupProps, ResponsiveToolbarProps, SYMBOL_CATEGORIES, ShortcutCategory, StyleOption, StylePicker, StylePickerProps, SymbolCategory, TableBorderColorPicker, TableBorderColorPickerProps, TableBorderPicker, TableBorderPickerProps, TableBorderWidthPicker, TableBorderWidthPickerProps, TableCellFillPicker, TableCellFillPickerProps, TableConfig, TableInsertButtons, TableInsertButtonsProps, TableMergeButton, TableMergeButtonProps, TableMoreDropdown, TableMoreDropdownProps, TextContextAction, TextContextMenu, TextContextMenuItem, TextContextMenuProps, Toolbar, ToolbarButton, ToolbarGroup, ToolbarItem, ToolbarItemPriority, ToolbarProps, ToolbarSeparator, UnsavedIndicator, UnsavedIndicatorProps, UseFindReplaceReturn, UseKeyboardShortcutsDialogOptions, UseKeyboardShortcutsDialogReturn, UseLoadingOptions, UseLoadingReturn, UsePasteSpecialOptions, UsePasteSpecialReturn, UseResponsiveToolbarOptions, UseResponsiveToolbarReturn, UseTextContextMenuOptions, UseTextContextMenuReturn, UseUnsavedChangesOptions, UseUnsavedChangesReturn, ZoomControl, ZoomControlProps, calculateFitDimensions, clampTableConfig, createChangeTracker, createDefaultFindOptions, createDefaultListState, createDefaultTableConfig, createErrorResponse, createMockResponse, createSearchPattern, createToolbarItem, createToolbarItems, dataUrlToBlob, delay, escapeRegexString, findAllMatches, findInDocument, findInParagraph, formatFileSize, formatShortcutKeys, formatTableDimensions, getActionShortcut, getAllActions, getAllCategories, getAllIndicatorPositions, getAllIndicatorVariants, getAllLoadingSizes, getAllLoadingVariants, getAllPasteOptions, getCategoryLabel, getCommonShortcuts, getDefaultActions, getDefaultHighlightOptions, getDefaultPasteOption, getDefaultShortcuts, getDefaultTextContextMenuItems, getImageAcceptString, getImageDimensions, getLoadingVariantLabel, getMarginInUnits, getMatchCountText, getPasteOption, getRecommendedPriority, getRulerDimensions, getShortcutsByCategory, getSupportedImageExtensions, getSymbolCategories, getSymbolUnicodeInfo, getSymbolsByCategory, getTablePresets, getTextActionLabel, getTextActionShortcut, getVariantLabel, isActionAvailable, isEmptySearch, isPasteSpecialShortcut, isTextActionAvailable, isValidImageFile, isValidTableConfig, parseMarginFromUnits, positionToMargin, replaceAllInContent, replaceFirstInContent, scrollToMatch, searchSymbols, symbolFromCodePoint, useContextMenu, useFindReplace, useHyperlinkDialog, useInsertImageDialog, useInsertSymbolDialog, useInsertTableDialog, useKeyboardShortcutsDialog, useLoading, useLoadingOperations, usePasteSpecial, useResponsePreview, useResponsiveToolbar, useTextContextMenu, useUnsavedChanges } from './ui.js';
+export { C as CLIPBOARD_TYPES, a as ClipboardContent, b as ClipboardOptions, I as INTERNAL_CLIPBOARD_TYPE, P as PageIndicatorPosition, c as PageIndicatorVariant, d as PageNavigator, e as PageNavigatorPosition, f as PageNavigatorProps, g as PageNavigatorVariant, h as PageNumberIndicator, i as PageNumberIndicatorProps, j as ParsedClipboardContent, k as PrintButton, l as PrintButtonProps, m as PrintOptions, n as PrintStyles, T as TableAction, o as TableContext, p as TableSelection, q as TableToolbar, r as TableToolbarProps, s as addColumn, t as addRow, u as calculateProgress, v as calculateScrollToPage, w as calculateVisiblePage, x as clampPageNumber, y as cleanWordHtml, z as copyParagraphs, A as copyRuns, B as createClipboardHandlers, D as createPageFormat, E as createTableContext, F as deleteColumn, G as deleteRow, H as formatPageOrdinal, J as formatPageRange, K as formatPrintPageRange, L as getCellAt, M as getColumnCount, N as getDefaultPrintOptions, O as getNavigationShortcuts, Q as getPageProgress, R as handlePasteEvent, S as htmlToRuns, U as isEditorHtml, V as isFirstPage, W as isLastPage, X as isPrintSupported, Y as isValidPageNumber, Z as isWordHtml, _ as mergeCells, $ as openPrintWindow, a0 as paragraphsToClipboardContent, a1 as parseClipboardHtml, a2 as parsePageInput, a3 as parsePageRange, a4 as readFromClipboard, a5 as runsToClipboardContent, a6 as splitCell, a7 as triggerPrint, a8 as writeToClipboard } from './clipboard-BE8E-szx.js';
+export { f as AIAction, g as AIActionRequest, A as AgentCommand, h as AgentContext, i as AgentResponse, j as ApplyStyleCommand, l as BlockContent, a3 as BookmarkEnd, a4 as BookmarkStart, n as DeleteTextCommand, D as Document, d as DocumentBody, o as DocxPackage, E as Endnote, a5 as Field, a6 as FooterReference, F as Footnote, q as FormatTextCommand, a7 as HeaderFooter, a8 as HeaderReference, H as Hyperlink, I as Image, r as InsertHyperlinkCommand, s as InsertImageCommand, t as InsertTableCommand, u as InsertTextCommand, L as ListLevel, N as NumberingDefinitions, a as Paragraph, v as ParagraphContext, w as ParagraphFormatting, P as Position, R as Range, y as Relationship, z as ReplaceTextCommand, b as Run, c as RunContent, C as SectionProperties, G as SelectionContext, J as SetVariableCommand, a9 as Shape, K as Style, M as StyleDefinitions, Q as SuggestedAction, e as Table, U as TableCell, V as TableRow, aa as TextBox, W as TextContent, T as TextFormatting, X as Theme, ab as ThemeColorScheme, ac as ThemeFont, ad as ThemeFontScheme } from './agentApi-DfsWRyrP.js';
 import * as prosemirror_state from 'prosemirror-state';
 import { Plugin, PluginKey } from 'prosemirror-state';
 import { DecorationSet, EditorView } from 'prosemirror-view';
-export {
-  C as CorePlugin,
-  e as McpSession,
-  M as McpToolDefinition,
-  i as McpToolHandler,
-  j as McpToolResult,
-} from './types-7wjInVMW.js';
-export {
-  P as PluginRegistry,
-  p as pluginRegistry,
-  r as registerPlugins,
-} from './registry-gRbkCooh.js';
+export { C as CorePlugin, e as McpSession, M as McpToolDefinition, i as McpToolHandler, j as McpToolResult } from './types-7wjInVMW.js';
+export { P as PluginRegistry, p as pluginRegistry, r as registerPlugins } from './registry-gRbkCooh.js';
 export { docxtemplaterPlugin } from './core-plugins-reexport.js';
 import * as react_jsx_runtime from 'react/jsx-runtime';
 import { k as PluginPanelProps } from './ClipboardManager-jqJVxB6g.js';
-export {
-  d as AutoSaveStatus,
-  e as ClipboardSelection,
-  h as ErrorNotification,
-  i as ErrorSeverity,
-  j as PanelConfig,
-  l as PositionCoordinates,
-  R as RenderedDomContext,
-  m as SavedDocumentData,
-  T as TABLE_DATA_ATTRIBUTES,
-  p as createSelectionFromDOM,
-  t as formatLastSaveTime,
-  u as formatStorageSize,
-  v as getAutoSaveStatusLabel,
-  w as getAutoSaveStorageSize,
-  x as getSelectionRuns,
-  z as isAutoSaveSupported,
-} from './ClipboardManager-jqJVxB6g.js';
+export { d as AutoSaveStatus, e as ClipboardSelection, h as ErrorNotification, i as ErrorSeverity, j as PanelConfig, l as PositionCoordinates, R as RenderedDomContext, m as SavedDocumentData, T as TABLE_DATA_ATTRIBUTES, p as createSelectionFromDOM, t as formatLastSaveTime, u as formatStorageSize, v as getAutoSaveStatusLabel, w as getAutoSaveStorageSize, x as getSelectionRuns, z as isAutoSaveSupported } from './ClipboardManager-jqJVxB6g.js';
 import 'react';
 import 'prosemirror-model';
 
@@ -531,12 +45,12 @@ declare function getWordAt(text: string, position: number): string;
  * Word selection result
  */
 interface WordSelectionResult {
-  /** The selected word */
-  word: string;
-  /** Start index in the text (inclusive) */
-  startIndex: number;
-  /** End index in the text (exclusive) */
-  endIndex: number;
+    /** The selected word */
+    word: string;
+    /** Start index in the text (inclusive) */
+    startIndex: number;
+    /** End index in the text (exclusive) */
+    endIndex: number;
 }
 /**
  * Find the word at a position and return detailed info
@@ -601,22 +115,22 @@ type NavigationUnit = 'character' | 'word' | 'line' | 'paragraph' | 'document';
  * Keyboard navigation action
  */
 interface NavigationAction {
-  /** Direction to navigate */
-  direction: NavigationDirection;
-  /** Unit of movement */
-  unit: NavigationUnit;
-  /** Whether to extend selection */
-  extend: boolean;
+    /** Direction to navigate */
+    direction: NavigationDirection;
+    /** Unit of movement */
+    unit: NavigationUnit;
+    /** Whether to extend selection */
+    extend: boolean;
 }
 /**
  * Keyboard shortcut definition
  */
 interface KeyboardShortcut {
-  key: string;
-  ctrlKey?: boolean;
-  metaKey?: boolean;
-  shiftKey?: boolean;
-  altKey?: boolean;
+    key: string;
+    ctrlKey?: boolean;
+    metaKey?: boolean;
+    shiftKey?: boolean;
+    altKey?: boolean;
 }
 /**
  * Check if a character is a word character (letter, digit, or underscore)
@@ -650,36 +164,30 @@ declare function findPreviousWordStart(text: string, position: number): number;
  * Find the start of the current line in a text node
  * Uses visual line detection based on bounding rectangles
  */
-declare function findVisualLineStart(
-  container: Node,
-  offset: number
-): {
-  node: Node;
-  offset: number;
+declare function findVisualLineStart(container: Node, offset: number): {
+    node: Node;
+    offset: number;
 } | null;
 /**
  * Find the end of the current line in a text node
  * Uses visual line detection based on bounding rectangles
  */
-declare function findVisualLineEnd(
-  container: Node,
-  offset: number
-): {
-  node: Node;
-  offset: number;
+declare function findVisualLineEnd(container: Node, offset: number): {
+    node: Node;
+    offset: number;
 } | null;
 /**
  * Get the current selection info
  */
 declare function getSelectionInfo(): {
-  node: Node;
-  offset: number;
-  anchorNode: Node | null;
-  anchorOffset: number;
-  focusNode: Node | null;
-  focusOffset: number;
-  isCollapsed: boolean;
-  text: string;
+    node: Node;
+    offset: number;
+    anchorNode: Node | null;
+    anchorOffset: number;
+    focusNode: Node | null;
+    focusOffset: number;
+    isCollapsed: boolean;
+    text: string;
 } | null;
 /**
  * Set the selection to a specific position
@@ -705,13 +213,10 @@ declare function parseNavigationAction(event: KeyboardEvent): NavigationAction |
  * Handle a keyboard navigation event
  * Returns true if the event was handled
  */
-declare function handleNavigationKey(
-  event: KeyboardEvent,
-  options?: {
+declare function handleNavigationKey(event: KeyboardEvent, options?: {
     onDocumentStart?: () => void;
     onDocumentEnd?: () => void;
-  }
-): boolean;
+}): boolean;
 /**
  * Check if an event is a navigation key event
  */
@@ -733,18 +238,18 @@ declare function matchesShortcut(event: KeyboardEvent, shortcut: KeyboardShortcu
  * Common navigation shortcuts
  */
 declare const NAVIGATION_SHORTCUTS: {
-  readonly wordLeft: KeyboardShortcut;
-  readonly wordRight: KeyboardShortcut;
-  readonly selectWordLeft: KeyboardShortcut;
-  readonly selectWordRight: KeyboardShortcut;
-  readonly lineStart: KeyboardShortcut;
-  readonly lineEnd: KeyboardShortcut;
-  readonly selectToLineStart: KeyboardShortcut;
-  readonly selectToLineEnd: KeyboardShortcut;
-  readonly documentStart: KeyboardShortcut;
-  readonly documentEnd: KeyboardShortcut;
-  readonly selectToDocumentStart: KeyboardShortcut;
-  readonly selectToDocumentEnd: KeyboardShortcut;
+    readonly wordLeft: KeyboardShortcut;
+    readonly wordRight: KeyboardShortcut;
+    readonly selectWordLeft: KeyboardShortcut;
+    readonly selectWordRight: KeyboardShortcut;
+    readonly lineStart: KeyboardShortcut;
+    readonly lineEnd: KeyboardShortcut;
+    readonly selectToLineStart: KeyboardShortcut;
+    readonly selectToLineEnd: KeyboardShortcut;
+    readonly documentStart: KeyboardShortcut;
+    readonly documentEnd: KeyboardShortcut;
+    readonly selectToDocumentStart: KeyboardShortcut;
+    readonly selectToDocumentEnd: KeyboardShortcut;
 };
 /**
  * Get a human-readable description of a shortcut
@@ -754,8 +259,8 @@ declare function describeShortcut(shortcut: KeyboardShortcut): string;
  * Get all navigation shortcuts with descriptions
  */
 declare function getNavigationShortcutDescriptions(): Array<{
-  action: string;
-  shortcut: string;
+    action: string;
+    shortcut: string;
 }>;
 
 /**
@@ -766,25 +271,25 @@ type TagType = 'variable' | 'sectionStart' | 'sectionEnd' | 'invertedStart' | 'r
  * A found template tag
  */
 interface TemplateTag {
-  id: string;
-  type: TagType;
-  name: string;
-  rawTag: string;
-  from: number;
-  to: number;
-  /** For sections: nested variable names */
-  nestedVars?: string[];
-  /** True if this variable is inside a section (shown in section's nested vars) */
-  insideSection?: boolean;
+    id: string;
+    type: TagType;
+    name: string;
+    rawTag: string;
+    from: number;
+    to: number;
+    /** For sections: nested variable names */
+    nestedVars?: string[];
+    /** True if this variable is inside a section (shown in section's nested vars) */
+    insideSection?: boolean;
 }
 /**
  * Plugin state
  */
 interface TemplatePluginState$1 {
-  tags: TemplateTag[];
-  decorations: DecorationSet;
-  hoveredId?: string;
-  selectedId?: string;
+    tags: TemplateTag[];
+    decorations: DecorationSet;
+    hoveredId?: string;
+    selectedId?: string;
 }
 /**
  * Plugin key
@@ -809,22 +314,17 @@ declare function setSelectedElement(view: EditorView, id: string | undefined): v
 /**
  * CSS styles for template decorations
  */
-declare const TEMPLATE_DECORATION_STYLES =
-  '\n.docx-template-tag {\n  cursor: pointer;\n  transition: background-color 0.1s;\n}\n\n.docx-template-tag:hover,\n.docx-template-tag.hovered {\n  filter: brightness(0.95);\n}\n\n.docx-template-tag.selected {\n  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);\n}\n';
+declare const TEMPLATE_DECORATION_STYLES = "\n.docx-template-tag {\n  cursor: pointer;\n  transition: background-color 0.1s;\n}\n\n.docx-template-tag:hover,\n.docx-template-tag.hovered {\n  filter: brightness(0.95);\n}\n\n.docx-template-tag.selected {\n  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);\n}\n";
 
 interface PluginState {
-  tags: TemplateTag[];
-  hoveredId?: string;
-  selectedId?: string;
+    tags: TemplateTag[];
+    hoveredId?: string;
+    selectedId?: string;
 }
-interface AnnotationPanelProps extends PluginPanelProps<PluginState> {}
-declare function AnnotationPanel({
-  editorView,
-  pluginState,
-  renderedDomContext,
-}: AnnotationPanelProps): react_jsx_runtime.JSX.Element | null;
-declare const ANNOTATION_PANEL_STYLES =
-  "\n.template-panel {\n  display: flex;\n  min-height: 100%;\n  background: transparent;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\n  position: relative;\n}\n\n.template-panel-annotations {\n  flex: 1;\n  position: relative;\n  overflow: visible;\n  min-height: 100%;\n  pointer-events: none;\n  will-change: transform;\n}\n\n.template-panel-annotations > * {\n  pointer-events: auto;\n}\n\n.template-annotation-anchor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  display: flex;\n  align-items: flex-start;\n  transition: top 0.15s ease-out;\n}\n\n.template-annotation-connector {\n  width: 20px;\n  height: 1px;\n  background: #d0d0d0;\n  margin-top: 12px;\n  margin-right: 4px;\n  flex-shrink: 0;\n}\n\n.template-annotation-anchor:hover .template-annotation-connector {\n  background: #3b82f6;\n}\n\n.template-annotation-chip {\n  display: inline-flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 4px;\n  padding: 5px 10px;\n  background: white;\n  border: 1px solid #e2e8f0;\n  border-left: 3px solid #6c757d;\n  border-radius: 4px;\n  font-size: 11px;\n  cursor: pointer;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);\n  max-width: 200px;\n}\n\n.template-annotation-chip:hover,\n.template-annotation-chip.hovered {\n  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);\n  border-color: #cbd5e1;\n}\n\n.template-annotation-chip.selected {\n  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);\n}\n\n.template-chip-badge {\n  font-size: 9px;\n  font-weight: 600;\n  padding: 1px 5px;\n  border-radius: 3px;\n  color: white;\n  text-transform: uppercase;\n  letter-spacing: 0.3px;\n}\n\n.template-chip-dot {\n  font-size: 8px;\n}\n\n.template-chip-name {\n  color: #334155;\n  font-weight: 500;\n}\n\n.template-chip-nested {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 4px;\n  width: 100%;\n  margin-top: 4px;\n  padding-top: 4px;\n  border-top: 1px solid rgba(0, 0, 0, 0.06);\n}\n\n.template-nested-var {\n  font-size: 10px;\n  color: #64748b;\n  background: rgba(0, 0, 0, 0.04);\n  padding: 2px 6px;\n  border-radius: 3px;\n}\n\n.template-nested-var:hover {\n  background: rgba(59, 130, 246, 0.15);\n  color: #1e40af;\n}\n";
+interface AnnotationPanelProps extends PluginPanelProps<PluginState> {
+}
+declare function AnnotationPanel({ editorView, pluginState, renderedDomContext, }: AnnotationPanelProps): react_jsx_runtime.JSX.Element | null;
+declare const ANNOTATION_PANEL_STYLES = "\n.template-panel {\n  display: flex;\n  min-height: 100%;\n  background: transparent;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\n  position: relative;\n}\n\n.template-panel-annotations {\n  flex: 1;\n  position: relative;\n  overflow: visible;\n  min-height: 100%;\n  pointer-events: none;\n  will-change: transform;\n}\n\n.template-panel-annotations > * {\n  pointer-events: auto;\n}\n\n.template-annotation-anchor {\n  position: absolute;\n  left: 0;\n  right: 0;\n  display: flex;\n  align-items: flex-start;\n  transition: top 0.15s ease-out;\n}\n\n.template-annotation-connector {\n  width: 20px;\n  height: 1px;\n  background: #d0d0d0;\n  margin-top: 12px;\n  margin-right: 4px;\n  flex-shrink: 0;\n}\n\n.template-annotation-anchor:hover .template-annotation-connector {\n  background: #3b82f6;\n}\n\n.template-annotation-chip {\n  display: inline-flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 4px;\n  padding: 5px 10px;\n  background: white;\n  border: 1px solid #e2e8f0;\n  border-left: 3px solid #6c757d;\n  border-radius: 4px;\n  font-size: 11px;\n  cursor: pointer;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);\n  max-width: 200px;\n}\n\n.template-annotation-chip:hover,\n.template-annotation-chip.hovered {\n  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);\n  border-color: #cbd5e1;\n}\n\n.template-annotation-chip.selected {\n  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);\n}\n\n.template-chip-badge {\n  font-size: 9px;\n  font-weight: 600;\n  padding: 1px 5px;\n  border-radius: 3px;\n  color: white;\n  text-transform: uppercase;\n  letter-spacing: 0.3px;\n}\n\n.template-chip-dot {\n  font-size: 8px;\n}\n\n.template-chip-name {\n  color: #334155;\n  font-weight: 500;\n}\n\n.template-chip-nested {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 4px;\n  width: 100%;\n  margin-top: 4px;\n  padding-top: 4px;\n  border-top: 1px solid rgba(0, 0, 0, 0.06);\n}\n\n.template-nested-var {\n  font-size: 10px;\n  color: #64748b;\n  background: rgba(0, 0, 0, 0.04);\n  padding: 2px 6px;\n  border-radius: 3px;\n}\n\n.template-nested-var:hover {\n  background: rgba(59, 130, 246, 0.15);\n  color: #1e40af;\n}\n";
 
 /**
  * Template Plugin
@@ -855,9 +355,9 @@ declare const ANNOTATION_PANEL_STYLES =
  * Plugin state interface
  */
 interface TemplatePluginState {
-  tags: TemplateTag[];
-  hoveredId?: string;
-  selectedId?: string;
+    tags: TemplateTag[];
+    hoveredId?: string;
+    selectedId?: string;
 }
 /**
  * Create the template plugin instance.
@@ -865,12 +365,12 @@ interface TemplatePluginState {
  * @param options - Plugin configuration options
  */
 declare function createPlugin(options?: {
-  /** Initial panel collapsed state */
-  defaultCollapsed?: boolean;
-  /** Panel position */
-  panelPosition?: 'left' | 'right';
-  /** Panel default width */
-  panelWidth?: number;
+    /** Initial panel collapsed state */
+    defaultCollapsed?: boolean;
+    /** Panel position */
+    panelPosition?: 'left' | 'right';
+    /** Panel default width */
+    panelWidth?: number;
 }): ReactEditorPlugin<TemplatePluginState>;
 /**
  * Default template plugin instance.
@@ -899,61 +399,6 @@ declare const templatePlugin: ReactEditorPlugin<TemplatePluginState>;
  * import '@eigenpal/docx-js-editor/styles/editor.css';
  * ```
  */
-declare const VERSION = '0.0.2';
+declare const VERSION = "0.0.2";
 
-export {
-  ANNOTATION_PANEL_STYLES,
-  AnnotationPanel,
-  type KeyboardShortcut,
-  NAVIGATION_SHORTCUTS,
-  type NavigationAction,
-  type NavigationDirection,
-  type NavigationUnit,
-  PluginPanelProps,
-  TEMPLATE_DECORATION_STYLES,
-  type TagType,
-  type TemplateTag,
-  VERSION,
-  type WordSelectionResult,
-  createDoubleClickWordSelector,
-  createPlugin as createTemplatePlugin,
-  createTemplatePlugin as createTemplateProseMirrorPlugin,
-  createTripleClickParagraphSelector,
-  describeShortcut,
-  expandSelectionToWord,
-  expandSelectionToWordBoundaries,
-  extendSelectionTo,
-  findNextWordStart,
-  findPreviousWordStart,
-  findVisualLineEnd,
-  findVisualLineStart,
-  findWordAt,
-  findWordBoundaries,
-  findWordEnd,
-  findWordStart,
-  getNavigationShortcutDescriptions,
-  getSelectionInfo,
-  getTemplateTags as getTemplatePluginTags,
-  getWordAt,
-  getWordAtCursor,
-  handleClickForMultiClick,
-  handleNavigationKey,
-  isNavigationKey,
-  isPunctuation,
-  isWhitespace$1 as isWhitespace,
-  isWhitespace as isWhitespaceChar,
-  isWordCharacter as isWordChar,
-  isWordCharacter$1 as isWordCharacter,
-  matchesShortcut,
-  moveByWord,
-  moveToLineEdge,
-  parseNavigationAction,
-  selectParagraphAtCursor,
-  selectWordAtCursor,
-  selectWordInTextNode,
-  setHoveredElement,
-  setSelectedElement,
-  setSelectionPosition,
-  templatePlugin,
-  templatePluginKey,
-};
+export { ANNOTATION_PANEL_STYLES, AnnotationPanel, type KeyboardShortcut, NAVIGATION_SHORTCUTS, type NavigationAction, type NavigationDirection, type NavigationUnit, PluginPanelProps, TEMPLATE_DECORATION_STYLES, type TagType, type TemplateTag, VERSION, type WordSelectionResult, createDoubleClickWordSelector, createPlugin as createTemplatePlugin, createTemplatePlugin as createTemplateProseMirrorPlugin, createTripleClickParagraphSelector, describeShortcut, expandSelectionToWord, expandSelectionToWordBoundaries, extendSelectionTo, findNextWordStart, findPreviousWordStart, findVisualLineEnd, findVisualLineStart, findWordAt, findWordBoundaries, findWordEnd, findWordStart, getNavigationShortcutDescriptions, getSelectionInfo, getTemplateTags as getTemplatePluginTags, getWordAt, getWordAtCursor, handleClickForMultiClick, handleNavigationKey, isNavigationKey, isPunctuation, isWhitespace$1 as isWhitespace, isWhitespace as isWhitespaceChar, isWordCharacter as isWordChar, isWordCharacter$1 as isWordCharacter, matchesShortcut, moveByWord, moveToLineEdge, parseNavigationAction, selectParagraphAtCursor, selectWordAtCursor, selectWordInTextNode, setHoveredElement, setSelectedElement, setSelectionPosition, templatePlugin, templatePluginKey };

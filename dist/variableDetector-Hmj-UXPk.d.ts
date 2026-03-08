@@ -35,12 +35,12 @@ import { D as Document, d as DocumentBody, a as Paragraph } from './agentApi-Dfs
  * Options for repacking DOCX
  */
 interface RepackOptions {
-  /** Compression level (0-9, default: 6) */
-  compressionLevel?: number;
-  /** Whether to update modification date in docProps/core.xml */
-  updateModifiedDate?: boolean;
-  /** Custom modifier name for lastModifiedBy */
-  modifiedBy?: string;
+    /** Compression level (0-9, default: 6) */
+    compressionLevel?: number;
+    /** Whether to update modification date in docProps/core.xml */
+    updateModifiedDate?: boolean;
+    /** Custom modifier name for lastModifiedBy */
+    modifiedBy?: string;
 }
 /**
  * Repack a Document into a valid DOCX file
@@ -71,34 +71,34 @@ declare function createDocx(doc: Document): Promise<ArrayBuffer>;
  * Result of variable detection
  */
 interface VariableDetectionResult {
-  /** Unique variable names sorted alphabetically */
-  variables: string[];
-  /** Total count of variable occurrences */
-  totalOccurrences: number;
-  /** Variables by location */
-  byLocation: {
-    body: string[];
-    headers: string[];
-    footers: string[];
-    footnotes: string[];
-    endnotes: string[];
-    textBoxes: string[];
-  };
-  /** Variable occurrences with positions */
-  occurrences: VariableOccurrence[];
+    /** Unique variable names sorted alphabetically */
+    variables: string[];
+    /** Total count of variable occurrences */
+    totalOccurrences: number;
+    /** Variables by location */
+    byLocation: {
+        body: string[];
+        headers: string[];
+        footers: string[];
+        footnotes: string[];
+        endnotes: string[];
+        textBoxes: string[];
+    };
+    /** Variable occurrences with positions */
+    occurrences: VariableOccurrence[];
 }
 /**
  * A single variable occurrence with location info
  */
 interface VariableOccurrence {
-  /** Variable name (without braces) */
-  name: string;
-  /** Location type */
-  location: 'body' | 'header' | 'footer' | 'footnote' | 'endnote' | 'textBox';
-  /** Paragraph index within location */
-  paragraphIndex?: number;
-  /** Section index (for headers/footers) */
-  sectionIndex?: number;
+    /** Variable name (without braces) */
+    name: string;
+    /** Location type */
+    location: 'body' | 'header' | 'footer' | 'footnote' | 'endnote' | 'textBox';
+    /** Paragraph index within location */
+    paragraphIndex?: number;
+    /** Section index (for headers/footers) */
+    sectionIndex?: number;
 }
 /**
  * Detect all template variables in a document
@@ -170,22 +170,4 @@ declare function removeVariables(text: string, placeholder?: string): string;
  */
 declare function documentHasVariables(doc: Document): boolean;
 
-export {
-  type VariableDetectionResult as V,
-  type VariableOccurrence as a,
-  detectVariablesDetailed as b,
-  createDocx as c,
-  detectVariables as d,
-  detectVariablesInBody as e,
-  detectVariablesInParagraph as f,
-  documentHasVariables as g,
-  extractVariablesFromText as h,
-  formatVariable as i,
-  hasTemplateVariables as j,
-  isValidVariableName as k,
-  repackDocx as l,
-  replaceVariables as m,
-  parseVariable as p,
-  removeVariables as r,
-  sanitizeVariableName as s,
-};
+export { type VariableDetectionResult as V, type VariableOccurrence as a, detectVariablesDetailed as b, createDocx as c, detectVariables as d, detectVariablesInBody as e, detectVariablesInParagraph as f, documentHasVariables as g, extractVariablesFromText as h, formatVariable as i, hasTemplateVariables as j, isValidVariableName as k, repackDocx as l, replaceVariables as m, parseVariable as p, removeVariables as r, sanitizeVariableName as s };

@@ -1,180 +1,10 @@
-import {
-  d as DocumentBody,
-  a as Paragraph,
-  T as TextFormatting,
-  H as Hyperlink,
-  b as Run,
-  e as Table,
-  P as Position,
-} from './agentApi-DfsWRyrP.js';
-export {
-  f as AIAction,
-  g as AIActionRequest,
-  A as AgentCommand,
-  h as AgentContext,
-  i as AgentResponse,
-  j as ApplyStyleCommand,
-  k as ApplyVariablesCommand,
-  l as BlockContent,
-  m as DEFAULT_AI_ACTIONS,
-  n as DeleteTextCommand,
-  D as Document,
-  o as DocxPackage,
-  E as Endnote,
-  F as Footnote,
-  p as FormatParagraphCommand,
-  q as FormatTextCommand,
-  I as Image,
-  r as InsertHyperlinkCommand,
-  s as InsertImageCommand,
-  t as InsertTableCommand,
-  u as InsertTextCommand,
-  L as ListLevel,
-  N as NumberingDefinitions,
-  v as ParagraphContext,
-  w as ParagraphFormatting,
-  x as ParagraphOutline,
-  R as Range,
-  y as Relationship,
-  z as ReplaceTextCommand,
-  c as RunContent,
-  S as SectionInfo,
-  C as SectionProperties,
-  G as SelectionContext,
-  J as SetVariableCommand,
-  K as Style,
-  M as StyleDefinitions,
-  O as StyleInfo,
-  Q as SuggestedAction,
-  U as TableCell,
-  V as TableRow,
-  W as TextContent,
-  X as Theme,
-  Y as comparePositions,
-  Z as createCollapsedRange,
-  _ as createCommand,
-  $ as createRange,
-  a0 as getActionDescription,
-  a1 as getActionLabel,
-  a2 as isPositionInRange,
-} from './agentApi-DfsWRyrP.js';
-export {
-  A as AgentContextOptions,
-  S as ContextSelectionOptions,
-  C as CreateEmptyDocumentOptions,
-  E as ExtendedSelectionContext,
-  F as FormattingSummary,
-  P as ProcessTemplateOptions,
-  a as ProcessTemplateResult,
-  b as SelectionContextOptions,
-  T as TemplateError,
-  c as blendColors,
-  d as buildExtendedSelectionContext,
-  e as buildSelectionContext,
-  f as buildSelectionContextFromContext,
-  g as colorsEqual,
-  h as createDocumentWithText,
-  i as createEmptyDocument,
-  j as createRgbColor,
-  k as createTemplateProcessor,
-  l as createThemeColor,
-  m as darkenColor,
-  n as emuToPixels,
-  o as emuToTwips,
-  p as executeCommand,
-  q as executeCommands,
-  r as formatPx,
-  s as getAgentContext,
-  t as getContrastingColor,
-  u as getDocumentSummary,
-  v as getMissingVariables,
-  w as getSelectionFormattingSummary,
-  x as getTemplateTags,
-  y as halfPointsToPixels,
-  z as isBlack,
-  B as isWhite,
-  D as lightenColor,
-  G as parseColorString,
-  H as parseDocx,
-  I as pixelsToEmu,
-  J as pixelsToTwips,
-  K as pointsToPixels,
-  L as previewTemplate,
-  M as processTemplate,
-  N as processTemplateAdvanced,
-  O as processTemplateAsBlob,
-  Q as processTemplateDetailed,
-  R as resolveColor,
-  U as resolveHighlightColor,
-  V as resolveShadingColor,
-  W as serializeDocumentBody,
-  X as serializeDocx,
-  Y as serializeSectionProperties,
-  Z as twipsToEmu,
-  _ as twipsToPixels,
-  $ as validateTemplate,
-} from './colorResolver-yA-tN-lX.js';
-export {
-  b as CommandHandler,
-  d as CommandResult,
-  C as CorePlugin,
-  J as JsonSchema,
-  L as LoadedDocument,
-  e as McpSession,
-  f as McpToolAnnotations,
-  g as McpToolContent,
-  h as McpToolContext,
-  M as McpToolDefinition,
-  i as McpToolHandler,
-  j as McpToolResult,
-  C as Plugin,
-  k as PluginCommand,
-  b as PluginCommandHandler,
-  l as PluginEvent,
-  c as PluginEventListener,
-  P as PluginOptions,
-  a as PluginRegistrationResult,
-  M as ToolDefinition,
-  i as ToolHandler,
-  j as ToolResult,
-  Z as ZodSchemaLike,
-  m as isZodSchema,
-} from './types-7wjInVMW.js';
-export {
-  D as DocumentAgent,
-  F as FormattedTextSegment,
-  I as InsertHyperlinkOptions,
-  a as InsertImageOptions,
-  b as InsertTableOptions,
-  c as InsertTextOptions,
-  d as createAgent,
-  e as createAgentFromDocument,
-} from './DocumentAgent-BHR0CMGb.js';
-export {
-  P as PluginRegistry,
-  c as createPluginRegistrar,
-  p as pluginRegistry,
-  r as registerPlugins,
-} from './registry-gRbkCooh.js';
-export {
-  V as VariableDetectionResult,
-  a as VariableOccurrence,
-  c as createDocx,
-  d as detectVariables,
-  b as detectVariablesDetailed,
-  e as detectVariablesInBody,
-  f as detectVariablesInParagraph,
-  g as documentHasVariables,
-  h as extractVariablesFromText,
-  i as formatVariable,
-  j as hasTemplateVariables,
-  k as isValidVariableName,
-  p as parseVariable,
-  r as removeVariables,
-  l as repackDocx,
-  m as replaceVariables,
-  s as sanitizeVariableName,
-} from './variableDetector-Hmj-UXPk.js';
+import { d as DocumentBody, a as Paragraph, T as TextFormatting, H as Hyperlink, b as Run, e as Table, P as Position } from './agentApi-DfsWRyrP.js';
+export { f as AIAction, g as AIActionRequest, A as AgentCommand, h as AgentContext, i as AgentResponse, j as ApplyStyleCommand, k as ApplyVariablesCommand, l as BlockContent, m as DEFAULT_AI_ACTIONS, n as DeleteTextCommand, D as Document, o as DocxPackage, E as Endnote, F as Footnote, p as FormatParagraphCommand, q as FormatTextCommand, I as Image, r as InsertHyperlinkCommand, s as InsertImageCommand, t as InsertTableCommand, u as InsertTextCommand, L as ListLevel, N as NumberingDefinitions, v as ParagraphContext, w as ParagraphFormatting, x as ParagraphOutline, R as Range, y as Relationship, z as ReplaceTextCommand, c as RunContent, S as SectionInfo, C as SectionProperties, G as SelectionContext, J as SetVariableCommand, K as Style, M as StyleDefinitions, O as StyleInfo, Q as SuggestedAction, U as TableCell, V as TableRow, W as TextContent, X as Theme, Y as comparePositions, Z as createCollapsedRange, _ as createCommand, $ as createRange, a0 as getActionDescription, a1 as getActionLabel, a2 as isPositionInRange } from './agentApi-DfsWRyrP.js';
+export { A as AgentContextOptions, S as ContextSelectionOptions, C as CreateEmptyDocumentOptions, E as ExtendedSelectionContext, F as FormattingSummary, P as ProcessTemplateOptions, a as ProcessTemplateResult, b as SelectionContextOptions, T as TemplateError, c as blendColors, d as buildExtendedSelectionContext, e as buildSelectionContext, f as buildSelectionContextFromContext, g as colorsEqual, h as createDocumentWithText, i as createEmptyDocument, j as createRgbColor, k as createTemplateProcessor, l as createThemeColor, m as darkenColor, n as emuToPixels, o as emuToTwips, p as executeCommand, q as executeCommands, r as formatPx, s as getAgentContext, t as getContrastingColor, u as getDocumentSummary, v as getMissingVariables, w as getSelectionFormattingSummary, x as getTemplateTags, y as halfPointsToPixels, z as isBlack, B as isWhite, D as lightenColor, G as parseColorString, H as parseDocx, I as pixelsToEmu, J as pixelsToTwips, K as pointsToPixels, L as previewTemplate, M as processTemplate, N as processTemplateAdvanced, O as processTemplateAsBlob, Q as processTemplateDetailed, R as resolveColor, U as resolveHighlightColor, V as resolveShadingColor, W as serializeDocumentBody, X as serializeDocx, Y as serializeSectionProperties, Z as twipsToEmu, _ as twipsToPixels, $ as validateTemplate } from './colorResolver-yA-tN-lX.js';
+export { b as CommandHandler, d as CommandResult, C as CorePlugin, J as JsonSchema, L as LoadedDocument, e as McpSession, f as McpToolAnnotations, g as McpToolContent, h as McpToolContext, M as McpToolDefinition, i as McpToolHandler, j as McpToolResult, C as Plugin, k as PluginCommand, b as PluginCommandHandler, l as PluginEvent, c as PluginEventListener, P as PluginOptions, a as PluginRegistrationResult, M as ToolDefinition, i as ToolHandler, j as ToolResult, Z as ZodSchemaLike, m as isZodSchema } from './types-7wjInVMW.js';
+export { D as DocumentAgent, F as FormattedTextSegment, I as InsertHyperlinkOptions, a as InsertImageOptions, b as InsertTableOptions, c as InsertTextOptions, d as createAgent, e as createAgentFromDocument } from './DocumentAgent-BHR0CMGb.js';
+export { P as PluginRegistry, c as createPluginRegistrar, p as pluginRegistry, r as registerPlugins } from './registry-gRbkCooh.js';
+export { V as VariableDetectionResult, a as VariableOccurrence, c as createDocx, d as detectVariables, b as detectVariablesDetailed, e as detectVariablesInBody, f as detectVariablesInParagraph, g as documentHasVariables, h as extractVariablesFromText, i as formatVariable, j as hasTemplateVariables, k as isValidVariableName, p as parseVariable, r as removeVariables, l as repackDocx, m as replaceVariables, s as sanitizeVariableName } from './variableDetector-Hmj-UXPk.js';
 
 /**
  * Shared Text Utilities for Agent Module
@@ -229,11 +59,7 @@ declare function getBodyCharacterCount(body: DocumentBody): number;
  * @param maxChars - Maximum characters to return
  * @returns Text before the position
  */
-declare function getTextBefore(
-  paragraphs: Paragraph[],
-  position: Position,
-  maxChars: number
-): string;
+declare function getTextBefore(paragraphs: Paragraph[], position: Position, maxChars: number): string;
 /**
  * Get text after a position
  *
@@ -242,11 +68,7 @@ declare function getTextBefore(
  * @param maxChars - Maximum characters to return
  * @returns Text after the position
  */
-declare function getTextAfter(
-  paragraphs: Paragraph[],
-  position: Position,
-  maxChars: number
-): string;
+declare function getTextAfter(paragraphs: Paragraph[], position: Position, maxChars: number): string;
 /**
  * Get formatting at a specific position in a paragraph
  *
@@ -254,10 +76,7 @@ declare function getTextAfter(
  * @param offset - Character offset in the paragraph
  * @returns Formatting at that position
  */
-declare function getFormattingAtPosition(
-  paragraph: Paragraph,
-  offset: number
-): Partial<TextFormatting>;
+declare function getFormattingAtPosition(paragraph: Paragraph, offset: number): Partial<TextFormatting>;
 /**
  * Check if position is within a hyperlink
  *
@@ -273,10 +92,7 @@ declare function isPositionInHyperlink(paragraph: Paragraph, offset: number): bo
  * @param offset - Character offset in the paragraph
  * @returns The hyperlink at that position, or undefined
  */
-declare function getHyperlinkAtPosition(
-  paragraph: Paragraph,
-  offset: number
-): Hyperlink | undefined;
+declare function getHyperlinkAtPosition(paragraph: Paragraph, offset: number): Hyperlink | undefined;
 /**
  * Check if style ID represents a heading
  *
@@ -374,37 +190,6 @@ declare function getBlockIndexForParagraph(body: DocumentBody, paragraphIndex: n
  * fs.writeFileSync('output.docx', Buffer.from(output));
  * ```
  */
-declare const VERSION = '0.0.2';
+declare const VERSION = "0.0.2";
 
-export {
-  DocumentBody,
-  Hyperlink,
-  Paragraph,
-  Position,
-  Run,
-  Table,
-  TextFormatting,
-  VERSION,
-  countCharacters,
-  countWords,
-  getBlockIndexForParagraph,
-  getBodyCharacterCount,
-  getBodyText,
-  getBodyWordCount,
-  getFormattingAtPosition,
-  getHyperlinkAtPosition,
-  getHyperlinkText,
-  getParagraphAtIndex,
-  getParagraphText,
-  getParagraphs,
-  getRunText,
-  getTableText,
-  getTextAfter,
-  getTextBefore,
-  hasHyperlinks,
-  hasImages,
-  hasTables,
-  isHeadingStyle,
-  isPositionInHyperlink,
-  parseHeadingLevel,
-};
+export { DocumentBody, Hyperlink, Paragraph, Position, Run, Table, TextFormatting, VERSION, countCharacters, countWords, getBlockIndexForParagraph, getBodyCharacterCount, getBodyText, getBodyWordCount, getFormattingAtPosition, getHyperlinkAtPosition, getHyperlinkText, getParagraphAtIndex, getParagraphText, getParagraphs, getRunText, getTableText, getTextAfter, getTextBefore, hasHyperlinks, hasImages, hasTables, isHeadingStyle, isPositionInHyperlink, parseHeadingLevel };
