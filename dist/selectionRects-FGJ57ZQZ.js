@@ -1,0 +1,8 @@
+export {
+  l as getCaretPosition,
+  n as groupRectsByPage,
+  m as isMultiPageSelection,
+  k as selectionToRects,
+} from './chunk-Y2IOPU4P.js';
+import './chunk-Y6VCTLCJ.js'; //# sourceMappingURL=selectionRects-FGJ57ZQZ.js.map
+//# sourceMappingURL=selectionRects-FGJ57ZQZ.js.map

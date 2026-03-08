@@ -1,60 +1,106 @@
 {
-  "name": "docx-editor-monorepo",
+  "name": "@eigenpal/docx-js-editor",
   "version": "0.0.19",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "description": "A browser-based DOCX template editor with variable insertion support",
   "type": "module",
-  "scripts": {
-    "dev": "vite --config examples/vite/vite.config.ts",
-    "dev:nextjs": "cd examples/nextjs && npm run dev",
-    "dev:remix": "cd examples/remix && npm run dev",
-    "dev:astro": "cd examples/astro && npm run dev",
-    "dev:demo": "bash examples/dev-all.sh",
-    "build": "bun run --filter '@eigenpal/docx-core' build && bun run --filter '@eigenpal/docx-js-editor' build",
-    "build:demo": "vite build --config examples/vite/vite.config.ts",
-    "test": "bun test",
-    "test:watch": "bun test --watch",
-    "test:e2e": "npx playwright test",
-    "test:e2e:ui": "npx playwright test --ui",
-    "test:visual": "npx playwright test visual.spec.ts",
-    "typecheck": "bun run --filter '*' typecheck",
-    "lint": "eslint packages/*/src/",
-    "lint:fix": "eslint packages/*/src/ --fix",
-    "format": "prettier --write \"packages/*/src/**/*.{ts,tsx,js,jsx,json,css}\"",
-    "format:check": "prettier --check \"packages/*/src/**/*.{ts,tsx,js,jsx,json,css}\"",
-    "size": "size-limit",
-    "prepare": "husky"
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js",
+      "require": "./dist/react.cjs"
+    },
+    "./ui": {
+      "types": "./dist/ui.d.ts",
+      "import": "./dist/ui.js",
+      "require": "./dist/ui.cjs"
+    },
+    "./core": {
+      "types": "./dist/core-reexport.d.ts",
+      "import": "./dist/core-reexport.js",
+      "require": "./dist/core-reexport.cjs"
+    },
+    "./headless": {
+      "types": "./dist/headless-reexport.d.ts",
+      "import": "./dist/headless-reexport.js",
+      "require": "./dist/headless-reexport.cjs"
+    },
+    "./core-plugins": {
+      "types": "./dist/core-plugins-reexport.d.ts",
+      "import": "./dist/core-plugins-reexport.js",
+      "require": "./dist/core-plugins-reexport.cjs"
+    },
+    "./mcp": {
+      "types": "./dist/mcp-reexport.d.ts",
+      "import": "./dist/mcp-reexport.js",
+      "require": "./dist/mcp-reexport.cjs"
+    },
+    "./styles.css": "./dist/styles.css"
   },
-  "devDependencies": {
-    "@happy-dom/global-registrator": "^13.3.8",
-    "@playwright/test": "^1.58.1",
-    "@size-limit/file": "^12.0.0",
-    "@testing-library/react": "^16.0.0",
-    "@types/bun": "^1.0.0",
-    "@types/react": "19.0.8",
-    "@types/react-dom": "19.0.3",
-    "@typescript-eslint/eslint-plugin": "^8.54.0",
-    "@typescript-eslint/parser": "^8.54.0",
-    "@vitejs/plugin-react": "^5.1.2",
-    "autoprefixer": "^10.4.17",
-    "class-variance-authority": "^0.7.0",
-    "eslint": "^9.39.2",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
-    "postcss": "^8.4.33",
-    "prettier": "^3.8.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "size-limit": "^12.0.0",
-    "tailwindcss": "^3.4.1",
-    "tailwindcss-animate": "^1.0.7",
-    "tsup": "^8.0.1",
-    "typescript": "^5.3.3",
-    "vite": "^7.3.1"
+  "typesVersions": {
+    "*": {
+      "react": [
+        "./dist/react.d.ts"
+      ],
+      "ui": [
+        "./dist/ui.d.ts"
+      ],
+      "core": [
+        "./dist/core-reexport.d.ts"
+      ],
+      "headless": [
+        "./dist/headless-reexport.d.ts"
+      ],
+      "core-plugins": [
+        "./dist/core-plugins-reexport.d.ts"
+      ],
+      "mcp": [
+        "./dist/mcp-reexport.d.ts"
+      ]
+    }
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup && bun run build:css",
+    "build:css": "tailwindcss -c ../../tailwind.config.lib.js -i ./src/styles/editor.css -o ./dist/styles.css --minify",
+    "prepublishOnly": "sed -e 's|\\./assets/|https://raw.githubusercontent.com/eigenpal/docx-js-editor/main/assets/|g' -e 's|(packages/|(https://github.com/eigenpal/docx-js-editor/tree/main/packages/|g' -e 's|(docs/|(https://github.com/eigenpal/docx-js-editor/blob/main/docs/|g' -e 's|(examples/|(https://github.com/eigenpal/docx-js-editor/tree/main/examples/|g' ../../README.md > README.md",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@radix-ui/react-select": "^2.2.6",
+    "clsx": "^2.1.0",
+    "prosemirror-commands": "^1.5.2",
+    "prosemirror-dropcursor": "^1.8.2",
+    "prosemirror-history": "^1.4.0",
+    "prosemirror-keymap": "^1.2.2",
+    "prosemirror-model": "^1.19.4",
+    "prosemirror-state": "^1.4.3",
+    "prosemirror-tables": "^1.8.5",
+    "prosemirror-view": "^1.32.7"
   },
   "keywords": [
     "docx",
@@ -69,7 +115,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eigenpal/docx-js-editor.git"
+    "url": "https://github.com/eigenpal/docx-js-editor.git",
+    "directory": "packages/react"
   },
   "publishConfig": {
     "access": "public"
