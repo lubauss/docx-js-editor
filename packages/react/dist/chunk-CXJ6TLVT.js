@@ -1,0 +1,405 @@
+var m = {
+    dk1: '000000',
+    lt1: 'FFFFFF',
+    dk2: '44546A',
+    lt2: 'E7E6E6',
+    accent1: '4472C4',
+    accent2: 'ED7D31',
+    accent3: 'A5A5A5',
+    accent4: 'FFC000',
+    accent5: '5B9BD5',
+    accent6: '70AD47',
+    hlink: '0563C1',
+    folHlink: '954F72',
+  },
+  T = {
+    black: '000000',
+    blue: '0000FF',
+    cyan: '00FFFF',
+    darkBlue: '00008B',
+    darkCyan: '008B8B',
+    darkGray: 'A9A9A9',
+    darkGreen: '006400',
+    darkMagenta: '8B008B',
+    darkRed: '8B0000',
+    darkYellow: '808000',
+    green: '00FF00',
+    lightGray: 'D3D3D3',
+    magenta: 'FF00FF',
+    red: 'FF0000',
+    white: 'FFFFFF',
+    yellow: 'FFFF00',
+    none: '',
+  },
+  b = {
+    dk1: 'dk1',
+    lt1: 'lt1',
+    dk2: 'dk2',
+    lt2: 'lt2',
+    accent1: 'accent1',
+    accent2: 'accent2',
+    accent3: 'accent3',
+    accent4: 'accent4',
+    accent5: 'accent5',
+    accent6: 'accent6',
+    hlink: 'hlink',
+    folHlink: 'folHlink',
+    dark1: 'dk1',
+    light1: 'lt1',
+    dark2: 'dk2',
+    light2: 'lt2',
+    hyperlink: 'hlink',
+    followedHyperlink: 'folHlink',
+    background1: 'lt1',
+    text1: 'dk1',
+    background2: 'lt2',
+    text2: 'dk2',
+    tx1: 'dk1',
+    tx2: 'dk2',
+    bg1: 'lt1',
+    bg2: 'lt2',
+  };
+function p(e) {
+  if (!e) return 1;
+  let t = parseInt(e, 16);
+  return isNaN(t) ? 1 : t / 255;
+}
+function c(e) {
+  let t = e.padStart(6, '0').slice(0, 6),
+    n = parseInt(t.slice(0, 2), 16),
+    r = parseInt(t.slice(2, 4), 16),
+    o = parseInt(t.slice(4, 6), 16);
+  return { r: isNaN(n) ? 0 : n, g: isNaN(r) ? 0 : r, b: isNaN(o) ? 0 : o };
+}
+function h(e, t, n) {
+  let r = (o) =>
+    Math.max(0, Math.min(255, Math.round(o)))
+      .toString(16)
+      .padStart(2, '0');
+  return `${r(e)}${r(t)}${r(n)}`.toUpperCase();
+}
+function g(e, t, n) {
+  ((e /= 255), (t /= 255), (n /= 255));
+  let r = Math.max(e, t, n),
+    o = Math.min(e, t, n),
+    u = (r + o) / 2;
+  if (r === o) return { h: 0, s: 0, l: u };
+  let l = r - o,
+    a = u > 0.5 ? l / (2 - r - o) : l / (r + o),
+    s;
+  switch (r) {
+    case e:
+      s = ((t - n) / l + (t < n ? 6 : 0)) / 6;
+      break;
+    case t:
+      s = ((n - e) / l + 2) / 6;
+      break;
+    case n:
+      s = ((e - t) / l + 4) / 6;
+      break;
+    default:
+      s = 0;
+  }
+  return { h: s * 360, s: a, l: u };
+}
+function C(e, t, n) {
+  if (((e = e / 360), t === 0)) {
+    let l = Math.round(n * 255);
+    return { r: l, g: l, b: l };
+  }
+  let r = (l, a, s) => (
+      s < 0 && (s += 1),
+      s > 1 && (s -= 1),
+      s < 1 / 6
+        ? l + (a - l) * 6 * s
+        : s < 1 / 2
+          ? a
+          : s < 2 / 3
+            ? l + (a - l) * (2 / 3 - s) * 6
+            : l
+    ),
+    o = n < 0.5 ? n * (1 + t) : n + t - n * t,
+    u = 2 * n - o;
+  return {
+    r: Math.round(r(u, o, e + 1 / 3) * 255),
+    g: Math.round(r(u, o, e) * 255),
+    b: Math.round(r(u, o, e - 1 / 3) * 255),
+  };
+}
+function f(e, t) {
+  if (t <= 0 || t >= 1) return t >= 1 ? 'FFFFFF' : e;
+  let n = c(e),
+    r = g(n.r, n.g, n.b);
+  r.l = r.l + (1 - r.l) * t;
+  let o = C(r.h, r.s, r.l);
+  return h(o.r, o.g, o.b);
+}
+function d(e, t) {
+  if (t <= 0 || t >= 1) return t <= 0 ? '000000' : e;
+  let n = c(e),
+    r = g(n.r, n.g, n.b);
+  r.l = r.l * t;
+  let o = C(r.h, r.s, r.l);
+  return h(o.r, o.g, o.b);
+}
+function S(e, t) {
+  let n = b[t] ?? t,
+    r = [
+      'dk1',
+      'lt1',
+      'dk2',
+      'lt2',
+      'accent1',
+      'accent2',
+      'accent3',
+      'accent4',
+      'accent5',
+      'accent6',
+      'hlink',
+      'folHlink',
+    ],
+    o = (u) => r.includes(u);
+  return e?.colorScheme
+    ? o(n)
+      ? (e.colorScheme[n] ?? m[n] ?? '000000')
+      : '000000'
+    : o(n)
+      ? (m[n] ?? '000000')
+      : '000000';
+}
+function x(e) {
+  if (!e) return null;
+  let t = e.toLowerCase();
+  return b[e] ?? b[t] ?? null;
+}
+function i(e, t, n = '000000') {
+  if (!e) return `#${n}`;
+  if (e.auto) return `#${n}`;
+  let r;
+  if (e.themeColor) {
+    let o = x(e.themeColor);
+    if ((o ? (r = S(t, o)) : (r = e.rgb ?? n), e.themeTint)) {
+      let u = p(e.themeTint);
+      r = f(r, u);
+    } else if (e.themeShade) {
+      let u = p(e.themeShade);
+      r = d(r, u);
+    }
+  } else e.rgb ? (r = e.rgb) : (r = n);
+  return `#${r.toUpperCase().replace(/^#/, '')}`;
+}
+function _(e) {
+  if (!e || e === 'none') return '';
+  let t = T[e];
+  return t ? `#${t}` : '';
+}
+function k(e, t) {
+  return e ? (e.auto ? 'transparent' : i(e, t)) : '';
+}
+function F(e, t) {
+  if (!e) return false;
+  if (e.auto) return true;
+  let r = i(e, t).replace(/^#/, '').toLowerCase(),
+    o = c(r);
+  return (o.r + o.g + o.b) / 3 < 20;
+}
+function R(e, t) {
+  if (!e) return false;
+  let r = i(e, t).replace(/^#/, '').toLowerCase(),
+    o = c(r);
+  return (o.r + o.g + o.b) / 3 > 235;
+}
+function y(e, t) {
+  if (!e) return '#000000';
+  let r = i(e, t).replace(/^#/, ''),
+    o = c(r);
+  return (0.299 * o.r + 0.587 * o.g + 0.114 * o.b) / 255 > 0.5 ? '#000000' : '#FFFFFF';
+}
+function N(e) {
+  if (!e) return;
+  let t = e.trim();
+  if (t.toLowerCase() === 'auto') return { auto: true };
+  let n = x(t);
+  if (n) return { themeColor: n };
+  let r = t.replace(/^#/, '').toUpperCase();
+  return /^[0-9A-F]{6}$/i.test(r)
+    ? { rgb: r }
+    : /^[0-9A-F]{3}$/i.test(r)
+      ? {
+          rgb: r
+            .split('')
+            .map((u) => u + u)
+            .join(''),
+        }
+      : { rgb: r.padStart(6, '0').slice(0, 6) };
+}
+function M(e, t, n) {
+  let r = { themeColor: e };
+  return (
+    t !== void 0 &&
+      t > 0 &&
+      t < 1 &&
+      (r.themeTint = Math.round(t * 255)
+        .toString(16)
+        .toUpperCase()
+        .padStart(2, '0')),
+    n !== void 0 &&
+      n > 0 &&
+      n < 1 &&
+      (r.themeShade = Math.round(n * 255)
+        .toString(16)
+        .toUpperCase()
+        .padStart(2, '0')),
+    r
+  );
+}
+function V(e) {
+  return { rgb: e.replace(/^#/, '').toUpperCase() };
+}
+function A(e, t, n) {
+  let o = i(e, t).replace(/^#/, ''),
+    u = 1 - n / 100;
+  return `#${d(o, u)}`;
+}
+function v(e, t, n) {
+  let o = i(e, t).replace(/^#/, ''),
+    u = n / 100;
+  return `#${f(o, u)}`;
+}
+function L(e, t, n, r) {
+  let o = i(e, r).replace(/^#/, ''),
+    u = i(t, r).replace(/^#/, ''),
+    l = c(o),
+    a = c(u),
+    s = {
+      r: Math.round(l.r * (1 - n) + a.r * n),
+      g: Math.round(l.g * (1 - n) + a.g * n),
+      b: Math.round(l.b * (1 - n) + a.b * n),
+    };
+  return `#${h(s.r, s.g, s.b)}`;
+}
+function E(e) {
+  return e.startsWith('#') ? e : `#${e}`;
+}
+function D(e) {
+  return _(e) || E(e);
+}
+var P = [
+    { slot: 'lt1', name: 'Background 1' },
+    { slot: 'dk1', name: 'Text 1' },
+    { slot: 'lt2', name: 'Background 2' },
+    { slot: 'dk2', name: 'Text 2' },
+    { slot: 'accent1', name: 'Accent 1' },
+    { slot: 'accent2', name: 'Accent 2' },
+    { slot: 'accent3', name: 'Accent 3' },
+    { slot: 'accent4', name: 'Accent 4' },
+    { slot: 'accent5', name: 'Accent 5' },
+    { slot: 'accent6', name: 'Accent 6' },
+  ],
+  I = [
+    { type: 'base', value: 0, hexValue: '', labelSuffix: '' },
+    { type: 'tint', value: 0.8, hexValue: 'CC', labelSuffix: ', Lighter 80%' },
+    { type: 'tint', value: 0.6, hexValue: '99', labelSuffix: ', Lighter 60%' },
+    { type: 'tint', value: 0.4, hexValue: '66', labelSuffix: ', Lighter 40%' },
+    { type: 'shade', value: 0.75, hexValue: 'BF', labelSuffix: ', Darker 25%' },
+    { type: 'shade', value: 0.5, hexValue: '80', labelSuffix: ', Darker 50%' },
+  ];
+function U(e, t, n) {
+  return t === 'tint' ? f(e, n) : d(e, n);
+}
+function $(e) {
+  let t = e ?? m;
+  return I.map((n) =>
+    P.map((r) => {
+      let o = t[r.slot] ?? m[r.slot] ?? '000000',
+        u;
+      n.type === 'base'
+        ? (u = o.toUpperCase())
+        : n.type === 'tint'
+          ? (u = f(o, n.value))
+          : (u = d(o, n.value));
+      let l = { hex: u, themeSlot: r.slot, label: `${r.name}${n.labelSuffix}` };
+      return (
+        n.type === 'tint' && n.hexValue
+          ? (l.tint = n.hexValue)
+          : n.type === 'shade' && n.hexValue && (l.shade = n.hexValue),
+        l
+      );
+    })
+  );
+}
+function B(e, t, n) {
+  if (!e && !t) return true;
+  if (!e || !t) return false;
+  let r = i(e, n).toUpperCase(),
+    o = i(t, n).toUpperCase();
+  return r === o;
+}
+function X(e) {
+  return (e / 1440) * 96;
+}
+function W(e) {
+  return (e / 96) * 1440;
+}
+function G(e) {
+  return (e / 914400) * 96;
+}
+function K(e) {
+  return (e / 96) * 914400;
+}
+function w(e) {
+  return (e / 914400) * 1440;
+}
+function z(e) {
+  return (e / 1440) * 914400;
+}
+function j(e) {
+  return (e / 72) * 96;
+}
+function Y(e) {
+  return (e / 144) * 96;
+}
+function q(e) {
+  return e / 2;
+}
+function J(e) {
+  return (e / 576) * 96;
+}
+function H(e, t = 2) {
+  let n = Math.pow(10, t);
+  return Math.round(e * n) / n;
+}
+function Q(e) {
+  return `${H(e)}px`;
+}
+export {
+  J as A,
+  Q as B,
+  i as a,
+  _ as b,
+  k as c,
+  F as d,
+  R as e,
+  y as f,
+  N as g,
+  M as h,
+  V as i,
+  A as j,
+  v as k,
+  L as l,
+  E as m,
+  D as n,
+  U as o,
+  $ as p,
+  B as q,
+  X as r,
+  W as s,
+  G as t,
+  K as u,
+  w as v,
+  z as w,
+  j as x,
+  Y as y,
+  q as z,
+}; //# sourceMappingURL=chunk-CXJ6TLVT.js.map
+//# sourceMappingURL=chunk-CXJ6TLVT.js.map
