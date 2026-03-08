@@ -1,10 +1,4 @@
-import {
-  D as Document,
-  B as BreakContent,
-  a as Paragraph,
-  b as Run,
-  c as RunContent,
-} from './agentApi-DfsWRyrP.js';
+import { D as Document, B as BreakContent, a as Paragraph, b as Run, c as RunContent } from './agentApi-DfsWRyrP.js';
 
 /**
  * Insert Operations Utility
@@ -17,12 +11,12 @@ import {
  * Insert position in the document
  */
 interface InsertPosition {
-  /** Paragraph index in the document body */
-  paragraphIndex: number;
-  /** Run index within the paragraph (optional) */
-  runIndex?: number;
-  /** Character offset within the run (optional) */
-  offset?: number;
+    /** Paragraph index in the document body */
+    paragraphIndex: number;
+    /** Run index within the paragraph (optional) */
+    runIndex?: number;
+    /** Character offset within the run (optional) */
+    offset?: number;
 }
 /**
  * Create a page break content element
@@ -107,13 +101,10 @@ declare function removePageBreak(doc: Document, position: InsertPosition): Docum
  * @param options - Optional configuration
  * @returns Promise resolving to true if font loaded successfully, false otherwise
  */
-declare function loadFont(
-  fontFamily: string,
-  options?: {
+declare function loadFont(fontFamily: string, options?: {
     weights?: number[];
     styles?: ('normal' | 'italic')[];
-  }
-): Promise<boolean>;
+}): Promise<boolean>;
 /**
  * Load multiple fonts from Google Fonts
  *
@@ -121,13 +112,10 @@ declare function loadFont(
  * @param options - Optional configuration
  * @returns Promise resolving when all fonts are loaded (or failed)
  */
-declare function loadFonts(
-  families: string[],
-  options?: {
+declare function loadFonts(families: string[], options?: {
     weights?: number[];
     styles?: ('normal' | 'italic')[];
-  }
-): Promise<void>;
+}): Promise<void>;
 /**
  * Check if a font is loaded
  *
@@ -173,14 +161,10 @@ declare function canRenderFont(fontFamily: string, fallbackFont?: string): boole
  * @param options - Font options
  * @returns Promise resolving when font is loaded
  */
-declare function loadFontFromBuffer(
-  fontFamily: string,
-  buffer: ArrayBuffer,
-  options?: {
+declare function loadFontFromBuffer(fontFamily: string, buffer: ArrayBuffer, options?: {
     weight?: number | string;
     style?: 'normal' | 'italic';
-  }
-): Promise<boolean>;
+}): Promise<boolean>;
 /**
  * Preload a list of common document fonts
  *
@@ -189,31 +173,4 @@ declare function loadFontFromBuffer(
  */
 declare function preloadCommonFonts(): Promise<void>;
 
-export {
-  type InsertPosition as I,
-  countPageBreaks as a,
-  createColumnBreak as b,
-  canRenderFont as c,
-  createHorizontalRule as d,
-  createLineBreak as e,
-  createPageBreak as f,
-  createPageBreakParagraph as g,
-  createPageBreakRun as h,
-  findPageBreaks as i,
-  getLoadedFonts as j,
-  hasPageBreakBefore as k,
-  insertHorizontalRule as l,
-  insertPageBreak as m,
-  isBreakContent as n,
-  isColumnBreak as o,
-  isFontLoaded as p,
-  isLoading as q,
-  isLineBreak as r,
-  isPageBreak as s,
-  loadFont as t,
-  loadFontFromBuffer as u,
-  loadFonts as v,
-  onFontsLoaded as w,
-  preloadCommonFonts as x,
-  removePageBreak as y,
-};
+export { type InsertPosition as I, countPageBreaks as a, createColumnBreak as b, canRenderFont as c, createHorizontalRule as d, createLineBreak as e, createPageBreak as f, createPageBreakParagraph as g, createPageBreakRun as h, findPageBreaks as i, getLoadedFonts as j, hasPageBreakBefore as k, insertHorizontalRule as l, insertPageBreak as m, isBreakContent as n, isColumnBreak as o, isFontLoaded as p, isLoading as q, isLineBreak as r, isPageBreak as s, loadFont as t, loadFontFromBuffer as u, loadFonts as v, onFontsLoaded as w, preloadCommonFonts as x, removePageBreak as y };

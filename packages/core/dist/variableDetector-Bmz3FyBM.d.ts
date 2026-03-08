@@ -1,21 +1,4 @@
-import {
-  p as Document,
-  D as DocumentBody,
-  a1 as SectionProperties,
-  T as TextFormatting,
-  a6 as StyleInfo,
-  i as AgentContext,
-  f as Position,
-  Y as Range,
-  U as ParagraphFormatting,
-  h as AgentCommand,
-  a2 as SelectionContext,
-  ax as ThemeColorSlot,
-  ay as ColorValue,
-  ab as Theme,
-  au as ThemeColorScheme,
-  d as Paragraph,
-} from './types-BmzqJw_z.js';
+import { p as Document, D as DocumentBody, a1 as SectionProperties, T as TextFormatting, a6 as StyleInfo, i as AgentContext, f as Position, Y as Range, U as ParagraphFormatting, h as AgentCommand, a2 as SelectionContext, ax as ThemeColorSlot, ay as ColorValue, ab as Theme, au as ThemeColorScheme, d as Paragraph } from './types-BmzqJw_z.js';
 
 /**
  * Flexible input types for DOCX documents.
@@ -65,16 +48,16 @@ type ProgressCallback = (stage: string, percent: number) => void;
  * Parsing options
  */
 interface ParseOptions {
-  /** Progress callback for tracking parsing stages */
-  onProgress?: ProgressCallback;
-  /** Whether to preload fonts (default: true) */
-  preloadFonts?: boolean;
-  /** Whether to parse headers/footers (default: true) */
-  parseHeadersFooters?: boolean;
-  /** Whether to parse footnotes/endnotes (default: true) */
-  parseNotes?: boolean;
-  /** Whether to detect template variables (default: true) */
-  detectVariables?: boolean;
+    /** Progress callback for tracking parsing stages */
+    onProgress?: ProgressCallback;
+    /** Whether to preload fonts (default: true) */
+    preloadFonts?: boolean;
+    /** Whether to parse headers/footers (default: true) */
+    parseHeadersFooters?: boolean;
+    /** Whether to parse footnotes/endnotes (default: true) */
+    parseNotes?: boolean;
+    /** Whether to detect template variables (default: true) */
+    detectVariables?: boolean;
 }
 /**
  * Parse a DOCX file into a complete Document model
@@ -153,12 +136,12 @@ declare function serializeDocument(doc: Document): string;
  * Options for repacking DOCX
  */
 interface RepackOptions {
-  /** Compression level (0-9, default: 6) */
-  compressionLevel?: number;
-  /** Whether to update modification date in docProps/core.xml */
-  updateModifiedDate?: boolean;
-  /** Custom modifier name for lastModifiedBy */
-  modifiedBy?: string;
+    /** Compression level (0-9, default: 6) */
+    compressionLevel?: number;
+    /** Whether to update modification date in docProps/core.xml */
+    updateModifiedDate?: boolean;
+    /** Custom modifier name for lastModifiedBy */
+    modifiedBy?: string;
 }
 /**
  * Repack a Document into a valid DOCX file
@@ -189,45 +172,45 @@ declare function createDocx(doc: Document): Promise<ArrayBuffer>;
  * Options for template processing
  */
 interface ProcessTemplateOptions {
-  /** How to handle undefined variables */
-  nullGetter?: 'keep' | 'empty' | 'error';
-  /** Custom parser for variable names */
-  parser?: (tag: string) => {
-    get: (scope: Record<string, unknown>) => unknown;
-  };
-  /** Line breaks: keep raw \n or convert to w:br */
-  linebreaks?: boolean;
-  /** Delimiter settings */
-  delimiters?: {
-    start?: string;
-    end?: string;
-  };
+    /** How to handle undefined variables */
+    nullGetter?: 'keep' | 'empty' | 'error';
+    /** Custom parser for variable names */
+    parser?: (tag: string) => {
+        get: (scope: Record<string, unknown>) => unknown;
+    };
+    /** Line breaks: keep raw \n or convert to w:br */
+    linebreaks?: boolean;
+    /** Delimiter settings */
+    delimiters?: {
+        start?: string;
+        end?: string;
+    };
 }
 /**
  * Result of template processing
  */
 interface ProcessTemplateResult {
-  /** The processed document buffer */
-  buffer: ArrayBuffer;
-  /** Variables that were found and replaced */
-  replacedVariables: string[];
-  /** Variables that were not replaced (no value provided) */
-  unreplacedVariables: string[];
-  /** Any warnings during processing */
-  warnings: string[];
+    /** The processed document buffer */
+    buffer: ArrayBuffer;
+    /** Variables that were found and replaced */
+    replacedVariables: string[];
+    /** Variables that were not replaced (no value provided) */
+    unreplacedVariables: string[];
+    /** Any warnings during processing */
+    warnings: string[];
 }
 /**
  * Error details from template processing
  */
 interface TemplateError {
-  /** Error message */
-  message: string;
-  /** Variable name that caused the error (if applicable) */
-  variable?: string;
-  /** Error type */
-  type: 'parse' | 'render' | 'undefined' | 'unknown';
-  /** Original error */
-  originalError?: Error;
+    /** Error message */
+    message: string;
+    /** Variable name that caused the error (if applicable) */
+    variable?: string;
+    /** Error type */
+    type: 'parse' | 'render' | 'undefined' | 'unknown';
+    /** Original error */
+    originalError?: Error;
 }
 /**
  * Process a DOCX template with variable substitution
@@ -237,11 +220,7 @@ interface TemplateError {
  * @param options - Processing options
  * @returns Processed DOCX as ArrayBuffer
  */
-declare function processTemplate(
-  buffer: ArrayBuffer,
-  variables: Record<string, string>,
-  options?: ProcessTemplateOptions
-): ArrayBuffer;
+declare function processTemplate(buffer: ArrayBuffer, variables: Record<string, string>, options?: ProcessTemplateOptions): ArrayBuffer;
 /**
  * Process template with detailed result
  *
@@ -250,11 +229,7 @@ declare function processTemplate(
  * @param options - Processing options
  * @returns Detailed processing result
  */
-declare function processTemplateDetailed(
-  buffer: ArrayBuffer,
-  variables: Record<string, string>,
-  options?: ProcessTemplateOptions
-): ProcessTemplateResult;
+declare function processTemplateDetailed(buffer: ArrayBuffer, variables: Record<string, string>, options?: ProcessTemplateOptions): ProcessTemplateResult;
 /**
  * Process template and return as Blob
  *
@@ -263,11 +238,7 @@ declare function processTemplateDetailed(
  * @param options - Processing options
  * @returns Processed DOCX as Blob
  */
-declare function processTemplateAsBlob(
-  buffer: ArrayBuffer,
-  variables: Record<string, string>,
-  options?: ProcessTemplateOptions
-): Blob;
+declare function processTemplateAsBlob(buffer: ArrayBuffer, variables: Record<string, string>, options?: ProcessTemplateOptions): Blob;
 /**
  * Get all template tags in a document without processing
  *
@@ -282,9 +253,9 @@ declare function getTemplateTags(buffer: ArrayBuffer): string[];
  * @returns Validation result
  */
 declare function validateTemplate(buffer: ArrayBuffer): {
-  valid: boolean;
-  errors: TemplateError[];
-  tags: string[];
+    valid: boolean;
+    errors: TemplateError[];
+    tags: string[];
 };
 /**
  * Check if all required variables have values
@@ -312,17 +283,11 @@ declare function previewTemplate(buffer: ArrayBuffer, variables: Record<string, 
  * @param options - Processing options
  * @returns Processed DOCX as ArrayBuffer
  */
-declare function processTemplateAdvanced(
-  buffer: ArrayBuffer,
-  data: Record<string, unknown>,
-  options?: ProcessTemplateOptions
-): ArrayBuffer;
+declare function processTemplateAdvanced(buffer: ArrayBuffer, data: Record<string, unknown>, options?: ProcessTemplateOptions): ArrayBuffer;
 /**
  * Create a template processor with preset options
  */
-declare function createTemplateProcessor(
-  defaultOptions?: ProcessTemplateOptions
-): (buffer: ArrayBuffer, variables: Record<string, string>) => ArrayBuffer;
+declare function createTemplateProcessor(defaultOptions?: ProcessTemplateOptions): (buffer: ArrayBuffer, variables: Record<string, string>) => ArrayBuffer;
 
 /**
  * Create Document Utility
@@ -334,22 +299,22 @@ declare function createTemplateProcessor(
  * Options for creating an empty document
  */
 interface CreateEmptyDocumentOptions {
-  /** Page width in twips (default: 12240 = 8.5 inches) */
-  pageWidth?: number;
-  /** Page height in twips (default: 15840 = 11 inches) */
-  pageHeight?: number;
-  /** Page orientation (default: 'portrait') */
-  orientation?: 'portrait' | 'landscape';
-  /** Top margin in twips (default: 1440 = 1 inch) */
-  marginTop?: number;
-  /** Bottom margin in twips (default: 1440 = 1 inch) */
-  marginBottom?: number;
-  /** Left margin in twips (default: 1440 = 1 inch) */
-  marginLeft?: number;
-  /** Right margin in twips (default: 1440 = 1 inch) */
-  marginRight?: number;
-  /** Initial text content (default: empty string) */
-  initialText?: string;
+    /** Page width in twips (default: 12240 = 8.5 inches) */
+    pageWidth?: number;
+    /** Page height in twips (default: 15840 = 11 inches) */
+    pageHeight?: number;
+    /** Page orientation (default: 'portrait') */
+    orientation?: 'portrait' | 'landscape';
+    /** Top margin in twips (default: 1440 = 1 inch) */
+    marginTop?: number;
+    /** Bottom margin in twips (default: 1440 = 1 inch) */
+    marginBottom?: number;
+    /** Left margin in twips (default: 1440 = 1 inch) */
+    marginLeft?: number;
+    /** Right margin in twips (default: 1440 = 1 inch) */
+    marginRight?: number;
+    /** Initial text content (default: empty string) */
+    initialText?: string;
 }
 /**
  * Create an empty document with a single paragraph
@@ -382,10 +347,7 @@ declare function createEmptyDocument(options?: CreateEmptyDocumentOptions): Docu
  * @param options - Optional configuration for the document
  * @returns A new Document object with the specified text
  */
-declare function createDocumentWithText(
-  text: string,
-  options?: Omit<CreateEmptyDocumentOptions, 'initialText'>
-): Document;
+declare function createDocumentWithText(text: string, options?: Omit<CreateEmptyDocumentOptions, 'initialText'>): Document;
 
 /**
  * DocumentAgent - High-level fluent API for programmatic document manipulation
@@ -405,50 +367,50 @@ declare function createDocumentWithText(
  * Options for inserting text
  */
 interface InsertTextOptions {
-  /** Text formatting */
-  formatting?: TextFormatting;
+    /** Text formatting */
+    formatting?: TextFormatting;
 }
 /**
  * Options for inserting table
  */
 interface InsertTableOptions {
-  /** Table data (2D array of strings) */
-  data?: string[][];
-  /** Whether first row is a header */
-  hasHeader?: boolean;
+    /** Table data (2D array of strings) */
+    data?: string[][];
+    /** Whether first row is a header */
+    hasHeader?: boolean;
 }
 /**
  * Options for inserting image
  */
 interface InsertImageOptions {
-  /** Image width in pixels */
-  width?: number;
-  /** Image height in pixels */
-  height?: number;
-  /** Alt text for accessibility */
-  alt?: string;
+    /** Image width in pixels */
+    width?: number;
+    /** Image height in pixels */
+    height?: number;
+    /** Alt text for accessibility */
+    alt?: string;
 }
 /**
  * Options for inserting hyperlink
  */
 interface InsertHyperlinkOptions {
-  /** Display text (overrides selected text) */
-  displayText?: string;
-  /** Tooltip on hover */
-  tooltip?: string;
+    /** Display text (overrides selected text) */
+    displayText?: string;
+    /** Tooltip on hover */
+    tooltip?: string;
 }
 /**
  * Formatted text segment
  */
 interface FormattedTextSegment {
-  /** Text content */
-  text: string;
-  /** Applied formatting */
-  formatting?: TextFormatting;
-  /** Is part of a hyperlink */
-  isHyperlink?: boolean;
-  /** Hyperlink URL if applicable */
-  hyperlinkUrl?: string;
+    /** Text content */
+    text: string;
+    /** Applied formatting */
+    formatting?: TextFormatting;
+    /** Is part of a hyperlink */
+    isHyperlink?: boolean;
+    /** Hyperlink URL if applicable */
+    hyperlinkUrl?: string;
 }
 /**
  * DocumentAgent provides a fluent API for document manipulation
@@ -472,302 +434,294 @@ interface FormattedTextSegment {
  * ```
  */
 declare class DocumentAgent {
-  private _document;
-  private _pendingVariables;
-  /**
-   * Create a new DocumentAgent
-   *
-   * @param source - Document object or ArrayBuffer to parse
-   */
-  constructor(source: Document | ArrayBuffer);
-  /**
-   * Create a DocumentAgent from a DOCX buffer (async)
-   *
-   * @param buffer - DOCX file as ArrayBuffer, Uint8Array, Blob, or File
-   * @returns Promise resolving to DocumentAgent
-   */
-  static fromBuffer(buffer: DocxInput): Promise<DocumentAgent>;
-  /**
-   * Create a DocumentAgent from a Document object
-   *
-   * @param document - Parsed Document
-   * @returns DocumentAgent
-   */
-  static fromDocument(document: Document): DocumentAgent;
-  /**
-   * Get the underlying document
-   */
-  getDocument(): Document;
-  /**
-   * Get plain text content of the document
-   *
-   * @returns All document text concatenated
-   */
-  getText(): string;
-  /**
-   * Get formatted text segments
-   *
-   * @returns Array of text segments with formatting info
-   */
-  getFormattedText(): FormattedTextSegment[];
-  /**
-   * Get detected template variables
-   *
-   * @returns Array of variable names (without braces)
-   */
-  getVariables(): string[];
-  /**
-   * Get available styles from the document
-   *
-   * @returns Array of style info
-   */
-  getStyles(): StyleInfo[];
-  /**
-   * Get approximate page count
-   *
-   * Note: This is an estimate based on content length.
-   * Actual page count requires full layout computation.
-   *
-   * @returns Estimated page count
-   */
-  getPageCount(): number;
-  /**
-   * Get word count
-   *
-   * @returns Number of words in the document
-   */
-  getWordCount(): number;
-  /**
-   * Get character count
-   *
-   * @param includeSpaces - Whether to include whitespace
-   * @returns Number of characters
-   */
-  getCharacterCount(includeSpaces?: boolean): number;
-  /**
-   * Get paragraph count
-   *
-   * @returns Number of paragraphs
-   */
-  getParagraphCount(): number;
-  /**
-   * Get table count
-   *
-   * @returns Number of tables
-   */
-  getTableCount(): number;
-  /**
-   * Get document context for AI agents
-   *
-   * @param outlineMaxChars - Max characters per paragraph in outline
-   * @returns Agent context
-   */
-  getAgentContext(outlineMaxChars?: number): AgentContext;
-  /**
-   * Insert text at a position
-   *
-   * @param position - Where to insert
-   * @param text - Text to insert
-   * @param options - Insert options
-   * @returns New DocumentAgent with text inserted
-   */
-  insertText(position: Position, text: string, options?: InsertTextOptions): DocumentAgent;
-  /**
-   * Replace text in a range
-   *
-   * @param range - Range to replace
-   * @param text - Replacement text
-   * @param options - Replace options
-   * @returns New DocumentAgent with text replaced
-   */
-  replaceRange(range: Range, text: string, options?: InsertTextOptions): DocumentAgent;
-  /**
-   * Delete text in a range
-   *
-   * @param range - Range to delete
-   * @returns New DocumentAgent with text deleted
-   */
-  deleteRange(range: Range): DocumentAgent;
-  /**
-   * Apply text formatting to a range
-   *
-   * @param range - Range to format
-   * @param formatting - Formatting to apply
-   * @returns New DocumentAgent with formatting applied
-   */
-  applyFormatting(range: Range, formatting: Partial<TextFormatting>): DocumentAgent;
-  /**
-   * Apply a named style to a paragraph
-   *
-   * @param paragraphIndex - Index of the paragraph
-   * @param styleId - Style ID to apply
-   * @returns New DocumentAgent with style applied
-   */
-  applyStyle(paragraphIndex: number, styleId: string): DocumentAgent;
-  /**
-   * Apply paragraph formatting
-   *
-   * @param paragraphIndex - Index of the paragraph
-   * @param formatting - Formatting to apply
-   * @returns New DocumentAgent with formatting applied
-   */
-  applyParagraphFormatting(
-    paragraphIndex: number,
-    formatting: Partial<ParagraphFormatting>
-  ): DocumentAgent;
-  /**
-   * Insert a table at a position
-   *
-   * @param position - Where to insert the table
-   * @param rows - Number of rows
-   * @param cols - Number of columns
-   * @param options - Table options
-   * @returns New DocumentAgent with table inserted
-   */
-  insertTable(
-    position: Position,
-    rows: number,
-    cols: number,
-    options?: InsertTableOptions
-  ): DocumentAgent;
-  /**
-   * Insert an image at a position
-   *
-   * @param position - Where to insert the image
-   * @param src - Image source (base64 data URL or URL)
-   * @param options - Image options
-   * @returns New DocumentAgent with image inserted
-   */
-  insertImage(position: Position, src: string, options?: InsertImageOptions): DocumentAgent;
-  /**
-   * Insert a hyperlink
-   *
-   * @param range - Range to make into a hyperlink
-   * @param url - URL of the hyperlink
-   * @param options - Hyperlink options
-   * @returns New DocumentAgent with hyperlink inserted
-   */
-  insertHyperlink(range: Range, url: string, options?: InsertHyperlinkOptions): DocumentAgent;
-  /**
-   * Remove a hyperlink but keep the text
-   *
-   * @param range - Range containing the hyperlink
-   * @returns New DocumentAgent with hyperlink removed
-   */
-  removeHyperlink(range: Range): DocumentAgent;
-  /**
-   * Insert a paragraph break
-   *
-   * @param position - Where to break the paragraph
-   * @returns New DocumentAgent with paragraph broken
-   */
-  insertParagraphBreak(position: Position): DocumentAgent;
-  /**
-   * Merge consecutive paragraphs
-   *
-   * @param startParagraphIndex - First paragraph index
-   * @param count - Number of paragraphs to merge with the first
-   * @returns New DocumentAgent with paragraphs merged
-   */
-  mergeParagraphs(startParagraphIndex: number, count: number): DocumentAgent;
-  /**
-   * Set a template variable value
-   *
-   * Note: Variables are not applied until `applyVariables()` is called
-   *
-   * @param name - Variable name (without braces)
-   * @param value - Variable value
-   * @returns This DocumentAgent (for chaining)
-   */
-  setVariable(name: string, value: string): DocumentAgent;
-  /**
-   * Set multiple template variables
-   *
-   * @param variables - Map of variable names to values
-   * @returns This DocumentAgent (for chaining)
-   */
-  setVariables(variables: Record<string, string>): DocumentAgent;
-  /**
-   * Get pending variable values
-   *
-   * @returns Map of pending variable values
-   */
-  getPendingVariables(): Record<string, string>;
-  /**
-   * Clear pending variables
-   *
-   * @returns This DocumentAgent (for chaining)
-   */
-  clearPendingVariables(): DocumentAgent;
-  /**
-   * Apply all pending template variables
-   *
-   * Uses docxtemplater to substitute variables while preserving formatting.
-   *
-   * @param variables - Optional additional variables (merged with pending)
-   * @returns New DocumentAgent with variables applied
-   */
-  applyVariables(variables?: Record<string, string>): Promise<DocumentAgent>;
-  /**
-   * Export document to DOCX ArrayBuffer
-   *
-   * @returns Promise resolving to DOCX file as ArrayBuffer
-   */
-  toBuffer(): Promise<ArrayBuffer>;
-  /**
-   * Export document to Blob
-   *
-   * @param mimeType - MIME type for the blob
-   * @returns Promise resolving to DOCX file as Blob
-   */
-  toBlob(mimeType?: string): Promise<Blob>;
-  /**
-   * Execute multiple commands in sequence
-   *
-   * @param commands - Commands to execute
-   * @returns New DocumentAgent with all commands applied
-   */
-  executeCommands(commands: AgentCommand[]): DocumentAgent;
-  /**
-   * Execute a single command and return new agent
-   */
-  private _executeCommand;
-  /**
-   * Get plain text from document body
-   */
-  private _getBodyText;
-  /**
-   * Get plain text from a paragraph
-   */
-  private _getParagraphText;
-  /**
-   * Get plain text from a run
-   */
-  private _getRunText;
-  /**
-   * Get plain text from a hyperlink
-   */
-  private _getHyperlinkText;
-  /**
-   * Get plain text from a table
-   */
-  private _getTableText;
-  /**
-   * Extract formatted text segments from a paragraph
-   */
-  private _extractParagraphSegments;
-  /**
-   * Parse heading level from style ID
-   */
-  private _parseHeadingLevel;
-  /**
-   * Check if document has images
-   */
-  private _hasImages;
-  /**
-   * Check if document has hyperlinks
-   */
-  private _hasHyperlinks;
+    private _document;
+    private _pendingVariables;
+    /**
+     * Create a new DocumentAgent
+     *
+     * @param source - Document object or ArrayBuffer to parse
+     */
+    constructor(source: Document | ArrayBuffer);
+    /**
+     * Create a DocumentAgent from a DOCX buffer (async)
+     *
+     * @param buffer - DOCX file as ArrayBuffer, Uint8Array, Blob, or File
+     * @returns Promise resolving to DocumentAgent
+     */
+    static fromBuffer(buffer: DocxInput): Promise<DocumentAgent>;
+    /**
+     * Create a DocumentAgent from a Document object
+     *
+     * @param document - Parsed Document
+     * @returns DocumentAgent
+     */
+    static fromDocument(document: Document): DocumentAgent;
+    /**
+     * Get the underlying document
+     */
+    getDocument(): Document;
+    /**
+     * Get plain text content of the document
+     *
+     * @returns All document text concatenated
+     */
+    getText(): string;
+    /**
+     * Get formatted text segments
+     *
+     * @returns Array of text segments with formatting info
+     */
+    getFormattedText(): FormattedTextSegment[];
+    /**
+     * Get detected template variables
+     *
+     * @returns Array of variable names (without braces)
+     */
+    getVariables(): string[];
+    /**
+     * Get available styles from the document
+     *
+     * @returns Array of style info
+     */
+    getStyles(): StyleInfo[];
+    /**
+     * Get approximate page count
+     *
+     * Note: This is an estimate based on content length.
+     * Actual page count requires full layout computation.
+     *
+     * @returns Estimated page count
+     */
+    getPageCount(): number;
+    /**
+     * Get word count
+     *
+     * @returns Number of words in the document
+     */
+    getWordCount(): number;
+    /**
+     * Get character count
+     *
+     * @param includeSpaces - Whether to include whitespace
+     * @returns Number of characters
+     */
+    getCharacterCount(includeSpaces?: boolean): number;
+    /**
+     * Get paragraph count
+     *
+     * @returns Number of paragraphs
+     */
+    getParagraphCount(): number;
+    /**
+     * Get table count
+     *
+     * @returns Number of tables
+     */
+    getTableCount(): number;
+    /**
+     * Get document context for AI agents
+     *
+     * @param outlineMaxChars - Max characters per paragraph in outline
+     * @returns Agent context
+     */
+    getAgentContext(outlineMaxChars?: number): AgentContext;
+    /**
+     * Insert text at a position
+     *
+     * @param position - Where to insert
+     * @param text - Text to insert
+     * @param options - Insert options
+     * @returns New DocumentAgent with text inserted
+     */
+    insertText(position: Position, text: string, options?: InsertTextOptions): DocumentAgent;
+    /**
+     * Replace text in a range
+     *
+     * @param range - Range to replace
+     * @param text - Replacement text
+     * @param options - Replace options
+     * @returns New DocumentAgent with text replaced
+     */
+    replaceRange(range: Range, text: string, options?: InsertTextOptions): DocumentAgent;
+    /**
+     * Delete text in a range
+     *
+     * @param range - Range to delete
+     * @returns New DocumentAgent with text deleted
+     */
+    deleteRange(range: Range): DocumentAgent;
+    /**
+     * Apply text formatting to a range
+     *
+     * @param range - Range to format
+     * @param formatting - Formatting to apply
+     * @returns New DocumentAgent with formatting applied
+     */
+    applyFormatting(range: Range, formatting: Partial<TextFormatting>): DocumentAgent;
+    /**
+     * Apply a named style to a paragraph
+     *
+     * @param paragraphIndex - Index of the paragraph
+     * @param styleId - Style ID to apply
+     * @returns New DocumentAgent with style applied
+     */
+    applyStyle(paragraphIndex: number, styleId: string): DocumentAgent;
+    /**
+     * Apply paragraph formatting
+     *
+     * @param paragraphIndex - Index of the paragraph
+     * @param formatting - Formatting to apply
+     * @returns New DocumentAgent with formatting applied
+     */
+    applyParagraphFormatting(paragraphIndex: number, formatting: Partial<ParagraphFormatting>): DocumentAgent;
+    /**
+     * Insert a table at a position
+     *
+     * @param position - Where to insert the table
+     * @param rows - Number of rows
+     * @param cols - Number of columns
+     * @param options - Table options
+     * @returns New DocumentAgent with table inserted
+     */
+    insertTable(position: Position, rows: number, cols: number, options?: InsertTableOptions): DocumentAgent;
+    /**
+     * Insert an image at a position
+     *
+     * @param position - Where to insert the image
+     * @param src - Image source (base64 data URL or URL)
+     * @param options - Image options
+     * @returns New DocumentAgent with image inserted
+     */
+    insertImage(position: Position, src: string, options?: InsertImageOptions): DocumentAgent;
+    /**
+     * Insert a hyperlink
+     *
+     * @param range - Range to make into a hyperlink
+     * @param url - URL of the hyperlink
+     * @param options - Hyperlink options
+     * @returns New DocumentAgent with hyperlink inserted
+     */
+    insertHyperlink(range: Range, url: string, options?: InsertHyperlinkOptions): DocumentAgent;
+    /**
+     * Remove a hyperlink but keep the text
+     *
+     * @param range - Range containing the hyperlink
+     * @returns New DocumentAgent with hyperlink removed
+     */
+    removeHyperlink(range: Range): DocumentAgent;
+    /**
+     * Insert a paragraph break
+     *
+     * @param position - Where to break the paragraph
+     * @returns New DocumentAgent with paragraph broken
+     */
+    insertParagraphBreak(position: Position): DocumentAgent;
+    /**
+     * Merge consecutive paragraphs
+     *
+     * @param startParagraphIndex - First paragraph index
+     * @param count - Number of paragraphs to merge with the first
+     * @returns New DocumentAgent with paragraphs merged
+     */
+    mergeParagraphs(startParagraphIndex: number, count: number): DocumentAgent;
+    /**
+     * Set a template variable value
+     *
+     * Note: Variables are not applied until `applyVariables()` is called
+     *
+     * @param name - Variable name (without braces)
+     * @param value - Variable value
+     * @returns This DocumentAgent (for chaining)
+     */
+    setVariable(name: string, value: string): DocumentAgent;
+    /**
+     * Set multiple template variables
+     *
+     * @param variables - Map of variable names to values
+     * @returns This DocumentAgent (for chaining)
+     */
+    setVariables(variables: Record<string, string>): DocumentAgent;
+    /**
+     * Get pending variable values
+     *
+     * @returns Map of pending variable values
+     */
+    getPendingVariables(): Record<string, string>;
+    /**
+     * Clear pending variables
+     *
+     * @returns This DocumentAgent (for chaining)
+     */
+    clearPendingVariables(): DocumentAgent;
+    /**
+     * Apply all pending template variables
+     *
+     * Uses docxtemplater to substitute variables while preserving formatting.
+     *
+     * @param variables - Optional additional variables (merged with pending)
+     * @returns New DocumentAgent with variables applied
+     */
+    applyVariables(variables?: Record<string, string>): Promise<DocumentAgent>;
+    /**
+     * Export document to DOCX ArrayBuffer
+     *
+     * @returns Promise resolving to DOCX file as ArrayBuffer
+     */
+    toBuffer(): Promise<ArrayBuffer>;
+    /**
+     * Export document to Blob
+     *
+     * @param mimeType - MIME type for the blob
+     * @returns Promise resolving to DOCX file as Blob
+     */
+    toBlob(mimeType?: string): Promise<Blob>;
+    /**
+     * Execute multiple commands in sequence
+     *
+     * @param commands - Commands to execute
+     * @returns New DocumentAgent with all commands applied
+     */
+    executeCommands(commands: AgentCommand[]): DocumentAgent;
+    /**
+     * Execute a single command and return new agent
+     */
+    private _executeCommand;
+    /**
+     * Get plain text from document body
+     */
+    private _getBodyText;
+    /**
+     * Get plain text from a paragraph
+     */
+    private _getParagraphText;
+    /**
+     * Get plain text from a run
+     */
+    private _getRunText;
+    /**
+     * Get plain text from a hyperlink
+     */
+    private _getHyperlinkText;
+    /**
+     * Get plain text from a table
+     */
+    private _getTableText;
+    /**
+     * Extract formatted text segments from a paragraph
+     */
+    private _extractParagraphSegments;
+    /**
+     * Parse heading level from style ID
+     */
+    private _parseHeadingLevel;
+    /**
+     * Check if document has images
+     */
+    private _hasImages;
+    /**
+     * Check if document has hyperlinks
+     */
+    private _hasHyperlinks;
 }
 /**
  * Create a DocumentAgent from a DOCX buffer
@@ -829,23 +783,23 @@ declare function executeCommands(doc: Document, commands: AgentCommand[]): Docum
  * Options for building agent context
  */
 interface AgentContextOptions {
-  /** Maximum characters per paragraph in outline (default: 100) */
-  outlineMaxChars?: number;
-  /** Maximum paragraphs to include in outline (default: 50) */
-  maxOutlineParagraphs?: number;
-  /** Include table content in context (default: false) */
-  includeTableContent?: boolean;
-  /** Include detailed formatting info (default: false) */
-  includeFormatting?: boolean;
+    /** Maximum characters per paragraph in outline (default: 100) */
+    outlineMaxChars?: number;
+    /** Maximum paragraphs to include in outline (default: 50) */
+    maxOutlineParagraphs?: number;
+    /** Include table content in context (default: false) */
+    includeTableContent?: boolean;
+    /** Include detailed formatting info (default: false) */
+    includeFormatting?: boolean;
 }
 /**
  * Options for building selection context
  */
 interface SelectionContextOptions$1 {
-  /** Characters of context before/after selection (default: 200) */
-  contextChars?: number;
-  /** Include suggested actions (default: true) */
-  includeSuggestions?: boolean;
+    /** Characters of context before/after selection (default: 200) */
+    contextChars?: number;
+    /** Include suggested actions (default: true) */
+    includeSuggestions?: boolean;
 }
 /**
  * Build agent context from a document
@@ -863,11 +817,7 @@ declare function getAgentContext(doc: Document, options?: AgentContextOptions): 
  * @param options - Selection context options
  * @returns SelectionContext object (JSON serializable)
  */
-declare function buildSelectionContext$1(
-  doc: Document,
-  range: Range,
-  options?: SelectionContextOptions$1
-): SelectionContext;
+declare function buildSelectionContext$1(doc: Document, range: Range, options?: SelectionContextOptions$1): SelectionContext;
 /**
  * Get a simple document summary for quick context
  *
@@ -887,46 +837,46 @@ declare function getDocumentSummary(doc: Document): string;
  * Options for building selection context
  */
 interface SelectionContextOptions {
-  /** Characters of context before selection (default: 200) */
-  contextCharsBefore?: number;
-  /** Characters of context after selection (default: 200) */
-  contextCharsAfter?: number;
-  /** Include suggested actions (default: true) */
-  includeSuggestions?: boolean;
-  /** Include document summary (default: true) */
-  includeDocumentSummary?: boolean;
-  /** Maximum suggested actions (default: 8) */
-  maxSuggestions?: number;
+    /** Characters of context before selection (default: 200) */
+    contextCharsBefore?: number;
+    /** Characters of context after selection (default: 200) */
+    contextCharsAfter?: number;
+    /** Include suggested actions (default: true) */
+    includeSuggestions?: boolean;
+    /** Include document summary (default: true) */
+    includeDocumentSummary?: boolean;
+    /** Maximum suggested actions (default: 8) */
+    maxSuggestions?: number;
 }
 /**
  * Extended selection context with additional details
  */
 interface ExtendedSelectionContext extends SelectionContext {
-  /** Document summary for additional context */
-  documentSummary?: string;
-  /** Selection word count */
-  wordCount?: number;
-  /** Selection character count */
-  characterCount?: number;
-  /** Is selection multi-paragraph */
-  isMultiParagraph?: boolean;
-  /** Selected paragraph indices */
-  paragraphIndices?: number[];
-  /** Language detection hint */
-  detectedLanguage?: string;
-  /** Content type hints */
-  contentType?: 'prose' | 'list' | 'heading' | 'table' | 'mixed';
+    /** Document summary for additional context */
+    documentSummary?: string;
+    /** Selection word count */
+    wordCount?: number;
+    /** Selection character count */
+    characterCount?: number;
+    /** Is selection multi-paragraph */
+    isMultiParagraph?: boolean;
+    /** Selected paragraph indices */
+    paragraphIndices?: number[];
+    /** Language detection hint */
+    detectedLanguage?: string;
+    /** Content type hints */
+    contentType?: 'prose' | 'list' | 'heading' | 'table' | 'mixed';
 }
 /**
  * Selection formatting summary
  */
 interface FormattingSummary {
-  /** Predominant formatting */
-  predominant: Partial<TextFormatting>;
-  /** Is formatting consistent across selection */
-  isConsistent: boolean;
-  /** All formatting found */
-  allFormatting: Partial<TextFormatting>[];
+    /** Predominant formatting */
+    predominant: Partial<TextFormatting>;
+    /** Is formatting consistent across selection */
+    isConsistent: boolean;
+    /** All formatting found */
+    allFormatting: Partial<TextFormatting>[];
 }
 /**
  * Build selection context for AI operations
@@ -936,11 +886,7 @@ interface FormattingSummary {
  * @param options - Selection context options
  * @returns SelectionContext object
  */
-declare function buildSelectionContext(
-  doc: Document,
-  range: Range,
-  options?: SelectionContextOptions
-): SelectionContext;
+declare function buildSelectionContext(doc: Document, range: Range, options?: SelectionContextOptions): SelectionContext;
 /**
  * Build extended selection context with additional details
  *
@@ -949,11 +895,7 @@ declare function buildSelectionContext(
  * @param options - Selection context options
  * @returns ExtendedSelectionContext object
  */
-declare function buildExtendedSelectionContext(
-  doc: Document,
-  range: Range,
-  options?: SelectionContextOptions
-): ExtendedSelectionContext;
+declare function buildExtendedSelectionContext(doc: Document, range: Range, options?: SelectionContextOptions): ExtendedSelectionContext;
 /**
  * Get formatting summary for a selection
  *
@@ -1039,11 +981,7 @@ declare function formatPx(px: number): string;
  * @param defaultColor - Default color if auto or undefined (default: black)
  * @returns CSS color string (e.g., "#FF0000" or "inherit")
  */
-declare function resolveColor(
-  color: ColorValue | undefined | null,
-  theme: Theme | null | undefined,
-  defaultColor?: string
-): string;
+declare function resolveColor(color: ColorValue | undefined | null, theme: Theme | null | undefined, defaultColor?: string): string;
 /**
  * Resolve a highlight color name to CSS
  *
@@ -1058,10 +996,7 @@ declare function resolveHighlightColor(highlight: string | undefined): string;
  * @param theme - Theme for resolving theme colors
  * @returns CSS color string
  */
-declare function resolveShadingColor(
-  color: ColorValue | undefined | null,
-  theme: Theme | null | undefined
-): string;
+declare function resolveShadingColor(color: ColorValue | undefined | null, theme: Theme | null | undefined): string;
 /**
  * Check if a color is effectively black
  *
@@ -1069,10 +1004,7 @@ declare function resolveShadingColor(
  * @param theme - Theme for resolving theme colors
  * @returns True if color resolves to black or very dark
  */
-declare function isBlack(
-  color: ColorValue | undefined | null,
-  theme: Theme | null | undefined
-): boolean;
+declare function isBlack(color: ColorValue | undefined | null, theme: Theme | null | undefined): boolean;
 /**
  * Check if a color is effectively white
  *
@@ -1080,10 +1012,7 @@ declare function isBlack(
  * @param theme - Theme for resolving theme colors
  * @returns True if color resolves to white or very light
  */
-declare function isWhite(
-  color: ColorValue | undefined | null,
-  theme: Theme | null | undefined
-): boolean;
+declare function isWhite(color: ColorValue | undefined | null, theme: Theme | null | undefined): boolean;
 /**
  * Get contrasting text color for a background
  *
@@ -1091,10 +1020,7 @@ declare function isWhite(
  * @param theme - Theme for resolving theme colors
  * @returns Black or white hex color for best contrast
  */
-declare function getContrastingColor(
-  backgroundColor: ColorValue | undefined | null,
-  theme: Theme | null | undefined
-): string;
+declare function getContrastingColor(backgroundColor: ColorValue | undefined | null, theme: Theme | null | undefined): string;
 /**
  * Parse a color string (various formats) to ColorValue
  *
@@ -1110,11 +1036,7 @@ declare function parseColorString(colorString: string | undefined): ColorValue |
  * @param shade - Optional shade modifier
  * @returns ColorValue object
  */
-declare function createThemeColor(
-  themeColor: ThemeColorSlot,
-  tint?: number,
-  shade?: number
-): ColorValue;
+declare function createThemeColor(themeColor: ThemeColorSlot, tint?: number, shade?: number): ColorValue;
 /**
  * Create a ColorValue from RGB hex
  *
@@ -1130,11 +1052,7 @@ declare function createRgbColor(hex: string): ColorValue;
  * @param percent - Percentage to darken (0-100)
  * @returns CSS color string
  */
-declare function darkenColor(
-  color: ColorValue | undefined | null,
-  theme: Theme | null | undefined,
-  percent: number
-): string;
+declare function darkenColor(color: ColorValue | undefined | null, theme: Theme | null | undefined, percent: number): string;
 /**
  * Lighten a color by a percentage
  *
@@ -1143,11 +1061,7 @@ declare function darkenColor(
  * @param percent - Percentage to lighten (0-100)
  * @returns CSS color string
  */
-declare function lightenColor(
-  color: ColorValue | undefined | null,
-  theme: Theme | null | undefined,
-  percent: number
-): string;
+declare function lightenColor(color: ColorValue | undefined | null, theme: Theme | null | undefined, percent: number): string;
 /**
  * Blend two colors together
  *
@@ -1157,12 +1071,7 @@ declare function lightenColor(
  * @param theme - Theme for resolving
  * @returns CSS color string
  */
-declare function blendColors(
-  color1: ColorValue | undefined | null,
-  color2: ColorValue | undefined | null,
-  ratio: number,
-  theme: Theme | null | undefined
-): string;
+declare function blendColors(color1: ColorValue | undefined | null, color2: ColorValue | undefined | null, ratio: number, theme: Theme | null | undefined): string;
 /**
  * Ensure a hex color string has a '#' prefix.
  */
@@ -1176,16 +1085,16 @@ declare function resolveHighlightToCss(value: string): string;
  * Theme color matrix cell
  */
 interface ThemeMatrixCell {
-  /** Resolved hex color (6 chars, no #) */
-  hex: string;
-  /** Theme color slot */
-  themeSlot: ThemeColorSlot;
-  /** Tint hex modifier if applicable (e.g., "CC") */
-  tint?: string;
-  /** Shade hex modifier if applicable (e.g., "BF") */
-  shade?: string;
-  /** Human-readable label (e.g., "Accent 1, Lighter 60%") */
-  label: string;
+    /** Resolved hex color (6 chars, no #) */
+    hex: string;
+    /** Theme color slot */
+    themeSlot: ThemeColorSlot;
+    /** Tint hex modifier if applicable (e.g., "CC") */
+    tint?: string;
+    /** Shade hex modifier if applicable (e.g., "BF") */
+    shade?: string;
+    /** Human-readable label (e.g., "Accent 1, Lighter 60%") */
+    label: string;
 }
 /**
  * Compute a single tinted or shaded hex color from a base color.
@@ -1195,11 +1104,7 @@ interface ThemeMatrixCell {
  * @param fraction - Amount (0-1). For tint: 0=no change, 1=white. For shade: 0=black, 1=no change.
  * @returns 6-character hex color (no #)
  */
-declare function getThemeTintShadeHex(
-  baseHex: string,
-  type: 'tint' | 'shade',
-  fraction: number
-): string;
+declare function getThemeTintShadeHex(baseHex: string, type: 'tint' | 'shade', fraction: number): string;
 /**
  * Generate the 10×6 theme color matrix for an advanced color picker.
  *
@@ -1209,9 +1114,7 @@ declare function getThemeTintShadeHex(
  * @param colorScheme - Theme color scheme (falls back to Office 2016 defaults)
  * @returns 6 rows × 10 columns of ThemeMatrixCell
  */
-declare function generateThemeTintShadeMatrix(
-  colorScheme?: ThemeColorScheme | null
-): ThemeMatrixCell[][];
+declare function generateThemeTintShadeMatrix(colorScheme?: ThemeColorScheme | null): ThemeMatrixCell[][];
 /**
  * Check if two colors are equal
  *
@@ -1220,11 +1123,7 @@ declare function generateThemeTintShadeMatrix(
  * @param theme - Theme for resolving
  * @returns True if colors resolve to the same value
  */
-declare function colorsEqual(
-  color1: ColorValue | undefined | null,
-  color2: ColorValue | undefined | null,
-  theme: Theme | null | undefined
-): boolean;
+declare function colorsEqual(color1: ColorValue | undefined | null, color2: ColorValue | undefined | null, theme: Theme | null | undefined): boolean;
 
 /**
  * Variable Detector Utility
@@ -1238,34 +1137,34 @@ declare function colorsEqual(
  * Result of variable detection
  */
 interface VariableDetectionResult {
-  /** Unique variable names sorted alphabetically */
-  variables: string[];
-  /** Total count of variable occurrences */
-  totalOccurrences: number;
-  /** Variables by location */
-  byLocation: {
-    body: string[];
-    headers: string[];
-    footers: string[];
-    footnotes: string[];
-    endnotes: string[];
-    textBoxes: string[];
-  };
-  /** Variable occurrences with positions */
-  occurrences: VariableOccurrence[];
+    /** Unique variable names sorted alphabetically */
+    variables: string[];
+    /** Total count of variable occurrences */
+    totalOccurrences: number;
+    /** Variables by location */
+    byLocation: {
+        body: string[];
+        headers: string[];
+        footers: string[];
+        footnotes: string[];
+        endnotes: string[];
+        textBoxes: string[];
+    };
+    /** Variable occurrences with positions */
+    occurrences: VariableOccurrence[];
 }
 /**
  * A single variable occurrence with location info
  */
 interface VariableOccurrence {
-  /** Variable name (without braces) */
-  name: string;
-  /** Location type */
-  location: 'body' | 'header' | 'footer' | 'footnote' | 'endnote' | 'textBox';
-  /** Paragraph index within location */
-  paragraphIndex?: number;
-  /** Section index (for headers/footers) */
-  sectionIndex?: number;
+    /** Variable name (without braces) */
+    name: string;
+    /** Location type */
+    location: 'body' | 'header' | 'footer' | 'footnote' | 'endnote' | 'textBox';
+    /** Paragraph index within location */
+    paragraphIndex?: number;
+    /** Section index (for headers/footers) */
+    sectionIndex?: number;
 }
 /**
  * Detect all template variables in a document
@@ -1337,91 +1236,4 @@ declare function removeVariables(text: string, placeholder?: string): string;
  */
 declare function documentHasVariables(doc: Document): boolean;
 
-export {
-  isWhite as $,
-  type AgentContextOptions as A,
-  emuToPixels as B,
-  type CreateEmptyDocumentOptions as C,
-  DocumentAgent as D,
-  type ExtendedSelectionContext as E,
-  type FormattedTextSegment as F,
-  emuToTwips as G,
-  executeCommand as H,
-  type InsertHyperlinkOptions as I,
-  executeCommands as J,
-  extractVariablesFromText as K,
-  formatPx as L,
-  formatVariable as M,
-  getAgentContext as N,
-  getContrastingColor as O,
-  type ProcessTemplateOptions as P,
-  getDocumentSummary as Q,
-  getMissingVariables as R,
-  type SelectionContextOptions$1 as S,
-  type TemplateError as T,
-  getSelectionFormattingSummary as U,
-  type VariableDetectionResult as V,
-  getTemplateTags as W,
-  halfPointsToPixels as X,
-  hasTemplateVariables as Y,
-  isBlack as Z,
-  isValidVariableName as _,
-  type FormattingSummary as a,
-  lightenColor as a0,
-  parseColorString as a1,
-  parseDocx as a2,
-  parseVariable as a3,
-  pixelsToEmu as a4,
-  pixelsToTwips as a5,
-  pointsToPixels as a6,
-  previewTemplate as a7,
-  processTemplate as a8,
-  processTemplateAdvanced as a9,
-  processTemplateAsBlob as aa,
-  processTemplateDetailed as ab,
-  removeVariables as ac,
-  repackDocx as ad,
-  replaceVariables as ae,
-  resolveColor as af,
-  resolveHighlightColor as ag,
-  resolveShadingColor as ah,
-  sanitizeVariableName as ai,
-  serializeDocumentBody as aj,
-  serializeDocument as ak,
-  serializeSectionProperties as al,
-  twipsToEmu as am,
-  twipsToPixels as an,
-  validateTemplate as ao,
-  type DocxInput as ap,
-  type ThemeMatrixCell as aq,
-  ensureHexPrefix as ar,
-  generateThemeTintShadeMatrix as as,
-  getThemeTintShadeHex as at,
-  resolveHighlightToCss as au,
-  toArrayBuffer as av,
-  type InsertImageOptions as b,
-  type InsertTableOptions as c,
-  type InsertTextOptions as d,
-  type ProcessTemplateResult as e,
-  type SelectionContextOptions as f,
-  type VariableOccurrence as g,
-  blendColors as h,
-  buildExtendedSelectionContext as i,
-  buildSelectionContext as j,
-  buildSelectionContext$1 as k,
-  colorsEqual as l,
-  createAgent as m,
-  createAgentFromDocument as n,
-  createDocumentWithText as o,
-  createDocx as p,
-  createEmptyDocument as q,
-  createRgbColor as r,
-  createTemplateProcessor as s,
-  createThemeColor as t,
-  darkenColor as u,
-  detectVariables as v,
-  detectVariablesDetailed as w,
-  detectVariablesInBody as x,
-  detectVariablesInParagraph as y,
-  documentHasVariables as z,
-};
+export { isWhite as $, type AgentContextOptions as A, emuToPixels as B, type CreateEmptyDocumentOptions as C, DocumentAgent as D, type ExtendedSelectionContext as E, type FormattedTextSegment as F, emuToTwips as G, executeCommand as H, type InsertHyperlinkOptions as I, executeCommands as J, extractVariablesFromText as K, formatPx as L, formatVariable as M, getAgentContext as N, getContrastingColor as O, type ProcessTemplateOptions as P, getDocumentSummary as Q, getMissingVariables as R, type SelectionContextOptions$1 as S, type TemplateError as T, getSelectionFormattingSummary as U, type VariableDetectionResult as V, getTemplateTags as W, halfPointsToPixels as X, hasTemplateVariables as Y, isBlack as Z, isValidVariableName as _, type FormattingSummary as a, lightenColor as a0, parseColorString as a1, parseDocx as a2, parseVariable as a3, pixelsToEmu as a4, pixelsToTwips as a5, pointsToPixels as a6, previewTemplate as a7, processTemplate as a8, processTemplateAdvanced as a9, processTemplateAsBlob as aa, processTemplateDetailed as ab, removeVariables as ac, repackDocx as ad, replaceVariables as ae, resolveColor as af, resolveHighlightColor as ag, resolveShadingColor as ah, sanitizeVariableName as ai, serializeDocumentBody as aj, serializeDocument as ak, serializeSectionProperties as al, twipsToEmu as am, twipsToPixels as an, validateTemplate as ao, type DocxInput as ap, type ThemeMatrixCell as aq, ensureHexPrefix as ar, generateThemeTintShadeMatrix as as, getThemeTintShadeHex as at, resolveHighlightToCss as au, toArrayBuffer as av, type InsertImageOptions as b, type InsertTableOptions as c, type InsertTextOptions as d, type ProcessTemplateResult as e, type SelectionContextOptions as f, type VariableOccurrence as g, blendColors as h, buildExtendedSelectionContext as i, buildSelectionContext as j, buildSelectionContext$1 as k, colorsEqual as l, createAgent as m, createAgentFromDocument as n, createDocumentWithText as o, createDocx as p, createEmptyDocument as q, createRgbColor as r, createTemplateProcessor as s, createThemeColor as t, darkenColor as u, detectVariables as v, detectVariablesDetailed as w, detectVariablesInBody as x, detectVariablesInParagraph as y, documentHasVariables as z };

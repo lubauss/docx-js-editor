@@ -1,147 +1,10 @@
-export {
-  A as AgentContextOptions,
-  C as CreateEmptyDocumentOptions,
-  D as DocumentAgent,
-  ap as DocxInput,
-  E as ExtendedSelectionContext,
-  P as ProcessTemplateOptions,
-  e as ProcessTemplateResult,
-  f as SelectionContextOptions,
-  aq as ThemeMatrixCell,
-  V as VariableDetectionResult,
-  g as VariableOccurrence,
-  h as blendColors,
-  i as buildExtendedSelectionContext,
-  j as buildSelectionContext,
-  l as colorsEqual,
-  o as createDocumentWithText,
-  p as createDocx,
-  q as createEmptyDocument,
-  r as createRgbColor,
-  t as createThemeColor,
-  u as darkenColor,
-  v as detectVariables,
-  w as detectVariablesDetailed,
-  x as detectVariablesInBody,
-  y as detectVariablesInParagraph,
-  z as documentHasVariables,
-  B as emuToPixels,
-  G as emuToTwips,
-  ar as ensureHexPrefix,
-  H as executeCommand,
-  J as executeCommands,
-  K as extractVariablesFromText,
-  L as formatPx,
-  M as formatVariable,
-  as as generateThemeTintShadeMatrix,
-  N as getAgentContext,
-  O as getContrastingColor,
-  Q as getDocumentSummary,
-  W as getTemplateTags,
-  at as getThemeTintShadeHex,
-  X as halfPointsToPixels,
-  Y as hasTemplateVariables,
-  Z as isBlack,
-  _ as isValidVariableName,
-  $ as isWhite,
-  a0 as lightenColor,
-  a1 as parseColorString,
-  a2 as parseDocx,
-  a3 as parseVariable,
-  a4 as pixelsToEmu,
-  a5 as pixelsToTwips,
-  a6 as pointsToPixels,
-  a8 as processTemplate,
-  aa as processTemplateAsBlob,
-  ab as processTemplateDetailed,
-  ac as removeVariables,
-  ad as repackDocx,
-  ae as replaceVariables,
-  af as resolveColor,
-  ag as resolveHighlightColor,
-  au as resolveHighlightToCss,
-  ah as resolveShadingColor,
-  ai as sanitizeVariableName,
-  aj as serializeDocumentBody,
-  ak as serializeDocx,
-  al as serializeSectionProperties,
-  av as toArrayBuffer,
-  am as twipsToEmu,
-  an as twipsToPixels,
-  ao as validateTemplate,
-} from './variableDetector-Bmz3FyBM.js';
-import {
-  p as Document,
-  al as BreakContent,
-  d as Paragraph,
-  R as Run,
-  $ as RunContent,
-  e as Table,
-} from './types-BmzqJw_z.js';
-export {
-  A as AIAction,
-  g as AIActionRequest,
-  h as AgentCommand,
-  i as AgentContext,
-  j as AgentResponse,
-  k as ApplyStyleCommand,
-  B as BlockContent,
-  am as BookmarkEnd,
-  an as BookmarkStart,
-  C as CorePlugin,
-  o as DeleteTextCommand,
-  D as DocumentBody,
-  q as DocxPackage,
-  E as Endnote,
-  ao as Field,
-  ap as FooterReference,
-  F as Footnote,
-  s as FormatTextCommand,
-  aq as HeaderFooter,
-  ar as HeaderReference,
-  H as Hyperlink,
-  I as Image,
-  t as InsertHyperlinkCommand,
-  u as InsertImageCommand,
-  v as InsertTableCommand,
-  w as InsertTextCommand,
-  L as ListLevel,
-  y as McpSession,
-  M as McpToolDefinition,
-  N as McpToolHandler,
-  O as McpToolResult,
-  Q as NumberingDefinitions,
-  S as ParagraphContext,
-  U as ParagraphFormatting,
-  f as Position,
-  Y as Range,
-  Z as Relationship,
-  _ as ReplaceTextCommand,
-  a1 as SectionProperties,
-  a2 as SelectionContext,
-  a3 as SetVariableCommand,
-  as as Shape,
-  a4 as Style,
-  a5 as StyleDefinitions,
-  a7 as SuggestedAction,
-  a8 as TableCell,
-  a9 as TableRow,
-  at as TextBox,
-  aa as TextContent,
-  T as TextFormatting,
-  ab as Theme,
-  au as ThemeColorScheme,
-  av as ThemeFont,
-  aw as ThemeFontScheme,
-} from './types-BmzqJw_z.js';
+export { A as AgentContextOptions, C as CreateEmptyDocumentOptions, D as DocumentAgent, ap as DocxInput, E as ExtendedSelectionContext, P as ProcessTemplateOptions, e as ProcessTemplateResult, f as SelectionContextOptions, aq as ThemeMatrixCell, V as VariableDetectionResult, g as VariableOccurrence, h as blendColors, i as buildExtendedSelectionContext, j as buildSelectionContext, l as colorsEqual, o as createDocumentWithText, p as createDocx, q as createEmptyDocument, r as createRgbColor, t as createThemeColor, u as darkenColor, v as detectVariables, w as detectVariablesDetailed, x as detectVariablesInBody, y as detectVariablesInParagraph, z as documentHasVariables, B as emuToPixels, G as emuToTwips, ar as ensureHexPrefix, H as executeCommand, J as executeCommands, K as extractVariablesFromText, L as formatPx, M as formatVariable, as as generateThemeTintShadeMatrix, N as getAgentContext, O as getContrastingColor, Q as getDocumentSummary, W as getTemplateTags, at as getThemeTintShadeHex, X as halfPointsToPixels, Y as hasTemplateVariables, Z as isBlack, _ as isValidVariableName, $ as isWhite, a0 as lightenColor, a1 as parseColorString, a2 as parseDocx, a3 as parseVariable, a4 as pixelsToEmu, a5 as pixelsToTwips, a6 as pointsToPixels, a8 as processTemplate, aa as processTemplateAsBlob, ab as processTemplateDetailed, ac as removeVariables, ad as repackDocx, ae as replaceVariables, af as resolveColor, ag as resolveHighlightColor, au as resolveHighlightToCss, ah as resolveShadingColor, ai as sanitizeVariableName, aj as serializeDocumentBody, ak as serializeDocx, al as serializeSectionProperties, av as toArrayBuffer, am as twipsToEmu, an as twipsToPixels, ao as validateTemplate } from './variableDetector-Bmz3FyBM.js';
+import { p as Document, al as BreakContent, d as Paragraph, R as Run, $ as RunContent, e as Table } from './types-BmzqJw_z.js';
+export { A as AIAction, g as AIActionRequest, h as AgentCommand, i as AgentContext, j as AgentResponse, k as ApplyStyleCommand, B as BlockContent, am as BookmarkEnd, an as BookmarkStart, C as CorePlugin, o as DeleteTextCommand, D as DocumentBody, q as DocxPackage, E as Endnote, ao as Field, ap as FooterReference, F as Footnote, s as FormatTextCommand, aq as HeaderFooter, ar as HeaderReference, H as Hyperlink, I as Image, t as InsertHyperlinkCommand, u as InsertImageCommand, v as InsertTableCommand, w as InsertTextCommand, L as ListLevel, y as McpSession, M as McpToolDefinition, N as McpToolHandler, O as McpToolResult, Q as NumberingDefinitions, S as ParagraphContext, U as ParagraphFormatting, f as Position, Y as Range, Z as Relationship, _ as ReplaceTextCommand, a1 as SectionProperties, a2 as SelectionContext, a3 as SetVariableCommand, as as Shape, a4 as Style, a5 as StyleDefinitions, a7 as SuggestedAction, a8 as TableCell, a9 as TableRow, at as TextBox, aa as TextContent, T as TextFormatting, ab as Theme, au as ThemeColorScheme, av as ThemeFont, aw as ThemeFontScheme } from './types-BmzqJw_z.js';
 import { Plugin } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { Node } from 'prosemirror-model';
-export {
-  P as PluginRegistry,
-  p as pluginRegistry,
-  r as registerPlugins,
-} from './registry-CPEr5utj.js';
+export { P as PluginRegistry, p as pluginRegistry, r as registerPlugins } from './registry-CPEr5utj.js';
 export { docxtemplaterPlugin } from './core-plugins.js';
 
 /**
@@ -155,12 +18,12 @@ export { docxtemplaterPlugin } from './core-plugins.js';
  * Insert position in the document
  */
 interface InsertPosition {
-  /** Paragraph index in the document body */
-  paragraphIndex: number;
-  /** Run index within the paragraph (optional) */
-  runIndex?: number;
-  /** Character offset within the run (optional) */
-  offset?: number;
+    /** Paragraph index in the document body */
+    paragraphIndex: number;
+    /** Run index within the paragraph (optional) */
+    runIndex?: number;
+    /** Character offset within the run (optional) */
+    offset?: number;
 }
 /**
  * Create a page break content element
@@ -245,13 +108,10 @@ declare function removePageBreak(doc: Document, position: InsertPosition): Docum
  * @param options - Optional configuration
  * @returns Promise resolving to true if font loaded successfully, false otherwise
  */
-declare function loadFont(
-  fontFamily: string,
-  options?: {
+declare function loadFont(fontFamily: string, options?: {
     weights?: number[];
     styles?: ('normal' | 'italic')[];
-  }
-): Promise<boolean>;
+}): Promise<boolean>;
 /**
  * Load multiple fonts from Google Fonts
  *
@@ -259,13 +119,10 @@ declare function loadFont(
  * @param options - Optional configuration
  * @returns Promise resolving when all fonts are loaded (or failed)
  */
-declare function loadFonts(
-  families: string[],
-  options?: {
+declare function loadFonts(families: string[], options?: {
     weights?: number[];
     styles?: ('normal' | 'italic')[];
-  }
-): Promise<void>;
+}): Promise<void>;
 /**
  * Check if a font is loaded
  *
@@ -311,14 +168,10 @@ declare function canRenderFont(fontFamily: string, fallbackFont?: string): boole
  * @param options - Font options
  * @returns Promise resolving when font is loaded
  */
-declare function loadFontFromBuffer(
-  fontFamily: string,
-  buffer: ArrayBuffer,
-  options?: {
+declare function loadFontFromBuffer(fontFamily: string, buffer: ArrayBuffer, options?: {
     weight?: number | string;
     style?: 'normal' | 'italic';
-  }
-): Promise<boolean>;
+}): Promise<boolean>;
 /**
  * Preload a list of common document fonts
  *
@@ -339,9 +192,9 @@ declare function preloadCommonFonts(): Promise<void>;
  * Coordinates returned by position lookup in the rendered DOM.
  */
 interface PositionCoordinates {
-  x: number;
-  y: number;
-  height: number;
+    x: number;
+    y: number;
+    height: number;
 }
 /**
  * Context for accessing the rendered DOM in the paged editor.
@@ -354,80 +207,77 @@ interface PositionCoordinates {
  * to map between ProseMirror positions and DOM elements.
  */
 interface RenderedDomContext {
-  /** The container element holding all rendered pages. */
-  pagesContainer: HTMLElement;
-  /**
-   * Get pixel coordinates for a ProseMirror position in the rendered DOM.
-   * Returns null if the position cannot be found.
-   */
-  getCoordinatesForPosition(pmPos: number): PositionCoordinates | null;
-  /**
-   * Find DOM elements that overlap with a ProseMirror position range.
-   */
-  findElementsForRange(from: number, to: number): Element[];
-  /**
-   * Get bounding rectangles for a range of text, accounting for line wraps.
-   * Returns rects relative to the pages container.
-   */
-  getRectsForRange(
-    from: number,
-    to: number
-  ): Array<{
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-  }>;
-  /** Current zoom level (1 = 100%). */
-  zoom: number;
-  /**
-   * Offset of the pages container from its parent viewport.
-   */
-  getContainerOffset(): {
-    x: number;
-    y: number;
-  };
+    /** The container element holding all rendered pages. */
+    pagesContainer: HTMLElement;
+    /**
+     * Get pixel coordinates for a ProseMirror position in the rendered DOM.
+     * Returns null if the position cannot be found.
+     */
+    getCoordinatesForPosition(pmPos: number): PositionCoordinates | null;
+    /**
+     * Find DOM elements that overlap with a ProseMirror position range.
+     */
+    findElementsForRange(from: number, to: number): Element[];
+    /**
+     * Get bounding rectangles for a range of text, accounting for line wraps.
+     * Returns rects relative to the pages container.
+     */
+    getRectsForRange(from: number, to: number): Array<{
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    }>;
+    /** Current zoom level (1 = 100%). */
+    zoom: number;
+    /**
+     * Offset of the pages container from its parent viewport.
+     */
+    getContainerOffset(): {
+        x: number;
+        y: number;
+    };
 }
 /**
  * Props passed to plugin panel components (framework-agnostic base).
  */
 interface PluginPanelProps<TState = unknown> {
-  /** Current ProseMirror editor view */
-  editorView: EditorView | null;
-  /** Current ProseMirror document */
-  doc: Node | null;
-  /** Scroll editor to a specific position */
-  scrollToPosition: (pos: number) => void;
-  /** Select a range in the editor */
-  selectRange: (from: number, to: number) => void;
-  /** Plugin-specific state (managed by the plugin) */
-  pluginState: TState;
-  /** Width of the panel in pixels */
-  panelWidth: number;
-  /**
-   * Context for the rendered DOM (LayoutPainter output).
-   * May be null if layout hasn't completed yet.
-   */
-  renderedDomContext: RenderedDomContext | null;
+    /** Current ProseMirror editor view */
+    editorView: EditorView | null;
+    /** Current ProseMirror document */
+    doc: Node | null;
+    /** Scroll editor to a specific position */
+    scrollToPosition: (pos: number) => void;
+    /** Select a range in the editor */
+    selectRange: (from: number, to: number) => void;
+    /** Plugin-specific state (managed by the plugin) */
+    pluginState: TState;
+    /** Width of the panel in pixels */
+    panelWidth: number;
+    /**
+     * Context for the rendered DOM (LayoutPainter output).
+     * May be null if layout hasn't completed yet.
+     */
+    renderedDomContext: RenderedDomContext | null;
 }
 /**
  * Configuration for plugin panel rendering.
  */
 interface PanelConfig {
-  /** Where to render the panel */
-  position: 'left' | 'right' | 'bottom';
-  /** Default width/height of the panel */
-  defaultSize: number;
-  /** Minimum size */
-  minSize?: number;
-  /** Maximum size */
-  maxSize?: number;
-  /** Whether the panel is resizable */
-  resizable?: boolean;
-  /** Whether the panel can be collapsed */
-  collapsible?: boolean;
-  /** Initial collapsed state */
-  defaultCollapsed?: boolean;
+    /** Where to render the panel */
+    position: 'left' | 'right' | 'bottom';
+    /** Default width/height of the panel */
+    defaultSize: number;
+    /** Minimum size */
+    minSize?: number;
+    /** Maximum size */
+    maxSize?: number;
+    /** Whether the panel is resizable */
+    resizable?: boolean;
+    /** Whether the panel can be collapsed */
+    collapsible?: boolean;
+    /** Initial collapsed state */
+    defaultCollapsed?: boolean;
 }
 /**
  * Framework-agnostic core plugin interface.
@@ -442,38 +292,38 @@ interface PanelConfig {
  * with their own Panel component type and renderOverlay function.
  */
 interface EditorPluginCore<TState = any> {
-  /** Unique plugin identifier */
-  id: string;
-  /** Display name for the plugin */
-  name: string;
-  /**
-   * ProseMirror plugins to register with the editor.
-   * These are merged with the editor's internal plugins.
-   */
-  proseMirrorPlugins?: Plugin[];
-  /**
-   * Configuration for the panel (position, size, etc.)
-   */
-  panelConfig?: PanelConfig;
-  /**
-   * Called when the editor state changes.
-   * Use this to update plugin-specific state based on document changes.
-   */
-  onStateChange?: (view: EditorView) => TState | undefined;
-  /**
-   * Initialize plugin state when the plugin is first loaded.
-   */
-  initialize?: (view: EditorView | null) => TState;
-  /**
-   * Called when the plugin is being destroyed.
-   * Use this for cleanup (subscriptions, timers, etc.)
-   */
-  destroy?: () => void;
-  /**
-   * CSS styles to inject for this plugin.
-   * Can be a string of CSS or a URL to a stylesheet.
-   */
-  styles?: string;
+    /** Unique plugin identifier */
+    id: string;
+    /** Display name for the plugin */
+    name: string;
+    /**
+     * ProseMirror plugins to register with the editor.
+     * These are merged with the editor's internal plugins.
+     */
+    proseMirrorPlugins?: Plugin[];
+    /**
+     * Configuration for the panel (position, size, etc.)
+     */
+    panelConfig?: PanelConfig;
+    /**
+     * Called when the editor state changes.
+     * Use this to update plugin-specific state based on document changes.
+     */
+    onStateChange?: (view: EditorView) => TState | undefined;
+    /**
+     * Initialize plugin state when the plugin is first loaded.
+     */
+    initialize?: (view: EditorView | null) => TState;
+    /**
+     * Called when the plugin is being destroyed.
+     * Use this for cleanup (subscriptions, timers, etc.)
+     */
+    destroy?: () => void;
+    /**
+     * CSS styles to inject for this plugin.
+     * Can be a string of CSS or a URL to a stylesheet.
+     */
+    styles?: string;
 }
 
 /**
@@ -487,25 +337,25 @@ interface EditorPluginCore<TState = any> {
  * - Vue: watchEffect(() => { manager.subscribe(triggerRef) })
  */
 declare abstract class Subscribable<TSnapshot> {
-  private listeners;
-  private snapshot;
-  constructor(initialSnapshot: TSnapshot);
-  /**
-   * Subscribe to state changes. Returns an unsubscribe function.
-   * Bound method — safe to pass as `useSyncExternalStore(manager.subscribe, ...)`.
-   */
-  subscribe: (listener: () => void) => () => void;
-  /**
-   * Get the current snapshot. Returns a stable reference unless state has changed.
-   * Bound method — safe to pass as `useSyncExternalStore(..., manager.getSnapshot)`.
-   */
-  getSnapshot: () => TSnapshot;
-  /**
-   * Update the snapshot and notify all subscribers.
-   * Subclasses should call this whenever their state changes.
-   */
-  protected setSnapshot(snapshot: TSnapshot): void;
-  private notify;
+    private listeners;
+    private snapshot;
+    constructor(initialSnapshot: TSnapshot);
+    /**
+     * Subscribe to state changes. Returns an unsubscribe function.
+     * Bound method — safe to pass as `useSyncExternalStore(manager.subscribe, ...)`.
+     */
+    subscribe: (listener: () => void) => (() => void);
+    /**
+     * Get the current snapshot. Returns a stable reference unless state has changed.
+     * Bound method — safe to pass as `useSyncExternalStore(..., manager.getSnapshot)`.
+     */
+    getSnapshot: () => TSnapshot;
+    /**
+     * Update the snapshot and notify all subscribers.
+     * Subclasses should call this whenever their state changes.
+     */
+    protected setSnapshot(snapshot: TSnapshot): void;
+    private notify;
 }
 
 /**
@@ -521,94 +371,94 @@ declare abstract class Subscribable<TSnapshot> {
  * Consumers use this to interact with the editor programmatically.
  */
 interface EditorHandle {
-  /** Save the document and return the DOCX as a Blob. */
-  save(): Promise<Blob | null>;
-  /** Get the current parsed document model. */
-  getDocument(): Document | null;
-  /** Focus the editor. */
-  focus(): void;
-  /** Unmount the editor and clean up. */
-  destroy(): void;
+    /** Save the document and return the DOCX as a Blob. */
+    save(): Promise<Blob | null>;
+    /** Get the current parsed document model. */
+    getDocument(): Document | null;
+    /** Focus the editor. */
+    focus(): void;
+    /** Unmount the editor and clean up. */
+    destroy(): void;
 }
 /** Auto-save status */
 type AutoSaveStatus = 'idle' | 'saving' | 'saved' | 'error';
 /** Configuration for AutoSaveManager */
 interface AutoSaveManagerOptions {
-  /** Storage key for localStorage (default: 'docx-editor-autosave') */
-  storageKey?: string;
-  /** Save interval in milliseconds (default: 30000 - 30 seconds) */
-  interval?: number;
-  /** Maximum age of auto-save before it's considered stale (default: 24 hours) */
-  maxAge?: number;
-  /** Whether to save on document change with debounce (default: true) */
-  saveOnChange?: boolean;
-  /** Debounce delay for saveOnChange in milliseconds (default: 2000) */
-  debounceDelay?: number;
-  /** Callback when save succeeds */
-  onSave?: (timestamp: Date) => void;
-  /** Callback when save fails */
-  onError?: (error: Error) => void;
-  /** Callback when recovery data is found */
-  onRecoveryAvailable?: (savedDocument: SavedDocumentData) => void;
+    /** Storage key for localStorage (default: 'docx-editor-autosave') */
+    storageKey?: string;
+    /** Save interval in milliseconds (default: 30000 - 30 seconds) */
+    interval?: number;
+    /** Maximum age of auto-save before it's considered stale (default: 24 hours) */
+    maxAge?: number;
+    /** Whether to save on document change with debounce (default: true) */
+    saveOnChange?: boolean;
+    /** Debounce delay for saveOnChange in milliseconds (default: 2000) */
+    debounceDelay?: number;
+    /** Callback when save succeeds */
+    onSave?: (timestamp: Date) => void;
+    /** Callback when save fails */
+    onError?: (error: Error) => void;
+    /** Callback when recovery data is found */
+    onRecoveryAvailable?: (savedDocument: SavedDocumentData) => void;
 }
 /** Saved document data structure */
 interface SavedDocumentData {
-  /** The document JSON */
-  document: Document;
-  /** When the document was saved */
-  savedAt: string;
-  /** Version for format compatibility */
-  version: number;
-  /** Optional document identifier */
-  documentId?: string;
+    /** The document JSON */
+    document: Document;
+    /** When the document was saved */
+    savedAt: string;
+    /** Version for format compatibility */
+    version: number;
+    /** Optional document identifier */
+    documentId?: string;
 }
 /** AutoSaveManager snapshot for UI consumption */
 interface AutoSaveSnapshot {
-  status: AutoSaveStatus;
-  lastSaveTime: Date | null;
-  hasRecoveryData: boolean;
-  isEnabled: boolean;
+    status: AutoSaveStatus;
+    lastSaveTime: Date | null;
+    hasRecoveryData: boolean;
+    isEnabled: boolean;
 }
 /** Cell coordinates in a table */
 interface CellCoordinates {
-  tableIndex: number;
-  rowIndex: number;
-  columnIndex: number;
+    tableIndex: number;
+    rowIndex: number;
+    columnIndex: number;
 }
 /** TableSelectionManager snapshot */
 interface TableSelectionSnapshot {
-  /** Currently selected cell, or null if no selection */
-  selectedCell: CellCoordinates | null;
+    /** Currently selected cell, or null if no selection */
+    selectedCell: CellCoordinates | null;
 }
 /** Error severity levels */
 type ErrorSeverity = 'error' | 'warning' | 'info';
 /** Error notification */
 interface ErrorNotification {
-  id: string;
-  message: string;
-  severity: ErrorSeverity;
-  details?: string;
-  timestamp: number;
-  dismissed?: boolean;
+    id: string;
+    message: string;
+    severity: ErrorSeverity;
+    details?: string;
+    timestamp: number;
+    dismissed?: boolean;
 }
 /** ErrorManager snapshot */
 interface ErrorManagerSnapshot {
-  notifications: ErrorNotification[];
+    notifications: ErrorNotification[];
 }
 /** Plugin lifecycle configuration */
 interface PluginLifecycleConfig {
-  id: string;
-  styles?: string;
-  initialize?: (editorView: EditorView) => unknown;
-  onStateChange?: (editorView: EditorView) => unknown;
-  destroy?: () => void;
+    id: string;
+    styles?: string;
+    initialize?: (editorView: EditorView) => unknown;
+    onStateChange?: (editorView: EditorView) => unknown;
+    destroy?: () => void;
 }
 /** PluginLifecycleManager snapshot */
 interface PluginLifecycleSnapshot {
-  /** Map of plugin ID to plugin state */
-  states: Map<string, unknown>;
-  /** Version counter (incremented on any state change) */
-  version: number;
+    /** Map of plugin ID to plugin state */
+    states: Map<string, unknown>;
+    /** Version counter (incremented on any state change) */
+    version: number;
 }
 
 /**
@@ -624,50 +474,50 @@ interface PluginLifecycleSnapshot {
  */
 
 declare class AutoSaveManager extends Subscribable<AutoSaveSnapshot> {
-  private storageKey;
-  private interval;
-  private maxAge;
-  private saveOnChange;
-  private debounceDelay;
-  private onSaveCallback?;
-  private onErrorCallback?;
-  private onRecoveryAvailableCallback?;
-  private storageAvailable;
-  private currentDocument;
-  private lastSavedJson;
-  private intervalTimer;
-  private debounceTimer;
-  private status;
-  private lastSaveTime;
-  private _hasRecoveryData;
-  private _isEnabled;
-  constructor(options?: AutoSaveManagerOptions);
-  /** Update the current document. Triggers debounced save if enabled. */
-  onDocumentChanged(document: Document | null): void;
-  /** Manually trigger a save. */
-  save(): Promise<boolean>;
-  /** Clear auto-saved data from storage. */
-  clear(): void;
-  /** Get recovery data from storage. */
-  getRecoveryData(): SavedDocumentData | null;
-  /** Accept recovery and return the document. */
-  acceptRecovery(): Document | null;
-  /** Dismiss recovery and clear saved data. */
-  dismissRecovery(): void;
-  /** Enable auto-save and start the interval timer. */
-  enable(): void;
-  /** Disable auto-save and stop all timers. */
-  disable(): void;
-  /** Start the interval timer. Call after enabling or on init. */
-  startInterval(): void;
-  /** Save synchronously on destroy (best-effort). */
-  destroy(): void;
-  private checkRecoveryData;
-  private persistToStorage;
-  private debounceSave;
-  private stopTimers;
-  private updateStatus;
-  private emitSnapshot;
+    private storageKey;
+    private interval;
+    private maxAge;
+    private saveOnChange;
+    private debounceDelay;
+    private onSaveCallback?;
+    private onErrorCallback?;
+    private onRecoveryAvailableCallback?;
+    private storageAvailable;
+    private currentDocument;
+    private lastSavedJson;
+    private intervalTimer;
+    private debounceTimer;
+    private status;
+    private lastSaveTime;
+    private _hasRecoveryData;
+    private _isEnabled;
+    constructor(options?: AutoSaveManagerOptions);
+    /** Update the current document. Triggers debounced save if enabled. */
+    onDocumentChanged(document: Document | null): void;
+    /** Manually trigger a save. */
+    save(): Promise<boolean>;
+    /** Clear auto-saved data from storage. */
+    clear(): void;
+    /** Get recovery data from storage. */
+    getRecoveryData(): SavedDocumentData | null;
+    /** Accept recovery and return the document. */
+    acceptRecovery(): Document | null;
+    /** Dismiss recovery and clear saved data. */
+    dismissRecovery(): void;
+    /** Enable auto-save and start the interval timer. */
+    enable(): void;
+    /** Disable auto-save and stop all timers. */
+    disable(): void;
+    /** Start the interval timer. Call after enabling or on init. */
+    startInterval(): void;
+    /** Save synchronously on destroy (best-effort). */
+    destroy(): void;
+    private checkRecoveryData;
+    private persistToStorage;
+    private debounceSave;
+    private stopTimers;
+    private updateStatus;
+    private emitSnapshot;
 }
 /** Format last save time for display */
 declare function formatLastSaveTime(date: Date | null): string;
@@ -693,39 +543,32 @@ declare function isAutoSaveSupported(): boolean;
 
 /** Data attributes for table elements in the rendered DOM */
 declare const TABLE_DATA_ATTRIBUTES: {
-  readonly TABLE_INDEX: 'data-table-index';
-  readonly ROW_INDEX: 'data-row';
-  readonly COLUMN_INDEX: 'data-col';
-  readonly TABLE_CELL: 'data-table-cell';
+    readonly TABLE_INDEX: "data-table-index";
+    readonly ROW_INDEX: "data-row";
+    readonly COLUMN_INDEX: "data-col";
+    readonly TABLE_CELL: "data-table-cell";
 };
 /**
  * Find table cell coordinates from a click target by walking up the DOM
  * and reading data attributes.
  */
-declare function findTableFromClick(
-  target: EventTarget | null,
-  container?: HTMLElement | null
-): CellCoordinates | null;
+declare function findTableFromClick(target: EventTarget | null, container?: HTMLElement | null): CellCoordinates | null;
 /** Get a table from the document by index. */
 declare function getTableFromDocument(doc: Document, tableIndex: number): Table | null;
 /** Update a table in the document immutably. */
-declare function updateTableInDocument(
-  doc: Document,
-  tableIndex: number,
-  newTable: Table
-): Document;
+declare function updateTableInDocument(doc: Document, tableIndex: number, newTable: Table): Document;
 /** Delete a table from the document immutably. */
 declare function deleteTableFromDocument(doc: Document, tableIndex: number): Document;
 declare class TableSelectionManager extends Subscribable<TableSelectionSnapshot> {
-  constructor();
-  /** Select a specific cell. */
-  selectCell(coords: CellCoordinates): void;
-  /** Clear the current selection. */
-  clearSelection(): void;
-  /** Check if a specific cell is selected. */
-  isCellSelected(tableIndex: number, rowIndex: number, columnIndex: number): boolean;
-  /** Get the currently selected cell coordinates, or null. */
-  getSelectedCell(): CellCoordinates | null;
+    constructor();
+    /** Select a specific cell. */
+    selectCell(coords: CellCoordinates): void;
+    /** Clear the current selection. */
+    clearSelection(): void;
+    /** Check if a specific cell is selected. */
+    isCellSelected(tableIndex: number, rowIndex: number, columnIndex: number): boolean;
+    /** Get the currently selected cell coordinates, or null. */
+    getSelectedCell(): CellCoordinates | null;
 }
 
 /**
@@ -742,15 +585,15 @@ declare class TableSelectionManager extends Subscribable<TableSelectionSnapshot>
 
 /** Selection data for clipboard operations */
 interface ClipboardSelection {
-  text: string;
-  runs: Run[];
-  startParagraphIndex: number;
-  startRunIndex: number;
-  startOffset: number;
-  endParagraphIndex: number;
-  endRunIndex: number;
-  endOffset: number;
-  isMultiParagraph: boolean;
+    text: string;
+    runs: Run[];
+    startParagraphIndex: number;
+    startRunIndex: number;
+    startOffset: number;
+    endParagraphIndex: number;
+    endRunIndex: number;
+    endOffset: number;
+    isMultiParagraph: boolean;
 }
 /**
  * Convert a CSS color string (rgb/rgba/hex) to a 6-char uppercase hex string.
@@ -780,24 +623,24 @@ declare const rgbToHex: typeof cssColorToHex;
  */
 
 declare class ErrorManager extends Subscribable<ErrorManagerSnapshot> {
-  private notifications;
-  private idCounter;
-  private timers;
-  constructor();
-  /** Show an error notification (persistent, not auto-dismissed). */
-  showError(message: string, details?: string): string;
-  /** Show a warning notification (auto-dismissed after 5s). */
-  showWarning(message: string, details?: string): string;
-  /** Show an info notification (auto-dismissed after 5s). */
-  showInfo(message: string, details?: string): string;
-  /** Dismiss a notification by ID. */
-  dismiss(id: string): void;
-  /** Clear all notifications and cancel pending timers. */
-  clearAll(): void;
-  /** Destroy the manager and clean up all timers. */
-  destroy(): void;
-  private addNotification;
-  private emitSnapshot;
+    private notifications;
+    private idCounter;
+    private timers;
+    constructor();
+    /** Show an error notification (persistent, not auto-dismissed). */
+    showError(message: string, details?: string): string;
+    /** Show a warning notification (auto-dismissed after 5s). */
+    showWarning(message: string, details?: string): string;
+    /** Show an info notification (auto-dismissed after 5s). */
+    showInfo(message: string, details?: string): string;
+    /** Dismiss a notification by ID. */
+    dismiss(id: string): void;
+    /** Clear all notifications and cancel pending timers. */
+    clearAll(): void;
+    /** Destroy the manager and clean up all timers. */
+    destroy(): void;
+    private addNotification;
+    private emitSnapshot;
 }
 
 /**
@@ -819,31 +662,31 @@ declare class ErrorManager extends Subscribable<ErrorManagerSnapshot> {
 /** Inject CSS styles into the document head. Returns a cleanup function. */
 declare function injectStyles(pluginId: string, css: string): () => void;
 declare class PluginLifecycleManager extends Subscribable<PluginLifecycleSnapshot> {
-  private plugins;
-  private pluginStates;
-  private version;
-  constructor();
-  /**
-   * Initialize plugins with an editor view.
-   * Calls `plugin.initialize(editorView)` for each plugin.
-   *
-   * Note: CSS injection and DOM event listeners are the responsibility
-   * of the framework-specific host (e.g. React PluginHost).
-   */
-  initialize(plugins: PluginLifecycleConfig[], editorView: EditorView): void;
-  /**
-   * Update all plugin states by calling `onStateChange` on each plugin.
-   * Returns true if any plugin state changed.
-   */
-  updateStates(editorView: EditorView): boolean;
-  /** Get plugin state by ID. */
-  getPluginState<T>(pluginId: string): T | undefined;
-  /** Set plugin state by ID. */
-  setPluginState<T>(pluginId: string, state: T): void;
-  /** Destroy all plugins and clean up. */
-  destroy(): void;
-  private destroyPlugins;
-  private emitSnapshot;
+    private plugins;
+    private pluginStates;
+    private version;
+    constructor();
+    /**
+     * Initialize plugins with an editor view.
+     * Calls `plugin.initialize(editorView)` for each plugin.
+     *
+     * Note: CSS injection and DOM event listeners are the responsibility
+     * of the framework-specific host (e.g. React PluginHost).
+     */
+    initialize(plugins: PluginLifecycleConfig[], editorView: EditorView): void;
+    /**
+     * Update all plugin states by calling `onStateChange` on each plugin.
+     * Returns true if any plugin state changed.
+     */
+    updateStates(editorView: EditorView): boolean;
+    /** Get plugin state by ID. */
+    getPluginState<T>(pluginId: string): T | undefined;
+    /** Set plugin state by ID. */
+    setPluginState<T>(pluginId: string, state: T): void;
+    /** Destroy all plugins and clean up. */
+    destroy(): void;
+    private destroyPlugins;
+    private emitSnapshot;
 }
 
 /**
@@ -870,110 +713,105 @@ declare class PluginLifecycleManager extends Subscribable<PluginLifecycleSnapsho
 
 /** Selection rectangle for rendering selection overlays */
 interface SelectionRect {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  pageIndex: number;
-}
-/** Caret position for rendering the blinking cursor */
-interface CaretPosition {
-  x: number;
-  y: number;
-  height: number;
-  pageIndex: number;
-}
-/** Info about the currently selected/hovered image */
-interface ImageSelectionInfo {
-  pmPos: number;
-  pageIndex: number;
-  rect: {
     x: number;
     y: number;
     width: number;
     height: number;
-  };
-  widthEmu: number;
-  heightEmu: number;
-  isInline: boolean;
+    pageIndex: number;
+}
+/** Caret position for rendering the blinking cursor */
+interface CaretPosition {
+    x: number;
+    y: number;
+    height: number;
+    pageIndex: number;
+}
+/** Info about the currently selected/hovered image */
+interface ImageSelectionInfo {
+    pmPos: number;
+    pageIndex: number;
+    rect: {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    };
+    widthEmu: number;
+    heightEmu: number;
+    isInline: boolean;
 }
 /** Column resize tracking state */
 interface ColumnResizeState {
-  isResizing: boolean;
-  startX: number;
-  columnIndex: number;
-  tablePmStart: number;
-  originalWidths: {
-    left: number;
-    right: number;
-  };
+    isResizing: boolean;
+    startX: number;
+    columnIndex: number;
+    tablePmStart: number;
+    originalWidths: {
+        left: number;
+        right: number;
+    };
 }
 /** The full snapshot exposed to UI frameworks */
 interface LayoutCoordinatorSnapshot {
-  /** Computed page layout, null until first computation */
-  hasLayout: boolean;
-  /** Selection rectangles for range selection overlay */
-  selectionRects: SelectionRect[];
-  /** Caret position for cursor overlay */
-  caretPosition: CaretPosition | null;
-  /** Currently selected/hovered image */
-  selectedImageInfo: ImageSelectionInfo | null;
-  /** Whether the editor is focused */
-  isFocused: boolean;
-  /** Whether a text drag is in progress */
-  isDragging: boolean;
-  /** Whether a column resize is in progress */
-  isResizingColumn: boolean;
-  /** Whether an image interaction is in progress */
-  isImageInteracting: boolean;
-  /** Version counter — incremented on every state change */
-  version: number;
+    /** Computed page layout, null until first computation */
+    hasLayout: boolean;
+    /** Selection rectangles for range selection overlay */
+    selectionRects: SelectionRect[];
+    /** Caret position for cursor overlay */
+    caretPosition: CaretPosition | null;
+    /** Currently selected/hovered image */
+    selectedImageInfo: ImageSelectionInfo | null;
+    /** Whether the editor is focused */
+    isFocused: boolean;
+    /** Whether a text drag is in progress */
+    isDragging: boolean;
+    /** Whether a column resize is in progress */
+    isResizingColumn: boolean;
+    /** Whether an image interaction is in progress */
+    isImageInteracting: boolean;
+    /** Version counter — incremented on every state change */
+    version: number;
 }
 declare class LayoutCoordinator extends Subscribable<LayoutCoordinatorSnapshot> {
-  private _hasLayout;
-  private _selectionRects;
-  private _caretPosition;
-  private _isDragging;
-  private _dragAnchor;
-  private _columnResize;
-  private _selectedImageInfo;
-  private _isImageInteracting;
-  private _isFocused;
-  private _version;
-  constructor();
-  /** Notify that layout has been computed. */
-  setLayoutReady(hasLayout: boolean): void;
-  /** Update selection rectangles and caret position. */
-  updateSelection(selectionRects: SelectionRect[], caretPosition: CaretPosition | null): void;
-  /** Start a drag selection from the given PM anchor position. */
-  startDrag(anchor: number): void;
-  /** End drag selection. */
-  endDrag(): void;
-  /** Get the drag anchor position. */
-  getDragAnchor(): number | null;
-  /** Start resizing a table column. */
-  startColumnResize(
-    tablePmStart: number,
-    columnIndex: number,
-    startX: number,
-    originalWidths: {
-      left: number;
-      right: number;
-    }
-  ): void;
-  /** End column resize. */
-  endColumnResize(): void;
-  /** Get current column resize state. */
-  getColumnResize(): ColumnResizeState;
-  /** Set the currently selected image. */
-  setSelectedImage(imageInfo: ImageSelectionInfo | null): void;
-  /** Clear the image selection. */
-  clearSelectedImage(): void;
-  /** Set whether an image interaction (resize/move) is in progress. */
-  setImageInteracting(interacting: boolean): void;
-  /** Update focus state. */
-  setFocused(focused: boolean): void;
-  private emitSnapshot;
+    private _hasLayout;
+    private _selectionRects;
+    private _caretPosition;
+    private _isDragging;
+    private _dragAnchor;
+    private _columnResize;
+    private _selectedImageInfo;
+    private _isImageInteracting;
+    private _isFocused;
+    private _version;
+    constructor();
+    /** Notify that layout has been computed. */
+    setLayoutReady(hasLayout: boolean): void;
+    /** Update selection rectangles and caret position. */
+    updateSelection(selectionRects: SelectionRect[], caretPosition: CaretPosition | null): void;
+    /** Start a drag selection from the given PM anchor position. */
+    startDrag(anchor: number): void;
+    /** End drag selection. */
+    endDrag(): void;
+    /** Get the drag anchor position. */
+    getDragAnchor(): number | null;
+    /** Start resizing a table column. */
+    startColumnResize(tablePmStart: number, columnIndex: number, startX: number, originalWidths: {
+        left: number;
+        right: number;
+    }): void;
+    /** End column resize. */
+    endColumnResize(): void;
+    /** Get current column resize state. */
+    getColumnResize(): ColumnResizeState;
+    /** Set the currently selected image. */
+    setSelectedImage(imageInfo: ImageSelectionInfo | null): void;
+    /** Clear the image selection. */
+    clearSelectedImage(): void;
+    /** Set whether an image interaction (resize/move) is in progress. */
+    setImageInteracting(interacting: boolean): void;
+    /** Update focus state. */
+    setFocused(focused: boolean): void;
+    private emitSnapshot;
 }
 
 /**
@@ -1001,55 +839,55 @@ declare class LayoutCoordinator extends Subscribable<LayoutCoordinatorSnapshot> 
 type EditorLoadingState = 'idle' | 'parsing' | 'loading-fonts' | 'ready' | 'error';
 /** Configuration for EditorCoordinator */
 interface EditorCoordinatorOptions {
-  /** Initial zoom level (default: 1.0) */
-  initialZoom?: number;
-  /** Callback when the document changes */
-  onChange?: (document: Document) => void;
-  /** Callback when an error occurs */
-  onError?: (error: Error) => void;
+    /** Initial zoom level (default: 1.0) */
+    initialZoom?: number;
+    /** Callback when the document changes */
+    onChange?: (document: Document) => void;
+    /** Callback when an error occurs */
+    onError?: (error: Error) => void;
 }
 /** The full snapshot exposed to UI frameworks */
 interface EditorCoordinatorSnapshot {
-  /** Current loading state */
-  loadingState: EditorLoadingState;
-  /** Error message if loadingState is 'error' */
-  parseError: string | null;
-  /** Whether the editor is ready for interaction */
-  isReady: boolean;
-  /** Current zoom level (1.0 = 100%) */
-  zoom: number;
-  /** Whether fonts have been loaded */
-  fontsLoaded: boolean;
-  /** Version counter */
-  version: number;
+    /** Current loading state */
+    loadingState: EditorLoadingState;
+    /** Error message if loadingState is 'error' */
+    parseError: string | null;
+    /** Whether the editor is ready for interaction */
+    isReady: boolean;
+    /** Current zoom level (1.0 = 100%) */
+    zoom: number;
+    /** Whether fonts have been loaded */
+    fontsLoaded: boolean;
+    /** Version counter */
+    version: number;
 }
 declare class EditorCoordinator extends Subscribable<EditorCoordinatorSnapshot> {
-  private _loadingState;
-  private _parseError;
-  private _zoom;
-  private _fontsLoaded;
-  private _document;
-  private _version;
-  private onChangeCallback?;
-  private onErrorCallback?;
-  constructor(options?: EditorCoordinatorOptions);
-  /** Signal that document parsing has started. */
-  setParsingStarted(): void;
-  /** Signal that document parsing completed successfully. */
-  setDocumentLoaded(document: Document): void;
-  /** Signal that font loading completed. */
-  setFontsLoaded(): void;
-  /** Signal that an error occurred during loading. */
-  setLoadError(error: Error): void;
-  /** Get the current document. */
-  getDocument(): Document | null;
-  /** Update the document (after edits). */
-  updateDocument(document: Document): void;
-  /** Set the zoom level (1.0 = 100%). */
-  setZoom(zoom: number): void;
-  /** Get the current zoom level. */
-  getZoom(): number;
-  private emitSnapshot;
+    private _loadingState;
+    private _parseError;
+    private _zoom;
+    private _fontsLoaded;
+    private _document;
+    private _version;
+    private onChangeCallback?;
+    private onErrorCallback?;
+    constructor(options?: EditorCoordinatorOptions);
+    /** Signal that document parsing has started. */
+    setParsingStarted(): void;
+    /** Signal that document parsing completed successfully. */
+    setDocumentLoaded(document: Document): void;
+    /** Signal that font loading completed. */
+    setFontsLoaded(): void;
+    /** Signal that an error occurred during loading. */
+    setLoadError(error: Error): void;
+    /** Get the current document. */
+    getDocument(): Document | null;
+    /** Update the document (after edits). */
+    updateDocument(document: Document): void;
+    /** Set the zoom level (1.0 = 100%). */
+    setZoom(zoom: number): void;
+    /** Get the current zoom level. */
+    getZoom(): number;
+    private emitSnapshot;
 }
 
 /**
@@ -1063,87 +901,6 @@ declare class EditorCoordinator extends Subscribable<EditorCoordinatorSnapshot> 
  * import { parseDocx, serializeDocx, resolveColor } from '@eigenpal/docx-js-editor/core';
  * ```
  */
-declare const VERSION = '0.0.2';
+declare const VERSION = "0.0.2";
 
-export {
-  AutoSaveManager,
-  type AutoSaveManagerOptions,
-  type AutoSaveSnapshot,
-  type AutoSaveStatus,
-  type CaretPosition,
-  type CellCoordinates,
-  type ClipboardSelection,
-  type ColumnResizeState,
-  Document,
-  EditorCoordinator,
-  type EditorCoordinatorOptions,
-  type EditorCoordinatorSnapshot,
-  type EditorHandle,
-  type EditorLoadingState,
-  type EditorPluginCore,
-  ErrorManager,
-  type ErrorManagerSnapshot,
-  type ErrorNotification,
-  type ErrorSeverity,
-  type ImageSelectionInfo,
-  type InsertPosition,
-  LayoutCoordinator,
-  type LayoutCoordinatorSnapshot,
-  type PanelConfig,
-  Paragraph,
-  type PluginLifecycleConfig,
-  PluginLifecycleManager,
-  type PluginLifecycleSnapshot,
-  type PluginPanelProps,
-  type PositionCoordinates,
-  type RenderedDomContext,
-  Run,
-  RunContent,
-  type SavedDocumentData,
-  type SelectionRect,
-  Subscribable,
-  TABLE_DATA_ATTRIBUTES,
-  Table,
-  TableSelectionManager,
-  type TableSelectionSnapshot,
-  VERSION,
-  canRenderFont,
-  countPageBreaks,
-  createColumnBreak,
-  createHorizontalRule,
-  createLineBreak,
-  createPageBreak,
-  createPageBreakParagraph,
-  createPageBreakRun,
-  createSelectionFromDOM,
-  deleteTableFromDocument,
-  extractFormattingFromElement,
-  findPageBreaks,
-  findTableFromClick,
-  formatLastSaveTime,
-  formatStorageSize,
-  getAutoSaveStatusLabel,
-  getAutoSaveStorageSize,
-  getLoadedFonts,
-  getSelectionRuns,
-  getTableFromDocument,
-  hasPageBreakBefore,
-  injectStyles,
-  insertHorizontalRule,
-  insertPageBreak,
-  isAutoSaveSupported,
-  isBreakContent,
-  isColumnBreak,
-  isFontLoaded,
-  isLoading as isFontsLoading,
-  isLineBreak,
-  isPageBreak,
-  loadFont,
-  loadFontFromBuffer,
-  loadFonts,
-  onFontsLoaded,
-  preloadCommonFonts,
-  removePageBreak,
-  rgbToHex,
-  updateTableInDocument,
-};
+export { AutoSaveManager, type AutoSaveManagerOptions, type AutoSaveSnapshot, type AutoSaveStatus, type CaretPosition, type CellCoordinates, type ClipboardSelection, type ColumnResizeState, Document, EditorCoordinator, type EditorCoordinatorOptions, type EditorCoordinatorSnapshot, type EditorHandle, type EditorLoadingState, type EditorPluginCore, ErrorManager, type ErrorManagerSnapshot, type ErrorNotification, type ErrorSeverity, type ImageSelectionInfo, type InsertPosition, LayoutCoordinator, type LayoutCoordinatorSnapshot, type PanelConfig, Paragraph, type PluginLifecycleConfig, PluginLifecycleManager, type PluginLifecycleSnapshot, type PluginPanelProps, type PositionCoordinates, type RenderedDomContext, Run, RunContent, type SavedDocumentData, type SelectionRect, Subscribable, TABLE_DATA_ATTRIBUTES, Table, TableSelectionManager, type TableSelectionSnapshot, VERSION, canRenderFont, countPageBreaks, createColumnBreak, createHorizontalRule, createLineBreak, createPageBreak, createPageBreakParagraph, createPageBreakRun, createSelectionFromDOM, deleteTableFromDocument, extractFormattingFromElement, findPageBreaks, findTableFromClick, formatLastSaveTime, formatStorageSize, getAutoSaveStatusLabel, getAutoSaveStorageSize, getLoadedFonts, getSelectionRuns, getTableFromDocument, hasPageBreakBefore, injectStyles, insertHorizontalRule, insertPageBreak, isAutoSaveSupported, isBreakContent, isColumnBreak, isFontLoaded, isLoading as isFontsLoading, isLineBreak, isPageBreak, loadFont, loadFontFromBuffer, loadFonts, onFontsLoaded, preloadCommonFonts, removePageBreak, rgbToHex, updateTableInDocument };

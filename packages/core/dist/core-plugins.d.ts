@@ -1,37 +1,6 @@
 import { C as CorePlugin } from './types-BmzqJw_z.js';
-export {
-  b as CommandHandler,
-  m as CommandResult,
-  az as ExtractCommand,
-  J as JsonSchema,
-  x as LoadedDocument,
-  y as McpSession,
-  z as McpToolAnnotations,
-  G as McpToolContent,
-  K as McpToolContext,
-  M as McpToolDefinition,
-  aA as McpToolExample,
-  N as McpToolHandler,
-  O as McpToolResult,
-  W as PluginCommand,
-  b as PluginCommandHandler,
-  X as PluginEvent,
-  c as PluginEventListener,
-  P as PluginOptions,
-  a as PluginRegistrationResult,
-  M as ToolDefinition,
-  N as ToolHandler,
-  O as ToolResult,
-  aB as TypedCommandHandler,
-  ac as ZodSchemaLike,
-  ak as isZodSchema,
-} from './types-BmzqJw_z.js';
-export {
-  P as PluginRegistry,
-  c as createPluginRegistrar,
-  p as pluginRegistry,
-  r as registerPlugins,
-} from './registry-CPEr5utj.js';
+export { b as CommandHandler, m as CommandResult, az as ExtractCommand, J as JsonSchema, x as LoadedDocument, y as McpSession, z as McpToolAnnotations, G as McpToolContent, K as McpToolContext, M as McpToolDefinition, aA as McpToolExample, N as McpToolHandler, O as McpToolResult, W as PluginCommand, b as PluginCommandHandler, X as PluginEvent, c as PluginEventListener, P as PluginOptions, a as PluginRegistrationResult, M as ToolDefinition, N as ToolHandler, O as ToolResult, aB as TypedCommandHandler, ac as ZodSchemaLike, ak as isZodSchema } from './types-BmzqJw_z.js';
+export { P as PluginRegistry, c as createPluginRegistrar, p as pluginRegistry, r as registerPlugins } from './registry-CPEr5utj.js';
 
 /**
  * Docxtemplater Plugin

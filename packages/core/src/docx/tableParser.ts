@@ -141,13 +141,14 @@ export function parseBorderSpec(element: XmlElement | null): BorderSpec | undefi
   }
 
   // Color (border uses w:color, not w:val)
+  // "auto" means "determined by application" — typically black for borders
   const color = getAttribute(element, 'w', 'color');
   const themeColor = getAttribute(element, 'w', 'themeColor');
   const themeTint = getAttribute(element, 'w', 'themeTint');
   const themeShade = getAttribute(element, 'w', 'themeShade');
   if (color || themeColor || themeTint || themeShade) {
     border.color = {
-      rgb: color ?? undefined,
+      rgb: color && color !== 'auto' ? color : undefined,
       themeColor: themeColor as ColorValue['themeColor'],
       themeTint: themeTint ?? undefined,
       themeShade: themeShade ?? undefined,

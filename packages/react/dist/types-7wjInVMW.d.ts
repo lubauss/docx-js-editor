@@ -1,9 +1,4 @@
-import {
-  D as Document,
-  P as Position,
-  R as Range,
-  A as AgentCommand,
-} from './agentApi-DfsWRyrP.js';
+import { D as Document, P as Position, R as Range, A as AgentCommand } from './agentApi-DfsWRyrP.js';
 
 /**
  * Core Plugin System Types
@@ -23,48 +18,48 @@ import {
  * - Declare dependencies on other plugins
  */
 interface CorePlugin {
-  /** Unique plugin identifier */
-  id: string;
-  /** Human-readable plugin name */
-  name: string;
-  /** Plugin version (semver) */
-  version?: string;
-  /** Plugin description */
-  description?: string;
-  /**
-   * Command handlers this plugin provides.
-   * DocumentAgent dispatches commands to these handlers.
-   *
-   * @example
-   * ```ts
-   * commandHandlers: {
-   *   'insertTemplateVariable': (doc, cmd) => {
-   *     // Transform document
-   *     return modifiedDoc;
-   *   },
-   * }
-   * ```
-   */
-  commandHandlers?: Record<string, CommandHandler>;
-  /**
-   * MCP tools this plugin exposes.
-   * MCP server collects these from all plugins.
-   */
-  mcpTools?: McpToolDefinition[];
-  /**
-   * Optional setup when plugin is registered.
-   * Called once during plugin registration.
-   */
-  initialize?: () => void | Promise<void>;
-  /**
-   * Optional cleanup when plugin is unregistered.
-   */
-  destroy?: () => void | Promise<void>;
-  /**
-   * Dependencies on other plugins (by ID).
-   * The registry ensures dependencies are loaded first.
-   */
-  dependencies?: string[];
+    /** Unique plugin identifier */
+    id: string;
+    /** Human-readable plugin name */
+    name: string;
+    /** Plugin version (semver) */
+    version?: string;
+    /** Plugin description */
+    description?: string;
+    /**
+     * Command handlers this plugin provides.
+     * DocumentAgent dispatches commands to these handlers.
+     *
+     * @example
+     * ```ts
+     * commandHandlers: {
+     *   'insertTemplateVariable': (doc, cmd) => {
+     *     // Transform document
+     *     return modifiedDoc;
+     *   },
+     * }
+     * ```
+     */
+    commandHandlers?: Record<string, CommandHandler>;
+    /**
+     * MCP tools this plugin exposes.
+     * MCP server collects these from all plugins.
+     */
+    mcpTools?: McpToolDefinition[];
+    /**
+     * Optional setup when plugin is registered.
+     * Called once during plugin registration.
+     */
+    initialize?: () => void | Promise<void>;
+    /**
+     * Optional cleanup when plugin is unregistered.
+     */
+    destroy?: () => void | Promise<void>;
+    /**
+     * Dependencies on other plugins (by ID).
+     * The registry ensures dependencies are loaded first.
+     */
+    dependencies?: string[];
 }
 /**
  * Command handler function type
@@ -79,29 +74,29 @@ type CommandHandler = (doc: Document, command: PluginCommand) => Document;
  * Plugins can define custom command types beyond the built-in AgentCommand types.
  */
 interface PluginCommand {
-  /** Command type identifier */
-  type: string;
-  /** Unique command ID (for undo tracking) */
-  id?: string;
-  /** Position for positional commands */
-  position?: Position;
-  /** Range for range-based commands */
-  range?: Range;
-  /** Additional command-specific data */
-  [key: string]: unknown;
+    /** Command type identifier */
+    type: string;
+    /** Unique command ID (for undo tracking) */
+    id?: string;
+    /** Position for positional commands */
+    position?: Position;
+    /** Range for range-based commands */
+    range?: Range;
+    /** Additional command-specific data */
+    [key: string]: unknown;
 }
 /**
  * Result of command execution
  */
 interface CommandResult {
-  /** The modified document */
-  document: Document;
-  /** Whether the command succeeded */
-  success: boolean;
-  /** Error message if failed */
-  error?: string;
-  /** Metadata about the operation */
-  metadata?: Record<string, unknown>;
+    /** The modified document */
+    document: Document;
+    /** Whether the command succeeded */
+    success: boolean;
+    /** Error message if failed */
+    error?: string;
+    /** Metadata about the operation */
+    metadata?: Record<string, unknown>;
 }
 /**
  * MCP tool definition
@@ -109,44 +104,41 @@ interface CommandResult {
  * Describes a tool that can be called by AI clients through the MCP server.
  */
 interface McpToolDefinition {
-  /** Tool name (used in MCP protocol) */
-  name: string;
-  /** Human-readable description for AI */
-  description: string;
-  /**
-   * JSON Schema for tool input validation.
-   * Can be a Zod schema or plain JSON Schema object.
-   */
-  inputSchema: JsonSchema | ZodSchemaLike;
-  /**
-   * Handler function for the tool.
-   * Receives validated input and returns a result.
-   */
-  handler: McpToolHandler;
-  /**
-   * Optional annotations for the tool
-   */
-  annotations?: McpToolAnnotations;
+    /** Tool name (used in MCP protocol) */
+    name: string;
+    /** Human-readable description for AI */
+    description: string;
+    /**
+     * JSON Schema for tool input validation.
+     * Can be a Zod schema or plain JSON Schema object.
+     */
+    inputSchema: JsonSchema | ZodSchemaLike;
+    /**
+     * Handler function for the tool.
+     * Receives validated input and returns a result.
+     */
+    handler: McpToolHandler;
+    /**
+     * Optional annotations for the tool
+     */
+    annotations?: McpToolAnnotations;
 }
 /**
  * MCP tool handler function
  */
-type McpToolHandler = (
-  input: unknown,
-  context: McpToolContext
-) => Promise<McpToolResult> | McpToolResult;
+type McpToolHandler = (input: unknown, context: McpToolContext) => Promise<McpToolResult> | McpToolResult;
 /**
  * Context passed to MCP tool handlers
  */
 interface McpToolContext {
-  /** Current document (if loaded) */
-  document?: Document;
-  /** Document buffer (if loaded) */
-  documentBuffer?: ArrayBuffer;
-  /** Session state */
-  session: McpSession;
-  /** Logger for debugging */
-  log: (message: string, data?: unknown) => void;
+    /** Current document (if loaded) */
+    document?: Document;
+    /** Document buffer (if loaded) */
+    documentBuffer?: ArrayBuffer;
+    /** Session state */
+    session: McpSession;
+    /** Logger for debugging */
+    log: (message: string, data?: unknown) => void;
 }
 /**
  * MCP session state
@@ -154,114 +146,111 @@ interface McpToolContext {
  * Maintains state across tool calls within a session.
  */
 interface McpSession {
-  /** Session ID */
-  id: string;
-  /** Loaded documents by ID */
-  documents: Map<string, LoadedDocument>;
-  /** Custom session data */
-  data: Map<string, unknown>;
+    /** Session ID */
+    id: string;
+    /** Loaded documents by ID */
+    documents: Map<string, LoadedDocument>;
+    /** Custom session data */
+    data: Map<string, unknown>;
 }
 /**
  * A loaded document in the session
  */
 interface LoadedDocument {
-  /** Document ID */
-  id: string;
-  /** Parsed document */
-  document: Document;
-  /** Original buffer (for repacking) */
-  buffer?: ArrayBuffer;
-  /** Source filename or path */
-  source?: string;
-  /** Last modified timestamp */
-  lastModified: number;
+    /** Document ID */
+    id: string;
+    /** Parsed document */
+    document: Document;
+    /** Original buffer (for repacking) */
+    buffer?: ArrayBuffer;
+    /** Source filename or path */
+    source?: string;
+    /** Last modified timestamp */
+    lastModified: number;
 }
 /**
  * MCP tool result
  */
 interface McpToolResult {
-  /** Result content */
-  content: McpToolContent[];
-  /** Whether this is an error result */
-  isError?: boolean;
+    /** Result content */
+    content: McpToolContent[];
+    /** Whether this is an error result */
+    isError?: boolean;
 }
 /**
  * MCP tool content types
  */
-type McpToolContent =
-  | {
-      type: 'text';
-      text: string;
-    }
-  | {
-      type: 'image';
-      data: string;
-      mimeType: string;
-    }
-  | {
-      type: 'resource';
-      uri: string;
-      mimeType?: string;
-      text?: string;
-    };
+type McpToolContent = {
+    type: 'text';
+    text: string;
+} | {
+    type: 'image';
+    data: string;
+    mimeType: string;
+} | {
+    type: 'resource';
+    uri: string;
+    mimeType?: string;
+    text?: string;
+};
 /**
  * MCP tool annotations
  */
 interface McpToolAnnotations {
-  /** Tool category for organization */
-  category?: string;
-  /** Whether this tool modifies the document */
-  readOnly?: boolean;
-  /** Estimated cost/complexity */
-  complexity?: 'low' | 'medium' | 'high';
-  /** Example usage */
-  examples?: McpToolExample[];
+    /** Tool category for organization */
+    category?: string;
+    /** Whether this tool modifies the document */
+    readOnly?: boolean;
+    /** Estimated cost/complexity */
+    complexity?: 'low' | 'medium' | 'high';
+    /** Example usage */
+    examples?: McpToolExample[];
 }
 /**
  * MCP tool example
  */
 interface McpToolExample {
-  /** Example description */
-  description: string;
-  /** Example input */
-  input: unknown;
-  /** Expected output description */
-  output?: string;
+    /** Example description */
+    description: string;
+    /** Example input */
+    input: unknown;
+    /** Expected output description */
+    output?: string;
 }
 /**
  * JSON Schema definition (subset)
  */
 interface JsonSchema {
-  type?: string | string[];
-  properties?: Record<string, JsonSchema>;
-  items?: JsonSchema;
-  required?: string[];
-  description?: string;
-  enum?: unknown[];
-  default?: unknown;
-  minimum?: number;
-  maximum?: number;
-  minLength?: number;
-  maxLength?: number;
-  pattern?: string;
-  format?: string;
-  additionalProperties?: boolean | JsonSchema;
-  anyOf?: JsonSchema[];
-  oneOf?: JsonSchema[];
-  allOf?: JsonSchema[];
-  $ref?: string;
+    type?: string | string[];
+    properties?: Record<string, JsonSchema>;
+    items?: JsonSchema;
+    required?: string[];
+    description?: string;
+    enum?: unknown[];
+    default?: unknown;
+    minimum?: number;
+    maximum?: number;
+    minLength?: number;
+    maxLength?: number;
+    pattern?: string;
+    format?: string;
+    additionalProperties?: boolean | JsonSchema;
+    anyOf?: JsonSchema[];
+    oneOf?: JsonSchema[];
+    allOf?: JsonSchema[];
+    $ref?: string;
 }
 /**
  * Zod-like schema interface for compatibility
  */
 interface ZodSchemaLike {
-  _def?: unknown;
-  parse?: (data: unknown) => unknown;
-  safeParse?: (data: unknown) => {
-    success: boolean;
-    data?: unknown;
-    error?: unknown;
-  };
+    _def?: unknown;
+    parse?: (data: unknown) => unknown;
+    safeParse?: (data: unknown) => {
+        success: boolean;
+        data?: unknown;
+        error?: unknown;
+    };
 }
 /**
  * Check if a schema is Zod-like
@@ -270,20 +259,17 @@ declare function isZodSchema(schema: unknown): schema is ZodSchemaLike;
 /**
  * Plugin lifecycle events
  */
-type PluginEvent =
-  | {
-      type: 'registered';
-      plugin: CorePlugin;
-    }
-  | {
-      type: 'unregistered';
-      pluginId: string;
-    }
-  | {
-      type: 'error';
-      pluginId: string;
-      error: Error;
-    };
+type PluginEvent = {
+    type: 'registered';
+    plugin: CorePlugin;
+} | {
+    type: 'unregistered';
+    pluginId: string;
+} | {
+    type: 'error';
+    pluginId: string;
+    error: Error;
+};
 /**
  * Plugin event listener
  */
@@ -292,10 +278,8 @@ type PluginEventListener = (event: PluginEvent) => void;
  * Extract command type from a union
  */
 type ExtractCommand<T extends AgentCommand, Type extends string> = T extends {
-  type: Type;
-}
-  ? T
-  : never;
+    type: Type;
+} ? T : never;
 /**
  * Create a typed command handler
  */
@@ -304,46 +288,23 @@ type TypedCommandHandler<T extends PluginCommand> = (doc: Document, command: T) 
  * Plugin configuration options
  */
 interface PluginOptions {
-  /** Enable debug logging */
-  debug?: boolean;
-  /** Custom configuration */
-  config?: Record<string, unknown>;
+    /** Enable debug logging */
+    debug?: boolean;
+    /** Custom configuration */
+    config?: Record<string, unknown>;
 }
 /**
  * Result of plugin registration
  */
 interface PluginRegistrationResult {
-  /** Whether registration succeeded */
-  success: boolean;
-  /** Registered plugin (if successful) */
-  plugin?: CorePlugin;
-  /** Error message (if failed) */
-  error?: string;
-  /** Warning messages */
-  warnings?: string[];
+    /** Whether registration succeeded */
+    success: boolean;
+    /** Registered plugin (if successful) */
+    plugin?: CorePlugin;
+    /** Error message (if failed) */
+    error?: string;
+    /** Warning messages */
+    warnings?: string[];
 }
 
-export {
-  type CorePlugin as C,
-  type ExtractCommand as E,
-  type JsonSchema as J,
-  type LoadedDocument as L,
-  type McpToolDefinition as M,
-  type PluginOptions as P,
-  type TypedCommandHandler as T,
-  type ZodSchemaLike as Z,
-  type PluginRegistrationResult as a,
-  type CommandHandler as b,
-  type PluginEventListener as c,
-  type CommandResult as d,
-  type McpSession as e,
-  type McpToolAnnotations as f,
-  type McpToolContent as g,
-  type McpToolContext as h,
-  type McpToolHandler as i,
-  type McpToolResult as j,
-  type PluginCommand as k,
-  type PluginEvent as l,
-  isZodSchema as m,
-  type McpToolExample as n,
-};
+export { type CorePlugin as C, type ExtractCommand as E, type JsonSchema as J, type LoadedDocument as L, type McpToolDefinition as M, type PluginOptions as P, type TypedCommandHandler as T, type ZodSchemaLike as Z, type PluginRegistrationResult as a, type CommandHandler as b, type PluginEventListener as c, type CommandResult as d, type McpSession as e, type McpToolAnnotations as f, type McpToolContent as g, type McpToolContext as h, type McpToolHandler as i, type McpToolResult as j, type PluginCommand as k, type PluginEvent as l, isZodSchema as m, type McpToolExample as n };
