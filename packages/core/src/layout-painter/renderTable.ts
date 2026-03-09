@@ -217,7 +217,7 @@ function renderTableCell(
   cellMeasure: TableCellMeasure,
   x: number,
   rowHeight: number,
-  borderFlags: {
+  _borderFlags: {
     isFirstRow: boolean;
     isLastRow: boolean;
     isFirstCol: boolean;
@@ -244,20 +244,16 @@ function renderTableCell(
   const padLeft = cell.padding?.left ?? 7;
   cellEl.style.padding = `${padTop}px ${padRight}px ${padBottom}px ${padLeft}px`;
 
-  // Apply borders - use cell borders if available, otherwise no border
+  // Apply borders - draw all four sides on every cell.
+  // With box-sizing: border-box and 1px borders, adjacent cells produce at most
+  // 2px shared edges — a negligible visual difference that avoids the problem of
+  // missing borders when one cell has 'nil' on a shared edge but its neighbor has a border.
+  // This matches CSS border-collapse behavior where the more visible border wins.
   if (cell.borders) {
-    // Collapse shared borders to avoid double-thick lines.
-    // Strategy: "bottom wins" for rows, "right wins" for columns.
-    // Each cell's bottom border represents the shared edge with the row below.
-    // Each cell's right border represents the shared edge with the column to its right.
-    // Only the first row draws its top border (table's top edge).
-    // Only the first column draws its left border (table's left edge).
-    if (borderFlags.isFirstRow) {
-      applyBorder(cellEl, 'top', cell.borders.top);
-    }
+    applyBorder(cellEl, 'top', cell.borders.top);
     applyBorder(cellEl, 'right', cell.borders.right);
     applyBorder(cellEl, 'bottom', cell.borders.bottom);
-    if (borderFlags.isFirstCol) applyBorder(cellEl, 'left', cell.borders.left);
+    applyBorder(cellEl, 'left', cell.borders.left);
   }
   // No default border - cells without explicit borders should be borderless
 

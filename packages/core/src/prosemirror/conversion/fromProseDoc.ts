@@ -1415,6 +1415,13 @@ function tableCellAttrsToFormatting(attrs: TableCellAttrs): TableCellFormatting 
         (attrs.textDirection as TableCellFormatting['textDirection']) || undefined;
     }
 
+    // PM removes vMerge continue cells and uses rowspan on the start cell.
+    // Store the PM rowspan so downstream (e.g. header/footer layout) can use it
+    // when continue cells are absent.
+    if (attrs.rowspan > 1) {
+      (result as Record<string, unknown>)._pmRowSpan = attrs.rowspan;
+    }
+
     return result;
   }
 

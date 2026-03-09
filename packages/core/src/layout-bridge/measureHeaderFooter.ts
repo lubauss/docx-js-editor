@@ -361,46 +361,118 @@ function paragraphToFlowBlock(para: Paragraph): ParagraphBlock {
 
 /**
  * Measure a single table block for header/footer sizing.
- * Uses a simplified measurement: sum row heights or estimate from content.
+ * Mirrors the full measureTableBlock() in PagedEditor.tsx so that initial
+ * render measurements match post-edit measurements exactly.
  */
 function measureTableBlockSimple(block: TableBlock, maxWidth: number): TableMeasure {
-  const numCols = block.rows[0]?.cells.length ?? 1;
+  const DEFAULT_CELL_PADDING_X = 7; // Word default: 108 twips ≈ 7px
+  const DEFAULT_CELL_PADDING_Y = 1; // OOXML spec says 0 but Word renders ~1px internal leading
+  const TABLE_MIN_ROW_HEIGHT = 24;
 
-  // Use explicit column widths or distribute evenly
-  const columnWidths = block.columnWidths ?? Array(numCols).fill(maxWidth / numCols);
+  // Resolve column widths
+  let columnWidths = block.columnWidths ?? [];
+
+  if (columnWidths.length === 0 && block.rows.length > 0) {
+    const colCount = block.rows[0].cells.reduce((sum, cell) => sum + (cell.colSpan ?? 1), 0);
+    const equalWidth = maxWidth / Math.max(1, colCount);
+    columnWidths = Array(colCount).fill(equalWidth);
+  }
+
   const totalWidth = columnWidths.reduce((sum, w) => sum + w, 0);
 
-  const rows = block.rows.map((row) => {
-    // Estimate row height: measure each cell's paragraph content
-    let maxCellHeight = 20; // minimum row height
+  // Build a map of columns occupied by spanning cells from previous rows
+  const occupiedColumnsPerRow = new Map<number, Set<number>>();
+  for (let rowIdx = 0; rowIdx < block.rows.length; rowIdx++) {
+    const row = block.rows[rowIdx];
+    if (!row) continue;
+    let colIdx = 0;
+    const occupied = occupiedColumnsPerRow.get(rowIdx) ?? new Set<number>();
+    while (occupied.has(colIdx)) colIdx++;
 
-    const cells = row.cells.map((cell, colIdx) => {
-      const cellWidth = cell.width ?? columnWidths[colIdx] ?? 100;
-      let cellHeight = 0;
+    for (const cell of row.cells) {
+      const colSpan = cell.colSpan ?? 1;
+      const rowSpan = cell.rowSpan ?? 1;
 
-      for (const cellBlock of cell.blocks) {
-        if (cellBlock.kind === 'paragraph') {
-          const m = measureParagraph(cellBlock as ParagraphBlock, cellWidth - 14); // subtract padding
-          cellHeight += m.totalHeight;
-        } else {
-          cellHeight += 20; // fallback for nested tables etc.
+      if (rowSpan > 1) {
+        for (let r = rowIdx + 1; r < rowIdx + rowSpan; r++) {
+          if (!occupiedColumnsPerRow.has(r)) occupiedColumnsPerRow.set(r, new Set());
+          const occSet = occupiedColumnsPerRow.get(r)!;
+          for (let c = 0; c < colSpan; c++) {
+            occSet.add(colIdx + c);
+          }
         }
       }
 
-      cellHeight = Math.max(cellHeight, 20);
-      maxCellHeight = Math.max(maxCellHeight, cellHeight);
+      colIdx += colSpan;
+      while (occupied.has(colIdx)) colIdx++;
+    }
+  }
+
+  // Calculate cell widths and measure content
+  const rows = block.rows.map((row, rowIdx) => {
+    let columnIndex = 0;
+    const occupied = occupiedColumnsPerRow.get(rowIdx) ?? new Set<number>();
+    while (occupied.has(columnIndex)) columnIndex++;
+
+    const cells = row.cells.map((cell) => {
+      const colSpan = cell.colSpan ?? 1;
+      // Calculate cell width as sum of spanned columns
+      let cellWidth = 0;
+      for (let c = 0; c < colSpan && columnIndex + c < columnWidths.length; c++) {
+        cellWidth += columnWidths[columnIndex + c] ?? 0;
+      }
+      if (cellWidth === 0) {
+        cellWidth = cell.width ?? 100;
+      }
+      columnIndex += colSpan;
+      while (occupied.has(columnIndex)) columnIndex++;
+
+      // Use actual cell padding instead of hardcoded value
+      const padLeft = cell.padding?.left ?? DEFAULT_CELL_PADDING_X;
+      const padRight = cell.padding?.right ?? DEFAULT_CELL_PADDING_X;
+      const cellContentWidth = Math.max(1, cellWidth - padLeft - padRight);
+
+      let cellHeight = 0;
+      const cellMeasures: Measure[] = [];
+
+      for (const cellBlock of cell.blocks) {
+        if (cellBlock.kind === 'paragraph') {
+          const m = measureParagraph(cellBlock as ParagraphBlock, cellContentWidth);
+          cellHeight += m.totalHeight;
+          cellMeasures.push(m);
+        } else if (cellBlock.kind === 'table') {
+          const m = measureTableBlockSimple(cellBlock as TableBlock, cellContentWidth);
+          cellHeight += m.totalHeight;
+          cellMeasures.push(m);
+        }
+      }
+
+      // Add vertical padding
+      const padTop = cell.padding?.top ?? DEFAULT_CELL_PADDING_Y;
+      const padBottom = cell.padding?.bottom ?? DEFAULT_CELL_PADDING_Y;
+      cellHeight += padTop + padBottom;
 
       return {
         width: cellWidth,
         height: cellHeight,
-        blocks: [],
-        measures: [],
+        blocks: cellMeasures,
+        measures: cellMeasures,
       };
     });
 
-    // Apply explicit row height if set
-    if (row.height && row.heightRule !== 'auto') {
+    // Calculate max cell height for the row
+    let maxCellHeight = 0;
+    for (const cell of cells) {
+      maxCellHeight = Math.max(maxCellHeight, cell.height);
+    }
+
+    // Apply heightRule from the source row
+    if (row.height && row.heightRule === 'exact') {
+      maxCellHeight = row.height;
+    } else if (row.height && row.heightRule === 'atLeast') {
       maxCellHeight = Math.max(maxCellHeight, row.height);
+    } else {
+      maxCellHeight = Math.max(maxCellHeight, TABLE_MIN_ROW_HEIGHT);
     }
 
     return {

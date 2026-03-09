@@ -1054,13 +1054,66 @@ function convertDocTableToTableBlock(tableObj: Record<string, unknown>): TableBl
   const formatting = tableObj.formatting as Record<string, unknown> | undefined;
   const columnWidthsTwips = tableObj.columnWidths as number[] | undefined;
 
-  const layoutRows: LayoutTableRow[] = rows.map((row) => {
+  // Read table-level borders (w:tblBorders) — used as defaults when cells don't have explicit borders
+  const tblBorders = formatting?.borders as Record<string, unknown> | undefined;
+  type BorderInput = { style?: string; size?: number; color?: { rgb?: string } };
+
+  // Pre-compute vMerge → rowSpan using grid column indices (accounting for gridSpan/colSpan).
+  // Mirrors the approach in toProseDoc.ts:calculateRowSpans().
+  // Key format: "rowIdx-cellIdx" (raw cell index, NOT grid column) for easy lookup in the row loop.
+  const vMergeSpans = new Map<string, number>(); // "rowIdx-cellIdx" → rowSpan for restart cells
+  const vMergeContinue = new Set<string>(); // "rowIdx-cellIdx" cells to skip
+
+  // Track active vertical merges per grid column → { startRow, startCellIdx }
+  const activeMerges = new Map<number, { startRow: number; startCellIdx: number }>();
+
+  for (let rowIdx = 0; rowIdx < rows.length; rowIdx++) {
+    const rowCells = (rows[rowIdx].cells as Array<Record<string, unknown>>) ?? [];
+    let gridCol = 0;
+    for (let cellIdx = 0; cellIdx < rowCells.length; cellIdx++) {
+      const cell = rowCells[cellIdx];
+      const cellFmtLocal = cell.formatting as Record<string, unknown> | undefined;
+      const vMerge = cellFmtLocal?.vMerge as string | undefined;
+      const gridSpan = (cellFmtLocal?.gridSpan as number) ?? 1;
+
+      if (vMerge === 'restart') {
+        activeMerges.set(gridCol, { startRow: rowIdx, startCellIdx: cellIdx });
+        vMergeSpans.set(`${rowIdx}-${cellIdx}`, 1); // will be incremented by continue cells
+      } else if (vMerge === 'continue' || (vMerge != null && vMerge !== 'restart')) {
+        // Continue cell — hidden by spanning cell above
+        const active = activeMerges.get(gridCol);
+        if (active) {
+          const startKey = `${active.startRow}-${active.startCellIdx}`;
+          vMergeSpans.set(startKey, (vMergeSpans.get(startKey) ?? 1) + 1);
+        }
+        vMergeContinue.add(`${rowIdx}-${cellIdx}`);
+      } else {
+        // No vMerge — clear active merge for this grid column
+        activeMerges.delete(gridCol);
+      }
+
+      gridCol += gridSpan;
+    }
+  }
+
+  const layoutRows: LayoutTableRow[] = rows.map((row, rowIdx) => {
     const rowFmt = row.formatting as Record<string, unknown> | undefined;
     const cells = (row.cells as Array<Record<string, unknown>>) ?? [];
+    const isFirstRow = rowIdx === 0;
+    const isLastRow = rowIdx === rows.length - 1;
 
-    const layoutCells: LayoutTableCell[] = cells.map((cell) => {
+    // Filter out vMerge continue cells (they're hidden by the spanning cell above)
+    const visibleCells = cells.filter((_, cellIdx) => !vMergeContinue.has(`${rowIdx}-${cellIdx}`));
+    const visibleCellIndices = cells
+      .map((_, i) => i)
+      .filter((i) => !vMergeContinue.has(`${rowIdx}-${i}`));
+
+    const layoutCells: LayoutTableCell[] = visibleCells.map((cell, idx) => {
+      const cellIdx = visibleCellIndices[idx];
       const cellFmt = cell.formatting as Record<string, unknown> | undefined;
       const cellContent = (cell.content as Array<Record<string, unknown>>) ?? [];
+      const isFirstCol = cellIdx === 0;
+      const isLastCol = cellIdx === cells.length - 1;
 
       // Recursively convert cell content (paragraphs and nested tables)
       const cellBlocks: FlowBlock[] = [];
@@ -1097,35 +1150,46 @@ function convertDocTableToTableBlock(tableObj: Record<string, unknown>): TableBl
         } as ParagraphBlock);
       }
 
-      // Convert cell borders
+      // Resolve cell borders: merge cell-level (w:tcBorders) with table-level (w:tblBorders).
+      // Per OOXML spec, cell borders override table borders per-side. Sides not explicitly
+      // defined at cell level inherit from table level.
       let borders: CellBorders | undefined;
       const cellBorders = cellFmt?.borders as Record<string, unknown> | undefined;
-      if (cellBorders) {
+
+      // Determine table-level default for each side based on cell position
+      const tblTop = (isFirstRow ? tblBorders?.top : tblBorders?.insideH) as
+        | BorderInput
+        | undefined;
+      const tblBottom = (isLastRow ? tblBorders?.bottom : tblBorders?.insideH) as
+        | BorderInput
+        | undefined;
+      const tblLeft = (isFirstCol ? tblBorders?.left : tblBorders?.insideV) as
+        | BorderInput
+        | undefined;
+      const tblRight = (isLastCol ? tblBorders?.right : tblBorders?.insideV) as
+        | BorderInput
+        | undefined;
+
+      if (cellBorders || tblBorders) {
         borders = {
-          top: hfBorderSpecToCss(
-            cellBorders.top as { style?: string; size?: number; color?: { rgb?: string } }
-          ),
-          bottom: hfBorderSpecToCss(
-            cellBorders.bottom as { style?: string; size?: number; color?: { rgb?: string } }
-          ),
-          left: hfBorderSpecToCss(
-            cellBorders.left as { style?: string; size?: number; color?: { rgb?: string } }
-          ),
-          right: hfBorderSpecToCss(
-            cellBorders.right as { style?: string; size?: number; color?: { rgb?: string } }
-          ),
+          // If cell explicitly defines a side, use it; otherwise fall back to table-level
+          top: hfBorderSpecToCss((cellBorders?.top ?? tblTop) as BorderInput),
+          bottom: hfBorderSpecToCss((cellBorders?.bottom ?? tblBottom) as BorderInput),
+          left: hfBorderSpecToCss((cellBorders?.left ?? tblLeft) as BorderInput),
+          right: hfBorderSpecToCss((cellBorders?.right ?? tblRight) as BorderInput),
         };
       }
 
-      // Cell padding
-      const margins = cellFmt?.margins as
-        | {
-            top?: { value?: number };
-            bottom?: { value?: number };
-            left?: { value?: number };
-            right?: { value?: number };
-          }
-        | undefined;
+      // Cell padding — cell-level (w:tcMar) overrides table-level (w:tblCellMar)
+      type MarginDef = {
+        top?: { value?: number };
+        bottom?: { value?: number };
+        left?: { value?: number };
+        right?: { value?: number };
+      };
+      const cellMargins = cellFmt?.margins as MarginDef | undefined;
+      const tblCellMargins = formatting?.cellMargins as MarginDef | undefined;
+      const margins = cellMargins ?? tblCellMargins;
       const padding = {
         top: margins?.top?.value != null ? hfTwipsToPixels(margins.top.value) : 1,
         right: margins?.right?.value != null ? hfTwipsToPixels(margins.right.value) : 7,
@@ -1147,6 +1211,15 @@ function convertDocTableToTableBlock(tableObj: Record<string, unknown>): TableBl
         id: `hf-tbl-c-${hfBlockCounter++}`,
         blocks: cellBlocks,
         colSpan: cellFmt?.gridSpan as number | undefined,
+        rowSpan: (() => {
+          const fromScan = vMergeSpans.get(`${rowIdx}-${cellIdx}`);
+          const fromPM = cellFmt?._pmRowSpan as number | undefined;
+          // _pmRowSpan is authoritative (set by PM round-trip); scan only works pre-round-trip
+          const raw =
+            (fromPM && fromPM > 1 ? fromPM : undefined) ??
+            (fromScan && fromScan > 1 ? fromScan : undefined);
+          return raw;
+        })(),
         width,
         verticalAlign: cellFmt?.verticalAlign as 'top' | 'center' | 'bottom' | undefined,
         background,
