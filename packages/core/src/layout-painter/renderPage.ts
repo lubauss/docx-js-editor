@@ -571,13 +571,16 @@ function renderHeaderFooterContent(
       const tableBlock = block as TableBlock;
       const tableMeasure = measure as TableMeasure;
 
-      // Create a synthetic fragment for the whole table
+      // Create a synthetic fragment for the whole table.
+      // Use contentWidth to ensure the table spans the full header/footer width,
+      // avoiding sub-pixel rounding issues where column widths in twips→px don't
+      // exactly match the container width, causing the rightmost border to be clipped.
       const syntheticFragment: TableFragment = {
         kind: 'table',
         blockId: tableBlock.id,
         x: 0,
         y: cursorY,
-        width: tableMeasure.totalWidth || contentWidth,
+        width: contentWidth,
         height: tableMeasure.totalHeight,
         fromRow: 0,
         toRow: tableBlock.rows.length,

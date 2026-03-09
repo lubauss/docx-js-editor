@@ -1049,10 +1049,25 @@ let hfBlockCounter = 0;
 /**
  * Convert a Document Table (from header/footer) to a layout TableBlock.
  */
-function convertDocTableToTableBlock(tableObj: Record<string, unknown>): TableBlock {
+function convertDocTableToTableBlock(
+  tableObj: Record<string, unknown>,
+  contentWidth?: number
+): TableBlock {
   const rows = (tableObj.rows as Array<Record<string, unknown>>) ?? [];
   const formatting = tableObj.formatting as Record<string, unknown> | undefined;
   const columnWidthsTwips = tableObj.columnWidths as number[] | undefined;
+
+  // Convert column widths from twips to pixels and scale to fit within contentWidth
+  // to prevent right border clipping when twips→px conversion produces a sum wider than the container
+  let columnWidthsPx = columnWidthsTwips?.map(hfTwipsToPixels);
+  let cellWidthScale = 1;
+  if (columnWidthsPx && contentWidth) {
+    const totalWidth = columnWidthsPx.reduce((a, b) => a + b, 0);
+    if (totalWidth > contentWidth) {
+      cellWidthScale = contentWidth / totalWidth;
+      columnWidthsPx = columnWidthsPx.map((w) => w * cellWidthScale);
+    }
+  }
 
   // Read table-level borders (w:tblBorders) — used as defaults when cells don't have explicit borders
   const tblBorders = formatting?.borders as Record<string, unknown> | undefined;
@@ -1197,10 +1212,12 @@ function convertDocTableToTableBlock(tableObj: Record<string, unknown>): TableBl
         left: margins?.left?.value != null ? hfTwipsToPixels(margins.left.value) : 7,
       };
 
-      // Cell width
+      // Cell width (scaled proportionally when column widths exceed contentWidth)
       const cellWidth = cellFmt?.width as { value?: number; type?: string } | undefined;
       const width =
-        cellWidth?.value && cellWidth.type === 'dxa' ? hfTwipsToPixels(cellWidth.value) : undefined;
+        cellWidth?.value && cellWidth.type === 'dxa'
+          ? hfTwipsToPixels(cellWidth.value) * cellWidthScale
+          : undefined;
 
       // Background
       const shading = cellFmt?.shading as { fill?: string } | undefined;
@@ -1243,7 +1260,7 @@ function convertDocTableToTableBlock(tableObj: Record<string, unknown>): TableBl
     kind: 'table',
     id: `hf-tbl-${hfBlockCounter++}`,
     rows: layoutRows,
-    columnWidths: columnWidthsTwips?.map(hfTwipsToPixels),
+    columnWidths: columnWidthsPx,
     width: (formatting?.width as { value?: number })?.value,
     widthType: (formatting?.width as { type?: string })?.type,
     justification: formatting?.justification as 'left' | 'center' | 'right' | undefined,
@@ -1293,7 +1310,7 @@ function convertHeaderFooterToContent(
     }
     // Handle Document Table type
     else if (itemObj.type === 'table' && Array.isArray(itemObj.rows)) {
-      blocks.push(convertDocTableToTableBlock(itemObj));
+      blocks.push(convertDocTableToTableBlock(itemObj, contentWidth));
     }
   }
 
