@@ -644,10 +644,13 @@ export function parseTableRowProperties(
   const formatting: TableRowFormatting = {};
 
   // Row height (w:trHeight)
+  // Note: trHeight uses w:val (not w:w like width elements), so we parse directly
   const heightElement = findChild(trPrElement, 'w', 'trHeight');
   if (heightElement) {
-    const height = parseWidth(heightElement);
-    if (height) formatting.height = height;
+    const val = parseNumericAttribute(heightElement, 'w', 'val');
+    if (val !== undefined) {
+      formatting.height = { value: val, type: 'dxa' };
+    }
 
     const hRule = getAttribute(heightElement, 'w', 'hRule');
     if (hRule === 'auto' || hRule === 'atLeast' || hRule === 'exact') {
