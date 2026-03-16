@@ -50,6 +50,10 @@ import type {
   Run,
   RunFormatting,
   ParagraphAttrs,
+  TableRow as LayoutTableRow,
+  TableCell as LayoutTableCell,
+  CellBorders,
+  CellBorderSpec,
 } from '@eigenpal/docx-core/layout-engine/types';
 
 // Layout bridge
@@ -1002,6 +1006,267 @@ function convertDocumentRunsToFlowRuns(content: unknown[]): Run[] {
  * @param headerFooter - The header/footer document content
  * @param contentWidth - Available width for content
  */
+// OOXML border style → CSS border-style mapping (for header/footer table conversion)
+const HF_OOXML_TO_CSS_BORDER: Record<string, string> = {
+  single: 'solid',
+  double: 'double',
+  dotted: 'dotted',
+  dashed: 'dashed',
+  thick: 'solid',
+  dashSmallGap: 'dashed',
+  dotDash: 'dashed',
+  dotDotDash: 'dotted',
+  triple: 'double',
+  wave: 'solid',
+  doubleWave: 'double',
+  threeDEmboss: 'ridge',
+  threeDEngrave: 'groove',
+  outset: 'outset',
+  inset: 'inset',
+};
+
+function hfBorderSpecToCss(border?: {
+  style?: string;
+  size?: number;
+  color?: { rgb?: string };
+}): CellBorderSpec {
+  if (!border || !border.style || border.style === 'none' || border.style === 'nil') {
+    return { width: 0, style: 'none' };
+  }
+  const spec: CellBorderSpec = { style: HF_OOXML_TO_CSS_BORDER[border.style] || 'solid' };
+  const rgb = border.color?.rgb;
+  if (rgb && rgb !== 'auto') spec.color = `#${rgb}`;
+  if (border.size) spec.width = Math.max(1, Math.round((border.size / 8) * 1.333));
+  return spec;
+}
+
+function hfTwipsToPixels(twips: number): number {
+  return (twips / 1440) * 96;
+}
+
+let hfBlockCounter = 0;
+
+/**
+ * Convert a Document Table (from header/footer) to a layout TableBlock.
+ */
+function convertDocTableToTableBlock(
+  tableObj: Record<string, unknown>,
+  contentWidth?: number
+): TableBlock {
+  const rows = (tableObj.rows as Array<Record<string, unknown>>) ?? [];
+  const formatting = tableObj.formatting as Record<string, unknown> | undefined;
+  const columnWidthsTwips = tableObj.columnWidths as number[] | undefined;
+
+  // Convert column widths from twips to pixels and scale to fit within contentWidth
+  // to prevent right border clipping when twips→px conversion produces a sum wider than the container
+  let columnWidthsPx = columnWidthsTwips?.map(hfTwipsToPixels);
+  let cellWidthScale = 1;
+  if (columnWidthsPx && contentWidth) {
+    const totalWidth = columnWidthsPx.reduce((a, b) => a + b, 0);
+    if (totalWidth > contentWidth) {
+      cellWidthScale = contentWidth / totalWidth;
+      columnWidthsPx = columnWidthsPx.map((w) => w * cellWidthScale);
+    }
+  }
+
+  // Read table-level borders (w:tblBorders) — used as defaults when cells don't have explicit borders
+  const tblBorders = formatting?.borders as Record<string, unknown> | undefined;
+  type BorderInput = { style?: string; size?: number; color?: { rgb?: string } };
+
+  // Pre-compute vMerge → rowSpan using grid column indices (accounting for gridSpan/colSpan).
+  // Mirrors the approach in toProseDoc.ts:calculateRowSpans().
+  // Key format: "rowIdx-cellIdx" (raw cell index, NOT grid column) for easy lookup in the row loop.
+  const vMergeSpans = new Map<string, number>(); // "rowIdx-cellIdx" → rowSpan for restart cells
+  const vMergeContinue = new Set<string>(); // "rowIdx-cellIdx" cells to skip
+
+  // Track active vertical merges per grid column → { startRow, startCellIdx }
+  const activeMerges = new Map<number, { startRow: number; startCellIdx: number }>();
+
+  for (let rowIdx = 0; rowIdx < rows.length; rowIdx++) {
+    const rowCells = (rows[rowIdx].cells as Array<Record<string, unknown>>) ?? [];
+    let gridCol = 0;
+    for (let cellIdx = 0; cellIdx < rowCells.length; cellIdx++) {
+      const cell = rowCells[cellIdx];
+      const cellFmtLocal = cell.formatting as Record<string, unknown> | undefined;
+      const vMerge = cellFmtLocal?.vMerge as string | undefined;
+      const gridSpan = (cellFmtLocal?.gridSpan as number) ?? 1;
+
+      if (vMerge === 'restart') {
+        activeMerges.set(gridCol, { startRow: rowIdx, startCellIdx: cellIdx });
+        vMergeSpans.set(`${rowIdx}-${cellIdx}`, 1); // will be incremented by continue cells
+      } else if (vMerge === 'continue' || (vMerge != null && vMerge !== 'restart')) {
+        // Continue cell — hidden by spanning cell above
+        const active = activeMerges.get(gridCol);
+        if (active) {
+          const startKey = `${active.startRow}-${active.startCellIdx}`;
+          vMergeSpans.set(startKey, (vMergeSpans.get(startKey) ?? 1) + 1);
+        }
+        vMergeContinue.add(`${rowIdx}-${cellIdx}`);
+      } else {
+        // No vMerge — clear active merge for this grid column
+        activeMerges.delete(gridCol);
+      }
+
+      gridCol += gridSpan;
+    }
+  }
+
+  const layoutRows: LayoutTableRow[] = rows.map((row, rowIdx) => {
+    const rowFmt = row.formatting as Record<string, unknown> | undefined;
+    const cells = (row.cells as Array<Record<string, unknown>>) ?? [];
+    const isFirstRow = rowIdx === 0;
+    const isLastRow = rowIdx === rows.length - 1;
+
+    // Filter out vMerge continue cells (they're hidden by the spanning cell above)
+    const visibleCells = cells.filter((_, cellIdx) => !vMergeContinue.has(`${rowIdx}-${cellIdx}`));
+    const visibleCellIndices = cells
+      .map((_, i) => i)
+      .filter((i) => !vMergeContinue.has(`${rowIdx}-${i}`));
+
+    const layoutCells: LayoutTableCell[] = visibleCells.map((cell, idx) => {
+      const cellIdx = visibleCellIndices[idx];
+      const cellFmt = cell.formatting as Record<string, unknown> | undefined;
+      const cellContent = (cell.content as Array<Record<string, unknown>>) ?? [];
+      const isFirstCol = cellIdx === 0;
+      const isLastCol = cellIdx === cells.length - 1;
+
+      // Recursively convert cell content (paragraphs and nested tables)
+      const cellBlocks: FlowBlock[] = [];
+      for (const item of cellContent) {
+        if (item.type === 'paragraph' && Array.isArray(item.content)) {
+          const pFmt = item.formatting as Record<string, unknown> | undefined;
+          const attrs: ParagraphAttrs = {};
+          if (pFmt?.alignment) {
+            const align = pFmt.alignment as string;
+            if (align === 'both') attrs.alignment = 'justify';
+            else if (['left', 'center', 'right', 'justify'].includes(align))
+              attrs.alignment = align as 'left' | 'center' | 'right' | 'justify';
+          }
+          const runs = convertDocumentRunsToFlowRuns(item.content as unknown[]);
+          if (runs.length > 0) {
+            cellBlocks.push({
+              kind: 'paragraph',
+              id: `hf-tbl-p-${hfBlockCounter++}`,
+              runs,
+              attrs: Object.keys(attrs).length > 0 ? attrs : undefined,
+            } as ParagraphBlock);
+          }
+        } else if (item.type === 'table') {
+          cellBlocks.push(convertDocTableToTableBlock(item));
+        }
+      }
+
+      // Ensure at least one empty paragraph for empty cells
+      if (cellBlocks.length === 0) {
+        cellBlocks.push({
+          kind: 'paragraph',
+          id: `hf-tbl-p-${hfBlockCounter++}`,
+          runs: [{ kind: 'text' as const, text: '' }],
+        } as ParagraphBlock);
+      }
+
+      // Resolve cell borders: merge cell-level (w:tcBorders) with table-level (w:tblBorders).
+      // Per OOXML spec, cell borders override table borders per-side. Sides not explicitly
+      // defined at cell level inherit from table level.
+      let borders: CellBorders | undefined;
+      const cellBorders = cellFmt?.borders as Record<string, unknown> | undefined;
+
+      // Determine table-level default for each side based on cell position
+      const tblTop = (isFirstRow ? tblBorders?.top : tblBorders?.insideH) as
+        | BorderInput
+        | undefined;
+      const tblBottom = (isLastRow ? tblBorders?.bottom : tblBorders?.insideH) as
+        | BorderInput
+        | undefined;
+      const tblLeft = (isFirstCol ? tblBorders?.left : tblBorders?.insideV) as
+        | BorderInput
+        | undefined;
+      const tblRight = (isLastCol ? tblBorders?.right : tblBorders?.insideV) as
+        | BorderInput
+        | undefined;
+
+      if (cellBorders || tblBorders) {
+        borders = {
+          // If cell explicitly defines a side, use it; otherwise fall back to table-level
+          top: hfBorderSpecToCss((cellBorders?.top ?? tblTop) as BorderInput),
+          bottom: hfBorderSpecToCss((cellBorders?.bottom ?? tblBottom) as BorderInput),
+          left: hfBorderSpecToCss((cellBorders?.left ?? tblLeft) as BorderInput),
+          right: hfBorderSpecToCss((cellBorders?.right ?? tblRight) as BorderInput),
+        };
+      }
+
+      // Cell padding — cell-level (w:tcMar) overrides table-level (w:tblCellMar)
+      type MarginDef = {
+        top?: { value?: number };
+        bottom?: { value?: number };
+        left?: { value?: number };
+        right?: { value?: number };
+      };
+      const cellMargins = cellFmt?.margins as MarginDef | undefined;
+      const tblCellMargins = formatting?.cellMargins as MarginDef | undefined;
+      const margins = cellMargins ?? tblCellMargins;
+      const padding = {
+        top: margins?.top?.value != null ? hfTwipsToPixels(margins.top.value) : 1,
+        right: margins?.right?.value != null ? hfTwipsToPixels(margins.right.value) : 7,
+        bottom: margins?.bottom?.value != null ? hfTwipsToPixels(margins.bottom.value) : 1,
+        left: margins?.left?.value != null ? hfTwipsToPixels(margins.left.value) : 7,
+      };
+
+      // Cell width (scaled proportionally when column widths exceed contentWidth)
+      const cellWidth = cellFmt?.width as { value?: number; type?: string } | undefined;
+      const width =
+        cellWidth?.value && cellWidth.type === 'dxa'
+          ? hfTwipsToPixels(cellWidth.value) * cellWidthScale
+          : undefined;
+
+      // Background
+      const shading = cellFmt?.shading as { fill?: string } | undefined;
+      let background: string | undefined;
+      if (shading?.fill && shading.fill !== 'auto') background = `#${shading.fill}`;
+
+      return {
+        id: `hf-tbl-c-${hfBlockCounter++}`,
+        blocks: cellBlocks,
+        colSpan: cellFmt?.gridSpan as number | undefined,
+        rowSpan: (() => {
+          const fromScan = vMergeSpans.get(`${rowIdx}-${cellIdx}`);
+          const fromPM = cellFmt?._pmRowSpan as number | undefined;
+          // _pmRowSpan is authoritative (set by PM round-trip); scan only works pre-round-trip
+          const raw =
+            (fromPM && fromPM > 1 ? fromPM : undefined) ??
+            (fromScan && fromScan > 1 ? fromScan : undefined);
+          return raw;
+        })(),
+        width,
+        verticalAlign: cellFmt?.verticalAlign as 'top' | 'center' | 'bottom' | undefined,
+        background,
+        borders,
+        padding,
+      } as LayoutTableCell;
+    });
+
+    return {
+      id: `hf-tbl-r-${hfBlockCounter++}`,
+      cells: layoutCells,
+      height: (rowFmt?.height as { value?: number })?.value
+        ? hfTwipsToPixels((rowFmt!.height as { value: number }).value)
+        : undefined,
+      heightRule: rowFmt?.heightRule as 'auto' | 'atLeast' | 'exact' | undefined,
+      isHeader: rowFmt?.header as boolean | undefined,
+    } as LayoutTableRow;
+  });
+
+  return {
+    kind: 'table',
+    id: `hf-tbl-${hfBlockCounter++}`,
+    rows: layoutRows,
+    columnWidths: columnWidthsPx,
+    width: (formatting?.width as { value?: number })?.value,
+    widthType: (formatting?.width as { type?: string })?.type,
+    justification: formatting?.justification as 'left' | 'center' | 'right' | undefined,
+  };
+}
+
 function convertHeaderFooterToContent(
   headerFooter: HeaderFooter | null | undefined,
   contentWidth: number
@@ -1043,6 +1308,10 @@ function convertHeaderFooterToContent(
         blocks.push(paragraphBlock);
       }
     }
+    // Handle Document Table type
+    else if (itemObj.type === 'table' && Array.isArray(itemObj.rows)) {
+      blocks.push(convertDocTableToTableBlock(itemObj, contentWidth));
+    }
   }
 
   if (blocks.length === 0) {
@@ -1072,6 +1341,9 @@ function convertHeaderFooterToContent(
   const totalHeight = measures.reduce((h, m) => {
     if (m.kind === 'paragraph') {
       return h + m.totalHeight;
+    }
+    if (m.kind === 'table') {
+      return h + (m as TableMeasure).totalHeight;
     }
     return h;
   }, 0);

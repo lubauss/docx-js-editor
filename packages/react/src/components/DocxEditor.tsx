@@ -51,6 +51,7 @@ import {
 import { HorizontalRuler } from './ui/HorizontalRuler';
 import { VerticalRuler } from './ui/VerticalRuler';
 import { type PrintOptions } from './ui/PrintPreview';
+import { useUnsavedChanges } from './ui/UnsavedIndicator';
 // Dialog hooks and utilities (static imports — lightweight, no UI)
 import {
   useFindReplace,
@@ -212,6 +213,8 @@ export interface DocxEditorProps {
   author?: string;
   /** Callback when document changes */
   onChange?: (document: Document) => void;
+  /** Fires when unsaved-changes status changes (true = dirty, false = matches saved state) */
+  onUnsavedChangesChange?: (hasUnsavedChanges: boolean) => void;
   /** Callback when selection changes */
   onSelectionChange?: (state: SelectionState | null) => void;
   /** Callback on error */
@@ -312,6 +315,10 @@ export interface DocxEditorRef {
   openPrintPreview: () => void;
   /** Print the document directly */
   print: () => void;
+  /** Mark current document state as the saved baseline */
+  markAsSaved: () => void;
+  /** Whether document has unsaved changes vs last saved state */
+  hasUnsavedChanges: () => boolean;
 }
 
 /**
@@ -551,6 +558,7 @@ export const DocxEditor = forwardRef<DocxEditorRef, DocxEditorProps>(function Do
     onSave,
     author = 'User',
     onChange,
+    onUnsavedChangesChange,
     onSelectionChange,
     onError,
     onFontsLoaded: onFontsLoadedCallback,
@@ -711,6 +719,14 @@ export const DocxEditor = forwardRef<DocxEditorRef, DocxEditorProps>(function Do
     maxEntries: 100,
     groupingInterval: 500,
     enableKeyboardShortcuts: true,
+  });
+
+  // Track unsaved changes against saved baseline
+  const unsavedChanges = useUnsavedChanges({
+    document: history.state,
+    enabled: !readOnly,
+    warnBeforeLeave: false,
+    onChangeStatusChange: onUnsavedChangesChange,
   });
 
   // Extract comments from document model on initial load
@@ -956,6 +972,51 @@ export const DocxEditor = forwardRef<DocxEditorRef, DocxEditorProps>(function Do
     [onChange, pushDocument, extractTrackedChanges]
   );
 
+  // ============================================================================
+  // VERTICAL RULER — align to the page where the cursor is
+  // ============================================================================
+  const rulerWrapperRef = useRef<HTMLDivElement>(null);
+
+  const syncRulerToActivePage = useCallback(() => {
+    const wrapper = rulerWrapperRef.current;
+    const parent = editorContentRef.current;
+    if (!wrapper || !parent) return;
+
+    const pages = parent.querySelectorAll('.layout-page');
+    if (pages.length === 0) return;
+
+    // Find the page containing the cursor by matching PM anchor position
+    const view = pagedEditorRef.current?.getView();
+    let targetPage: Element | null = null;
+
+    if (view) {
+      const anchorPos = view.state.selection.anchor;
+      const pagesContainer = parent.querySelector('.paged-editor__pages');
+      if (pagesContainer) {
+        for (const page of pages) {
+          const spans = page.querySelectorAll('span[data-pm-start]');
+          for (const span of spans) {
+            const start = parseInt(span.getAttribute('data-pm-start') || '', 10);
+            const end = parseInt(span.getAttribute('data-pm-end') || '', 10);
+            if (!isNaN(start) && !isNaN(end) && anchorPos >= start && anchorPos <= end) {
+              targetPage = page;
+              break;
+            }
+          }
+          if (targetPage) break;
+        }
+      }
+    }
+
+    if (!targetPage) targetPage = pages[0]!;
+
+    // Position ruler at the page's top, relative to editorContentRef
+    const parentRect = parent.getBoundingClientRect();
+    const pageRect = targetPage.getBoundingClientRect();
+    const offsetY = pageRect.top - parentRect.top;
+    wrapper.style.top = `${offsetY}px`;
+  }, []);
+
   // Handle selection changes from ProseMirror
   const handleSelectionChange = useCallback(
     (selectionState: SelectionState | null) => {
@@ -1107,8 +1168,11 @@ export const DocxEditor = forwardRef<DocxEditorRef, DocxEditorProps>(function Do
 
       // Notify parent
       onSelectionChange?.(selectionState);
+
+      // Sync vertical ruler to the page containing the cursor
+      syncRulerToActivePage();
     },
-    [onSelectionChange, isAddingComment, readOnly]
+    [onSelectionChange, isAddingComment, readOnly, syncRulerToActivePage]
   );
 
   // Table selection hook
@@ -2264,8 +2328,19 @@ body { background: white; }
       },
       openPrintPreview: handleDirectPrint,
       print: handleDirectPrint,
+      markAsSaved: () => unsavedChanges.markAsSaved(),
+      hasUnsavedChanges: () => unsavedChanges.hasUnsavedChanges,
     }),
-    [history.state, state.zoom, state.currentPage, state.totalPages, handleSave, handleDirectPrint]
+    [
+      history.state,
+      state.zoom,
+      state.currentPage,
+      state.totalPages,
+      handleSave,
+      handleDirectPrint,
+      unsavedChanges.hasUnsavedChanges,
+      unsavedChanges.markAsSaved,
+    ]
   );
 
   // Get header and footer content from document
@@ -2661,15 +2736,16 @@ body { background: white; }
                       }
                     }}
                   >
-                    {/* Vertical Ruler - fixed on left edge (hidden in read-only mode) */}
+                    {/* Vertical Ruler - scroll-synced to most-visible page (hidden in read-only mode) */}
                     {showRuler && !readOnly && (
                       <div
+                        ref={rulerWrapperRef}
                         style={{
                           position: 'absolute',
                           left: 0,
                           top: 0,
                           zIndex: 10,
-                          paddingTop: 48, // paged-editor__pages and layout padding-top
+                          willChange: 'transform',
                         }}
                       >
                         <VerticalRuler

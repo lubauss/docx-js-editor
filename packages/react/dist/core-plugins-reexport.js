@@ -1,2 +1,11 @@
-export{o as docxtemplaterPlugin,n as isZodSchema}from'./chunk-K3Z55SBI.js';import'./chunk-AERG4WCW.js';export{a as PluginRegistry,d as createPluginRegistrar,b as pluginRegistry,c as registerPlugins}from'./chunk-2QOEHCBX.js';import'./chunk-CV5WFE7K.js';import'./chunk-Y6VCTLCJ.js';//# sourceMappingURL=core-plugins-reexport.js.map
+export { o as docxtemplaterPlugin, n as isZodSchema } from './chunk-YZ66KKSE.js';
+import './chunk-OECSQ2YK.js';
+export {
+  a as PluginRegistry,
+  d as createPluginRegistrar,
+  b as pluginRegistry,
+  c as registerPlugins,
+} from './chunk-2QOEHCBX.js';
+import './chunk-CV5WFE7K.js';
+import './chunk-Y6VCTLCJ.js'; //# sourceMappingURL=core-plugins-reexport.js.map
 //# sourceMappingURL=core-plugins-reexport.js.map
