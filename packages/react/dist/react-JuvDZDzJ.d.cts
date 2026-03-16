@@ -321,6 +321,8 @@ interface DocxEditorProps {
     author?: string;
     /** Callback when document changes */
     onChange?: (document: Document) => void;
+    /** Fires when unsaved-changes status changes (true = dirty, false = matches saved state) */
+    onUnsavedChangesChange?: (hasUnsavedChanges: boolean) => void;
     /** Callback when selection changes */
     onSelectionChange?: (state: SelectionState | null) => void;
     /** Callback on error */
@@ -420,6 +422,10 @@ interface DocxEditorRef {
     openPrintPreview: () => void;
     /** Print the document directly */
     print: () => void;
+    /** Mark current document state as the saved baseline */
+    markAsSaved: () => void;
+    /** Whether document has unsaved changes vs last saved state */
+    hasUnsavedChanges: () => boolean;
 }
 /**
  * DocxEditor - Complete DOCX editor component

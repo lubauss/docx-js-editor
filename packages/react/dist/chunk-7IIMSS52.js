@@ -1,0 +1,5672 @@
+import { p, a, r, s, B, b } from './chunk-CXJ6TLVT.js';
+import * as J from 'react';
+import J__default, { useRef, useState, useEffect, useCallback, useMemo } from 'react';
+import * as D from '@radix-ui/react-select';
+import { clsx } from 'clsx';
+import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
+function P(...e) {
+  return clsx(e);
+}
+var ye = D.Root,
+  Be = D.Group,
+  ct = D.Value;
+function Ce({ className: e, children: t, onMouseDown: o, ...n }) {
+  return jsxs(D.Trigger, {
+    className: P(
+      'flex h-8 items-center justify-between gap-1 rounded px-2 py-1',
+      'text-sm text-slate-700 bg-transparent',
+      'hover:bg-slate-100/80 focus:outline-none focus:bg-slate-100/80',
+      'disabled:cursor-not-allowed disabled:opacity-50',
+      'transition-colors duration-150',
+      '[&>span]:truncate',
+      e
+    ),
+    onMouseDown: (r) => {
+      (r.preventDefault(), o?.(r));
+    },
+    ...n,
+    children: [
+      t,
+      jsx(D.Icon, {
+        asChild: true,
+        children: jsx(Mn, { className: 'h-4 w-4 text-slate-400 shrink-0' }),
+      }),
+    ],
+  });
+}
+function Te({ className: e, children: t, position: o = 'popper', onCloseAutoFocus: n, ...r }) {
+  return jsx(D.Portal, {
+    children: jsx('div', {
+      className: 'ep-root',
+      children: jsx(D.Content, {
+        className: P(
+          'relative z-50 max-h-72 min-w-[8rem] overflow-hidden',
+          'rounded-lg border border-slate-200 bg-white shadow-lg',
+          'data-[state=open]:animate-in data-[state=closed]:animate-out',
+          'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+          'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
+          'data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2',
+          o === 'popper' && 'data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1',
+          e
+        ),
+        position: o,
+        onCloseAutoFocus: (a) => {
+          (a.preventDefault(), n?.(a));
+        },
+        ...r,
+        children: jsx(D.Viewport, {
+          className: P(
+            'p-1',
+            o === 'popper' &&
+              'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]'
+          ),
+          onMouseDown: (a) => a.preventDefault(),
+          children: t,
+        }),
+      }),
+    }),
+  });
+}
+function Fe({ className: e, ...t }) {
+  return jsx(D.Label, { className: P('px-2 py-1.5 text-xs font-medium text-slate-500', e), ...t });
+}
+function ce({ className: e, children: t, onMouseDown: o, ...n }) {
+  return jsxs(D.Item, {
+    className: P(
+      'relative flex w-full cursor-pointer select-none items-center',
+      'rounded px-2 py-1.5 text-sm text-slate-700 outline-none',
+      'hover:bg-slate-100 focus:bg-slate-100',
+      'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+      e
+    ),
+    onMouseDown: (r) => {
+      (r.preventDefault(), o?.(r));
+    },
+    ...n,
+    children: [
+      jsx(D.ItemText, { children: t }),
+      jsx('span', {
+        className: 'absolute right-2 flex h-3.5 w-3.5 items-center justify-center',
+        children: jsx(D.ItemIndicator, { children: jsx(kn, { className: 'h-4 w-4' }) }),
+      }),
+    ],
+  });
+}
+function et({ className: e, ...t }) {
+  return jsx(D.Separator, { className: P('-mx-1 my-1 h-px bg-slate-100', e), ...t });
+}
+function Mn({ className: e }) {
+  return jsx('svg', {
+    className: e,
+    xmlns: 'http://www.w3.org/2000/svg',
+    viewBox: '0 0 20 20',
+    fill: 'currentColor',
+    children: jsx('path', {
+      fillRule: 'evenodd',
+      d: 'M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z',
+      clipRule: 'evenodd',
+    }),
+  });
+}
+function kn({ className: e }) {
+  return jsx('svg', {
+    className: e,
+    xmlns: 'http://www.w3.org/2000/svg',
+    viewBox: '0 0 20 20',
+    fill: 'currentColor',
+    children: jsx('path', {
+      fillRule: 'evenodd',
+      d: 'M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z',
+      clipRule: 'evenodd',
+    }),
+  });
+}
+var Rn = [
+  { name: 'Arial', fontFamily: 'Arial, Helvetica, sans-serif', category: 'sans-serif' },
+  { name: 'Calibri', fontFamily: '"Calibri", Arial, sans-serif', category: 'sans-serif' },
+  { name: 'Helvetica', fontFamily: 'Helvetica, Arial, sans-serif', category: 'sans-serif' },
+  { name: 'Verdana', fontFamily: 'Verdana, Geneva, sans-serif', category: 'sans-serif' },
+  { name: 'Open Sans', fontFamily: '"Open Sans", sans-serif', category: 'sans-serif' },
+  { name: 'Roboto', fontFamily: 'Roboto, sans-serif', category: 'sans-serif' },
+  { name: 'Times New Roman', fontFamily: '"Times New Roman", Times, serif', category: 'serif' },
+  { name: 'Georgia', fontFamily: 'Georgia, serif', category: 'serif' },
+  { name: 'Cambria', fontFamily: 'Cambria, Georgia, serif', category: 'serif' },
+  { name: 'Garamond', fontFamily: 'Garamond, serif', category: 'serif' },
+  { name: 'Courier New', fontFamily: '"Courier New", Courier, monospace', category: 'monospace' },
+  { name: 'Consolas', fontFamily: 'Consolas, monospace', category: 'monospace' },
+];
+function ao({
+  value: e,
+  onChange: t,
+  fonts: o = Rn,
+  disabled: n = false,
+  className: r,
+  placeholder: a = 'Arial',
+  width: i = 120,
+  showPreview: c = true,
+}) {
+  let d = J.useMemo(
+      () =>
+        e
+          ? o.find((f) => f.fontFamily === e || f.name.toLowerCase() === e.toLowerCase())?.name || e
+          : a,
+      [e, o, a]
+    ),
+    u = J.useCallback(
+      (l) => {
+        let f = o.find((m) => m.name === l);
+        f && t?.(f.fontFamily);
+      },
+      [t, o]
+    ),
+    p = J.useMemo(() => {
+      let l = { 'sans-serif': [], serif: [], monospace: [], other: [] };
+      return (
+        o.forEach((f) => {
+          let m = f.category || 'other';
+          l[m].push(f);
+        }),
+        l
+      );
+    }, [o]);
+  return jsxs(ye, {
+    value: d,
+    onValueChange: u,
+    disabled: n,
+    children: [
+      jsx(Ce, {
+        className: P('h-8 text-sm', r),
+        style: { minWidth: typeof i == 'number' ? `${i}px` : i },
+        'aria-label': 'Select font family',
+        children: jsx(ct, { placeholder: a, children: d }),
+      }),
+      jsxs(Te, {
+        className: 'max-h-[300px]',
+        children: [
+          p['sans-serif'].length > 0 &&
+            jsxs(Be, {
+              children: [
+                jsx(Fe, { children: 'Sans Serif' }),
+                p['sans-serif'].map((l) =>
+                  jsx(
+                    ce,
+                    {
+                      value: l.name,
+                      style: c ? { fontFamily: l.fontFamily } : void 0,
+                      children: l.name,
+                    },
+                    l.name
+                  )
+                ),
+              ],
+            }),
+          p.serif.length > 0 &&
+            jsxs(Fragment, {
+              children: [
+                jsx(et, {}),
+                jsxs(Be, {
+                  children: [
+                    jsx(Fe, { children: 'Serif' }),
+                    p.serif.map((l) =>
+                      jsx(
+                        ce,
+                        {
+                          value: l.name,
+                          style: c ? { fontFamily: l.fontFamily } : void 0,
+                          children: l.name,
+                        },
+                        l.name
+                      )
+                    ),
+                  ],
+                }),
+              ],
+            }),
+          p.monospace.length > 0 &&
+            jsxs(Fragment, {
+              children: [
+                jsx(et, {}),
+                jsxs(Be, {
+                  children: [
+                    jsx(Fe, { children: 'Monospace' }),
+                    p.monospace.map((l) =>
+                      jsx(
+                        ce,
+                        {
+                          value: l.name,
+                          style: c ? { fontFamily: l.fontFamily } : void 0,
+                          children: l.name,
+                        },
+                        l.name
+                      )
+                    ),
+                  ],
+                }),
+              ],
+            }),
+        ],
+      }),
+    ],
+  });
+}
+var lo = (e) => (typeof e == 'boolean' ? `${e}` : e === 0 ? '0' : e),
+  so = clsx,
+  co = (e, t) => (o) => {
+    var n;
+    if (t?.variants == null) return so(e, o?.class, o?.className);
+    let { variants: r, defaultVariants: a } = t,
+      i = Object.keys(r).map((u) => {
+        let p = o?.[u],
+          l = a?.[u];
+        if (p === null) return null;
+        let f = lo(p) || lo(l);
+        return r[u][f];
+      }),
+      c =
+        o &&
+        Object.entries(o).reduce((u, p) => {
+          let [l, f] = p;
+          return (f === void 0 || (u[l] = f), u);
+        }, {}),
+      d =
+        t == null || (n = t.compoundVariants) === null || n === void 0
+          ? void 0
+          : n.reduce((u, p) => {
+              let { class: l, className: f, ...m } = p;
+              return Object.entries(m).every((h) => {
+                let [v, S] = h;
+                return Array.isArray(S) ? S.includes({ ...a, ...c }[v]) : { ...a, ...c }[v] === S;
+              })
+                ? [...u, l, f]
+                : u;
+            }, []);
+    return so(e, i, d, o?.class, o?.className);
+  };
+var Zn = co(
+    'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+    {
+      variants: {
+        variant: {
+          default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+          destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+          outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
+          secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+          ghost: 'hover:bg-accent hover:text-accent-foreground',
+          link: 'text-primary underline-offset-4 hover:underline',
+        },
+        size: {
+          default: 'h-10 px-4 py-2',
+          sm: 'h-9 rounded-md px-3',
+          lg: 'h-11 rounded-md px-8',
+          icon: 'h-9 w-9',
+          'icon-sm': 'h-8 w-8',
+        },
+      },
+      defaultVariants: { variant: 'default', size: 'default' },
+    }
+  ),
+  U = J.forwardRef(({ className: e, variant: t, size: o, ...n }, r) =>
+    jsx('button', { className: P(Zn({ variant: t, size: o, className: e })), ref: r, ...n })
+  );
+U.displayName = 'Button';
+function g({ size: e = 20, className: t = '', style: o, children: n }) {
+  return jsx('svg', {
+    xmlns: 'http://www.w3.org/2000/svg',
+    width: e,
+    height: e,
+    viewBox: '0 -960 960 960',
+    fill: 'currentColor',
+    className: t,
+    style: { display: 'inline-flex', flexShrink: 0, ...o },
+    'aria-hidden': 'true',
+    children: n,
+  });
+}
+function En(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M280-200v-80h284q63 0 109.5-40T720-420q0-60-46.5-100T564-560H312l104 104-56 56-200-200 200-200 56 56-104 104h252q97 0 166.5 63T800-420q0 94-69.5 157T564-200H280Z',
+    }),
+  });
+}
+function Dn(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M396-200q-97 0-166.5-63T160-420q0-94 69.5-157T396-640h252L544-744l56-56 200 200-200 200-56-56 104-104H396q-63 0-109.5 40T240-420q0 60 46.5 100T396-280h284v80H396Z',
+    }),
+  });
+}
+function _n(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M640-640v-120H320v120h-80v-200h480v200h-80Zm-480 80h640-640Zm560 100q17 0 28.5-11.5T760-500q0-17-11.5-28.5T720-540q-17 0-28.5 11.5T680-500q0 17 11.5 28.5T720-460Zm-80 260v-160H320v160h320Zm80 80H240v-160H80v-240q0-51 35-85.5t85-34.5h560q51 0 85.5 34.5T880-520v240H720v160Zm80-240v-160q0-17-11.5-28.5T760-560H200q-17 0-28.5 11.5T160-520v160h80v-80h480v80h80Z',
+    }),
+  });
+}
+function Nn(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M272-200v-560h221q65 0 120 40t55 111q0 51-23 78.5T602-491q25 11 55.5 41t30.5 90q0 89-65 124.5T501-200H272Zm121-112h104q48 0 58.5-24.5T566-372q0-11-10.5-35.5T494-432H393v120Zm0-228h93q33 0 48-17t15-38q0-24-17-39t-44-15h-95v109Z',
+    }),
+  });
+}
+function qn(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M200-200v-100h160l120-360H320v-100h400v100H580L460-300h140v100H200Z',
+    }),
+  });
+}
+function An(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M200-120v-80h560v80H200Zm123-223q-56-63-56-167v-330h103v336q0 56 28 91t82 35q54 0 82-35t28-91v-336h103v330q0 104-56 167t-157 63q-101 0-157-63Z',
+    }),
+  });
+}
+function Bn(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M486-160q-76 0-135-45t-85-123l88-38q14 48 48.5 79t85.5 31q42 0 76-20t34-64q0-18-7-33t-19-27h112q5 14 7.5 28.5T694-340q0 86-61.5 133T486-160ZM80-480v-80h800v80H80Zm402-326q66 0 115.5 32.5T674-674l-88 39q-9-29-33.5-52T484-710q-41 0-68 18.5T386-640h-96q2-69 54.5-117.5T482-806Z',
+    }),
+  });
+}
+function Fn(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M760-600v-80q0-17 11.5-28.5T800-720h80v-40H760v-40h120q17 0 28.5 11.5T920-760v40q0 17-11.5 28.5T880-680h-80v40h120v40H760ZM235-160l185-291-172-269h106l124 200h4l123-200h107L539-451l186 291H618L482-377h-4L342-160H235Z',
+    }),
+  });
+}
+function On(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M760-160v-80q0-17 11.5-28.5T800-280h80v-40H760v-40h120q17 0 28.5 11.5T920-320v40q0 17-11.5 28.5T880-240h-80v40h120v40H760Zm-525-80 185-291-172-269h106l124 200h4l123-200h107L539-531l186 291H618L482-457h-4L342-240H235Z',
+    }),
+  });
+}
+function zn(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z',
+    }),
+  });
+}
+function Vn(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'm528-546-93-93-121-121h486v120H568l-40 94ZM792-56 460-388l-80 188H249l119-280L56-792l56-56 736 736-56 56Z',
+    }),
+  });
+}
+function Wn(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-120v-80h720v80H120Zm0-160v-80h480v80H120Zm0-160v-80h720v80H120Zm0-160v-80h480v80H120Zm0-160v-80h720v80H120Z',
+    }),
+  });
+}
+function $n(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-120v-80h720v80H120Zm160-160v-80h400v80H280ZM120-440v-80h720v80H120Zm160-160v-80h400v80H280ZM120-760v-80h720v80H120Z',
+    }),
+  });
+}
+function Un(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-760v-80h720v80H120Zm240 160v-80h480v80H360ZM120-440v-80h720v80H120Zm240 160v-80h480v80H360ZM120-120v-80h720v80H120Z',
+    }),
+  });
+}
+function Gn(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-120v-80h720v80H120Zm0-160v-80h720v80H120Zm0-160v-80h720v80H120Zm0-160v-80h720v80H120Zm0-160v-80h720v80H120Z',
+    }),
+  });
+}
+function Lt(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M240-160 80-320l56-56 64 62v-332l-64 62-56-56 160-160 160 160-56 56-64-62v332l64-62 56 56-160 160Zm240-40v-80h400v80H480Zm0-240v-80h400v80H480Zm0-240v-80h400v80H480Z',
+    }),
+  });
+}
+function Kn(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M360-200v-80h480v80H360Zm0-240v-80h480v80H360Zm0-240v-80h480v80H360ZM200-160q-33 0-56.5-23.5T120-240q0-33 23.5-56.5T200-320q33 0 56.5 23.5T280-240q0 33-23.5 56.5T200-160Zm0-240q-33 0-56.5-23.5T120-480q0-33 23.5-56.5T200-560q33 0 56.5 23.5T280-480q0 33-23.5 56.5T200-400Zm-56.5-263.5Q120-687 120-720t23.5-56.5Q167-800 200-800t56.5 23.5Q280-753 280-720t-23.5 56.5Q233-640 200-640t-56.5-23.5Z',
+    }),
+  });
+}
+function Yn(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-80v-60h100v-30h-60v-60h60v-30H120v-60h120q17 0 28.5 11.5T280-280v40q0 17-11.5 28.5T240-200q17 0 28.5 11.5T280-160v40q0 17-11.5 28.5T240-80H120Zm0-280v-110q0-17 11.5-28.5T160-510h60v-30H120v-60h120q17 0 28.5 11.5T280-560v70q0 17-11.5 28.5T240-450h-60v30h100v60H120Zm60-280v-180h-60v-60h120v240h-60Zm180 440v-80h480v80H360Zm0-240v-80h480v80H360Zm0-240v-80h480v80H360Z',
+    }),
+  });
+}
+function jn(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-120v-80h720v80H120Zm320-160v-80h400v80H440Zm0-160v-80h400v80H440Zm0-160v-80h400v80H440ZM120-760v-80h720v80H120Zm0 440v-320l160 160-160 160Z',
+    }),
+  });
+}
+function Xn(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-120v-80h720v80H120Zm320-160v-80h400v80H440Zm0-160v-80h400v80H440Zm0-160v-80h400v80H440ZM120-760v-80h720v80H120Zm160 440L120-480l160-160v320Z',
+    }),
+  });
+}
+function Jn(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M80 0v-160h800V0H80Zm140-280 210-560h100l210 560h-96l-50-144H368l-52 144h-96Zm176-224h168l-82-232h-4l-82 232Z',
+    }),
+  });
+}
+function Qn(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M544-400 440-504 240-304l104 104 200-200Zm-47-161 104 104 199-199-104-104-199 199Zm-84-28 216 216-229 229q-24 24-56 24t-56-24l-2-2-26 26H60l126-126-2-2q-24-24-24-56t24-56l229-229Zm0 0 227-227q24-24 56-24t56 24l104 104q24 24 24 56t-24 56L629-373 413-589Z',
+    }),
+  });
+}
+function er(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M800-436q0 36-8 69t-22 63l-62-60q6-17 9-34.5t3-37.5q0-47-17.5-89T650-600L480-768l-88 86-56-56 144-142 226 222q44 42 69 99.5T800-436Zm-8 380L668-180q-41 29-88 44.5T480-120q-133 0-226.5-92.5T160-436q0-51 16-98t48-90L56-792l56-56 736 736-56 56ZM480-200q36 0 68.5-10t61.5-28L280-566q-21 32-30.5 64t-9.5 66q0 98 70 167t170 69Zm-37-204Zm110-116Z',
+    }),
+  });
+}
+function tr(e) {
+  return jsx(g, { ...e, children: jsx('path', { d: 'M480-360 280-560h400L480-360Z' }) });
+}
+function or(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm240-240H200v160h240v-160Zm80 0v160h240v-160H520Zm-80-80v-160H200v160h240Zm80 0h240v-160H520v160ZM200-680h560v-80H200v80Z',
+    }),
+  });
+}
+function nr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M760-120H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120ZM200-640h560v-120H200v120Zm100 80H200v360h100v-360Zm360 0v360h100v-360H660Zm-80 0H380v360h200v-360Z',
+    }),
+  });
+}
+function rr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h133v-133H200v133Zm213 0h134v-133H413v133Zm214 0h133v-133H627v133ZM200-413h133v-134H200v134Zm213 0h134v-134H413v134Zm214 0h133v-134H627v134ZM200-627h133v-133H200v133Zm213 0h134v-133H413v133Zm214 0h133v-133H627v133Z',
+    }),
+  });
+}
+function ir(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M760-200v-120H200v120h560Zm0-200v-160H200v160h560Zm0-240v-120H200v120h560ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Z',
+    }),
+  });
+}
+function ar(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M121-280v-400q0-33 23.5-56.5T201-760h559q33 0 56.5 23.5T840-680v400q0 33-23.5 56.5T760-200H201q-33 0-56.5-23.5T121-280Zm79 0h133v-400H200v400Zm213 0h133v-400H413v400Zm213 0h133v-400H626v400Z',
+    }),
+  });
+}
+function lr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-120v-720h720v720H120Zm640-80v-240H520v240h240Zm0-560H520v240h240v-240Zm-560 0v240h240v-240H200Zm0 560h240v-240H200v240Z',
+    }),
+  });
+}
+function sr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M200-200h560v-560H200v560Zm-80 80v-720h720v720H120Zm160-320v-80h80v80h-80Zm160 160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm160 160v-80h80v80h-80Z',
+    }),
+  });
+}
+function cr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-120v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-320v-80h80v80h-80Zm0-160v-80h80v80h-80Zm160 640v-80h80v80h-80Zm0-640v-80h80v80h-80Zm320 640v-80h80v80h-80Zm160 0v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-320v-80h80v80h-80Zm0-160v-80h80v80h-80Zm-160 0v-80h80v80h-80ZM440-120v-320H120v-80h320v-320h80v320h320v80H520v320h-80Z',
+    }),
+  });
+}
+function ur(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-120v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm160 640v-80h80v80h-80Zm0-320v-80h80v80h-80Zm0-320v-80h80v80h-80Zm160 640v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm160 640v-80h80v80h-80Zm0-320v-80h80v80h-80Zm0-320v-80h80v80h-80Zm160 640v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Z',
+    }),
+  });
+}
+function pr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', { d: 'M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z' }),
+  });
+}
+function dr(e) {
+  return jsx(g, { ...e, children: jsx('path', { d: 'M200-440v-80h560v80H200Z' }) });
+}
+function mr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z',
+    }),
+  });
+}
+function fr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M600-240v-80h160v80H600Zm0-320v-80h280v80H600Zm0 160v-80h240v80H600ZM120-640H80v-80h160v-60h160v60h160v80h-40v360q0 33-23.5 56.5T440-200H200q-33 0-56.5-23.5T120-280v-360Zm80 0v360h240v-360H200Zm0 0v360-360Z',
+    }),
+  });
+}
+function hr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'm296-160-56-56 200-200v-269L337-582l-57-57 200-200 201 201-57 57-104-104v301L296-160Zm368 1L536-286l57-57 127 128-56 56Z',
+    }),
+  });
+}
+function gr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M440-160v-304L240-664v104h-80v-240h240v80H296l224 224v336h-80Zm154-376-58-58 128-126H560v-80h240v240h-80v-104L594-536Z',
+    }),
+  });
+}
+function vr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M360-160q-33 0-56.5-23.5T280-240q0-33 23.5-56.5T360-320q33 0 56.5 23.5T440-240q0 33-23.5 56.5T360-160Zm240 0q-33 0-56.5-23.5T520-240q0-33 23.5-56.5T600-320q33 0 56.5 23.5T680-240q0 33-23.5 56.5T600-160ZM360-400q-33 0-56.5-23.5T280-480q0-33 23.5-56.5T360-560q33 0 56.5 23.5T440-480q0 33-23.5 56.5T360-400Zm240 0q-33 0-56.5-23.5T520-480q0-33 23.5-56.5T600-560q33 0 56.5 23.5T680-480q0 33-23.5 56.5T600-400ZM360-640q-33 0-56.5-23.5T280-720q0-33 23.5-56.5T360-800q33 0 56.5 23.5T440-720q0 33-23.5 56.5T360-640Zm240 0q-33 0-56.5-23.5T520-720q0-33 23.5-56.5T600-800q33 0 56.5 23.5T680-720q0 33-23.5 56.5T600-640Z',
+    }),
+  });
+}
+function br(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Z',
+    }),
+  });
+}
+function xr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-280v-400h400v400H120Zm80-80h240v-240H200v240Zm-80-400v-80h720v80H120Zm480 160v-80h240v80H600Zm0 160v-80h240v80H600Zm0 160v-80h240v80H600ZM120-120v-80h720v80H120Z',
+    }),
+  });
+}
+function Sr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M440-280v-400h400v400H440Zm80-80h240v-240H520v240ZM120-120v-80h720v80H120Zm0-160v-80h240v80H120Zm0-160v-80h240v80H120Zm0-160v-80h240v80H120Zm0-160v-80h720v80H120Z',
+    }),
+  });
+}
+function yr(e) {
+  return jsx(g, { ...e, children: jsx('path', { d: 'M160-440v-80h640v80H160Z' }) });
+}
+function Cr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M200-120q-33 0-56.5-23.5T120-200v-480h80v480h480v80H200Zm160-240v80q-33 0-56.5-23.5T280-360h80Zm-80-80v-80h80v80h-80Zm0-160v-80h80v80h-80Zm80-160h-80q0-33 23.5-56.5T360-840v80Zm80 480v-80h80v80h-80Zm0-480v-80h80v80h-80Zm160 0v-80h80v80h-80Zm0 480v-80h80v80h-80Zm160-480v-80q33 0 56.5 23.5T840-760h-80Zm0 400h80q0 33-23.5 56.5T760-280v-80Zm0-80v-80h80v80h-80Zm0-160v-80h80v80h-80Z',
+    }),
+  });
+}
+function Tr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M360-280q-33 0-56.5-23.5T280-360v-400q0-33 23.5-56.5T360-840h400q33 0 56.5 23.5T840-760v400q0 33-23.5 56.5T760-280H360Zm0-80h400v-400H360v400ZM200-200v80q-33 0-56.5-23.5T120-200h80Zm-80-80v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm160 480v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Z',
+    }),
+  });
+}
+function wr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M480-80 310-250l57-57 73 73v-166h80v165l72-73 58 58L480-80ZM250-310 80-480l169-169 57 57-72 72h166v80H235l73 72-58 58Zm460 0-57-57 73-73H560v-80h165l-73-72 58-58 170 170-170 170ZM440-560v-166l-73 73-57-57 170-170 170 170-57 57-73-73v166h-80Z',
+    }),
+  });
+}
+function Ir(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M440-120v-240h80v80h320v80H520v80h-80Zm-320-80v-80h240v80H120Zm160-160v-80H120v-80h160v-80h80v240h-80Zm160-80v-80h400v80H440Zm160-160v-240h80v80h160v80H680v80h-80Zm-480-80v-80h400v80H120Z',
+    }),
+  });
+}
+function Pr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M522-80v-82q34-5 66.5-18t61.5-34l56 58q-42 32-88 51.5T522-80Zm-80 0Q304-98 213-199.5T122-438q0-75 28.5-140.5t77-114q48.5-48.5 114-77T482-798h6l-62-62 56-58 160 160-160 160-56-56 64-64h-8q-117 0-198.5 81.5T202-438q0 104 68 182.5T442-162v82Zm322-134-58-56q21-29 34-61.5t18-66.5h82q-5 50-24.5 96T764-214Zm76-264h-82q-5-34-18-66.5T706-606l58-56q32 39 51 86t25 98Z',
+    }),
+  });
+}
+function Mr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M440-80q-50-5-96-24.5T256-156l56-58q29 21 61.5 34t66.5 18v82Zm80 0v-82q104-15 172-93.5T760-438q0-117-81.5-198.5T480-718h-8l64 64-56 56-160-160 160-160 56 58-62 62h6q75 0 140.5 28.5t114 77q48.5 48.5 77 114T840-438q0 137-91 238.5T520-80ZM198-214q-32-42-51.5-88T122-398h82q5 34 18 66.5t34 61.5l-58 56Zm-76-264q6-51 25-98t51-86l58 56q-21 29-34 61.5T204-478h-82Z',
+    }),
+  });
+}
+function kr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M280-160 80-360l200-200 56 57-103 103h287v80H233l103 103-56 57Zm400-240-56-57 103-103H440v-80h287L624-743l56-57 200 200-200 200Z',
+    }),
+  });
+}
+function Rr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M320-440v-287L217-624l-57-56 200-200 200 200-57 56-103-103v287h-80ZM600-80 400-280l57-56 103 103v-287h80v287l103-103 57 56L600-80Z',
+    }),
+  });
+}
+function Lr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M600-360ZM320-242q10 1 19.5 1.5t20.5.5q11 0 20.5-.5T400-242v82h400v-400h-82q1-10 1.5-19.5t.5-20.5q0-11-.5-20.5T718-640h82q33 0 56.5 23.5T880-560v400q0 33-23.5 56.5T800-80H400q-33 0-56.5-23.5T320-160v-82Zm40-78q-117 0-198.5-81.5T80-600q0-117 81.5-198.5T360-880q117 0 198.5 81.5T640-600q0 117-81.5 198.5T360-320Zm0-80q83 0 141.5-58.5T560-600q0-83-58.5-141.5T360-800q-83 0-141.5 58.5T160-600q0 83 58.5 141.5T360-400Zm0-200Z',
+    }),
+  });
+}
+function Zr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M440-80q-33 0-56.5-23.5T360-160v-160H240q-33 0-56.5-23.5T160-400v-280q0-66 47-113t113-47h480v440q0 33-23.5 56.5T720-320H600v160q0 33-23.5 56.5T520-80h-80ZM240-560h480v-200h-40v160h-80v-160h-40v80h-80v-80H320q-33 0-56.5 23.5T240-680v120Zm0 160h480v-80H240v80Zm0 0v-80 80Z',
+    }),
+  });
+}
+function Hr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', { d: 'M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z' }),
+  });
+}
+function Er(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', { d: 'm296-345-56-56 240-240 240 240-56 56-184-184-184 184Z' }),
+  });
+}
+function Dr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-120v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h720v80H120Zm160 640v-80h80v80h-80Zm0-320v-80h80v80h-80Zm160 320v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm160 480v-80h80v80h-80Zm0-320v-80h80v80h-80Zm160 320v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Z',
+    }),
+  });
+}
+function _r(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-120v-80h720v80H120Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm160 320v-80h80v80h-80Zm0-320v-80h80v80h-80Zm160 480v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm160 320v-80h80v80h-80Zm0-320v-80h80v80h-80Zm160 480v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Z',
+    }),
+  });
+}
+function Nr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-120v-720h80v720h-80Zm160 0v-80h80v80h-80Zm0-320v-80h80v80h-80Zm0-320v-80h80v80h-80Zm160 640v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm160 640v-80h80v80h-80Zm0-320v-80h80v80h-80Zm0-320v-80h80v80h-80Zm160 640v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Z',
+    }),
+  });
+}
+function qr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-120v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm160 640v-80h80v80h-80Zm0-320v-80h80v80h-80Zm0-320v-80h80v80h-80Zm160 640v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm0-160v-80h80v80h-80Zm160 640v-80h80v80h-80Zm0-320v-80h80v80h-80Zm0-320v-80h80v80h-80Zm160 640v-720h80v720h-80Z',
+    }),
+  });
+}
+function Ar(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M320-600q17 0 28.5-11.5T360-640q0-17-11.5-28.5T320-680q-17 0-28.5 11.5T280-640q0 17 11.5 28.5T320-600Zm160 0q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm160 0q17 0 28.5-11.5T680-640q0-17-11.5-28.5T640-680q-17 0-28.5 11.5T600-640q0 17 11.5 28.5T640-600ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z',
+    }),
+  });
+}
+function Br(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M160-200v-80h528l-42-42 56-56 138 138-138 138-56-56 42-42H160Zm116-200 164-440h80l164 440h-76l-38-112H392l-40 112h-76Zm138-176h132l-64-182h-4l-64 182Z',
+    }),
+  });
+}
+function Fr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M588-132 440-280l148-148 56 58-50 50h96q29 0 49.5-20.5T760-390q0-29-20.5-49.5T690-460H160v-80h530q63 0 106.5 43.5T840-390q0 63-43.5 106.5T690-240h-96l50 50-56 58ZM160-240v-80h200v80H160Zm0-440v-80h640v80H160Z',
+    }),
+  });
+}
+function Or(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M480-120 320-280l56-56 64 63v-414l-64 63-56-56 160-160 160 160-56 57-64-64v414l64-63 56 56-160 160Z',
+    }),
+  });
+}
+function zr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-120v-720h80v720h-80Zm640 0v-720h80v720h-80ZM280-440v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Z',
+    }),
+  });
+}
+function Vr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'm370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z',
+    }),
+  });
+}
+function Wr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M80 0v-160h800V0H80Zm160-320h56l312-311-29-29-28-28-311 312v56Zm-80 80v-170l448-447q11-11 25.5-17t30.5-6q16 0 31 6t27 18l55 56q12 11 17.5 26t5.5 31q0 15-5.5 29.5T777-687L330-240H160Zm560-504-56-56 56 56ZM608-631l-29-29-28-28 57 57Z',
+    }),
+  });
+}
+function $r(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'm247-904 57-56 343 343q23 23 23 57t-23 57L457-313q-23 23-57 23t-57-23L153-503q-23-23-23-57t23-57l190-191-96-96Zm153 153L209-560h382L400-751Zm360 471q-33 0-56.5-23.5T680-360q0-21 12.5-45t27.5-45q9-12 19-25t21-25q11 12 21 25t19 25q15 21 27.5 45t12.5 45q0 33-23.5 56.5T760-280ZM80 0v-160h800V0H80Z',
+    }),
+  });
+}
+function Ur(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M160-760v-80h640v80H160Zm280 640v-408L336-424l-56-56 200-200 200 200-56 56-104-104v408h-80Z',
+    }),
+  });
+}
+function Gr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M440-80v-168l-64 64-56-56 160-160 160 160-56 56-64-64v168h-80ZM160-440v-80h640v80H160Zm320-120L320-720l56-56 64 64v-168h80v168l64-64 56 56-160 160Z',
+    }),
+  });
+}
+function Kr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M160-120v-80h640v80H160Zm320-160L280-480l56-56 104 104v-408h80v408l104-104 56 56-200 200Z',
+    }),
+  });
+}
+function Yr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-160v-40h720v40H120Zm0-120v-80h720v80H120Zm0-160v-120h720v120H120Zm0-200v-160h720v160H120Z',
+    }),
+  });
+}
+function jr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', { d: 'M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z' }),
+  });
+}
+function Xr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', { d: 'M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z' }),
+  });
+}
+function Jr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', { d: 'M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z' }),
+  });
+}
+function Qr(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', { d: 'M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z' }),
+  });
+}
+function ei(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z',
+    }),
+  });
+}
+function ti(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M120-440v-80h160v80H120Zm200 0v-80h160v80H320Zm200 0v-80h160v80H520Zm200 0v-80h120v80H720ZM240-120q-33 0-56.5-23.5T160-200v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-120H240Zm-80-520v-120q0-33 23.5-56.5T240-840h480q33 0 56.5 23.5T800-760v120h-80v-120H240v120h-80Z',
+    }),
+  });
+}
+function oi(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M313-440l224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z',
+    }),
+  });
+}
+function ni(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', { d: 'M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z' }),
+  });
+}
+function ri(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'm256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z',
+    }),
+  });
+}
+function ii(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M440-400h80v-120h120v-80H520v-120h-80v120H320v80h120v120ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z',
+    }),
+  });
+}
+function ai(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M240-400h480v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z',
+    }),
+  });
+}
+function li(e) {
+  return jsx(g, {
+    ...e,
+    children: jsx('path', {
+      d: 'M160-400h280v-80H160v80Zm0-160h440v-80H160v80Zm0-160h440v-80H160v80Zm360 360v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z',
+    }),
+  });
+}
+var si = {
+  undo: En,
+  redo: Dn,
+  print: _n,
+  format_bold: Nn,
+  format_italic: qn,
+  format_underlined: An,
+  strikethrough_s: Bn,
+  superscript: Fn,
+  subscript: On,
+  link: zn,
+  format_clear: Vn,
+  format_align_left: Wn,
+  format_align_center: $n,
+  format_align_right: Un,
+  format_align_justify: Gn,
+  format_line_spacing: Lt,
+  format_list_bulleted: Kn,
+  format_list_numbered: Yn,
+  format_indent_increase: jn,
+  format_indent_decrease: Xn,
+  format_color_text: Jn,
+  ink_highlighter: Qn,
+  format_color_reset: er,
+  arrow_drop_down: tr,
+  table: or,
+  table_chart: nr,
+  grid_on: rr,
+  table_rows: ir,
+  view_column: ar,
+  border_all: lr,
+  border_outer: sr,
+  border_inner: cr,
+  border_clear: ur,
+  add: pr,
+  remove: dr,
+  delete: mr,
+  delete_sweep: fr,
+  call_merge: hr,
+  call_split: gr,
+  drag_indicator: vr,
+  image: br,
+  format_image_left: xr,
+  format_image_right: Sr,
+  horizontal_rule: yr,
+  flip_to_back: Cr,
+  flip_to_front: Tr,
+  open_with: wr,
+  tune: Ir,
+  rotate_right: Pr,
+  rotate_left: Mr,
+  swap_horiz: kr,
+  swap_vert: Rr,
+  shapes: Lr,
+  format_paint: Zr,
+  expand_more: Hr,
+  expand_less: Er,
+  border_top: Dr,
+  border_bottom: _r,
+  border_left: Nr,
+  border_right: qr,
+  padding: Ar,
+  text_rotation_none: Br,
+  wrap_text: Fr,
+  height: Or,
+  fit_width: zr,
+  settings: Vr,
+  border_color: Wr,
+  format_color_fill: $r,
+  vertical_align_top: Ur,
+  vertical_align_center: Gr,
+  vertical_align_bottom: Kr,
+  line_weight: Yr,
+  keyboard_arrow_up: jr,
+  keyboard_arrow_down: Xr,
+  keyboard_arrow_left: Jr,
+  keyboard_arrow_right: Qr,
+  more_vert: ei,
+  page_break: ti,
+  arrow_back: oi,
+  check: ni,
+  close: ri,
+  add_comment: ii,
+  comment: ai,
+  edit_note: li,
+};
+function x({ name: e, size: t = 20, className: o = '', style: n }) {
+  let r = si[e];
+  return r
+    ? jsx(r, { size: t, className: o, style: n })
+    : (console.warn(`Icon not found: ${e}`),
+      jsx('span', {
+        className: o,
+        style: { fontSize: t, width: t, height: t, ...n },
+        children: e,
+      }));
+}
+function Y({ isOpen: e, onClose: t, align: o = 'left' }) {
+  let n = useRef(null),
+    r = useRef(null),
+    [a, i] = useState({ top: 0, left: 0 });
+  (useEffect(() => {
+    if (!e || !n.current) return;
+    let u = n.current.getBoundingClientRect();
+    o === 'right'
+      ? requestAnimationFrame(() => {
+          if (r.current) {
+            let p = r.current.getBoundingClientRect();
+            i({ top: u.bottom + 4, left: u.right - p.width });
+          } else i({ top: u.bottom + 4, left: u.left });
+        })
+      : i({ top: u.bottom + 4, left: u.left });
+  }, [e, o]),
+    useEffect(() => {
+      if (!e) return;
+      let u = (f) => {
+          let m = f.target;
+          n.current && !n.current.contains(m) && r.current && !r.current.contains(m) && t();
+        },
+        p = (f) => {
+          f.key === 'Escape' && t();
+        },
+        l = () => t();
+      return (
+        document.addEventListener('mousedown', u),
+        document.addEventListener('keydown', p),
+        window.addEventListener('scroll', l, true),
+        () => {
+          (document.removeEventListener('mousedown', u),
+            document.removeEventListener('keydown', p),
+            window.removeEventListener('scroll', l, true));
+        }
+      );
+    }, [e, t]));
+  let c = useCallback((u) => {
+      (u.preventDefault(), u.stopPropagation());
+    }, []),
+    d = { position: 'fixed', top: a.top, left: a.left, zIndex: 1e4 };
+  return { containerRef: n, dropdownRef: r, dropdownStyle: d, handleMouseDown: c };
+}
+var di = [8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 28, 36, 48, 72],
+  mi = 1,
+  fi = 400;
+function go(e) {
+  return e / 2;
+}
+function c0(e) {
+  return e * 2;
+}
+function fo(e, t, o) {
+  for (let n of t) if (n > e) return n;
+  return Math.min(e + 1, o);
+}
+function ho(e, t, o) {
+  for (let n = t.length - 1; n >= 0; n--) if (t[n] < e) return t[n];
+  return Math.max(e - 1, o);
+}
+function vo({
+  value: e,
+  onChange: t,
+  sizes: o = di,
+  disabled: n = false,
+  className: r,
+  placeholder: a = '11',
+  minSize: i = mi,
+  maxSize: c = fi,
+}) {
+  let [d, u] = useState(false),
+    [p, l] = useState(''),
+    [f, m] = useState(false),
+    h = useRef(null),
+    v = useCallback(() => {
+      (m(false), u(false));
+    }, []),
+    { containerRef: S, dropdownRef: I, dropdownStyle: b } = Y({ isOpen: f, onClose: v }),
+    C = e ?? (parseInt(a, 10) || 11),
+    E = e !== void 0 ? e.toString() : a,
+    R = useCallback(
+      (w) => {
+        if ((w.preventDefault(), n)) return;
+        let N = ho(C, o, i);
+        t?.(N);
+      },
+      [C, o, i, n, t]
+    ),
+    B = useCallback(
+      (w) => {
+        if ((w.preventDefault(), n)) return;
+        let N = fo(C, o, c);
+        t?.(N);
+      },
+      [C, o, c, n, t]
+    ),
+    k = useCallback(
+      (w) => {
+        (w.preventDefault(),
+          !n &&
+            (u(true),
+            l(E),
+            m(true),
+            requestAnimationFrame(() => {
+              (h.current?.focus(), h.current?.select());
+            })));
+      },
+      [n, E]
+    ),
+    F = useCallback((w) => {
+      l(w.target.value);
+    }, []),
+    K = useCallback(() => {
+      u(false);
+      let w = parseInt(p, 10);
+      !isNaN(w) && w >= i && w <= c && t?.(w);
+    }, [p, i, c, t]),
+    te = useCallback(
+      (w) => {
+        if (w.key === 'Enter') (w.preventDefault(), K(), m(false));
+        else if (w.key === 'Escape') (u(false), m(false));
+        else if (w.key === 'ArrowUp') {
+          w.preventDefault();
+          let N = fo(C, o, c);
+          (l(N.toString()), t?.(N));
+        } else if (w.key === 'ArrowDown') {
+          w.preventDefault();
+          let N = ho(C, o, i);
+          (l(N.toString()), t?.(N));
+        }
+      },
+      [K, C, o, c, i, t]
+    ),
+    M = useCallback(
+      (w) => {
+        (t?.(w), m(false), u(false));
+      },
+      [t]
+    ),
+    z = useCallback((w) => {
+      w.target.tagName !== 'INPUT' && w.preventDefault();
+    }, []);
+  return jsxs('div', {
+    ref: S,
+    className: P('flex items-center', r),
+    onMouseDown: z,
+    children: [
+      jsx(U, {
+        variant: 'ghost',
+        size: 'icon-sm',
+        className: P(
+          'h-7 w-7 text-slate-500 hover:text-slate-900 hover:bg-slate-100/80 rounded-r-none',
+          n && 'opacity-30 cursor-not-allowed'
+        ),
+        onMouseDown: R,
+        disabled: n || C <= i,
+        'aria-label': 'Decrease font size',
+        'data-testid': 'font-size-decrease',
+        children: jsx(x, { name: 'remove', size: 18 }),
+      }),
+      jsx('div', {
+        className: 'relative',
+        children: d
+          ? jsx('input', {
+              ref: h,
+              type: 'text',
+              value: p,
+              onChange: F,
+              onBlur: K,
+              onKeyDown: te,
+              className: P(
+                'h-7 w-10 text-center text-sm border border-slate-300 bg-white',
+                'focus:outline-none focus:ring-1 focus:ring-slate-400',
+                'rounded-none'
+              ),
+              'aria-label': 'Font size',
+              'data-testid': 'font-size-input',
+            })
+          : jsx('button', {
+              type: 'button',
+              onClick: k,
+              className: P(
+                'h-7 w-10 text-center text-sm border border-slate-200 bg-white',
+                'hover:border-slate-300 hover:bg-slate-50',
+                'focus:outline-none focus:ring-1 focus:ring-slate-400',
+                'rounded-none',
+                n && 'opacity-50 cursor-not-allowed'
+              ),
+              disabled: n,
+              'aria-label': 'Font size',
+              'aria-haspopup': 'listbox',
+              'aria-expanded': f,
+              'data-testid': 'font-size-display',
+              children: E,
+            }),
+      }),
+      f &&
+        jsx('div', {
+          ref: I,
+          style: {
+            ...b,
+            backgroundColor: 'white',
+            border: '1px solid #e2e8f0',
+            borderRadius: 6,
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.12)',
+            maxHeight: 240,
+            overflowY: 'auto',
+            minWidth: 60,
+          },
+          role: 'listbox',
+          'aria-label': 'Font sizes',
+          children: o.map((w) =>
+            jsx(
+              'button',
+              {
+                type: 'button',
+                onClick: () => M(w),
+                className: P(
+                  'w-full px-3 py-1.5 text-sm text-left',
+                  'hover:bg-slate-100',
+                  w === C && 'bg-slate-100 font-medium'
+                ),
+                role: 'option',
+                'aria-selected': w === C,
+                children: w,
+              },
+              w
+            )
+          ),
+        }),
+      jsx(U, {
+        variant: 'ghost',
+        size: 'icon-sm',
+        className: P(
+          'h-7 w-7 text-slate-500 hover:text-slate-900 hover:bg-slate-100/80 rounded-l-none',
+          n && 'opacity-30 cursor-not-allowed'
+        ),
+        onMouseDown: B,
+        disabled: n || C >= c,
+        'aria-label': 'Increase font size',
+        'data-testid': 'font-size-increase',
+        children: jsx(x, { name: 'add', size: 18 }),
+      }),
+    ],
+  });
+}
+var vi = [
+    { name: 'Dark Red', hex: 'C00000' },
+    { name: 'Red', hex: 'FF0000' },
+    { name: 'Orange', hex: 'FFC000' },
+    { name: 'Yellow', hex: 'FFFF00' },
+    { name: 'Light Green', hex: '92D050' },
+    { name: 'Green', hex: '00B050' },
+    { name: 'Light Blue', hex: '00B0F0' },
+    { name: 'Blue', hex: '0070C0' },
+    { name: 'Dark Blue', hex: '002060' },
+    { name: 'Purple', hex: '7030A0' },
+  ],
+  ut = 18,
+  bi = 2,
+  xi = { position: 'relative', display: 'inline-block' },
+  Si = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '40px',
+    height: '32px',
+    padding: '2px 6px',
+    border: 'none',
+    borderRadius: '4px',
+    backgroundColor: 'transparent',
+    cursor: 'pointer',
+    transition: 'background-color 0.1s',
+    color: 'var(--doc-text-muted)',
+  },
+  yi = {
+    padding: '10px',
+    backgroundColor: '#fff',
+    border: '1px solid #d0d0d0',
+    borderRadius: '6px',
+    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.15)',
+    width: 'auto',
+  },
+  Ht = { fontSize: '11px', color: '#666', marginBottom: '4px', fontWeight: 500 },
+  Et = { height: '1px', backgroundColor: '#e0e0e0', margin: '8px 0' },
+  So = { display: 'grid', gap: `${bi}px` },
+  pt = {
+    width: `${ut}px`,
+    height: `${ut}px`,
+    border: '1px solid #c0c0c0',
+    borderRadius: '2px',
+    cursor: 'pointer',
+    padding: 0,
+    transition: 'transform 0.1s, border-color 0.1s',
+  },
+  yo = { ...pt, transform: 'scale(1.15)', borderColor: '#333', zIndex: 1 },
+  Co = { ...pt, borderWidth: '2px', borderColor: '#0066cc', boxShadow: '0 0 0 1px #0066cc' },
+  Ci = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    width: '100%',
+    padding: '5px 8px',
+    border: '1px solid #d0d0d0',
+    borderRadius: '4px',
+    backgroundColor: '#fff',
+    cursor: 'pointer',
+    fontSize: '12px',
+    color: '#333',
+  },
+  Ti = { display: 'flex', alignItems: 'center', gap: '6px' },
+  wi = {
+    width: '70px',
+    height: '24px',
+    padding: '2px 6px',
+    border: '1px solid #ccc',
+    borderRadius: '3px',
+    fontSize: '12px',
+  },
+  Ii = {
+    height: '24px',
+    padding: '0 10px',
+    border: '1px solid #ccc',
+    borderRadius: '3px',
+    backgroundColor: '#f5f5f5',
+    fontSize: '12px',
+    cursor: 'pointer',
+  },
+  Pi = { width: '16px', height: '4px', borderRadius: '1px', marginTop: '-2px' };
+function xo(e, t, o) {
+  if (!e) return t === 'text' || t === 'border' ? '#000000' : 'transparent';
+  if (typeof e == 'string') {
+    if (t === 'highlight') {
+      let n = b(e);
+      return n || (e === 'none' ? 'transparent' : e.startsWith('#') ? e : `#${e}`);
+    }
+    return e.startsWith('#') ? e : `#${e}`;
+  }
+  return a(e, o);
+}
+function Mi(e) {
+  let t = e.replace(/^#/, '');
+  if (t.length !== 6) return false;
+  let o = parseInt(t.slice(0, 2), 16),
+    n = parseInt(t.slice(2, 4), 16),
+    r = parseInt(t.slice(4, 6), 16);
+  return (o * 299 + n * 587 + r * 114) / 1e3 > 230;
+}
+function To(e, t, o) {
+  return e
+    ? (typeof e == 'string'
+        ? e.replace(/^#/, '').toUpperCase()
+        : a(e, o).replace(/^#/, '').toUpperCase()) === t.toUpperCase()
+    : false;
+}
+function ki({ matrix: e, selectedColor: t, theme: o, onSelect: n }) {
+  let [r, a] = useState(null);
+  return jsx('div', {
+    style: { ...So, gridTemplateColumns: `repeat(10, ${ut}px)` },
+    children: e.flatMap((i, c) =>
+      i.map((d, u) => {
+        let p = `${c}-${u}`,
+          l = r === p,
+          f = To(t, d.hex, o);
+        return jsx(
+          'button',
+          {
+            type: 'button',
+            style: { ...(f ? Co : l ? yo : pt), backgroundColor: `#${d.hex}` },
+            title: d.label,
+            'aria-label': d.label,
+            'aria-selected': f,
+            onClick: () => n(d),
+            onMouseDown: (m) => m.preventDefault(),
+            onMouseEnter: () => a(p),
+            onMouseLeave: () => a(null),
+          },
+          p
+        );
+      })
+    ),
+  });
+}
+function Ri({ selectedColor: e, theme: t, onSelect: o }) {
+  let [n, r] = useState(null);
+  return jsx('div', {
+    style: { ...So, gridTemplateColumns: `repeat(10, ${ut}px)` },
+    children: vi.map((a, i) => {
+      let c = n === i,
+        d = To(e, a.hex, t);
+      return jsx(
+        'button',
+        {
+          type: 'button',
+          style: { ...(d ? Co : c ? yo : pt), backgroundColor: `#${a.hex}` },
+          title: a.name,
+          'aria-label': a.name,
+          'aria-selected': d,
+          onClick: () => o(a.hex),
+          onMouseDown: (u) => u.preventDefault(),
+          onMouseEnter: () => r(i),
+          onMouseLeave: () => r(null),
+        },
+        a.hex
+      );
+    }),
+  });
+}
+function Ee({
+  mode: e,
+  value: t,
+  onChange: o,
+  theme: n,
+  disabled: r = false,
+  className: a,
+  style: i,
+  title: c,
+  icon: d,
+  autoLabel: u,
+}) {
+  let [p$1, l] = useState(false),
+    [f, m] = useState(false),
+    [h, v] = useState('');
+  useEffect(() => {
+    let y = xo(t, e, n).replace(/^#/, '');
+    /^[0-9A-Fa-f]{6}$/.test(y) && v(y.toUpperCase());
+  }, [t, e, n]);
+  let S = useCallback(() => l(false), []),
+    { containerRef: I, dropdownRef: b, dropdownStyle: C } = Y({ isOpen: p$1, onClose: S }),
+    E = n?.colorScheme ?? null,
+    R = useMemo(() => p(E), [E]),
+    B = useMemo(() => xo(t, e, n), [t, e, n]),
+    k = useCallback(() => {
+      r || l((y) => !y);
+    }, [r]),
+    F = useCallback(
+      (y) => {
+        if (e === 'highlight') o?.(y.hex);
+        else {
+          let le = { themeColor: y.themeSlot, rgb: y.hex };
+          (y.tint && (le.themeTint = y.tint), y.shade && (le.themeShade = y.shade), o?.(le));
+        }
+        l(false);
+      },
+      [e, o]
+    ),
+    K = useCallback(
+      (y) => {
+        (o?.(e === 'highlight' ? y : { rgb: y }), l(false));
+      },
+      [e, o]
+    ),
+    te = useCallback(() => {
+      (o?.(e === 'highlight' ? 'none' : { auto: true }), l(false));
+    }, [e, o]),
+    M = useCallback(() => {
+      let y = h.replace(/^#/, '').toUpperCase();
+      /^[0-9A-F]{6}$/i.test(y) && (o?.(e === 'highlight' ? y : { rgb: y }), l(false), v(''));
+    }, [e, h, o]),
+    z = {
+      ...Si,
+      ...(r
+        ? { cursor: 'default', opacity: 0.38 }
+        : p$1
+          ? { backgroundColor: 'var(--doc-primary-light)', color: 'var(--doc-primary)' }
+          : f
+            ? { backgroundColor: 'var(--doc-bg-hover)' }
+            : {}),
+    },
+    w = e === 'text' ? 'Font Color' : e === 'highlight' ? 'Text Highlight Color' : 'Border Color',
+    N =
+      d ??
+      (e === 'text' ? 'format_color_text' : e === 'highlight' ? 'ink_highlighter' : 'border_color');
+  return jsxs('div', {
+    ref: I,
+    className: `docx-advanced-color-picker ${a || ''}`,
+    style: { ...xi, ...i },
+    children: [
+      jsxs('button', {
+        type: 'button',
+        className: 'docx-advanced-color-picker-button',
+        style: z,
+        onClick: k,
+        onMouseDown: (y) => y.preventDefault(),
+        onMouseEnter: () => m(true),
+        onMouseLeave: () => m(false),
+        disabled: r,
+        title: c || w,
+        'aria-label': c || w,
+        'aria-haspopup': 'true',
+        'aria-expanded': p$1,
+        children: [
+          jsxs('div', {
+            style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0 },
+            children: [
+              jsx(x, { name: N, size: 18 }),
+              jsx('div', {
+                style: {
+                  ...Pi,
+                  backgroundColor: B === 'transparent' ? '#fff' : B,
+                  outline: B === 'transparent' || Mi(B) ? '1px solid #bbb' : 'none',
+                },
+              }),
+            ],
+          }),
+          jsx(x, { name: 'arrow_drop_down', size: 14 }),
+        ],
+      }),
+      p$1 &&
+        jsx('div', {
+          ref: b,
+          className: 'docx-advanced-color-picker-dropdown',
+          style: { ...C, ...yi },
+          role: 'dialog',
+          'aria-label': `${w} picker`,
+          onMouseDown: (y) => {
+            y.target.tagName !== 'INPUT' && y.preventDefault();
+          },
+          children: jsxs(Fragment, {
+            children: [
+              jsxs('button', {
+                type: 'button',
+                style: Ci,
+                onClick: te,
+                onMouseDown: (y) => y.preventDefault(),
+                children: [
+                  e === 'highlight'
+                    ? jsx('span', {
+                        style: {
+                          display: 'inline-block',
+                          width: '16px',
+                          height: '16px',
+                          border: '1px solid #ccc',
+                          borderRadius: '2px',
+                          position: 'relative',
+                          backgroundColor: '#fff',
+                        },
+                        children: jsx('span', {
+                          style: {
+                            position: 'absolute',
+                            top: '50%',
+                            left: '-1px',
+                            right: '-1px',
+                            height: '2px',
+                            backgroundColor: '#ff0000',
+                            transform: 'rotate(-45deg)',
+                          },
+                        }),
+                      })
+                    : jsx('span', {
+                        style: {
+                          display: 'inline-block',
+                          width: '16px',
+                          height: '16px',
+                          backgroundColor: '#000',
+                          borderRadius: '2px',
+                        },
+                      }),
+                  u ?? (e === 'highlight' ? 'No Color' : 'Automatic'),
+                ],
+              }),
+              jsx('div', { style: Et }),
+              jsx('div', { style: Ht, children: 'Theme Colors' }),
+              jsx(ki, { matrix: R, selectedColor: t, theme: n, onSelect: F }),
+              jsx('div', { style: Et }),
+              jsx('div', { style: Ht, children: 'Standard Colors' }),
+              jsx(Ri, { selectedColor: t, theme: n, onSelect: K }),
+              jsx('div', { style: Et }),
+              jsx('div', { style: Ht, children: 'Custom Color' }),
+              jsxs('div', {
+                style: Ti,
+                children: [
+                  jsx('span', { style: { fontSize: '12px', color: '#666' }, children: '#' }),
+                  jsx('input', {
+                    type: 'text',
+                    style: wi,
+                    value: h,
+                    onChange: (y) => v(y.target.value.replace(/[^0-9A-Fa-f]/g, '').slice(0, 6)),
+                    onKeyDown: (y) => {
+                      y.key === 'Enter' && M();
+                    },
+                    onMouseDown: (y) => {
+                      y.stopPropagation();
+                    },
+                    placeholder: 'FF0000',
+                    maxLength: 6,
+                    'aria-label': 'Custom hex color',
+                  }),
+                  jsx('button', {
+                    type: 'button',
+                    style: {
+                      ...Ii,
+                      opacity: /^[0-9A-Fa-f]{6}$/.test(h) ? 1 : 0.4,
+                      cursor: /^[0-9A-Fa-f]{6}$/.test(h) ? 'pointer' : 'default',
+                    },
+                    onClick: M,
+                    onMouseDown: (y) => y.preventDefault(),
+                    disabled: !/^[0-9A-Fa-f]{6}$/.test(h),
+                    children: 'Apply',
+                  }),
+                ],
+              }),
+            ],
+          }),
+        }),
+    ],
+  });
+}
+function ee({ content: e, children: t, side: o = 'bottom', delayMs: n = 400 }) {
+  let [r, a] = J.useState(false),
+    [i, c] = J.useState({ x: 0, y: 0 }),
+    d = J.useRef(null),
+    u = J.useRef(null),
+    p = J.useCallback(() => {
+      u.current = setTimeout(() => {
+        if (d.current) {
+          let h = d.current.getBoundingClientRect(),
+            v = h.left + h.width / 2,
+            S = o === 'top' ? h.top - 8 : h.bottom + 8;
+          c({ x: v, y: S });
+        }
+        a(true);
+      }, n);
+    }, [n, o]),
+    l = J.useCallback(() => {
+      (u.current && (clearTimeout(u.current), (u.current = null)), a(false));
+    }, []);
+  J.useEffect(
+    () => () => {
+      u.current && clearTimeout(u.current);
+    },
+    []
+  );
+  let f = t.props,
+    m = J.cloneElement(t, {
+      ref: d,
+      onMouseEnter: (h) => {
+        (p(), f.onMouseEnter?.(h));
+      },
+      onMouseLeave: (h) => {
+        (l(), f.onMouseLeave?.(h));
+      },
+    });
+  return jsxs(Fragment, {
+    children: [
+      m,
+      r &&
+        jsx('div', {
+          className:
+            'fixed z-50 px-2 py-1 text-xs font-medium text-white bg-slate-900 rounded-md shadow-lg',
+          style: {
+            left: i.x,
+            top: i.y,
+            transform:
+              o === 'top'
+                ? 'translate(-50%, -100%)'
+                : o === 'bottom'
+                  ? 'translate(-50%, 0)'
+                  : void 0,
+          },
+          children: e,
+        }),
+    ],
+  });
+}
+var nt = 20,
+  Dt = [
+    {
+      value: 'left',
+      label: 'Align Left',
+      icon: jsx(x, { name: 'format_align_left', size: nt }),
+      iconName: 'format_align_left',
+      shortcut: 'Ctrl+L',
+    },
+    {
+      value: 'center',
+      label: 'Center',
+      icon: jsx(x, { name: 'format_align_center', size: nt }),
+      iconName: 'format_align_center',
+      shortcut: 'Ctrl+E',
+    },
+    {
+      value: 'right',
+      label: 'Align Right',
+      icon: jsx(x, { name: 'format_align_right', size: nt }),
+      iconName: 'format_align_right',
+      shortcut: 'Ctrl+R',
+    },
+    {
+      value: 'both',
+      label: 'Justify',
+      icon: jsx(x, { name: 'format_align_justify', size: nt }),
+      iconName: 'format_align_justify',
+      shortcut: 'Ctrl+J',
+    },
+  ];
+function Po({ value: e = 'left', onChange: t, disabled: o = false }) {
+  let [n, r] = useState(false),
+    a = useCallback(() => r(false), []),
+    {
+      containerRef: i,
+      dropdownRef: c,
+      dropdownStyle: d,
+      handleMouseDown: u,
+    } = Y({ isOpen: n, onClose: a }),
+    p = useCallback(
+      (m) => {
+        (o || t?.(m), r(false));
+      },
+      [o, t]
+    ),
+    l = Dt.find((m) => m.value === e) || Dt[0],
+    f = jsxs(U, {
+      variant: 'ghost',
+      size: 'icon-sm',
+      className: P(
+        'text-slate-500 hover:text-slate-900 hover:bg-slate-100/80',
+        n && 'bg-slate-100',
+        o && 'opacity-30 cursor-not-allowed'
+      ),
+      onMouseDown: u,
+      onClick: () => !o && r((m) => !m),
+      disabled: o,
+      'aria-label': `${l.label}${l.shortcut ? ` (${l.shortcut})` : ''}`,
+      'aria-expanded': n,
+      'aria-haspopup': 'true',
+      'data-testid': 'toolbar-alignment',
+      children: [
+        jsx(x, { name: l.iconName, size: nt }),
+        jsx(x, { name: 'arrow_drop_down', size: 14, className: '-ml-1' }),
+      ],
+    });
+  return jsxs('div', {
+    ref: i,
+    style: { position: 'relative', display: 'inline-block' },
+    children: [
+      n
+        ? f
+        : jsx(ee, { content: `${l.label}${l.shortcut ? ` (${l.shortcut})` : ''}`, children: f }),
+      n &&
+        !o &&
+        jsx('div', {
+          ref: c,
+          style: {
+            ...d,
+            backgroundColor: 'white',
+            border: '1px solid var(--doc-border)',
+            borderRadius: 8,
+            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.12)',
+            padding: 6,
+          },
+          onMouseDown: (m) => m.stopPropagation(),
+          children: jsx('div', {
+            style: { display: 'flex', gap: 2 },
+            children: Dt.map((m) => {
+              let h = e === m.value;
+              return jsx(
+                'button',
+                {
+                  type: 'button',
+                  title: `${m.label}${m.shortcut ? ` (${m.shortcut})` : ''}`,
+                  'data-testid': `alignment-${m.value}`,
+                  style: {
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: 32,
+                    height: 32,
+                    border: '1px solid transparent',
+                    borderRadius: 4,
+                    backgroundColor: h ? 'var(--doc-primary-light)' : 'transparent',
+                    cursor: 'pointer',
+                    color: h ? 'var(--doc-primary)' : 'var(--doc-text)',
+                  },
+                  onMouseDown: (v) => v.preventDefault(),
+                  onMouseEnter: (v) => {
+                    h || (v.currentTarget.style.backgroundColor = 'var(--doc-bg-hover)');
+                  },
+                  onMouseLeave: (v) => {
+                    v.currentTarget.style.backgroundColor = h
+                      ? 'var(--doc-primary-light)'
+                      : 'transparent';
+                  },
+                  onClick: () => p(m.value),
+                  children: jsx(x, { name: m.iconName, size: 18 }),
+                },
+                m.value
+              );
+            }),
+          }),
+        }),
+    ],
+  });
+}
+var qi = { display: 'inline-flex', alignItems: 'center', gap: '4px' },
+  Mo = { display: 'inline-flex', alignItems: 'center', gap: '4px' },
+  ht = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '32px',
+    height: '32px',
+    padding: '4px',
+    border: 'none',
+    borderRadius: '4px',
+    backgroundColor: 'transparent',
+    cursor: 'pointer',
+    transition: 'background-color 0.1s',
+    color: 'var(--doc-text-muted)',
+  },
+  Ai = { ...ht, backgroundColor: 'var(--doc-bg-hover)' },
+  Bi = { ...ht, backgroundColor: 'var(--doc-primary-light)', color: 'var(--doc-primary)' },
+  Fi = { ...ht, cursor: 'default', opacity: 0.38 },
+  Oi = { width: '28px', height: '28px', padding: '2px' },
+  zi = { width: '1px', height: '20px', backgroundColor: 'var(--doc-border)', margin: '0 6px' },
+  dt = 20;
+function mt({
+  active: e = false,
+  disabled: t = false,
+  title: o,
+  onClick: n,
+  children: r,
+  className: a,
+  style: i,
+}) {
+  let [c, d] = useState(false),
+    u = { ...(t ? Fi : e ? Bi : c ? Ai : ht), ...i },
+    p = (l) => {
+      l.preventDefault();
+    };
+  return jsx('button', {
+    type: 'button',
+    className: `docx-list-button ${e ? 'docx-list-button-active' : ''} ${t ? 'docx-list-button-disabled' : ''} ${a || ''}`,
+    style: u,
+    onMouseDown: p,
+    onClick: t ? void 0 : n,
+    onMouseEnter: () => d(true),
+    onMouseLeave: () => d(false),
+    disabled: t,
+    title: o,
+    'aria-label': o,
+    'aria-pressed': e,
+    role: 'button',
+    children: r,
+  });
+}
+function ko({
+  listState: e,
+  onBulletList: t,
+  onNumberedList: o,
+  onIndent: n,
+  onOutdent: r,
+  disabled: a = false,
+  className: i,
+  style: c,
+  showIndentButtons: d = true,
+  compact: u = false,
+  hasIndent: p = false,
+}) {
+  let l = useCallback(() => (u ? { ...Oi } : {}), [u]),
+    f = e?.type === 'bullet',
+    m = e?.type === 'numbered',
+    v = ((e?.isInList || f || m) && (e?.level ?? 0) > 0) || p;
+  return jsxs('div', {
+    className: `docx-list-buttons ${i || ''}`,
+    style: { ...qi, ...c },
+    role: 'group',
+    'aria-label': 'List formatting',
+    children: [
+      jsxs('div', {
+        style: Mo,
+        role: 'group',
+        'aria-label': 'List type',
+        children: [
+          jsx(mt, {
+            active: f,
+            disabled: a,
+            title: 'Bullet List',
+            onClick: t,
+            style: l(),
+            children: jsx(x, { name: 'format_list_bulleted', size: dt }),
+          }),
+          jsx(mt, {
+            active: m,
+            disabled: a,
+            title: 'Numbered List',
+            onClick: o,
+            style: l(),
+            children: jsx(x, { name: 'format_list_numbered', size: dt }),
+          }),
+        ],
+      }),
+      d &&
+        jsxs(Fragment, {
+          children: [
+            jsx('div', { style: zi, role: 'separator' }),
+            jsxs('div', {
+              style: Mo,
+              role: 'group',
+              'aria-label': 'List indentation',
+              children: [
+                jsx(mt, {
+                  active: false,
+                  disabled: a || !v,
+                  title: 'Decrease Indent',
+                  onClick: r,
+                  style: l(),
+                  children: jsx(x, { name: 'format_indent_decrease', size: dt }),
+                }),
+                jsx(mt, {
+                  active: false,
+                  disabled: a,
+                  title: 'Increase Indent',
+                  onClick: n,
+                  style: l(),
+                  children: jsx(x, { name: 'format_indent_increase', size: dt }),
+                }),
+              ],
+            }),
+          ],
+        }),
+    ],
+  });
+}
+function Ro() {
+  return { type: 'none', level: 0, isInList: false };
+}
+var Wi = [
+  { label: 'Single', value: 1, twipsValue: 240 },
+  { label: '1.15', value: 1.15, twipsValue: 276 },
+  { label: '1.5', value: 1.5, twipsValue: 360 },
+  { label: 'Double', value: 2, twipsValue: 480 },
+];
+function Zo({ value: e, onChange: t, options: o = Wi, disabled: n = false, className: r }) {
+  let a = J.useMemo(
+      () => (e === void 0 ? o[0] : o.find((c) => c.twipsValue === e) || o[0]),
+      [e, o]
+    ),
+    i = J.useCallback(
+      (c) => {
+        let d = parseInt(c, 10);
+        isNaN(d) || t?.(d);
+      },
+      [t]
+    );
+  return jsxs(ye, {
+    value: a.twipsValue.toString(),
+    onValueChange: i,
+    disabled: n,
+    children: [
+      jsx(Ce, {
+        className: P('h-8 text-sm gap-0.5 px-2', r),
+        style: { width: 'auto' },
+        title: `Line spacing: ${a.label}`,
+        children: jsx(Lt, { className: 'h-5 w-5 shrink-0' }),
+      }),
+      jsxs(Te, {
+        children: [
+          o.map((c) =>
+            jsx(ce, { value: c.twipsValue.toString(), children: c.label }, c.twipsValue)
+          ),
+          jsx(et, {}),
+          jsx(Be, { children: jsx(Fe, { children: 'Paragraph spacing' }) }),
+        ],
+      }),
+    ],
+  });
+}
+var Ho = [
+    {
+      styleId: 'Normal',
+      name: 'Normal text',
+      type: 'paragraph',
+      isDefault: true,
+      priority: 0,
+      qFormat: true,
+      fontSize: 22,
+    },
+    {
+      styleId: 'Title',
+      name: 'Title',
+      type: 'paragraph',
+      priority: 1,
+      qFormat: true,
+      fontSize: 52,
+      bold: true,
+    },
+    {
+      styleId: 'Subtitle',
+      name: 'Subtitle',
+      type: 'paragraph',
+      priority: 2,
+      qFormat: true,
+      fontSize: 30,
+      color: '666666',
+    },
+    {
+      styleId: 'Heading1',
+      name: 'Heading 1',
+      type: 'paragraph',
+      priority: 3,
+      qFormat: true,
+      fontSize: 40,
+      bold: true,
+    },
+    {
+      styleId: 'Heading2',
+      name: 'Heading 2',
+      type: 'paragraph',
+      priority: 4,
+      qFormat: true,
+      fontSize: 32,
+      bold: true,
+    },
+    {
+      styleId: 'Heading3',
+      name: 'Heading 3',
+      type: 'paragraph',
+      priority: 5,
+      qFormat: true,
+      fontSize: 28,
+      bold: true,
+    },
+  ],
+  $i = '#4a6c8c',
+  Ui = {
+    Title: 26,
+    Subtitle: 18,
+    Heading1: 24,
+    Heading2: 18,
+    Heading3: 16,
+    Heading4: 14,
+    Heading5: 13,
+    Heading6: 13,
+    Normal: 14,
+  };
+function Gi(e) {
+  let t = {},
+    o = Ui[e.styleId];
+  if (o) t.fontSize = `${o}px`;
+  else {
+    let n = e.fontSize ? e.fontSize / 2 : 11,
+      r = Math.min(Math.max(n, 11), 20);
+    t.fontSize = `${r}px`;
+  }
+  return (
+    (t.lineHeight = '1.3'),
+    e.bold && (t.fontWeight = 'bold'),
+    e.italic && (t.fontStyle = 'italic'),
+    e.color ? (t.color = `#${e.color}`) : e.styleId.startsWith('Heading') && (t.color = $i),
+    t
+  );
+}
+function Eo({
+  value: e,
+  onChange: t,
+  styles: o,
+  disabled: n = false,
+  className: r,
+  width: a = 120,
+}) {
+  let i = J.useMemo(
+      () =>
+        !o || o.length === 0
+          ? Ho
+          : o
+              .filter((l) => l.type === 'paragraph')
+              .filter((l) => (l.qFormat ? true : !(l.hidden || l.semiHidden)))
+              .map((l) => {
+                let f = Ho.find((m) => m.styleId === l.styleId);
+                return {
+                  styleId: l.styleId,
+                  name: l.name || l.styleId,
+                  type: l.type,
+                  isDefault: l.default,
+                  qFormat: l.qFormat,
+                  priority: l.uiPriority ?? 99,
+                  fontSize: l.rPr?.fontSize ?? f?.fontSize,
+                  bold: l.rPr?.bold ?? f?.bold,
+                  italic: l.rPr?.italic ?? f?.italic,
+                  color: l.rPr?.color?.rgb ?? f?.color,
+                };
+              })
+              .sort((l, f) => (l.priority ?? 99) - (f.priority ?? 99)),
+      [o]
+    ),
+    c = J.useCallback(
+      (p) => {
+        t?.(p);
+      },
+      [t]
+    ),
+    d = e || 'Normal',
+    u = i.find((p) => p.styleId === d)?.name || d;
+  return jsxs(ye, {
+    value: d,
+    onValueChange: c,
+    disabled: n,
+    children: [
+      jsx(Ce, {
+        className: P('h-8 text-sm', r),
+        style: { width: typeof a == 'number' ? `${a}px` : a },
+        'aria-label': 'Select paragraph style',
+        children: jsx('span', { className: 'truncate', children: u }),
+      }),
+      jsx(Te, {
+        className: 'min-w-[260px] max-h-[400px]',
+        children: i.map((p) =>
+          jsx(
+            ce,
+            {
+              value: p.styleId,
+              className: 'py-2.5 px-3',
+              children: jsx('span', { style: Gi(p), children: p.name }),
+            },
+            p.styleId
+          )
+        ),
+      }),
+    ],
+  });
+}
+var Yi = [
+  { value: 0.5, label: '50%' },
+  { value: 0.75, label: '75%' },
+  { value: 1, label: '100%' },
+  { value: 1.25, label: '125%' },
+  { value: 1.5, label: '150%' },
+  { value: 2, label: '200%' },
+];
+function Do({
+  value: e = 1,
+  onChange: t,
+  levels: o = Yi,
+  disabled: n = false,
+  className: r,
+  compact: a = false,
+}) {
+  let i = J.useMemo(() => {
+      let d = o.find((u) => Math.abs(u.value - e) < 0.001);
+      return d ? d.label : `${Math.round(e * 100)}%`;
+    }, [o, e]),
+    c = J.useCallback(
+      (d) => {
+        let u = parseFloat(d);
+        isNaN(u) || t?.(u);
+      },
+      [t]
+    );
+  return jsxs(ye, {
+    value: e.toString(),
+    onValueChange: c,
+    disabled: n,
+    children: [
+      jsx(Ce, {
+        className: P(a ? 'h-7 min-w-[55px] text-xs' : 'h-8 min-w-[70px] text-sm', r),
+        'aria-label': `Zoom: ${i}`,
+        children: jsx(ct, { placeholder: '100%', children: i }),
+      }),
+      jsx(Te, {
+        children: o.map((d) => jsx(ce, { value: d.value.toString(), children: d.label }, d.value)),
+      }),
+    ],
+  });
+}
+var Ji = [
+  { action: 'borderAll', icon: 'border_all', label: 'All borders' },
+  { action: 'borderOutside', icon: 'border_outer', label: 'Outside borders' },
+  { action: 'borderInside', icon: 'border_inner', label: 'Inside borders' },
+  { action: 'borderTop', icon: 'border_top', label: 'Top border' },
+  { action: 'borderBottom', icon: 'border_bottom', label: 'Bottom border' },
+  { action: 'borderLeft', icon: 'border_left', label: 'Left border' },
+  { action: 'borderRight', icon: 'border_right', label: 'Right border' },
+  { action: 'borderNone', icon: 'border_clear', label: 'No borders' },
+];
+function qo({ onAction: e, disabled: t = false }) {
+  let [o, n] = useState(false),
+    r = useCallback(() => n(false), []),
+    {
+      containerRef: a,
+      dropdownRef: i,
+      dropdownStyle: c,
+      handleMouseDown: d,
+    } = Y({ isOpen: o, onClose: r }),
+    u = useCallback(
+      (l) => {
+        (e(l), n(false));
+      },
+      [e]
+    ),
+    p = jsxs(U, {
+      variant: 'ghost',
+      size: 'icon-sm',
+      className: P(
+        'text-slate-500 hover:text-slate-900 hover:bg-slate-100/80',
+        o && 'bg-slate-100',
+        t && 'opacity-30 cursor-not-allowed'
+      ),
+      onMouseDown: d,
+      onClick: () => !t && n((l) => !l),
+      disabled: t,
+      'aria-label': 'Border style',
+      'aria-expanded': o,
+      'aria-haspopup': 'true',
+      'data-testid': 'toolbar-table-borders',
+      children: [
+        jsx(x, { name: 'border_all', size: 20 }),
+        jsx(x, { name: 'arrow_drop_down', size: 14, className: '-ml-1' }),
+      ],
+    });
+  return jsxs('div', {
+    ref: a,
+    style: { position: 'relative', display: 'inline-block' },
+    children: [
+      o ? p : jsx(ee, { content: 'Borders', children: p }),
+      o &&
+        !t &&
+        jsx('div', {
+          ref: i,
+          style: {
+            ...c,
+            backgroundColor: 'white',
+            border: '1px solid var(--doc-border)',
+            borderRadius: 8,
+            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.12)',
+            padding: 6,
+          },
+          onMouseDown: (l) => l.stopPropagation(),
+          children: jsx('div', {
+            style: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 2 },
+            children: Ji.map(({ action: l, icon: f, label: m }) =>
+              jsx(
+                'button',
+                {
+                  type: 'button',
+                  title: m,
+                  style: {
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: 32,
+                    height: 32,
+                    border: '1px solid transparent',
+                    borderRadius: 4,
+                    backgroundColor: 'transparent',
+                    cursor: 'pointer',
+                    color: 'var(--doc-text)',
+                  },
+                  onMouseDown: (h) => h.preventDefault(),
+                  onMouseEnter: (h) => {
+                    h.currentTarget.style.backgroundColor = 'var(--doc-bg-hover)';
+                  },
+                  onMouseLeave: (h) => {
+                    h.currentTarget.style.backgroundColor = 'transparent';
+                  },
+                  onClick: () => u(l),
+                  children: jsx(x, { name: f, size: 18 }),
+                },
+                typeof l == 'string' ? l : l.type
+              )
+            ),
+          }),
+        }),
+    ],
+  });
+}
+function Ao({ onAction: e, disabled: t = false, theme: o, value: n }) {
+  let r = useCallback(
+    (a) => {
+      typeof a == 'string'
+        ? e({ type: 'borderColor', color: a.replace(/^#/, '') })
+        : a.rgb
+          ? e({ type: 'borderColor', color: a.rgb.replace(/^#/, '') })
+          : a.auto && e({ type: 'borderColor', color: '000000' });
+    },
+    [e]
+  );
+  return jsx(Ee, {
+    mode: 'border',
+    value: n,
+    onChange: r,
+    theme: o,
+    disabled: t,
+    title: 'Border Color',
+  });
+}
+var oa = [
+  { size: 4, label: '0.5 pt', thickness: 0.5 },
+  { size: 8, label: '1 pt', thickness: 1 },
+  { size: 12, label: '1.5 pt', thickness: 1.5 },
+  { size: 16, label: '2 pt', thickness: 2 },
+  { size: 24, label: '3 pt', thickness: 3 },
+];
+function Fo({ onAction: e, disabled: t = false }) {
+  let [o, n] = useState(false),
+    r = useCallback(() => n(false), []),
+    {
+      containerRef: a,
+      dropdownRef: i,
+      dropdownStyle: c,
+      handleMouseDown: d,
+    } = Y({ isOpen: o, onClose: r }),
+    u = useCallback(
+      (l) => {
+        (e({ type: 'borderWidth', size: l }), n(false));
+      },
+      [e]
+    ),
+    p = jsxs(U, {
+      variant: 'ghost',
+      size: 'icon-sm',
+      className: P(
+        'text-slate-500 hover:text-slate-900 hover:bg-slate-100/80',
+        o && 'bg-slate-100',
+        t && 'opacity-30 cursor-not-allowed'
+      ),
+      onMouseDown: d,
+      onClick: () => !t && n((l) => !l),
+      disabled: t,
+      'aria-label': 'Border width',
+      'aria-expanded': o,
+      'aria-haspopup': 'true',
+      'data-testid': 'toolbar-table-border-width',
+      children: [
+        jsx(x, { name: 'line_weight', size: 20 }),
+        jsx(x, { name: 'arrow_drop_down', size: 14, className: '-ml-1' }),
+      ],
+    });
+  return jsxs('div', {
+    ref: a,
+    style: { position: 'relative', display: 'inline-block' },
+    children: [
+      o ? p : jsx(ee, { content: 'Border width', children: p }),
+      o &&
+        !t &&
+        jsx('div', {
+          ref: i,
+          style: {
+            ...c,
+            backgroundColor: 'white',
+            border: '1px solid var(--doc-border)',
+            borderRadius: 8,
+            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.12)',
+            padding: '4px 0',
+            minWidth: 120,
+          },
+          onMouseDown: (l) => l.stopPropagation(),
+          children: oa.map(({ size: l, label: f, thickness: m }) =>
+            jsxs(
+              'button',
+              {
+                type: 'button',
+                style: {
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 10,
+                  padding: '6px 12px',
+                  width: '100%',
+                  border: 'none',
+                  backgroundColor: 'transparent',
+                  cursor: 'pointer',
+                  fontSize: 12,
+                  color: 'var(--doc-text)',
+                },
+                onMouseDown: (h) => h.preventDefault(),
+                onMouseEnter: (h) => {
+                  h.currentTarget.style.backgroundColor = 'var(--doc-bg-hover)';
+                },
+                onMouseLeave: (h) => {
+                  h.currentTarget.style.backgroundColor = 'transparent';
+                },
+                onClick: () => u(l),
+                children: [
+                  jsx('div', {
+                    style: {
+                      width: 50,
+                      height: Math.max(m, 1),
+                      backgroundColor: '#000',
+                      borderRadius: m > 2 ? 1 : 0,
+                    },
+                  }),
+                  jsx('span', { children: f }),
+                ],
+              },
+              l
+            )
+          ),
+        }),
+    ],
+  });
+}
+function Oo({ onAction: e, disabled: t = false, theme: o, value: n }) {
+  let r = useCallback(
+    (a) => {
+      typeof a == 'string' &&
+        e(
+          a === 'none'
+            ? { type: 'cellFillColor', color: null }
+            : { type: 'cellFillColor', color: a.replace(/^#/, '') }
+        );
+    },
+    [e]
+  );
+  return jsx(Ee, {
+    mode: 'highlight',
+    value: n,
+    onChange: r,
+    theme: o,
+    disabled: t,
+    title: 'Cell Fill Color',
+    icon: 'format_color_fill',
+    autoLabel: 'No fill',
+  });
+}
+var ia = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 10,
+    padding: '7px 14px',
+    fontSize: 13,
+    color: 'var(--doc-text)',
+    cursor: 'pointer',
+    border: 'none',
+    backgroundColor: 'transparent',
+    width: '100%',
+    textAlign: 'left',
+  },
+  $e = { height: 1, backgroundColor: 'var(--doc-border)', margin: '4px 0' },
+  Wo = { padding: '6px 14px 2px', fontSize: 11, color: 'var(--doc-text-muted)', fontWeight: 500 };
+function $o({ onAction: e, disabled: t = false, tableContext: o }) {
+  let [n, r] = useState(false),
+    [a, i] = useState(null),
+    c = useCallback(() => r(false), []),
+    {
+      containerRef: d,
+      dropdownRef: u,
+      dropdownStyle: p,
+      handleMouseDown: l,
+    } = Y({ isOpen: n, onClose: c, align: 'right' }),
+    f = o?.table?.attrs?.justification ?? 'left',
+    m = useCallback(
+      (S) => {
+        (e(S), r(false));
+      },
+      [e]
+    ),
+    h = (S, I, b, C, E) => {
+      let R = t || E?.itemDisabled;
+      return jsxs(
+        'button',
+        {
+          type: 'button',
+          role: 'menuitem',
+          style: {
+            ...ia,
+            backgroundColor: a === S && !R ? 'var(--doc-bg-hover)' : 'transparent',
+            color: R ? 'var(--doc-text-muted)' : E?.danger ? 'var(--doc-error)' : 'var(--doc-text)',
+            cursor: R ? 'not-allowed' : 'pointer',
+          },
+          onClick: () => !R && m(C),
+          onMouseEnter: () => i(S),
+          onMouseLeave: () => i(null),
+          disabled: R,
+          children: [
+            jsx(x, { name: I, size: 16, className: E?.danger && !R ? 'text-red-600' : '' }),
+            jsx('span', { style: { flex: 1 }, children: b }),
+          ],
+        },
+        S
+      );
+    },
+    v = jsx(U, {
+      variant: 'ghost',
+      size: 'icon-sm',
+      className: P(
+        'text-slate-500 hover:text-slate-900 hover:bg-slate-100/80',
+        n && 'bg-slate-100',
+        t && 'opacity-30 cursor-not-allowed'
+      ),
+      onMouseDown: l,
+      onClick: () => !t && r((S) => !S),
+      disabled: t,
+      'aria-label': 'More table options',
+      'aria-expanded': n,
+      'aria-haspopup': 'menu',
+      'data-testid': 'toolbar-table-more',
+      children: jsx(x, { name: 'more_vert', size: 20 }),
+    });
+  return jsxs('div', {
+    ref: d,
+    style: { position: 'relative', display: 'inline-block' },
+    children: [
+      n ? v : jsx(ee, { content: 'More table options', children: v }),
+      n &&
+        !t &&
+        jsxs('div', {
+          ref: u,
+          style: {
+            ...p,
+            backgroundColor: 'white',
+            border: '1px solid var(--doc-border)',
+            borderRadius: 8,
+            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.12)',
+            padding: '4px 0',
+            minWidth: 200,
+            maxHeight: '70vh',
+            overflowY: 'auto',
+          },
+          role: 'menu',
+          onMouseDown: (S) => S.stopPropagation(),
+          children: [
+            h('addRowAbove', 'add', 'Insert row above', 'addRowAbove'),
+            h('addRowBelow', 'add', 'Insert row below', 'addRowBelow'),
+            h('addColumnLeft', 'add', 'Insert column left', 'addColumnLeft'),
+            h('addColumnRight', 'add', 'Insert column right', 'addColumnRight'),
+            jsx('div', { style: $e, role: 'separator' }),
+            h('mergeCells', 'call_merge', 'Merge cells', 'mergeCells', {
+              itemDisabled: !o?.hasMultiCellSelection,
+            }),
+            h('splitCell', 'call_split', 'Split cell', 'splitCell', {
+              itemDisabled: !o?.canSplitCell,
+            }),
+            jsx('div', { style: $e, role: 'separator' }),
+            h('deleteRow', 'delete', 'Delete row', 'deleteRow', {
+              danger: true,
+              itemDisabled: (o?.rowCount ?? 0) <= 1,
+            }),
+            h('deleteColumn', 'delete', 'Delete column', 'deleteColumn', {
+              danger: true,
+              itemDisabled: (o?.columnCount ?? 0) <= 1,
+            }),
+            h('deleteTable', 'delete', 'Delete table', 'deleteTable', { danger: true }),
+            jsx('div', { style: $e, role: 'separator' }),
+            jsx('div', { style: Wo, children: 'Vertical alignment' }),
+            jsx('div', {
+              style: { display: 'flex', gap: 4, padding: '4px 14px' },
+              children: ['top', 'center', 'bottom'].map((S) => {
+                let I = {
+                  top: 'vertical_align_top',
+                  center: 'vertical_align_center',
+                  bottom: 'vertical_align_bottom',
+                };
+                return jsx(
+                  'button',
+                  {
+                    type: 'button',
+                    title: { top: 'Top', center: 'Middle', bottom: 'Bottom' }[S],
+                    style: {
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: 32,
+                      height: 28,
+                      border: '1px solid var(--doc-border)',
+                      borderRadius: 4,
+                      backgroundColor: 'transparent',
+                      cursor: 'pointer',
+                    },
+                    onMouseDown: (C) => C.preventDefault(),
+                    onMouseEnter: (C) => {
+                      C.currentTarget.style.backgroundColor = 'var(--doc-bg-hover)';
+                    },
+                    onMouseLeave: (C) => {
+                      C.currentTarget.style.backgroundColor = 'transparent';
+                    },
+                    onClick: () => m({ type: 'cellVerticalAlign', align: S }),
+                    children: jsx(x, { name: I[S], size: 16 }),
+                  },
+                  S
+                );
+              }),
+            }),
+            jsx('div', { style: $e, role: 'separator' }),
+            jsx('div', { style: Wo, children: 'Table alignment' }),
+            jsx('div', {
+              style: { display: 'flex', gap: 4, padding: '4px 14px' },
+              children: ['left', 'center', 'right'].map((S) => {
+                let I = {
+                    left: 'format_align_left',
+                    center: 'format_align_center',
+                    right: 'format_align_right',
+                  },
+                  b = f === S;
+                return jsx(
+                  'button',
+                  {
+                    type: 'button',
+                    title: `Align table ${S}`,
+                    style: {
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: 32,
+                      height: 28,
+                      border: '1px solid var(--doc-border)',
+                      borderRadius: 4,
+                      backgroundColor: b ? 'var(--doc-primary-light)' : 'transparent',
+                      borderColor: b ? 'var(--doc-primary)' : 'var(--doc-border)',
+                      color: b ? 'var(--doc-primary)' : 'var(--doc-text)',
+                      cursor: 'pointer',
+                    },
+                    onMouseDown: (C) => C.preventDefault(),
+                    onClick: () => m({ type: 'tableProperties', props: { justification: S } }),
+                    children: jsx(x, { name: I[S], size: 16 }),
+                  },
+                  S
+                );
+              }),
+            }),
+            jsx('div', { style: $e, role: 'separator' }),
+            h('headerRow', 'table_rows', 'Toggle header row', { type: 'toggleHeaderRow' }),
+            h('distribute', 'view_column', 'Distribute columns evenly', {
+              type: 'distributeColumns',
+            }),
+            h('autoFit', 'fit_width', 'Auto-fit to contents', { type: 'autoFitContents' }),
+            h('noWrap', 'wrap_text', 'Toggle no-wrap', { type: 'toggleNoWrap' }),
+            jsx('div', { style: $e, role: 'separator' }),
+            h('properties', 'settings', 'Table properties...', { type: 'openTableProperties' }),
+          ],
+        }),
+    ],
+  });
+}
+var At = 18,
+  la = 2,
+  Go = {
+    width: At,
+    height: At,
+    backgroundColor: 'white',
+    border: '1px solid var(--doc-border, #d1d5db)',
+    borderRadius: 2,
+    transition: 'background-color 0.1s, border-color 0.1s',
+    cursor: 'pointer',
+  },
+  sa = {
+    ...Go,
+    backgroundColor: 'var(--doc-primary, #3b82f6)',
+    border: '1px solid var(--doc-primary, #3b82f6)',
+  },
+  ca = {
+    marginTop: 6,
+    fontSize: 11,
+    fontWeight: 500,
+    color: 'var(--doc-text, #374151)',
+    textAlign: 'center',
+  };
+function Ko({ onInsert: e, gridRows: t = 6, gridColumns: o = 6 }) {
+  let [n, r] = useState(0),
+    [a, i] = useState(0),
+    c = useCallback(() => {
+      n > 0 && a > 0 && e(n, a);
+    }, [n, a, e]),
+    d = [];
+  for (let p = 1; p <= t; p++)
+    for (let l = 1; l <= o; l++) {
+      let f = p <= n && l <= a;
+      d.push(
+        jsx(
+          'div',
+          {
+            style: f ? sa : Go,
+            onMouseEnter: () => {
+              (r(p), i(l));
+            },
+            onClick: c,
+            role: 'gridcell',
+            'aria-selected': f,
+          },
+          `${p}-${l}`
+        )
+      );
+    }
+  let u = n > 0 && a > 0 ? `${a} \xD7 ${n}` : 'Select size';
+  return jsxs('div', {
+    children: [
+      jsx('div', {
+        style: { display: 'grid', gap: la, gridTemplateColumns: `repeat(${o}, ${At}px)` },
+        onMouseLeave: () => {
+          (r(0), i(0));
+        },
+        role: 'grid',
+        'aria-label': 'Table size selector',
+        children: d,
+      }),
+      jsx('div', { style: ca, children: u }),
+    ],
+  });
+}
+function da(e) {
+  return 'type' in e && e.type === 'separator';
+}
+var Xo = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 2,
+    padding: '2px 8px',
+    border: 'none',
+    background: 'transparent',
+    borderRadius: 4,
+    cursor: 'pointer',
+    fontSize: 13,
+    fontWeight: 400,
+    color: 'var(--doc-text, #374151)',
+    whiteSpace: 'nowrap',
+    height: 28,
+    lineHeight: '28px',
+  },
+  ma = { ...Xo, background: 'var(--doc-hover, #f3f4f6)' },
+  Jo = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+    padding: '6px 12px',
+    border: 'none',
+    background: 'transparent',
+    cursor: 'pointer',
+    fontSize: 13,
+    color: 'var(--doc-text, #374151)',
+    width: '100%',
+    textAlign: 'left',
+    whiteSpace: 'nowrap',
+  },
+  fa = { ...Jo, opacity: 0.4, cursor: 'default' },
+  ha = { height: 1, backgroundColor: 'var(--doc-border, #e5e7eb)', margin: '4px 0' },
+  ga = { marginLeft: 'auto', fontSize: 12, color: 'var(--doc-text-muted, #9ca3af)' },
+  va = {
+    position: 'absolute',
+    left: '100%',
+    top: -4,
+    marginLeft: 2,
+    backgroundColor: 'white',
+    border: '1px solid var(--doc-border, #d1d5db)',
+    borderRadius: 6,
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.12)',
+    padding: 8,
+    zIndex: 1001,
+  };
+function Ft({ label: e, items: t, disabled: o }) {
+  let [n, r] = useState(false),
+    [a, i] = useState(null),
+    c = useRef(null),
+    d = useRef(null),
+    [u, p] = useState({ top: 0, left: 0 }),
+    l = useCallback(() => {
+      (r(false), i(null));
+    }, []);
+  (useEffect(() => {
+    if (!n || !c.current) return;
+    let m = c.current.getBoundingClientRect();
+    p({ top: m.bottom + 2, left: m.left });
+  }, [n]),
+    useEffect(() => {
+      if (!n) return;
+      function m(S) {
+        let I = S.target;
+        c.current && !c.current.contains(I) && d.current && !d.current.contains(I) && l();
+      }
+      function h(S) {
+        S.key === 'Escape' && l();
+      }
+      function v() {
+        l();
+      }
+      return (
+        document.addEventListener('mousedown', m),
+        document.addEventListener('keydown', h),
+        window.addEventListener('scroll', v, true),
+        () => {
+          (document.removeEventListener('mousedown', m),
+            document.removeEventListener('keydown', h),
+            window.removeEventListener('scroll', v, true));
+        }
+      );
+    }, [n, l]));
+  let f = (m) => {
+    m.disabled || m.submenuContent || (m.onClick && (m.onClick(), l()));
+  };
+  return jsxs('div', {
+    style: { position: 'relative' },
+    children: [
+      jsxs('button', {
+        ref: c,
+        type: 'button',
+        onClick: () => !o && r(!n),
+        onMouseDown: (m) => m.preventDefault(),
+        disabled: o,
+        style: n ? ma : Xo,
+        children: [e, jsx(x, { name: 'arrow_drop_down', size: 16 })],
+      }),
+      n &&
+        jsx('div', {
+          ref: d,
+          style: {
+            position: 'fixed',
+            top: u.top,
+            left: u.left,
+            backgroundColor: 'white',
+            border: '1px solid var(--doc-border, #d1d5db)',
+            borderRadius: 6,
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.12)',
+            padding: '4px 0',
+            zIndex: 1e4,
+            minWidth: 200,
+          },
+          onMouseDown: (m) => m.preventDefault(),
+          children: t.map((m, h) => {
+            if (da(m)) return jsx('div', { style: ha }, `sep-${h}`);
+            let v = m;
+            if (v.customContent)
+              return jsx(
+                'div',
+                { onMouseDown: (b) => b.preventDefault(), children: v.customContent },
+                v.label
+              );
+            let S = !!v.submenuContent,
+              I = a === v.label;
+            return jsxs(
+              'div',
+              {
+                style: { position: 'relative' },
+                onMouseEnter: () => S && i(v.label),
+                onMouseLeave: () => S && i(null),
+                children: [
+                  jsxs('button', {
+                    type: 'button',
+                    style: v.disabled ? fa : Jo,
+                    onClick: () => f(v),
+                    onMouseDown: (b) => b.preventDefault(),
+                    onMouseOver: (b) => {
+                      v.disabled ||
+                        (b.currentTarget.style.backgroundColor = 'var(--doc-hover, #f3f4f6)');
+                    },
+                    onMouseOut: (b) => {
+                      b.currentTarget.style.backgroundColor = 'transparent';
+                    },
+                    disabled: v.disabled,
+                    children: [
+                      v.icon && jsx(x, { name: v.icon, size: 18 }),
+                      jsx('span', { children: v.label }),
+                      v.shortcut && jsx('span', { style: ga, children: v.shortcut }),
+                      S &&
+                        jsx('span', {
+                          style: { marginLeft: 'auto' },
+                          children: jsx(x, { name: 'keyboard_arrow_right', size: 16 }),
+                        }),
+                    ],
+                  }),
+                  S &&
+                    I &&
+                    jsx('div', {
+                      style: va,
+                      onMouseDown: (b) => b.preventDefault(),
+                      children: v.submenuContent(l),
+                    }),
+                ],
+              },
+              v.label
+            );
+          }),
+        }),
+    ],
+  });
+}
+var xa = 20;
+function yt({
+  options: e,
+  activeValue: t,
+  triggerIcon: o,
+  tooltipContent: n,
+  onSelect: r,
+  disabled: a = false,
+  ariaLabel: i,
+  testId: c,
+}) {
+  let [d, u] = useState(false),
+    p = useCallback(() => u(false), []),
+    {
+      containerRef: l,
+      dropdownRef: f,
+      dropdownStyle: m,
+      handleMouseDown: h,
+    } = Y({ isOpen: d, onClose: p }),
+    v = useCallback(
+      (I) => {
+        (a || r(I), u(false));
+      },
+      [a, r]
+    ),
+    S = jsxs(U, {
+      variant: 'ghost',
+      size: 'icon-sm',
+      className: P(
+        'text-slate-500 hover:text-slate-900 hover:bg-slate-100/80',
+        d && 'bg-slate-100',
+        a && 'opacity-30 cursor-not-allowed'
+      ),
+      onMouseDown: h,
+      onClick: () => !a && u((I) => !I),
+      disabled: a,
+      'aria-label': i ?? n,
+      'aria-expanded': d,
+      'aria-haspopup': 'true',
+      'data-testid': c,
+      children: [
+        jsx(x, { name: o, size: xa }),
+        jsx(x, { name: 'arrow_drop_down', size: 14, className: '-ml-1' }),
+      ],
+    });
+  return jsxs('div', {
+    ref: l,
+    style: { position: 'relative', display: 'inline-block' },
+    children: [
+      d ? S : jsx(ee, { content: n, children: S }),
+      d &&
+        !a &&
+        jsx('div', {
+          ref: f,
+          style: {
+            ...m,
+            backgroundColor: 'white',
+            border: '1px solid var(--doc-border)',
+            borderRadius: 8,
+            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.12)',
+            padding: 6,
+          },
+          onMouseDown: (I) => I.stopPropagation(),
+          children: jsx('div', {
+            style: { display: 'flex', gap: 2 },
+            children: e.map((I) => {
+              let b = t === I.value;
+              return jsx(
+                'button',
+                {
+                  type: 'button',
+                  title: I.label,
+                  'data-testid': c ? `${c}-${I.value}` : void 0,
+                  style: {
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: 32,
+                    height: 32,
+                    border: '1px solid transparent',
+                    borderRadius: 4,
+                    backgroundColor: b ? 'var(--doc-primary-light)' : 'transparent',
+                    cursor: 'pointer',
+                    color: b ? 'var(--doc-primary)' : 'var(--doc-text)',
+                  },
+                  onMouseDown: (C) => C.preventDefault(),
+                  onMouseEnter: (C) => {
+                    b || (C.currentTarget.style.backgroundColor = 'var(--doc-bg-hover)');
+                  },
+                  onMouseLeave: (C) => {
+                    C.currentTarget.style.backgroundColor = b
+                      ? 'var(--doc-primary-light)'
+                      : 'transparent';
+                  },
+                  onClick: () => v(I.value),
+                  children: jsx(x, { name: I.iconName, size: 18 }),
+                },
+                I.value
+              );
+            }),
+          }),
+        }),
+    ],
+  });
+}
+var Ot = [
+  { value: 'inline', label: 'Inline with text', iconName: 'format_image_left' },
+  { value: 'wrapRight', label: 'Float left (wrap right)', iconName: 'format_image_right' },
+  { value: 'wrapLeft', label: 'Float right (wrap left)', iconName: 'format_image_left' },
+  { value: 'topAndBottom', label: 'Top and bottom', iconName: 'horizontal_rule' },
+  { value: 'behind', label: 'Behind text', iconName: 'flip_to_back' },
+  { value: 'inFront', label: 'In front of text', iconName: 'flip_to_front' },
+];
+function Sa(e) {
+  return e.displayMode === 'float' && e.cssFloat === 'left'
+    ? 'wrapRight'
+    : e.displayMode === 'float' && e.cssFloat === 'right'
+      ? 'wrapLeft'
+      : e.wrapType;
+}
+function tn({ imageContext: e, onChange: t, disabled: o = false }) {
+  let n = Sa(e),
+    r = Ot.find((a) => a.value === n) || Ot[0];
+  return jsx(yt, {
+    options: Ot,
+    activeValue: n,
+    triggerIcon: r.iconName,
+    tooltipContent: `Wrap: ${r.label}`,
+    onSelect: t,
+    disabled: o,
+    testId: 'toolbar-image-wrap',
+  });
+}
+var Ca = [
+  { value: 'rotateCW', label: 'Rotate clockwise', iconName: 'rotate_right' },
+  { value: 'rotateCCW', label: 'Rotate counter-clockwise', iconName: 'rotate_left' },
+  { value: 'flipH', label: 'Flip horizontal', iconName: 'swap_horiz' },
+  { value: 'flipV', label: 'Flip vertical', iconName: 'swap_vert' },
+];
+function on({ onTransform: e, disabled: t = false }) {
+  return jsx(yt, {
+    options: Ca,
+    triggerIcon: 'rotate_right',
+    tooltipContent: 'Transform',
+    onSelect: e,
+    disabled: t,
+    testId: 'toolbar-image-transform',
+  });
+}
+var wa = {
+  FFFF00: 'yellow',
+  '00FF00': 'green',
+  '00FFFF': 'cyan',
+  FF00FF: 'magenta',
+  '0000FF': 'blue',
+  FF0000: 'red',
+  '00008B': 'darkBlue',
+  '008080': 'darkCyan',
+  '008000': 'darkGreen',
+  800080: 'darkMagenta',
+  '8B0000': 'darkRed',
+  808e3: 'darkYellow',
+  808080: 'darkGray',
+  C0C0C0: 'lightGray',
+  '000000': 'black',
+  FFFFFF: 'white',
+};
+function Us(e) {
+  let t = e.replace(/^#/, '').toUpperCase();
+  return wa[t] || null;
+}
+function re({
+  active: e = false,
+  disabled: t = false,
+  title: o,
+  onClick: n,
+  children: r,
+  className: a,
+  ariaLabel: i,
+}) {
+  let c =
+      i?.toLowerCase().replace(/\s+/g, '-') ||
+      o
+        ?.toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/\([^)]*\)/g, '')
+        .trim(),
+    d = (p) => {
+      p.preventDefault();
+    },
+    u = jsx(U, {
+      variant: 'ghost',
+      size: 'icon-sm',
+      className: P(
+        'text-slate-500 hover:text-slate-900 hover:bg-slate-100/80',
+        e && 'bg-slate-900 text-white hover:bg-slate-800 hover:text-white',
+        t && 'opacity-30 cursor-not-allowed',
+        a
+      ),
+      onMouseDown: d,
+      onClick: t ? void 0 : n,
+      disabled: t,
+      'aria-pressed': e,
+      'aria-label': i || o,
+      'data-testid': c ? `toolbar-${c}` : void 0,
+      children: r,
+    });
+  return o ? jsx(ee, { content: o, children: u }) : u;
+}
+function ge({ label: e, children: t, className: o }) {
+  return jsx('div', {
+    className: P('flex items-center gap-0.5 px-1 border-r border-slate-200/50 last:border-r-0', o),
+    role: 'group',
+    'aria-label': e,
+    children: t,
+  });
+}
+function bc() {
+  return jsx('div', { className: 'w-px h-6 bg-slate-200 mx-1.5', role: 'separator' });
+}
+var ie = 20;
+function xc({
+  currentFormatting: e = {},
+  onFormat: t,
+  onUndo: o,
+  onRedo: n,
+  canUndo: r = false,
+  canRedo: a$1 = false,
+  disabled: i = false,
+  className: c,
+  style: d,
+  enableShortcuts: u = true,
+  editorRef: p,
+  children: l,
+  showFontPicker: f = true,
+  showFontSizePicker: m = true,
+  showTextColorPicker: h = true,
+  showHighlightColorPicker: v = true,
+  showAlignmentButtons: S = true,
+  showListButtons: I = true,
+  showLineSpacingPicker: b = true,
+  showStylePicker: C = true,
+  documentStyles: E,
+  theme: R,
+  onPrint: B,
+  showPrintButton: k = true,
+  showZoomControl: F = true,
+  zoom: K,
+  onZoomChange: te,
+  onRefocusEditor: M,
+  onInsertTable: z,
+  showTableInsert: w = true,
+  onInsertImage: N,
+  onInsertPageBreak: y,
+  onInsertTOC: le,
+  imageContext: Ke,
+  onImageWrapType: Ye,
+  onImageTransform: it,
+  onOpenImageProperties: at,
+  tableContext: Pe,
+  onTableAction: Ae,
+}) {
+  let lt = useRef(null),
+    W = useCallback(
+      (Z) => {
+        !i && t && t(Z);
+      },
+      [i, t]
+    ),
+    Me = useCallback(() => {
+      !i && r && o && o();
+    }, [i, r, o]),
+    je = useCallback(() => {
+      !i && a$1 && n && n();
+    }, [i, a$1, n]),
+    Xe = useCallback(
+      (Z) => {
+        !i && t && (t({ type: 'fontFamily', value: Z }), requestAnimationFrame(() => M?.()));
+      },
+      [i, t, M]
+    ),
+    Rt = useCallback(
+      (Z) => {
+        !i && t && (t({ type: 'fontSize', value: Z }), requestAnimationFrame(() => M?.()));
+      },
+      [i, t, M]
+    ),
+    _ = useCallback(
+      (Z) => {
+        !i && t && (t({ type: 'textColor', value: Z }), requestAnimationFrame(() => M?.()));
+      },
+      [i, t, M]
+    ),
+    ke = useCallback(
+      (Z) => {
+        !i &&
+          t &&
+          (t({ type: 'highlightColor', value: typeof Z == 'string' ? Z : '' }),
+          requestAnimationFrame(() => M?.()));
+      },
+      [i, t, M]
+    ),
+    Se = useCallback(
+      (Z) => {
+        !i && t && t({ type: 'alignment', value: Z });
+      },
+      [i, t]
+    ),
+    Re = useCallback(() => {
+      !i && t && t('bulletList');
+    }, [i, t]),
+    se = useCallback(() => {
+      !i && t && t('numberedList');
+    }, [i, t]),
+    Q = useCallback(() => {
+      !i && t && t('indent');
+    }, [i, t]),
+    oe = useCallback(() => {
+      !i && t && t('outdent');
+    }, [i, t]),
+    Le = useCallback(
+      (Z) => {
+        !i && t && (t({ type: 'lineSpacing', value: Z }), requestAnimationFrame(() => M?.()));
+      },
+      [i, t, M]
+    ),
+    xn = useCallback(
+      (Z) => {
+        !i && t && (t({ type: 'applyStyle', value: Z }), requestAnimationFrame(() => M?.()));
+      },
+      [i, t, M]
+    ),
+    Sn = useCallback(
+      (Z, H) => {
+        !i && z && (z(Z, H), requestAnimationFrame(() => M?.()));
+      },
+      [i, z, M]
+    ),
+    Je = useCallback(
+      (Z) => {
+        !i && Ae && (Ae(Z), requestAnimationFrame(() => M?.()));
+      },
+      [i, Ae, M]
+    );
+  useEffect(() => {
+    if (!u) return;
+    let Z = (H) => {
+      let Ze = H.target,
+        to = p?.current,
+        Tn = lt.current,
+        wn = to?.contains(Ze),
+        In = Tn?.contains(Ze);
+      if (!wn && !In) return;
+      if ((H.ctrlKey || H.metaKey) && !H.altKey)
+        switch (H.key.toLowerCase()) {
+          case 'b':
+            (H.preventDefault(), W('bold'));
+            break;
+          case 'i':
+            (H.preventDefault(), W('italic'));
+            break;
+          case 'u':
+            (H.preventDefault(), W('underline'));
+            break;
+          case '=':
+            H.shiftKey
+              ? (H.preventDefault(), W('superscript'))
+              : (H.preventDefault(), W('subscript'));
+            break;
+          case 'l':
+            (H.preventDefault(), Se('left'));
+            break;
+          case 'e':
+            (H.preventDefault(), Se('center'));
+            break;
+          case 'r':
+            (H.preventDefault(), Se('right'));
+            break;
+          case 'j':
+            (H.preventDefault(), Se('both'));
+            break;
+          case 'k':
+            (H.preventDefault(), W('insertLink'));
+            break;
+        }
+    };
+    return (
+      document.addEventListener('keydown', Z),
+      () => {
+        document.removeEventListener('keydown', Z);
+      }
+    );
+  }, [u, W, p]);
+  let yn = useCallback((Z) => {
+      let H = Z.target;
+      H.tagName === 'INPUT' ||
+        H.tagName === 'TEXTAREA' ||
+        H.tagName === 'SELECT' ||
+        H.tagName === 'OPTION' ||
+        Z.preventDefault();
+    }, []),
+    Cn = useCallback(
+      (Z) => {
+        let H = Z.target,
+          Ze = document.activeElement;
+        H.tagName === 'SELECT' ||
+          H.tagName === 'OPTION' ||
+          Ze?.tagName === 'SELECT' ||
+          requestAnimationFrame(() => {
+            M?.();
+          });
+      },
+      [M]
+    );
+  return jsxs('div', {
+    ref: lt,
+    className: P(
+      'flex items-center gap-0 px-2 py-2 bg-white border-b border-slate-100 min-h-[44px] overflow-x-auto',
+      c
+    ),
+    style: d,
+    role: 'toolbar',
+    'aria-label': 'Formatting toolbar',
+    'data-testid': 'toolbar',
+    onMouseDown: yn,
+    onMouseUp: Cn,
+    children: [
+      k &&
+        B &&
+        jsx(Ft, {
+          label: 'File',
+          disabled: i,
+          items: [{ icon: 'print', label: 'Print', shortcut: 'Ctrl+P', onClick: B }],
+        }),
+      jsx(Ft, {
+        label: 'Insert',
+        disabled: i,
+        items: [
+          ...(N ? [{ icon: 'image', label: 'Image', onClick: N }] : []),
+          ...(w && z
+            ? [
+                {
+                  icon: 'grid_on',
+                  label: 'Table',
+                  submenuContent: (Z) =>
+                    jsx(Ko, {
+                      onInsert: (H, Ze) => {
+                        (Sn(H, Ze), Z());
+                      },
+                    }),
+                },
+              ]
+            : []),
+          ...(N || (w && z) ? [{ type: 'separator' }] : []),
+          { icon: 'page_break', label: 'Page break', onClick: y, disabled: !y },
+          { icon: 'format_list_numbered', label: 'Table of contents', onClick: le, disabled: !le },
+        ],
+      }),
+      jsxs(ge, {
+        label: 'History',
+        children: [
+          jsx(re, {
+            onClick: Me,
+            disabled: i || !r,
+            title: 'Undo (Ctrl+Z)',
+            ariaLabel: 'Undo',
+            children: jsx(x, { name: 'undo', size: ie }),
+          }),
+          jsx(re, {
+            onClick: je,
+            disabled: i || !a$1,
+            title: 'Redo (Ctrl+Y)',
+            ariaLabel: 'Redo',
+            children: jsx(x, { name: 'redo', size: ie }),
+          }),
+        ],
+      }),
+      F &&
+        jsx(ge, {
+          label: 'Zoom',
+          children: jsx(Do, {
+            value: K,
+            onChange: te,
+            minZoom: 0.5,
+            maxZoom: 2,
+            disabled: i,
+            compact: true,
+            showButtons: false,
+          }),
+        }),
+      C &&
+        jsx(ge, {
+          label: 'Styles',
+          children: jsx(Eo, {
+            value: e.styleId || 'Normal',
+            onChange: xn,
+            styles: E,
+            theme: R,
+            disabled: i,
+            width: 150,
+          }),
+        }),
+      (f || m) &&
+        jsxs(ge, {
+          label: 'Font',
+          children: [
+            f &&
+              jsx(ao, {
+                value: e.fontFamily || 'Arial',
+                onChange: Xe,
+                disabled: i,
+                width: 70,
+                placeholder: 'Arial',
+              }),
+            m &&
+              jsx(vo, {
+                value: e.fontSize !== void 0 ? go(e.fontSize) : 11,
+                onChange: Rt,
+                disabled: i,
+                width: 50,
+                placeholder: '11',
+              }),
+          ],
+        }),
+      jsxs(ge, {
+        label: 'Text formatting',
+        children: [
+          jsx(re, {
+            onClick: () => W('bold'),
+            active: e.bold,
+            disabled: i,
+            title: 'Bold (Ctrl+B)',
+            ariaLabel: 'Bold',
+            children: jsx(x, { name: 'format_bold', size: ie }),
+          }),
+          jsx(re, {
+            onClick: () => W('italic'),
+            active: e.italic,
+            disabled: i,
+            title: 'Italic (Ctrl+I)',
+            ariaLabel: 'Italic',
+            children: jsx(x, { name: 'format_italic', size: ie }),
+          }),
+          jsx(re, {
+            onClick: () => W('underline'),
+            active: e.underline,
+            disabled: i,
+            title: 'Underline (Ctrl+U)',
+            ariaLabel: 'Underline',
+            children: jsx(x, { name: 'format_underlined', size: ie }),
+          }),
+          jsx(re, {
+            onClick: () => W('strikethrough'),
+            active: e.strike,
+            disabled: i,
+            title: 'Strikethrough',
+            ariaLabel: 'Strikethrough',
+            children: jsx(x, { name: 'strikethrough_s', size: ie }),
+          }),
+          h &&
+            jsx(Ee, {
+              mode: 'text',
+              value: e.color?.replace(/^#/, ''),
+              onChange: _,
+              theme: R,
+              disabled: i,
+              title: 'Font Color',
+            }),
+          v &&
+            jsx(Ee, {
+              mode: 'highlight',
+              value: e.highlight,
+              onChange: ke,
+              theme: R,
+              disabled: i,
+              title: 'Text Highlight Color',
+            }),
+          jsx(re, {
+            onClick: () => W('insertLink'),
+            disabled: i,
+            title: 'Insert link (Ctrl+K)',
+            ariaLabel: 'Insert link',
+            children: jsx(x, { name: 'link', size: ie }),
+          }),
+        ],
+      }),
+      jsxs(ge, {
+        label: 'Script',
+        children: [
+          jsx(re, {
+            onClick: () => W('superscript'),
+            active: e.superscript,
+            disabled: i,
+            title: 'Superscript (Ctrl+Shift+=)',
+            ariaLabel: 'Superscript',
+            children: jsx(x, { name: 'superscript', size: ie }),
+          }),
+          jsx(re, {
+            onClick: () => W('subscript'),
+            active: e.subscript,
+            disabled: i,
+            title: 'Subscript (Ctrl+=)',
+            ariaLabel: 'Subscript',
+            children: jsx(x, { name: 'subscript', size: ie }),
+          }),
+        ],
+      }),
+      S && jsx(Po, { value: e.alignment || 'left', onChange: Se, disabled: i }),
+      (I || b) &&
+        jsxs(ge, {
+          label: 'List formatting',
+          children: [
+            I &&
+              jsx(ko, {
+                listState: e.listState || Ro(),
+                onBulletList: Re,
+                onNumberedList: se,
+                onIndent: Q,
+                onOutdent: oe,
+                disabled: i,
+                showIndentButtons: true,
+                compact: true,
+                hasIndent: (e.indentLeft ?? 0) > 0,
+              }),
+            b && jsx(Zo, { value: e.lineSpacing, onChange: Le, disabled: i }),
+          ],
+        }),
+      Ke &&
+        Ye &&
+        jsxs(ge, {
+          label: 'Image',
+          children: [
+            jsx(tn, { imageContext: Ke, onChange: Ye, disabled: i }),
+            it && jsx(on, { onTransform: it, disabled: i }),
+            at &&
+              jsx(re, {
+                onClick: at,
+                disabled: i,
+                title: 'Image properties (alt text, border)...',
+                ariaLabel: 'Image properties',
+                children: jsx(x, { name: 'tune', size: ie }),
+              }),
+          ],
+        }),
+      Pe?.isInTable &&
+        Ae &&
+        jsxs(ge, {
+          label: 'Table',
+          children: [
+            jsx(qo, { onAction: Je, disabled: i }),
+            jsx(Ao, {
+              onAction: Je,
+              disabled: i,
+              theme: R,
+              value: Pe?.cellBorderColor ? a(Pe.cellBorderColor, R).replace(/^#/, '') : void 0,
+            }),
+            jsx(Fo, { onAction: Je, disabled: i }),
+            jsx(Oo, { onAction: Je, disabled: i, theme: R, value: Pe?.cellBackgroundColor }),
+            jsx($o, { onAction: Je, disabled: i, tableContext: Pe }),
+          ],
+        }),
+      jsx(re, {
+        onClick: () => W('clearFormatting'),
+        disabled: i,
+        title: 'Clear formatting',
+        ariaLabel: 'Clear formatting',
+        children: jsx(x, { name: 'format_clear', size: ie }),
+      }),
+      l,
+    ],
+  });
+}
+var ka = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    fontSize: '13px',
+    userSelect: 'none',
+    transition: 'opacity 0.2s, transform 0.2s',
+  },
+  Ra = { position: 'absolute', zIndex: 100, pointerEvents: 'auto' },
+  La = {
+    default: {
+      backgroundColor: 'rgba(255, 255, 255, 0.95)',
+      color: 'var(--doc-text)',
+      padding: '6px 12px',
+      borderRadius: '4px',
+      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+      border: '1px solid rgba(0, 0, 0, 0.1)',
+    },
+    minimal: { backgroundColor: 'transparent', color: 'var(--doc-text-muted)', padding: '4px 8px' },
+    badge: {
+      backgroundColor: 'var(--doc-primary)',
+      color: 'white',
+      padding: '4px 10px',
+      borderRadius: '4px',
+      fontWeight: 500,
+      fontSize: '12px',
+    },
+    pill: {
+      backgroundColor: 'rgba(0, 0, 0, 0.7)',
+      color: 'white',
+      padding: '6px 14px',
+      borderRadius: '16px',
+      fontSize: '12px',
+      fontWeight: 500,
+    },
+  },
+  Za = {
+    'bottom-left': { bottom: '16px', left: '16px' },
+    'bottom-center': { bottom: '16px', left: '50%', transform: 'translateX(-50%)' },
+    'bottom-right': { bottom: '16px', right: '16px' },
+    'top-left': { top: '16px', left: '16px' },
+    'top-center': { top: '16px', left: '50%', transform: 'translateX(-50%)' },
+    'top-right': { top: '16px', right: '16px' },
+  };
+function wc({
+  currentPage: e,
+  totalPages: t,
+  position: o = 'bottom-center',
+  variant: n = 'default',
+  floating: r = true,
+  showPrefix: a = true,
+  formatText: i,
+  onClick: c,
+  disabled: d = false,
+  className: u = '',
+  style: p,
+  children: l,
+}) {
+  let f = useMemo(() => (i ? i(e, t) : a ? `Page ${e} of ${t}` : `${e} / ${t}`), [e, t, i, a]),
+    m = {
+      ...ka,
+      ...La[n],
+      ...(r ? Ra : {}),
+      ...(r ? Za[o] : {}),
+      ...(c && !d ? { cursor: 'pointer' } : {}),
+      ...(d ? { opacity: 0.5, pointerEvents: 'none' } : {}),
+      ...p,
+    },
+    h = () => {
+      !d && c && c();
+    };
+  return jsx('div', {
+    className: `docx-page-indicator docx-page-indicator-${n} ${u}`,
+    style: m,
+    onClick: h,
+    role: c ? 'button' : 'status',
+    'aria-label': `Page ${e} of ${t}`,
+    'aria-live': 'polite',
+    tabIndex: c && !d ? 0 : void 0,
+    onKeyDown: (v) => {
+      c && !d && (v.key === 'Enter' || v.key === ' ') && (v.preventDefault(), c());
+    },
+    children: l || f,
+  });
+}
+function Ha(e) {
+  let t = ['th', 'st', 'nd', 'rd'],
+    o = e % 100;
+  return e + (t[(o - 20) % 10] || t[o] || t[0]);
+}
+function Ic(e) {
+  return (t, o) =>
+    e.replace('{current}', String(t)).replace('{total}', String(o)).replace('{ordinal}', Ha(t));
+}
+function Pc(e, t) {
+  return t <= 1 ? 100 : Math.round(((e - 1) / (t - 1)) * 100);
+}
+function Mc(e) {
+  return e === 1;
+}
+function kc(e, t) {
+  return e === t;
+}
+function Rc(e, t, o = 20) {
+  let n = 0;
+  for (let r = 0; r < t.length; r++) {
+    let a = n,
+      i = n + t[r],
+      c = (a + i) / 2;
+    if (e < c) return r + 1;
+    n = i + o;
+  }
+  return t.length;
+}
+function Lc(e, t, o, n = 20) {
+  if (e < 1 || e > t.length) return 0;
+  let r = 0;
+  for (let c = 0; c < e - 1; c++) r += t[c] + n;
+  let a = t[e - 1],
+    i = Math.max(0, (o - a) / 2);
+  return Math.max(0, r - i);
+}
+function Da() {
+  return jsx('svg', {
+    width: '16',
+    height: '16',
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: '2',
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    children: jsx('polyline', { points: '15 18 9 12 15 6' }),
+  });
+}
+function _a() {
+  return jsx('svg', {
+    width: '16',
+    height: '16',
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: '2',
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    children: jsx('polyline', { points: '9 18 15 12 9 6' }),
+  });
+}
+function Na() {
+  return jsx('svg', {
+    width: '14',
+    height: '14',
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: '2',
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    children: jsx('polyline', { points: '18 15 12 9 6 15' }),
+  });
+}
+function qa() {
+  return jsx('svg', {
+    width: '14',
+    height: '14',
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: '2',
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    children: jsx('polyline', { points: '6 9 12 15 18 9' }),
+  });
+}
+var Aa = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '4px',
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    fontSize: '13px',
+    userSelect: 'none',
+    transition: 'opacity 0.2s',
+  },
+  Ba = { position: 'absolute', zIndex: 100, pointerEvents: 'auto' },
+  Fa = {
+    default: {
+      backgroundColor: 'rgba(255, 255, 255, 0.95)',
+      color: 'var(--doc-text)',
+      padding: '4px 8px',
+      borderRadius: '6px',
+      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+      border: '1px solid rgba(0, 0, 0, 0.1)',
+    },
+    compact: {
+      backgroundColor: 'rgba(255, 255, 255, 0.95)',
+      color: 'var(--doc-text)',
+      padding: '2px 4px',
+      borderRadius: '4px',
+      boxShadow: '0 1px 4px rgba(0, 0, 0, 0.1)',
+      border: '1px solid rgba(0, 0, 0, 0.08)',
+      fontSize: '12px',
+    },
+    minimal: { backgroundColor: 'transparent', color: 'var(--doc-text-muted)', padding: '4px' },
+  },
+  Oa = {
+    'bottom-left': { bottom: '16px', left: '16px' },
+    'bottom-center': { bottom: '16px', left: '50%', transform: 'translateX(-50%)' },
+    'bottom-right': { bottom: '16px', right: '16px' },
+    'top-left': { top: '16px', left: '16px' },
+    'top-center': { top: '16px', left: '50%', transform: 'translateX(-50%)' },
+    'top-right': { top: '16px', right: '16px' },
+  },
+  nn = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '28px',
+    height: '28px',
+    padding: 0,
+    border: 'none',
+    borderRadius: '4px',
+    backgroundColor: 'transparent',
+    color: 'var(--doc-text-muted)',
+    cursor: 'pointer',
+    transition: 'background-color 0.15s, color 0.15s',
+  },
+  rn = { backgroundColor: 'var(--doc-bg-hover)', color: 'var(--doc-text)' },
+  an = { opacity: 0.4, cursor: 'not-allowed' },
+  za = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '6px',
+    padding: '4px 8px',
+    borderRadius: '4px',
+    backgroundColor: 'transparent',
+    cursor: 'pointer',
+    transition: 'background-color 0.15s',
+    minWidth: '80px',
+    justifyContent: 'center',
+  },
+  Va = { backgroundColor: 'rgba(0, 0, 0, 0.04)' };
+function Wa({ currentPage: e, totalPages: t, onNavigate: o, onClose: n, anchorRef: r }) {
+  let [a, i] = useState(String(e)),
+    [c, d] = useState(null),
+    u = useRef(null),
+    p = useRef(null);
+  (useEffect(() => {
+    (u.current?.focus(), u.current?.select());
+  }, []),
+    useEffect(() => {
+      let k = (F) => {
+        p.current &&
+          !p.current.contains(F.target) &&
+          r.current &&
+          !r.current.contains(F.target) &&
+          n();
+      };
+      return (
+        document.addEventListener('mousedown', k),
+        () => document.removeEventListener('mousedown', k)
+      );
+    }, [n, r]),
+    useEffect(() => {
+      let k = (F) => {
+        F.key === 'Escape' && n();
+      };
+      return (
+        document.addEventListener('keydown', k),
+        () => document.removeEventListener('keydown', k)
+      );
+    }, [n]));
+  let l = useCallback(() => {
+      let k = parseInt(a, 10);
+      if (isNaN(k)) {
+        d('Please enter a number');
+        return;
+      }
+      if (k < 1 || k > t) {
+        d(`Page must be 1-${t}`);
+        return;
+      }
+      (o(k), n());
+    }, [a, t, o, n]),
+    f = (k) => {
+      (i(k.target.value), d(null));
+    },
+    m = (k) => {
+      if (k.key === 'Enter') (k.preventDefault(), l());
+      else if (k.key === 'ArrowUp') {
+        k.preventDefault();
+        let F = Math.min(parseInt(a, 10) + 1 || 1, t);
+        (i(String(F)), d(null));
+      } else if (k.key === 'ArrowDown') {
+        k.preventDefault();
+        let F = Math.max(parseInt(a, 10) - 1 || 1, 1);
+        (i(String(F)), d(null));
+      }
+    },
+    h = () => {
+      (o(1), n());
+    },
+    v = () => {
+      (o(t), n());
+    },
+    S = {
+      position: 'absolute',
+      bottom: 'calc(100% + 8px)',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      backgroundColor: 'white',
+      borderRadius: '8px',
+      boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)',
+      border: '1px solid rgba(0, 0, 0, 0.1)',
+      padding: '12px',
+      minWidth: '200px',
+      zIndex: 1e3,
+    },
+    I = { display: 'flex', alignItems: 'center', gap: '8px', marginBottom: c ? '4px' : '12px' },
+    b = {
+      flex: 1,
+      padding: '8px 12px',
+      fontSize: '14px',
+      border: c ? '1px solid var(--doc-error)' : '1px solid var(--doc-border)',
+      borderRadius: '4px',
+      outline: 'none',
+      textAlign: 'center',
+      fontFamily: 'inherit',
+    },
+    C = {
+      padding: '8px 16px',
+      fontSize: '14px',
+      fontWeight: 500,
+      backgroundColor: 'var(--doc-primary)',
+      color: 'white',
+      border: 'none',
+      borderRadius: '4px',
+      cursor: 'pointer',
+    },
+    E = { color: 'var(--doc-error)', fontSize: '12px', marginBottom: '8px' },
+    R = { display: 'flex', justifyContent: 'space-between', gap: '8px' },
+    B = {
+      flex: 1,
+      padding: '6px 12px',
+      fontSize: '12px',
+      backgroundColor: 'var(--doc-bg-muted)',
+      color: 'var(--doc-text)',
+      border: '1px solid var(--doc-border-light)',
+      borderRadius: '4px',
+      cursor: 'pointer',
+    };
+  return jsxs('div', {
+    ref: p,
+    style: S,
+    role: 'dialog',
+    'aria-label': 'Go to page',
+    children: [
+      jsxs('div', {
+        style: {
+          fontSize: '12px',
+          color: 'var(--doc-text-muted)',
+          marginBottom: '8px',
+          textAlign: 'center',
+        },
+        children: ['Go to page (1-', t, ')'],
+      }),
+      jsxs('div', {
+        style: I,
+        children: [
+          jsx('input', {
+            ref: u,
+            type: 'text',
+            value: a,
+            onChange: f,
+            onKeyDown: m,
+            style: b,
+            'aria-label': 'Page number',
+            'aria-invalid': !!c,
+          }),
+          jsx('button', { onClick: l, style: C, type: 'button', children: 'Go' }),
+        ],
+      }),
+      c && jsx('div', { style: E, children: c }),
+      jsxs('div', {
+        style: R,
+        children: [
+          jsx('button', {
+            onClick: h,
+            style: B,
+            disabled: e === 1,
+            type: 'button',
+            children: 'First',
+          }),
+          jsx('button', {
+            onClick: v,
+            style: B,
+            disabled: e === t,
+            type: 'button',
+            children: 'Last',
+          }),
+        ],
+      }),
+    ],
+  });
+}
+function _c({
+  currentPage: e,
+  totalPages: t,
+  onNavigate: o,
+  position: n = 'bottom-center',
+  variant: r = 'default',
+  floating: a = true,
+  showButtons: i = true,
+  disabled: c = false,
+  className: d = '',
+  style: u,
+}) {
+  let [p, l] = useState(false),
+    [f, m] = useState(false),
+    [h, v] = useState(false),
+    [S, I] = useState(false),
+    b = useRef(null),
+    C = e > 1,
+    E = e < t,
+    R = useCallback(() => {
+      C && !c && o(e - 1);
+    }, [C, c, e, o]),
+    B = useCallback(() => {
+      E && !c && o(e + 1);
+    }, [E, c, e, o]),
+    k = useCallback(
+      (y) => {
+        c ||
+          (y.key === 'ArrowLeft' || y.key === 'PageUp'
+            ? (y.preventDefault(), R())
+            : y.key === 'ArrowRight' || y.key === 'PageDown'
+              ? (y.preventDefault(), B())
+              : y.key === 'Home'
+                ? (y.preventDefault(), o(1))
+                : y.key === 'End' && (y.preventDefault(), o(t)));
+      },
+      [c, R, B, o, t]
+    ),
+    F = useCallback(() => {
+      c || l((y) => !y);
+    }, [c]),
+    K = useCallback(() => {
+      l(false);
+    }, []),
+    te = useCallback(
+      (y) => {
+        (o(y), K());
+      },
+      [o, K]
+    ),
+    M = {
+      ...Aa,
+      ...Fa[r],
+      ...(a ? Ba : {}),
+      ...(a ? Oa[n] : {}),
+      ...(c ? { opacity: 0.5, pointerEvents: 'none' } : {}),
+      ...u,
+    },
+    z = {
+      ...nn,
+      ...(r === 'compact' ? { width: '24px', height: '24px' } : {}),
+      ...(f && C ? rn : {}),
+      ...(C ? {} : an),
+    },
+    w = {
+      ...nn,
+      ...(r === 'compact' ? { width: '24px', height: '24px' } : {}),
+      ...(h && E ? rn : {}),
+      ...(E ? {} : an),
+    },
+    N = {
+      ...za,
+      ...(r === 'compact' ? { padding: '2px 6px', minWidth: '60px' } : {}),
+      ...(S && !c ? Va : {}),
+      ...(c ? { cursor: 'not-allowed' } : {}),
+    };
+  return jsxs('div', {
+    className: `docx-page-navigator docx-page-navigator-${r} ${d}`,
+    style: M,
+    role: 'navigation',
+    'aria-label': 'Page navigation',
+    onKeyDown: k,
+    tabIndex: 0,
+    children: [
+      i &&
+        jsx('button', {
+          onClick: R,
+          disabled: !C || c,
+          style: z,
+          onMouseEnter: () => m(true),
+          onMouseLeave: () => m(false),
+          'aria-label': 'Previous page',
+          title: 'Previous page (\u2190)',
+          type: 'button',
+          children: jsx(Da, {}),
+        }),
+      jsxs('div', {
+        style: { position: 'relative' },
+        children: [
+          jsxs('button', {
+            ref: b,
+            onClick: F,
+            style: N,
+            onMouseEnter: () => I(true),
+            onMouseLeave: () => I(false),
+            'aria-haspopup': 'dialog',
+            'aria-expanded': p,
+            'aria-label': `Page ${e} of ${t}. Click to go to a specific page.`,
+            title: 'Click to go to a specific page',
+            disabled: c,
+            type: 'button',
+            children: [
+              jsxs('span', { children: ['Page ', jsx('strong', { children: e }), ' of ', t] }),
+              p ? jsx(Na, {}) : jsx(qa, {}),
+            ],
+          }),
+          p && jsx(Wa, { currentPage: e, totalPages: t, onNavigate: te, onClose: K, anchorRef: b }),
+        ],
+      }),
+      i &&
+        jsx('button', {
+          onClick: B,
+          disabled: !E || c,
+          style: w,
+          onMouseEnter: () => v(true),
+          onMouseLeave: () => v(false),
+          'aria-label': 'Next page',
+          title: 'Next page (\u2192)',
+          type: 'button',
+          children: jsx(_a, {}),
+        }),
+    ],
+  });
+}
+function Nc(e) {
+  let t = e.trim(),
+    o = parseInt(t, 10);
+  return isNaN(o) ? null : o;
+}
+function qc(e, t) {
+  return Number.isInteger(e) && e >= 1 && e <= t;
+}
+function Ac(e, t) {
+  return Math.min(Math.max(1, Math.round(e)), t);
+}
+function Bc() {
+  return [
+    { key: '\u2190 or PageUp', description: 'Previous page' },
+    { key: '\u2192 or PageDown', description: 'Next page' },
+    { key: 'Home', description: 'First page' },
+    { key: 'End', description: 'Last page' },
+    { key: 'Enter (in input)', description: 'Go to page' },
+  ];
+}
+function Fc(e, t, o) {
+  return e === t ? `Page ${e} of ${o}` : `Pages ${e}-${t} of ${o}`;
+}
+function Oc(e, t) {
+  return t <= 1 ? 100 : Math.round(((e - 1) / (t - 1)) * 100);
+}
+var sn = 12240,
+  Tt = 1440,
+  wt = 1440,
+  It = 567,
+  $t = 22,
+  Ga = 'var(--doc-text-muted)',
+  Ka = 'var(--doc-text-subtle)',
+  ln = 'rgba(0, 0, 0, 0.06)',
+  Ya = '#4285f4',
+  ja = '#3367d6',
+  Xa = '#2a56c6',
+  qe = 5;
+function Ja(e, t) {
+  return t === 'inch' ? (e / wt).toFixed(2) + '"' : (e / It).toFixed(1) + ' cm';
+}
+function Gc({
+  sectionProps: e,
+  zoom: t = 1,
+  editable: o = false,
+  onLeftMarginChange: n,
+  onRightMarginChange: r$1,
+  onFirstLineIndentChange: a,
+  showFirstLineIndent: i = false,
+  firstLineIndent: c = 0,
+  hangingIndent: d = false,
+  indentLeft: u = 0,
+  indentRight: p = 0,
+  onIndentLeftChange: l,
+  onIndentRightChange: f,
+  unit: m = 'inch',
+  className: h = '',
+  style: v,
+  tabStops: S,
+  onTabStopRemove: I,
+}) {
+  let [b, C] = useState(null),
+    [E, R] = useState(null),
+    [B$1, k] = useState(null),
+    [F, K] = useState(null),
+    te = useRef(null),
+    M = e?.pageWidth ?? sn,
+    z = e?.marginLeft ?? Tt,
+    w = e?.marginRight ?? Tt,
+    N = M - z - w,
+    y = r(M) * t,
+    le = r(z) * t,
+    Ke = r(w) * t,
+    Ye = r(u) * t,
+    it = r(p) * t,
+    at = d ? -c : c,
+    Pe = r(at) * t,
+    Ae = le + Ye,
+    lt = y - Ke - it,
+    W = le + Ye + Pe,
+    Me = useCallback(
+      (_, ke) => {
+        o && (_.preventDefault(), _.stopPropagation(), C(ke));
+      },
+      [o]
+    ),
+    je = useCallback(
+      (_) => {
+        if (!b || !te.current) return;
+        let ke = te.current.getBoundingClientRect(),
+          Se = _.clientX - ke.left;
+        K(Se);
+        let Re = s(Se / t);
+        if (b === 'leftMargin') {
+          let se = M - w - 720,
+            Q = Math.round(Math.max(0, Math.min(Re, se)));
+          (k(Q), n?.(Q));
+        } else if (b === 'rightMargin') {
+          let se = M - Re,
+            Q = M - z - 720,
+            oe = Math.round(Math.max(0, Math.min(se, Q)));
+          (k(oe), r$1?.(oe));
+        } else if (b === 'firstLineIndent') {
+          let se = z + u,
+            Q = Re - se,
+            oe = N - u - p - 720,
+            Le = Math.round(Math.max(-u, Math.min(Q, oe)));
+          (k(Le), a?.(Le));
+        } else if (b === 'leftIndent') {
+          let se = Re - z,
+            Q = N - p - 720,
+            oe = Math.round(Math.max(0, Math.min(se, Q)));
+          (k(oe), l?.(oe));
+        } else if (b === 'rightIndent') {
+          let Q = M - w - Re,
+            oe = N - u - 720,
+            Le = Math.round(Math.max(0, Math.min(Q, oe)));
+          (k(Le), f?.(Le));
+        }
+      },
+      [b, t, M, z, w, N, u, p, n, r$1, a, l, f]
+    ),
+    Xe = useCallback(() => {
+      (C(null), k(null), K(null));
+    }, []);
+  useEffect(() => {
+    if (b)
+      return (
+        document.addEventListener('mousemove', je),
+        document.addEventListener('mouseup', Xe),
+        () => {
+          (document.removeEventListener('mousemove', je),
+            document.removeEventListener('mouseup', Xe));
+        }
+      );
+  }, [b, je, Xe]);
+  let Rt = nl(M, t, m);
+  return jsxs('div', {
+    ref: te,
+    className: `docx-horizontal-ruler ${h}`,
+    style: {
+      position: 'relative',
+      width: B(y),
+      height: $t,
+      backgroundColor: 'transparent',
+      overflow: 'visible',
+      userSelect: 'none',
+      cursor: b ? 'ew-resize' : 'default',
+      ...v,
+    },
+    role: 'slider',
+    'aria-label': 'Horizontal ruler',
+    'aria-valuemin': 0,
+    'aria-valuemax': M,
+    children: [
+      jsx('div', {
+        style: {
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: B(le),
+          height: $t,
+          backgroundColor: ln,
+          borderRight: '1px solid rgba(0,0,0,0.12)',
+          cursor: o ? 'ew-resize' : 'default',
+          zIndex: 1,
+        },
+        onMouseDown: o && n ? (_) => Me(_, 'leftMargin') : void 0,
+      }),
+      jsx('div', {
+        style: {
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          width: B(Ke),
+          height: $t,
+          backgroundColor: ln,
+          borderLeft: '1px solid rgba(0,0,0,0.12)',
+          cursor: o ? 'ew-resize' : 'default',
+          zIndex: 1,
+        },
+        onMouseDown: o && r$1 ? (_) => Me(_, 'rightMargin') : void 0,
+      }),
+      jsx('div', {
+        style: { position: 'absolute', inset: 0, pointerEvents: 'none' },
+        children: Rt.map((_, ke) => jsx(Qa, { tick: _ }, ke)),
+      }),
+      i &&
+        jsx(Ut, {
+          direction: 'down',
+          positionPx: W,
+          editable: o,
+          isDragging: b === 'firstLineIndent',
+          isHovered: E === 'firstLineIndent',
+          onMouseEnter: () => R('firstLineIndent'),
+          onMouseLeave: () => R(null),
+          onMouseDown: (_) => Me(_, 'firstLineIndent'),
+          label: 'First line indent',
+        }),
+      o &&
+        l &&
+        jsx(Ut, {
+          direction: 'up',
+          positionPx: Ae,
+          editable: o,
+          isDragging: b === 'leftIndent',
+          isHovered: E === 'leftIndent',
+          onMouseEnter: () => R('leftIndent'),
+          onMouseLeave: () => R(null),
+          onMouseDown: (_) => Me(_, 'leftIndent'),
+          label: 'Left indent',
+        }),
+      o &&
+        f &&
+        jsx(Ut, {
+          direction: 'down',
+          positionPx: lt,
+          editable: o,
+          isDragging: b === 'rightIndent',
+          isHovered: E === 'rightIndent',
+          onMouseEnter: () => R('rightIndent'),
+          onMouseLeave: () => R(null),
+          onMouseDown: (_) => Me(_, 'rightIndent'),
+          label: 'Right indent',
+        }),
+      S?.map((_) =>
+        jsx(
+          ol,
+          { tabStop: _, positionPx: r(_.position) * t, onDoubleClick: () => I?.(_.position) },
+          _.position
+        )
+      ),
+      b && B$1 !== null && F !== null && jsx(el, { value: Ja(B$1, m), positionPx: F }),
+    ],
+  });
+}
+function Qa({ tick: e }) {
+  return jsxs(Fragment, {
+    children: [
+      jsx('div', {
+        style: {
+          position: 'absolute',
+          left: B(e.position),
+          bottom: 0,
+          width: 1,
+          height: e.height,
+          backgroundColor: Ka,
+        },
+      }),
+      e.label &&
+        jsx('div', {
+          style: {
+            position: 'absolute',
+            left: B(e.position),
+            top: 3,
+            transform: 'translateX(-50%)',
+            fontSize: '9px',
+            color: Ga,
+            fontFamily: 'sans-serif',
+            whiteSpace: 'nowrap',
+          },
+          children: e.label,
+        }),
+    ],
+  });
+}
+function Ut({
+  direction: e,
+  positionPx: t,
+  editable: o,
+  isDragging: n,
+  isHovered: r,
+  onMouseEnter: a,
+  onMouseLeave: i,
+  onMouseDown: c,
+  label: d,
+}) {
+  let u = n ? Xa : r ? ja : Ya,
+    p = Math.round(qe * 1.6),
+    l = {
+      position: 'absolute',
+      left: B(t - qe),
+      width: qe * 2,
+      height: p + 2,
+      cursor: o ? 'ew-resize' : 'default',
+      zIndex: n ? 10 : 4,
+      ...(e === 'down' ? { top: 0 } : { bottom: 0 }),
+    },
+    f =
+      e === 'down'
+        ? {
+            position: 'absolute',
+            top: 1,
+            left: 0,
+            width: 0,
+            height: 0,
+            borderLeft: `${qe}px solid transparent`,
+            borderRight: `${qe}px solid transparent`,
+            borderTop: `${p}px solid ${u}`,
+            transition: 'border-top-color 0.1s',
+          }
+        : {
+            position: 'absolute',
+            bottom: 1,
+            left: 0,
+            width: 0,
+            height: 0,
+            borderLeft: `${qe}px solid transparent`,
+            borderRight: `${qe}px solid transparent`,
+            borderBottom: `${p}px solid ${u}`,
+            transition: 'border-bottom-color 0.1s',
+          };
+  return jsx('div', {
+    className: 'docx-ruler-indent',
+    style: l,
+    onMouseEnter: a,
+    onMouseLeave: i,
+    onMouseDown: c,
+    role: 'slider',
+    'aria-label': d,
+    'aria-orientation': 'horizontal',
+    tabIndex: o ? 0 : -1,
+    children: jsx('div', { style: f }),
+  });
+}
+function el({ value: e, positionPx: t }) {
+  return jsx('div', {
+    style: {
+      position: 'absolute',
+      left: B(t),
+      top: -22,
+      transform: 'translateX(-50%)',
+      backgroundColor: '#333',
+      color: '#fff',
+      fontSize: '10px',
+      fontFamily: 'sans-serif',
+      padding: '2px 6px',
+      borderRadius: 3,
+      whiteSpace: 'nowrap',
+      pointerEvents: 'none',
+      zIndex: 20,
+    },
+    children: e,
+  });
+}
+var tl = { left: 'L', center: 'C', right: 'R', decimal: 'D', bar: '|' };
+function ol({ tabStop: e, positionPx: t, onDoubleClick: o }) {
+  return jsx('div', {
+    style: {
+      position: 'absolute',
+      left: B(t - 5),
+      bottom: 0,
+      width: 10,
+      height: 12,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: 8,
+      fontWeight: 700,
+      color: '#555',
+      cursor: 'pointer',
+      userSelect: 'none',
+    },
+    onDoubleClick: (n) => {
+      (n.stopPropagation(), o());
+    },
+    title: `${e.alignment} tab at ${(e.position / 1440).toFixed(2)}"`,
+    children: tl[e.alignment] || 'L',
+  });
+}
+function nl(e, t, o) {
+  let n = [];
+  if (o === 'inch') {
+    let r$1 = wt / 8,
+      a = Math.ceil(e / r$1);
+    for (let i = 0; i <= a; i++) {
+      let c = i * r$1;
+      if (c > e) break;
+      let d = r(c) * t;
+      i % 8 === 0
+        ? n.push({ position: d, height: 10, label: i / 8 > 0 ? String(i / 8) : void 0 })
+        : i % 4 === 0
+          ? n.push({ position: d, height: 6 })
+          : i % 2 === 0
+            ? n.push({ position: d, height: 4 })
+            : n.push({ position: d, height: 2 });
+    }
+  } else {
+    let r$1 = It / 10,
+      a = Math.ceil(e / r$1);
+    for (let i = 0; i <= a; i++) {
+      let c = i * r$1;
+      if (c > e) break;
+      let d = r(c) * t;
+      i % 10 === 0
+        ? n.push({ position: d, height: 10, label: i / 10 > 0 ? String(i / 10) : void 0 })
+        : i % 5 === 0
+          ? n.push({ position: d, height: 6 })
+          : n.push({ position: d, height: 3 });
+    }
+  }
+  return n;
+}
+function Kc(e, t, o, n) {
+  let r = s(e / n);
+  return t === 'left' ? Math.max(0, r) : Math.max(0, s(o / n) - r);
+}
+function Yc(e, t = 1) {
+  let o = e?.pageWidth ?? sn,
+    n = e?.marginLeft ?? Tt,
+    r$1 = e?.marginRight ?? Tt,
+    a = r(o) * t,
+    i = r(n) * t,
+    c = r(r$1) * t;
+  return { width: a, leftMargin: i, rightMargin: c, contentWidth: a - i - c };
+}
+function jc(e, t) {
+  return t === 'inch' ? (e / wt).toFixed(2) + '"' : (e / It).toFixed(1) + ' cm';
+}
+function Xc(e, t) {
+  let o = parseFloat(e.replace(/[^\d.]/g, ''));
+  return isNaN(o) ? null : Math.round(o * (t === 'inch' ? wt : It));
+}
+var il = 'var(--doc-error)',
+  al = 'var(--doc-success)',
+  ll = 'You have unsaved changes. Are you sure you want to leave?',
+  sl = ({ size: e = 16 }) =>
+    jsxs('svg', {
+      width: e,
+      height: e,
+      viewBox: '0 0 16 16',
+      fill: 'none',
+      xmlns: 'http://www.w3.org/2000/svg',
+      children: [
+        jsx('path', {
+          d: 'M3 2h8l2 2v9a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1z',
+          stroke: 'currentColor',
+          strokeWidth: '1.5',
+          strokeLinecap: 'round',
+          strokeLinejoin: 'round',
+        }),
+        jsx('path', {
+          d: 'M5 2v4h5V2',
+          stroke: 'currentColor',
+          strokeWidth: '1.5',
+          strokeLinecap: 'round',
+          strokeLinejoin: 'round',
+        }),
+        jsx('path', {
+          d: 'M5 14v-4h6v4',
+          stroke: 'currentColor',
+          strokeWidth: '1.5',
+          strokeLinecap: 'round',
+          strokeLinejoin: 'round',
+        }),
+      ],
+    }),
+  cl = ({ size: e = 16 }) =>
+    jsxs('svg', {
+      width: e,
+      height: e,
+      viewBox: '0 0 16 16',
+      fill: 'none',
+      xmlns: 'http://www.w3.org/2000/svg',
+      children: [
+        jsx('circle', { cx: '8', cy: '8', r: '6', stroke: 'currentColor', strokeWidth: '1.5' }),
+        jsx('path', {
+          d: 'M8 5v4',
+          stroke: 'currentColor',
+          strokeWidth: '1.5',
+          strokeLinecap: 'round',
+        }),
+        jsx('circle', { cx: '8', cy: '11', r: '0.5', fill: 'currentColor' }),
+      ],
+    }),
+  ul = `
+@keyframes docx-unsaved-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+`,
+  pl = (e, t, o, n, r, a, i) => {
+    let c = {
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      transition: 'all 0.2s ease',
+      animation: o && n ? 'docx-unsaved-pulse 2s ease-in-out infinite' : 'none',
+    };
+    switch (
+      (t === 'absolute-top-right'
+        ? ((c.position = 'absolute'), (c.top = '4px'), (c.right = '4px'))
+        : t === 'absolute-top-left' &&
+          ((c.position = 'absolute'), (c.top = '4px'), (c.left = '4px')),
+      e)
+    ) {
+      case 'dot':
+        return {
+          ...c,
+          width: `${i}px`,
+          height: `${i}px`,
+          borderRadius: '50%',
+          backgroundColor: o ? r : a,
+        };
+      case 'badge':
+        return {
+          ...c,
+          padding: '2px 8px',
+          borderRadius: '10px',
+          fontSize: '11px',
+          fontWeight: 500,
+          backgroundColor: o ? r : a,
+          color: 'white',
+        };
+      case 'text':
+        return { ...c, fontSize: '12px', color: o ? r : a, fontWeight: 500 };
+      case 'icon':
+        return { ...c, color: o ? r : a };
+      default:
+        return c;
+    }
+  },
+  ou = ({
+    hasUnsavedChanges: e,
+    variant: t = 'dot',
+    position: o = 'inline',
+    showPulse: n = true,
+    label: r = 'Unsaved',
+    savedLabel: a = 'Saved',
+    showWhenSaved: i = false,
+    unsavedColor: c = il,
+    savedColor: d = al,
+    size: u = 8,
+    className: p = '',
+    style: l,
+    onClick: f,
+    title: m,
+  }) => {
+    if (
+      (useEffect(() => {
+        if (!n || !e) return;
+        let b = 'docx-unsaved-pulse-keyframes';
+        if (!document.getElementById(b)) {
+          let C = document.createElement('style');
+          ((C.id = b), (C.textContent = ul), document.head.appendChild(C));
+        }
+      }, [n, e]),
+      !e && !i)
+    )
+      return null;
+    let v = { ...pl(t, o, e, n, c, d, u), ...l, cursor: f ? 'pointer' : void 0 },
+      S = e ? 'Document has unsaved changes' : 'All changes saved',
+      I = () => {
+        switch (t) {
+          case 'dot':
+            return null;
+          case 'badge':
+            return e ? r : a;
+          case 'text':
+            return e ? r : a;
+          case 'icon':
+            return e ? jsx(cl, { size: u }) : jsx(sl, { size: u });
+          default:
+            return null;
+        }
+      };
+    return jsx('span', {
+      className: `docx-unsaved-indicator docx-unsaved-indicator-${t} ${e ? 'docx-unsaved' : 'docx-saved'} ${p}`,
+      style: v,
+      onClick: f,
+      title: m ?? S,
+      role: f ? 'button' : 'status',
+      'aria-label': e ? 'Unsaved changes' : 'All changes saved',
+      children: I(),
+    });
+  };
+function nu(e = {}) {
+  let {
+      document: t,
+      warnBeforeLeave: o = true,
+      warningMessage: n = ll,
+      enabled: r = true,
+      onChangeStatusChange: a,
+    } = e,
+    [i, c] = useState(false),
+    [d, u] = useState(0),
+    [p, l] = useState(null),
+    f = useRef(null),
+    m = useRef(false),
+    h = useCallback((b) => {
+      if (!b) return null;
+      try {
+        return JSON.stringify(b.package);
+      } catch {
+        return null;
+      }
+    }, []),
+    v = useCallback(() => {
+      r && (c(false), u(0), l(t ?? null), (f.current = h(t)));
+    }, [r, t, h]),
+    S = useCallback(() => {
+      r && (i || (c(true), a?.(true)), u((b) => b + 1));
+    }, [r, i, a]),
+    I = useCallback(
+      (b) => {
+        let C = b !== void 0 ? b : t;
+        (c(false), u(0), l(C ?? null), (f.current = h(C)), (m.current = true));
+      },
+      [t, h]
+    );
+  return (
+    useEffect(() => {
+      !r || !t || m.current || I(t);
+    }, [r, t, I]),
+    useEffect(() => {
+      if (!r || !t || !m.current) return;
+      let b = h(t),
+        C = f.current;
+      if (b !== C) {
+        let E = h(p);
+        (b !== E ? (i || (c(true), a?.(true)), u((R) => R + 1)) : i && (c(false), a?.(false)),
+          (f.current = b));
+      }
+    }, [r, t, p, i, h, a]),
+    useEffect(() => {
+      if (!r || !o || !i) return;
+      let b = (C) => (C.preventDefault(), (C.returnValue = n), n);
+      return (
+        window.addEventListener('beforeunload', b),
+        () => window.removeEventListener('beforeunload', b)
+      );
+    }, [r, o, i, n]),
+    {
+      hasUnsavedChanges: i,
+      markAsSaved: v,
+      markAsChanged: S,
+      resetTracking: I,
+      lastSavedDocument: p,
+      changeCount: d,
+    }
+  );
+}
+function ru(e) {
+  return { dot: 'Dot', badge: 'Badge', text: 'Text', icon: 'Icon' }[e];
+}
+function iu() {
+  return ['dot', 'badge', 'text', 'icon'];
+}
+function au() {
+  return ['inline', 'absolute-top-right', 'absolute-top-left'];
+}
+function lu() {
+  let e = 0,
+    t = null,
+    o = false;
+  return {
+    markChanged: () => {
+      (e++, (o = true));
+    },
+    markSaved: () => {
+      ((o = false), (t = new Date()));
+    },
+    getState: () => ({ changeCount: e, lastSaveTime: t, hasUnsavedChanges: o }),
+    reset: () => {
+      ((e = 0), (t = null), (o = false));
+    },
+  };
+}
+var xe = 16;
+function ml() {
+  return jsx(x, { name: 'table_rows', size: xe, style: { transform: 'scaleY(-1)' } });
+}
+function fl() {
+  return jsx(x, { name: 'table_rows', size: xe });
+}
+function hl() {
+  return jsx(x, { name: 'view_column', size: xe, style: { transform: 'scaleX(-1)' } });
+}
+function gl() {
+  return jsx(x, { name: 'view_column', size: xe });
+}
+function vl() {
+  return jsx(x, { name: 'delete_sweep', size: xe });
+}
+function bl() {
+  return jsx(x, { name: 'delete_sweep', size: xe, style: { transform: 'rotate(90deg)' } });
+}
+function xl() {
+  return jsx(x, { name: 'call_merge', size: xe });
+}
+function Sl() {
+  return jsx(x, { name: 'call_split', size: xe });
+}
+function yl() {
+  return jsx(x, { name: 'delete', size: xe, className: 'text-red-600' });
+}
+var ae = {
+  container: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '4px',
+    padding: '4px 8px',
+    backgroundColor: 'var(--doc-bg-subtle)',
+    borderRadius: '4px',
+    border: '1px solid var(--doc-border)',
+    fontSize: '12px',
+  },
+  containerCompact: { padding: '2px 4px', gap: '2px' },
+  containerFloating: {
+    position: 'absolute',
+    zIndex: 1e3,
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+  },
+  group: { display: 'flex', alignItems: 'center', gap: '2px' },
+  separator: {
+    width: '1px',
+    height: '20px',
+    backgroundColor: 'var(--doc-border-dark)',
+    margin: '0 4px',
+  },
+  button: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '4px',
+    padding: '4px 8px',
+    border: 'none',
+    borderRadius: '3px',
+    backgroundColor: 'transparent',
+    color: 'var(--doc-text)',
+    cursor: 'pointer',
+    fontSize: '12px',
+    lineHeight: '1',
+    transition: 'background-color 0.15s, color 0.15s',
+  },
+  buttonCompact: { padding: '3px 5px' },
+  buttonHover: { backgroundColor: 'var(--doc-border)' },
+  buttonDisabled: { color: 'var(--doc-text-subtle)', cursor: 'not-allowed' },
+  buttonDelete: { color: 'var(--doc-error)' },
+  label: {
+    fontSize: '11px',
+    fontWeight: 500,
+    color: 'var(--doc-text-muted)',
+    marginRight: '8px',
+    whiteSpace: 'nowrap',
+  },
+};
+function be({
+  action: e,
+  label: t,
+  icon: o,
+  disabled: n = false,
+  onClick: r,
+  showLabel: a = false,
+  compact: i = false,
+  shortcut: c,
+}) {
+  let [d, u] = J__default.useState(false),
+    p = typeof e == 'string' && e.startsWith('delete'),
+    l = {
+      ...ae.button,
+      ...(i ? ae.buttonCompact : {}),
+      ...(d && !n ? ae.buttonHover : {}),
+      ...(n ? ae.buttonDisabled : {}),
+      ...(p && !n ? ae.buttonDelete : {}),
+    },
+    f = c ? `${t} (${c})` : t;
+  return jsxs('button', {
+    type: 'button',
+    className: `docx-table-toolbar-button docx-table-toolbar-${typeof e == 'string' ? e : e.type}`,
+    style: l,
+    disabled: n,
+    onClick: r,
+    onMouseEnter: () => u(true),
+    onMouseLeave: () => u(false),
+    title: f,
+    'aria-label': t,
+    children: [o, a && jsx('span', { children: t })],
+  });
+}
+function Kt({ children: e, showSeparator: t = true }) {
+  return jsxs(Fragment, {
+    children: [
+      jsx('div', { style: ae.group, children: e }),
+      t && jsx('div', { style: ae.separator }),
+    ],
+  });
+}
+function du({
+  context: e,
+  onAction: t,
+  disabled: o = false,
+  className: n,
+  style: r,
+  showLabels: a = false,
+  compact: i = false,
+  position: c = 'top',
+  children: d,
+}) {
+  if (!e) return null;
+  let u = (S) => {
+      !o && t && e && t(S, e);
+    },
+    p = e.rowCount > 1,
+    l = e.columnCount > 1,
+    f = e.hasMultiCellSelection,
+    m = e.canSplitCell,
+    h = {
+      ...ae.container,
+      ...(i ? ae.containerCompact : {}),
+      ...(c === 'floating' ? ae.containerFloating : {}),
+      ...r,
+    },
+    v = ['docx-table-toolbar'];
+  return (
+    n && v.push(n),
+    i && v.push('docx-table-toolbar-compact'),
+    c === 'floating' && v.push('docx-table-toolbar-floating'),
+    jsxs('div', {
+      className: v.join(' '),
+      style: h,
+      role: 'toolbar',
+      'aria-label': 'Table editing tools',
+      children: [
+        jsx('span', { style: ae.label, children: 'Table:' }),
+        jsxs(Kt, {
+          children: [
+            jsx(be, {
+              action: 'addRowAbove',
+              label: 'Insert Row Above',
+              icon: jsx(ml, {}),
+              disabled: o,
+              onClick: () => u('addRowAbove'),
+              showLabel: a,
+              compact: i,
+            }),
+            jsx(be, {
+              action: 'addRowBelow',
+              label: 'Insert Row Below',
+              icon: jsx(fl, {}),
+              disabled: o,
+              onClick: () => u('addRowBelow'),
+              showLabel: a,
+              compact: i,
+            }),
+            jsx(be, {
+              action: 'deleteRow',
+              label: 'Delete Row',
+              icon: jsx(vl, {}),
+              disabled: o || !p,
+              onClick: () => u('deleteRow'),
+              showLabel: a,
+              compact: i,
+            }),
+          ],
+        }),
+        jsxs(Kt, {
+          children: [
+            jsx(be, {
+              action: 'addColumnLeft',
+              label: 'Insert Column Left',
+              icon: jsx(hl, {}),
+              disabled: o,
+              onClick: () => u('addColumnLeft'),
+              showLabel: a,
+              compact: i,
+            }),
+            jsx(be, {
+              action: 'addColumnRight',
+              label: 'Insert Column Right',
+              icon: jsx(gl, {}),
+              disabled: o,
+              onClick: () => u('addColumnRight'),
+              showLabel: a,
+              compact: i,
+            }),
+            jsx(be, {
+              action: 'deleteColumn',
+              label: 'Delete Column',
+              icon: jsx(bl, {}),
+              disabled: o || !l,
+              onClick: () => u('deleteColumn'),
+              showLabel: a,
+              compact: i,
+            }),
+          ],
+        }),
+        jsxs(Kt, {
+          showSeparator: false,
+          children: [
+            jsx(be, {
+              action: 'mergeCells',
+              label: 'Merge Cells',
+              icon: jsx(xl, {}),
+              disabled: o || !f,
+              onClick: () => u('mergeCells'),
+              showLabel: a,
+              compact: i,
+            }),
+            jsx(be, {
+              action: 'splitCell',
+              label: 'Split Cell',
+              icon: jsx(Sl, {}),
+              disabled: o || !m,
+              onClick: () => u('splitCell'),
+              showLabel: a,
+              compact: i,
+            }),
+            jsx(be, {
+              action: 'deleteTable',
+              label: 'Delete Table',
+              icon: jsx(yl, {}),
+              disabled: o,
+              onClick: () => u('deleteTable'),
+              showLabel: a,
+              compact: i,
+            }),
+          ],
+        }),
+        d,
+      ],
+    })
+  );
+}
+function mu(e, t) {
+  let o = e.rows.length,
+    n = Yt(e),
+    r = !!(
+      t.selectedCells &&
+      (t.selectedCells.startRow !== t.selectedCells.endRow ||
+        t.selectedCells.startCol !== t.selectedCells.endCol)
+    ),
+    a = dn(e, t.rowIndex, t.columnIndex),
+    i = !!(a && ((a.formatting?.gridSpan ?? 1) > 1 || a.formatting?.vMerge === 'restart'));
+  return {
+    table: e,
+    selection: t,
+    hasMultiCellSelection: r,
+    canSplitCell: i,
+    rowCount: o,
+    columnCount: n,
+  };
+}
+function Yt(e) {
+  if (!e.rows.length) return 0;
+  let t = 0;
+  for (let o of e.rows) {
+    let n = 0;
+    for (let r of o.cells) n += r.formatting?.gridSpan ?? 1;
+    t = Math.max(t, n);
+  }
+  return t;
+}
+function dn(e, t, o) {
+  let n = e.rows[t];
+  if (!n) return null;
+  let r = 0;
+  for (let a of n.cells) {
+    let i = a.formatting?.gridSpan ?? 1;
+    if (o >= r && o < r + i) return a;
+    r += i;
+  }
+  return null;
+}
+function Cl(e, t) {
+  let o = [],
+    n = 0;
+  for (let r of e.cells) {
+    let a = r.formatting?.gridSpan ?? 1;
+    (o.push({
+      type: 'tableCell',
+      content: [{ type: 'paragraph', content: [], formatting: {} }],
+      formatting: { ...r.formatting, vMerge: void 0 },
+    }),
+      (n += a));
+  }
+  for (; n < t; )
+    (o.push({
+      type: 'tableCell',
+      content: [{ type: 'paragraph', content: [], formatting: {} }],
+      formatting: {},
+    }),
+      n++);
+  return { type: 'tableRow', cells: o, formatting: { ...e.formatting, header: false } };
+}
+function Tl() {
+  return {
+    type: 'tableCell',
+    content: [{ type: 'paragraph', content: [], formatting: {} }],
+    formatting: {},
+  };
+}
+function fu(e, t, o = 'after') {
+  let n = [...e.rows],
+    r = o === 'before' ? t : t + 1,
+    a = e.rows[t] || e.rows[0],
+    i = Yt(e),
+    c = Cl(a, i);
+  return (n.splice(r, 0, c), { ...e, rows: n });
+}
+function hu(e, t) {
+  if (e.rows.length <= 1) return e;
+  let o = e.rows.filter((n, r) => r !== t);
+  return { ...e, rows: o };
+}
+function gu(e, t, o = 'after') {
+  let n = o === 'before' ? t : t + 1,
+    r = e.rows.map((i) => {
+      let c = [...i.cells],
+        d = 0,
+        u = 0;
+      for (let p = 0; p < i.cells.length; p++) {
+        let f = i.cells[p].formatting?.gridSpan ?? 1;
+        if (n <= d + f) {
+          u = o === 'before' ? p : p + 1;
+          break;
+        }
+        ((d += f), (u = p + 1));
+      }
+      return (c.splice(u, 0, Tl()), { ...i, cells: c });
+    }),
+    a = e.columnWidths;
+  if (e.columnWidths && e.columnWidths.length > 0) {
+    a = [...e.columnWidths];
+    let i = e.columnWidths[t] || e.columnWidths[0] || 1440;
+    a.splice(n, 0, i);
+  }
+  return { ...e, rows: r, columnWidths: a };
+}
+function vu(e, t) {
+  if (Yt(e) <= 1) return e;
+  let n = e.rows.map((a) => {
+      let i = 0,
+        c = [];
+      for (let d of a.cells) {
+        let u = d.formatting?.gridSpan ?? 1;
+        (t >= i && t < i + u
+          ? u > 1 && c.push({ ...d, formatting: { ...d.formatting, gridSpan: u - 1 } })
+          : c.push(d),
+          (i += u));
+      }
+      return { ...a, cells: c };
+    }),
+    r = e.columnWidths;
+  return (
+    e.columnWidths && e.columnWidths.length > t && (r = e.columnWidths.filter((a, i) => i !== t)),
+    { ...e, rows: n, columnWidths: r }
+  );
+}
+function bu(e, t) {
+  if (!t.selectedCells) return e;
+  let { startRow: o, startCol: n, endRow: r, endCol: a } = t.selectedCells,
+    i = r - o + 1,
+    c = a - n + 1,
+    d = e.rows.map((u, p) => {
+      if (p < o || p > r) return u;
+      let l = [],
+        f = 0;
+      for (let m of u.cells) {
+        let h = m.formatting?.gridSpan ?? 1,
+          v = f + h - 1;
+        (f <= a && v >= n
+          ? p === o && f === n
+            ? l.push({
+                ...m,
+                formatting: { ...m.formatting, gridSpan: c, vMerge: i > 1 ? 'restart' : void 0 },
+              })
+            : p > o &&
+              f === n &&
+              l.push({ ...m, formatting: { ...m.formatting, gridSpan: c, vMerge: 'continue' } })
+          : l.push(m),
+          (f += h));
+      }
+      return { ...u, cells: l };
+    });
+  return { ...e, rows: d };
+}
+function xu(e, t, o) {
+  let n = dn(e, t, o);
+  if (!n) return e;
+  let r = n.formatting?.gridSpan ?? 1,
+    a = n.formatting?.vMerge === 'restart';
+  if (r <= 1 && !a) return e;
+  let i = e.rows.map((c, d) => {
+    if (d !== t && !a) return c;
+    let u = [],
+      p = 0;
+    for (let l of c.cells) {
+      let f = l.formatting?.gridSpan ?? 1;
+      if (p === o || (p <= o && o < p + f))
+        if (r > 1)
+          for (let m = 0; m < r; m++)
+            u.push({
+              type: 'tableCell',
+              content: m === 0 ? l.content : [{ type: 'paragraph', content: [], formatting: {} }],
+              formatting: { ...l.formatting, gridSpan: void 0, vMerge: void 0 },
+            });
+        else
+          a && d === t
+            ? u.push({ ...l, formatting: { ...l.formatting, vMerge: void 0 } })
+            : l.formatting?.vMerge === 'continue'
+              ? u.push({
+                  type: 'tableCell',
+                  content: [{ type: 'paragraph', content: [], formatting: {} }],
+                  formatting: { ...l.formatting, vMerge: void 0 },
+                })
+              : u.push(l);
+      else u.push(l);
+      p += f;
+    }
+    return { ...c, cells: u };
+  });
+  return { ...e, rows: i };
+}
+var Cu = 'application/x-docx-editor',
+  j = { HTML: 'text/html', PLAIN: 'text/plain' };
+async function mn(e, t = {}) {
+  let { includeFormatting: o = true, onError: n } = t;
+  try {
+    let r = jt(e, o);
+    return await kt(r);
+  } catch (r) {
+    return (n?.(r), false);
+  }
+}
+async function Tu(e, t = {}) {
+  let { includeFormatting: o = true, onError: n } = t;
+  try {
+    let r = Il(e, o);
+    return await kt(r);
+  } catch (r) {
+    return (n?.(r), false);
+  }
+}
+function jt(e, t = true) {
+  let o = e.map(Qt).join(''),
+    n = t ? bn(e) : eo(o),
+    r = JSON.stringify(e);
+  return { plainText: o, html: n, internal: r };
+}
+function Il(e, t = true) {
+  let o = e.map(El).join(`
+`),
+    n = t ? Dl(e) : eo(o),
+    r = JSON.stringify(e);
+  return { plainText: o, html: n, internal: r };
+}
+async function kt(e) {
+  try {
+    if (navigator.clipboard && navigator.clipboard.write) {
+      let t = [
+        new ClipboardItem({
+          [j.PLAIN]: new Blob([e.plainText], { type: j.PLAIN }),
+          [j.HTML]: new Blob([e.html], { type: j.HTML }),
+        }),
+      ];
+      return (await navigator.clipboard.write(t), !0);
+    }
+    return fn(e);
+  } catch {
+    return fn(e);
+  }
+}
+function fn(e) {
+  let t = document.createElement('div');
+  ((t.innerHTML = e.html),
+    (t.style.position = 'fixed'),
+    (t.style.left = '-9999px'),
+    document.body.appendChild(t));
+  try {
+    let o = window.getSelection();
+    if (!o) return !1;
+    let n = document.createRange();
+    (n.selectNodeContents(t), o.removeAllRanges(), o.addRange(n));
+    let r = document.execCommand('copy');
+    return (o.removeAllRanges(), r);
+  } finally {
+    document.body.removeChild(t);
+  }
+}
+async function wu(e = {}) {
+  let { cleanWordFormatting: t = true, onError: o } = e;
+  try {
+    if (navigator.clipboard && navigator.clipboard.read) {
+      let n = await navigator.clipboard.read();
+      return await Pl(n, t);
+    }
+    return null;
+  } catch (n) {
+    return (o?.(n), null);
+  }
+}
+async function Pl(e, t) {
+  let o = '',
+    n = '';
+  for (let r of e)
+    (r.types.includes(j.HTML) && (o = await (await r.getType(j.HTML)).text()),
+      r.types.includes(j.PLAIN) && (n = await (await r.getType(j.PLAIN)).text()));
+  return vn(o, n, t);
+}
+function Ml(e, t = {}) {
+  let { cleanWordFormatting: o = true } = t,
+    n = e.clipboardData;
+  if (!n) return null;
+  let r = n.getData(j.HTML),
+    a = n.getData(j.PLAIN);
+  return vn(r, a, o);
+}
+function vn(e, t, o = true) {
+  let n = kl(e),
+    r = Rl(e);
+  if (r) {
+    let c = e.match(/data-docx-editor-content="([^"]+)"/);
+    if (c)
+      try {
+        return {
+          runs: JSON.parse(decodeURIComponent(c[1])),
+          fromWord: !1,
+          fromEditor: !0,
+          plainText: t,
+        };
+      } catch {}
+  }
+  let a = e;
+  return (n && o && (a = Ll(e)), { runs: Zl(a, t), fromWord: n, fromEditor: r, plainText: t });
+}
+function kl(e) {
+  return (
+    e.includes('urn:schemas-microsoft-com:office') ||
+    e.includes('mso-') ||
+    e.includes('MsoNormal') ||
+    e.includes('class="Mso') ||
+    e.includes('<!--[if gte mso')
+  );
+}
+function Rl(e) {
+  return e.includes('data-docx-editor') || e.includes('docx-run') || e.includes('docx-paragraph');
+}
+function Ll(e) {
+  let t = e;
+  return (
+    (t = t.replace(/<!--\[if[\s\S]*?<!\[endif\]-->/gi, '')),
+    (t = t.replace(/<!--[\s\S]*?-->/g, '')),
+    (t = t.replace(/<\?xml[^>]*>/gi, '')),
+    (t = t.replace(/<o:[^>]*>[\s\S]*?<\/o:[^>]*>/gi, '')),
+    (t = t.replace(/<o:[^>]*\/>/gi, '')),
+    (t = t.replace(/<w:[^>]*>[\s\S]*?<\/w:[^>]*>/gi, '')),
+    (t = t.replace(/<w:[^>]*\/>/gi, '')),
+    (t = t.replace(/\s*mso-[^:;]+:[^;]+;?/gi, '')),
+    (t = t.replace(/\s*style="\s*"/gi, '')),
+    (t = t.replace(/\s*class="[^"]*Mso[^"]*"/gi, '')),
+    (t = t.replace(/<span[^>]*>\s*<\/span>/gi, '')),
+    (t = t.replace(/<\/?font[^>]*>/gi, '')),
+    (t = t.replace(/\s+/g, ' ').trim()),
+    t
+  );
+}
+function Zl(e, t) {
+  if (!e || e.trim() === '') return t ? [Jt(t)] : [];
+  let o = document.createElement('div');
+  o.innerHTML = e;
+  let n = [];
+  return (Xt(o, n, {}), n.length === 0 && t ? [Jt(t)] : n);
+}
+function Xt(e, t, o) {
+  if (e.nodeType === Node.TEXT_NODE) {
+    let i = e.textContent || '';
+    (i.trim() || i.includes(' ')) && t.push(Jt(i, o));
+    return;
+  }
+  if (e.nodeType !== Node.ELEMENT_NODE) return;
+  let n = e,
+    r = n.tagName.toLowerCase(),
+    a = { ...o, ...Hl(n) };
+  switch (r) {
+    case 'br':
+      t.push(gn(a));
+      return;
+    case 'p':
+    case 'div':
+      for (let i of n.childNodes) Xt(i, t, a);
+      n.nextSibling && t.push(gn(a));
+      return;
+    case 'b':
+    case 'strong':
+      a.bold = true;
+      break;
+    case 'i':
+    case 'em':
+      a.italic = true;
+      break;
+    case 'u':
+      a.underline = { style: 'single' };
+      break;
+    case 's':
+    case 'strike':
+    case 'del':
+      a.strike = true;
+      break;
+    case 'sup':
+      a.vertAlign = 'superscript';
+      break;
+    case 'sub':
+      a.vertAlign = 'subscript';
+      break;
+    case 'code':
+    case 'pre':
+      a.fontFamily = { ascii: 'Courier New' };
+      break;
+  }
+  for (let i of n.childNodes) Xt(i, t, a);
+}
+function Hl(e) {
+  let t = {},
+    o = e.style;
+  ((o.fontWeight === 'bold' || parseInt(o.fontWeight) >= 700) && (t.bold = true),
+    o.fontStyle === 'italic' && (t.italic = true));
+  let n = o.textDecoration || o.textDecorationLine;
+  if (
+    (n &&
+      (n.includes('underline') && (t.underline = { style: 'single' }),
+      n.includes('line-through') && (t.strike = true)),
+    o.fontSize)
+  ) {
+    let r = parseFloat(o.fontSize);
+    isNaN(r) || (t.fontSize = Math.round((r / 1.333) * 2));
+  }
+  if (o.fontFamily) {
+    let r = o.fontFamily.replace(/["']/g, '').split(',')[0].trim();
+    r && (t.fontFamily = { ascii: r });
+  }
+  if (o.color) {
+    let r = hn(o.color);
+    r && (t.color = { rgb: r });
+  }
+  if (o.backgroundColor && o.backgroundColor !== 'transparent') {
+    let r = hn(o.backgroundColor);
+    r && (t.shading = { fill: { rgb: r } });
+  }
+  return t;
+}
+function hn(e) {
+  if (!e || e === 'transparent' || e === 'inherit') return null;
+  if (e.startsWith('#')) return e.slice(1).toUpperCase();
+  let t = e.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+  if (t) {
+    let o = parseInt(t[1]).toString(16).padStart(2, '0'),
+      n = parseInt(t[2]).toString(16).padStart(2, '0'),
+      r = parseInt(t[3]).toString(16).padStart(2, '0');
+    return (o + n + r).toUpperCase();
+  }
+  return null;
+}
+function Qt(e) {
+  return e.content
+    .map((t) =>
+      t.type === 'text'
+        ? t.text
+        : t.type === 'tab'
+          ? '	'
+          : t.type === 'break' && t.breakType === 'textWrapping'
+            ? `
+`
+            : ''
+    )
+    .join('');
+}
+function El(e) {
+  return (e.content || []).map((t) => (t.type === 'run' ? Qt(t) : '')).join('');
+}
+function bn(e) {
+  return e.map(_l).join('');
+}
+function Dl(e) {
+  return e.map((t) => `<p>${bn(t.content?.filter((o) => o.type === 'run') || [])}</p>`).join('');
+}
+function _l(e) {
+  let t = Qt(e);
+  if (!t) return '';
+  let o = eo(t),
+    n = e.formatting;
+  if (!n) return o;
+  (n.bold && (o = `<strong>${o}</strong>`),
+    n.italic && (o = `<em>${o}</em>`),
+    n.underline && (o = `<u>${o}</u>`),
+    n.strike && (o = `<s>${o}</s>`),
+    n.vertAlign === 'superscript' && (o = `<sup>${o}</sup>`),
+    n.vertAlign === 'subscript' && (o = `<sub>${o}</sub>`));
+  let r = [];
+  if (n.fontSize) {
+    let a = n.fontSize / 2;
+    r.push(`font-size: ${a}pt`);
+  }
+  return (
+    n.fontFamily?.ascii && r.push(`font-family: "${n.fontFamily.ascii}"`),
+    n.color?.rgb && r.push(`color: #${n.color.rgb}`),
+    n.shading?.fill?.rgb && r.push(`background-color: #${n.shading.fill.rgb}`),
+    r.length > 0 && (o = `<span style="${r.join('; ')}">${o}</span>`),
+    o
+  );
+}
+function eo(e) {
+  return e
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+function Jt(e, t) {
+  return { type: 'run', formatting: t, content: [{ type: 'text', text: e }] };
+}
+function gn(e) {
+  return { type: 'run', formatting: e, content: [{ type: 'break', breakType: 'textWrapping' }] };
+}
+function Iu(e) {
+  let { onCopy: t, onCut: o, onPaste: n, clipboardOptions: r = {} } = e;
+  return {
+    handleCopy: async (u) => {
+      if (!t) return;
+      let p = t();
+      if (!p) return;
+      u.preventDefault();
+      let l = jt(p.runs);
+      u.clipboardData
+        ? (u.clipboardData.setData(j.PLAIN, l.plainText), u.clipboardData.setData(j.HTML, l.html))
+        : await kt(l);
+    },
+    handleCut: async (u) => {
+      if (!o) return;
+      let p = o();
+      if (!p) return;
+      u.preventDefault();
+      let l = jt(p.runs);
+      u.clipboardData
+        ? (u.clipboardData.setData(j.PLAIN, l.plainText), u.clipboardData.setData(j.HTML, l.html))
+        : await kt(l);
+    },
+    handlePaste: (u) => {
+      if (!n) return;
+      u.preventDefault();
+      let p = Ml(u, r);
+      p && n(p);
+    },
+    handleKeyDown: async (u) => {
+      let p = u.ctrlKey || u.metaKey;
+      if (p && u.key === 'c' && !u.shiftKey && t) {
+        let l = t();
+        l && (await mn(l.runs, r));
+      }
+      if (p && u.key === 'x' && !u.shiftKey && o) {
+        let l = o();
+        l && (await mn(l.runs, r));
+      }
+    },
+  };
+}
+export {
+  Yt as $,
+  Ha as A,
+  Ic as B,
+  Pc as C,
+  Mc as D,
+  kc as E,
+  Rc as F,
+  Lc as G,
+  _c as H,
+  Nc as I,
+  qc as J,
+  Ac as K,
+  Bc as L,
+  Fc as M,
+  Oc as N,
+  Gc as O,
+  Kc as P,
+  Yc as Q,
+  jc as R,
+  Xc as S,
+  ou as T,
+  nu as U,
+  ru as V,
+  iu as W,
+  au as X,
+  lu as Y,
+  du as Z,
+  mu as _,
+  P as a,
+  dn as aa,
+  ao as b,
+  fu as ba,
+  U as c,
+  hu as ca,
+  x as d,
+  gu as da,
+  Y as e,
+  vu as ea,
+  c0 as f,
+  bu as fa,
+  vo as g,
+  xu as ga,
+  Ee as h,
+  Cu as ha,
+  ee as i,
+  j as ia,
+  Po as j,
+  mn as ja,
+  ko as k,
+  Tu as ka,
+  Ro as l,
+  jt as la,
+  Zo as m,
+  Il as ma,
+  Eo as n,
+  kt as na,
+  Do as o,
+  wu as oa,
+  qo as p,
+  Ml as pa,
+  Ao as q,
+  vn as qa,
+  Fo as r,
+  kl as ra,
+  Oo as s,
+  Rl as sa,
+  $o as t,
+  Ll as ta,
+  Us as u,
+  Zl as ua,
+  re as v,
+  Iu as va,
+  ge as w,
+  bc as x,
+  xc as y,
+  wc as z,
+}; //# sourceMappingURL=chunk-7IIMSS52.js.map
+//# sourceMappingURL=chunk-7IIMSS52.js.map

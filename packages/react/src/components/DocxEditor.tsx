@@ -51,6 +51,7 @@ import {
 import { HorizontalRuler } from './ui/HorizontalRuler';
 import { VerticalRuler } from './ui/VerticalRuler';
 import { type PrintOptions } from './ui/PrintPreview';
+import { useUnsavedChanges } from './ui/UnsavedIndicator';
 // Dialog hooks and utilities (static imports — lightweight, no UI)
 import {
   useFindReplace,
@@ -212,6 +213,8 @@ export interface DocxEditorProps {
   author?: string;
   /** Callback when document changes */
   onChange?: (document: Document) => void;
+  /** Fires when unsaved-changes status changes (true = dirty, false = matches saved state) */
+  onUnsavedChangesChange?: (hasUnsavedChanges: boolean) => void;
   /** Callback when selection changes */
   onSelectionChange?: (state: SelectionState | null) => void;
   /** Callback on error */
@@ -312,6 +315,10 @@ export interface DocxEditorRef {
   openPrintPreview: () => void;
   /** Print the document directly */
   print: () => void;
+  /** Mark current document state as the saved baseline */
+  markAsSaved: () => void;
+  /** Whether document has unsaved changes vs last saved state */
+  hasUnsavedChanges: () => boolean;
 }
 
 /**
@@ -551,6 +558,7 @@ export const DocxEditor = forwardRef<DocxEditorRef, DocxEditorProps>(function Do
     onSave,
     author = 'User',
     onChange,
+    onUnsavedChangesChange,
     onSelectionChange,
     onError,
     onFontsLoaded: onFontsLoadedCallback,
@@ -711,6 +719,14 @@ export const DocxEditor = forwardRef<DocxEditorRef, DocxEditorProps>(function Do
     maxEntries: 100,
     groupingInterval: 500,
     enableKeyboardShortcuts: true,
+  });
+
+  // Track unsaved changes against saved baseline
+  const unsavedChanges = useUnsavedChanges({
+    document: history.state,
+    enabled: !readOnly,
+    warnBeforeLeave: false,
+    onChangeStatusChange: onUnsavedChangesChange,
   });
 
   // Extract comments from document model on initial load
@@ -2312,8 +2328,19 @@ body { background: white; }
       },
       openPrintPreview: handleDirectPrint,
       print: handleDirectPrint,
+      markAsSaved: () => unsavedChanges.markAsSaved(),
+      hasUnsavedChanges: () => unsavedChanges.hasUnsavedChanges,
     }),
-    [history.state, state.zoom, state.currentPage, state.totalPages, handleSave, handleDirectPrint]
+    [
+      history.state,
+      state.zoom,
+      state.currentPage,
+      state.totalPages,
+      handleSave,
+      handleDirectPrint,
+      unsavedChanges.hasUnsavedChanges,
+      unsavedChanges.markAsSaved,
+    ]
   );
 
   // Get header and footer content from document
@@ -2534,7 +2561,6 @@ body { background: white; }
     minWidth: 0, // Allow flex item to shrink below content width on narrow viewports
     flexDirection: 'row',
   };
-
 
   const editorContainerStyle: CSSProperties = {
     flex: 1,
