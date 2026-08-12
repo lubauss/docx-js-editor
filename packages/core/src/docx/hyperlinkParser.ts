@@ -261,7 +261,21 @@ export function isInternalLink(hyperlink: Hyperlink): boolean {
  * @returns Resolved URL or undefined
  */
 export function getHyperlinkUrl(hyperlink: Hyperlink): string | undefined {
-  return hyperlink.href;
+  return isSafeHyperlinkUrl(hyperlink.href) ? hyperlink.href : undefined;
+}
+
+export function isSafeHyperlinkUrl(href: string | null | undefined): boolean {
+  if (!href || /[\0\r\n]/.test(href)) return false;
+  if (href.startsWith('#')) return /^#[A-Za-z0-9_.:-]+$/.test(href);
+  if (/^(?:mailto|tel):[^\s]+$/i.test(href)) return true;
+  try {
+    const url = new URL(href);
+    return (
+      (url.protocol === 'https:' || url.protocol === 'http:') && !url.username && !url.password
+    );
+  } catch {
+    return false;
+  }
 }
 
 /**

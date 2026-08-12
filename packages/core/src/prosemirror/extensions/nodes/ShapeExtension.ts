@@ -7,6 +7,19 @@
 
 import { createNodeExtension } from '../create';
 
+function safeShapeColor(value: string | null | undefined, fallback: string): string {
+  return value && /^#[0-9a-f]{6}(?:[0-9a-f]{2})?$/i.test(value) ? value : fallback;
+}
+
+function safeShapeNumber(
+  value: number | null | undefined,
+  fallback: number,
+  min: number,
+  max: number
+): number {
+  return Number.isFinite(value) ? Math.min(max, Math.max(min, value!)) : fallback;
+}
+
 export interface ShapeAttrs {
   /** Shape type preset */
   shapeType?: string;
@@ -89,7 +102,14 @@ function buildSVGGradientDef(gradId: string, attrs: ShapeAttrs): string {
       color: string;
     }>;
     stops = parsed
-      .map((s) => `<stop offset="${Math.round(s.position / 1000)}%" stop-color="${s.color}" />`)
+      .filter(
+        (stop) =>
+          Number.isFinite(stop.position) && /^#[0-9a-f]{6}(?:[0-9a-f]{2})?$/i.test(stop.color)
+      )
+      .map(
+        (s) =>
+          `<stop offset="${Math.min(100, Math.max(0, Math.round(s.position / 1000)))}%" stop-color="${s.color}" />`
+      )
       .join('');
   } catch {
     return '';
@@ -178,8 +198,8 @@ export const ShapeExtension = createNodeExtension({
     ],
     toDOM(node) {
       const attrs = node.attrs as ShapeAttrs;
-      const w = attrs.width || 100;
-      const h = attrs.height || 80;
+      const w = safeShapeNumber(attrs.width, 100, 1, 10000);
+      const h = safeShapeNumber(attrs.height, 80, 1, 10000);
 
       const domAttrs: Record<string, string> = {
         class: 'docx-shape',
@@ -221,7 +241,12 @@ export const ShapeExtension = createNodeExtension({
         'line-height: 0',
       ];
 
-      if (attrs.transform) {
+      if (
+        attrs.transform &&
+        /^(?:rotate\(-?\d+(?:\.\d+)?deg\)|scale[XY]\(-?1\))(?:\s+(?:rotate\(-?\d+(?:\.\d+)?deg\)|scale[XY]\(-?1\)))*$/.test(
+          attrs.transform
+        )
+      ) {
         styles.push(`transform: ${attrs.transform}`);
       }
 
@@ -235,16 +260,19 @@ export const ShapeExtension = createNodeExtension({
 
       // Shadow via CSS box-shadow on the container
       if (attrs.shadowColor) {
-        const sx = attrs.shadowOffsetX || 2;
-        const sy = attrs.shadowOffsetY || 2;
-        const sb = attrs.shadowBlur || 4;
-        styles.push(`filter: drop-shadow(${sx}px ${sy}px ${sb}px ${attrs.shadowColor})`);
+        const sx = safeShapeNumber(attrs.shadowOffsetX, 2, -1000, 1000);
+        const sy = safeShapeNumber(attrs.shadowOffsetY, 2, -1000, 1000);
+        const sb = safeShapeNumber(attrs.shadowBlur, 4, 0, 1000);
+        styles.push(
+          `filter: drop-shadow(${sx}px ${sy}px ${sb}px ${safeShapeColor(attrs.shadowColor, '#000000')})`
+        );
       }
 
       // Glow via CSS filter
       if (attrs.glowColor && attrs.glowRadius) {
         const existingFilter = styles.find((s) => s.startsWith('filter:'));
-        const glowFilter = `drop-shadow(0 0 ${attrs.glowRadius}px ${attrs.glowColor})`;
+        const glowRadius = safeShapeNumber(attrs.glowRadius, 0, 0, 1000);
+        const glowFilter = `drop-shadow(0 0 ${glowRadius}px ${safeShapeColor(attrs.glowColor, '#000000')})`;
         if (existingFilter) {
           // Append glow to existing filter
           const idx = styles.indexOf(existingFilter);
@@ -261,15 +289,15 @@ export const ShapeExtension = createNodeExtension({
       let fill: string;
 
       if (attrs.fillType === 'gradient' && attrs.gradientStops) {
-        const gradId = `grad-${attrs.shapeId || Math.random().toString(36).slice(2, 8)}`;
+        const gradId = `grad-${Math.random().toString(36).slice(2, 10)}`;
         fill = `url(#${gradId})`;
         svgDefs = buildSVGGradientDef(gradId, attrs);
       } else {
-        fill = attrs.fillType === 'none' ? 'none' : attrs.fillColor || '#ffffff';
+        fill = attrs.fillType === 'none' ? 'none' : safeShapeColor(attrs.fillColor, '#ffffff');
       }
 
-      const strokeWidth = attrs.outlineWidth || 1;
-      const strokeColor = attrs.outlineColor || '#000000';
+      const strokeWidth = safeShapeNumber(attrs.outlineWidth, 1, 0, 1000);
+      const strokeColor = safeShapeColor(attrs.outlineColor, '#000000');
       const strokeDash =
         attrs.outlineStyle === 'dashed'
           ? ' stroke-dasharray="8 4"'

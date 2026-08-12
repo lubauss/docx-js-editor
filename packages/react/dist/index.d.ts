@@ -1,4 +1,4 @@
-import { R as ReactEditorPlugin } from './react-B-zSU9iO.js';
+import { R as ReactEditorPlugin } from './react-BMX9AG8e.js';
 export {
   D as DEFAULT_SELECTION_STYLE,
   a as DocxEditor,
@@ -74,7 +74,7 @@ export {
   ai as useSelectionHighlight,
   aj as useTableSelection,
   ak as useWheelZoom,
-} from './react-B-zSU9iO.js';
+} from './react-BMX9AG8e.js';
 export {
   D as DocumentAgent,
   f as DocxInput,

@@ -22,6 +22,7 @@ import {
   isInternalLink,
   getHyperlinkText,
   getHyperlinkUrl,
+  isSafeHyperlinkUrl,
 } from '@eigenpal/docx-core/docx/hyperlinkParser';
 
 /**
@@ -76,6 +77,7 @@ export function Hyperlink({
   disabled = false,
 }: HyperlinkProps): React.ReactElement {
   const href = getHyperlinkUrl(hyperlink);
+  const linkDisabled = disabled || !isSafeHyperlinkUrl(href);
   const isExternal = isExternalLink(hyperlink);
   const isInternal = isInternalLink(hyperlink);
 
@@ -84,7 +86,7 @@ export function Hyperlink({
    */
   const handleClick = useCallback(
     (e: MouseEvent<HTMLAnchorElement>) => {
-      if (disabled) {
+      if (linkDisabled) {
         e.preventDefault();
         return;
       }
@@ -106,7 +108,7 @@ export function Hyperlink({
       }
       // For external links, let the browser handle it (opens in new tab via target="_blank")
     },
-    [disabled, isInternal, hyperlink.anchor, onBookmarkClick]
+    [linkDisabled, isInternal, hyperlink.anchor, onBookmarkClick]
   );
 
   // Build class names
@@ -120,12 +122,12 @@ export function Hyperlink({
   if (isInternal) {
     classNames.push('docx-hyperlink-internal');
   }
-  if (disabled) {
+  if (linkDisabled) {
     classNames.push('docx-hyperlink-disabled');
   }
 
   // Combine styles
-  const baseStyle = disabled ? DISABLED_LINK_STYLE : DEFAULT_LINK_STYLE;
+  const baseStyle = linkDisabled ? DISABLED_LINK_STYLE : DEFAULT_LINK_STYLE;
   const combinedStyle: CSSProperties = {
     ...baseStyle,
     ...additionalStyle,
@@ -164,15 +166,15 @@ export function Hyperlink({
 
   // Determine link attributes
   const linkProps: React.AnchorHTMLAttributes<HTMLAnchorElement> = {
-    href: disabled ? undefined : href,
+    href: linkDisabled ? undefined : href,
     className: classNames.join(' '),
     style: combinedStyle,
     onClick: handleClick,
   };
 
   // External links open in new tab with security attributes
-  if (isExternal && !disabled) {
-    linkProps.target = hyperlink.target || '_blank';
+  if (isExternal && !linkDisabled) {
+    linkProps.target = '_blank';
     linkProps.rel = 'noopener noreferrer';
   }
 

@@ -28,6 +28,7 @@ import {
   type TabStop as TabCalcStop,
 } from '../prosemirror/utils/tabCalculator';
 import { resolveFontFamily } from '../utils/fontResolver';
+import { isSafeHyperlinkUrl } from '../docx/hyperlinkParser';
 
 /**
  * CSS class names for paragraph rendering
@@ -240,7 +241,7 @@ function renderTextRun(run: TextRun, doc: Document): HTMLElement {
   applyPmPositions(span, run.pmStart, run.pmEnd);
 
   // Handle hyperlinks
-  if (run.hyperlink) {
+  if (run.hyperlink && isSafeHyperlinkUrl(run.hyperlink.href)) {
     const anchor = doc.createElement('a');
     anchor.href = run.hyperlink.href;
     // Internal bookmark links (starting with #) should scroll within the document

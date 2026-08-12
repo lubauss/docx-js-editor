@@ -46,7 +46,7 @@ export {
   Q as useSelectionHighlight,
   h as useTableSelection,
   m as useWheelZoom,
-} from './chunk-K2QMBCCR.js';
+} from './chunk-EEPHPEEQ.js';
 import './chunk-Y2IOPU4P.js';
 export {
   q as ColorPicker,
@@ -251,7 +251,7 @@ export {
   a as createEmptyDocument,
   f as getAgentContext,
   h as getDocumentSummary,
-} from './chunk-667XFXTH.js';
+} from './chunk-NOZHM4W2.js';
 export {
   l as blendColors,
   q as colorsEqual,
@@ -276,26 +276,26 @@ export {
   w as twipsToEmu,
   r as twipsToPixels,
 } from './chunk-CXJ6TLVT.js';
-export { o as docxtemplaterPlugin } from './chunk-YZ66KKSE.js';
+export { o as docxtemplaterPlugin } from './chunk-3ZHAPGW5.js';
 export {
   b as serializeDocumentBody,
   c as serializeDocx,
   a as serializeSectionProperties,
-} from './chunk-NKZV4F2C.js';
+} from './chunk-C7FAMM6C.js';
 export { a as executeCommand, b as executeCommands } from './chunk-JOYPFQW2.js';
 export {
-  l as canRenderFont,
-  j as getLoadedFonts,
-  h as isFontLoaded,
-  i as isFontsLoading,
-  f as loadFont,
-  m as loadFontFromBuffer,
-  g as loadFonts,
-  k as onFontsLoaded,
-  q as parseDocx,
-  n as preloadCommonFonts,
-  p as toArrayBuffer,
-} from './chunk-OECSQ2YK.js';
+  m as canRenderFont,
+  k as getLoadedFonts,
+  i as isFontLoaded,
+  j as isFontsLoading,
+  g as loadFont,
+  n as loadFontFromBuffer,
+  h as loadFonts,
+  l as onFontsLoaded,
+  r as parseDocx,
+  o as preloadCommonFonts,
+  q as toArrayBuffer,
+} from './chunk-22OGO3BP.js';
 export {
   a as PluginRegistry,
   b as pluginRegistry,

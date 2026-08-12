@@ -221,6 +221,8 @@ export interface DocxEditorProps {
   onError?: (error: Error) => void;
   /** Callback when fonts are loaded */
   onFontsLoaded?: () => void;
+  /** Allow document-selected fonts to be fetched from external providers (default: true) */
+  loadExternalFonts?: boolean;
   /** External ProseMirror plugins (from PluginHost) */
   externalPlugins?: import('prosemirror-state').Plugin[];
   /** Callback when editor view is ready (for PluginHost) */
@@ -562,6 +564,7 @@ export const DocxEditor = forwardRef<DocxEditorRef, DocxEditorProps>(function Do
     onSelectionChange,
     onError,
     onFontsLoaded: onFontsLoadedCallback,
+    loadExternalFonts = true,
     theme,
     showToolbar = true,
     showZoomControl = true,
@@ -854,9 +857,10 @@ export const DocxEditor = forwardRef<DocxEditorRef, DocxEditorProps>(function Do
       if (initialDocument) {
         history.reset(initialDocument);
         setState((prev) => ({ ...prev, isLoading: false }));
-        loadDocumentFonts(initialDocument).catch((err) => {
-          console.warn('Failed to load document fonts:', err);
-        });
+        if (loadExternalFonts)
+          loadDocumentFonts(initialDocument).catch((err) => {
+            console.warn('Failed to load document fonts:', err);
+          });
       }
       return;
     }
@@ -873,9 +877,10 @@ export const DocxEditor = forwardRef<DocxEditorRef, DocxEditorProps>(function Do
           parseError: null,
         }));
 
-        loadDocumentFonts(doc).catch((err) => {
-          console.warn('Failed to load document fonts:', err);
-        });
+        if (loadExternalFonts)
+          loadDocumentFonts(doc).catch((err) => {
+            console.warn('Failed to load document fonts:', err);
+          });
       } catch (error) {
         const message = error instanceof Error ? error.message : 'Failed to parse document';
         setState((prev) => ({
@@ -888,7 +893,7 @@ export const DocxEditor = forwardRef<DocxEditorRef, DocxEditorProps>(function Do
     };
 
     parseDocument();
-  }, [documentBuffer, initialDocument, onError]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [documentBuffer, initialDocument, loadExternalFonts, onError]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Update document when initialDocument changes
   useEffect(() => {

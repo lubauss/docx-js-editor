@@ -119,6 +119,11 @@ function findAllByLocalName(parent: XmlElement, localName: string): XmlElement[]
 // COLOR PARSING
 // ============================================================================
 
+export function normalizeShapeRgbColor(value: string | null | undefined): string | undefined {
+  if (!value || !/^[0-9a-f]{6}$/i.test(value)) return undefined;
+  return value.toUpperCase();
+}
+
 /**
  * Parse a color value from a DrawingML element
  * Handles: a:srgbClr, a:schemeClr, a:sysClr, a:prstClr
@@ -131,7 +136,7 @@ function parseColorElement(element: XmlElement | null): ColorValue | undefined {
   // Check for sRGB color: a:srgbClr[@val]
   const srgbClr = children.find((el) => el.name === 'a:srgbClr');
   if (srgbClr) {
-    const val = getAttribute(srgbClr, null, 'val');
+    const val = normalizeShapeRgbColor(getAttribute(srgbClr, null, 'val'));
     if (val) {
       return applyColorModifiers({ rgb: val }, srgbClr);
     }
@@ -173,7 +178,7 @@ function parseColorElement(element: XmlElement | null): ColorValue | undefined {
   // Check for system color: a:sysClr[@val][@lastClr]
   const sysClr = children.find((el) => el.name === 'a:sysClr');
   if (sysClr) {
-    const lastClr = getAttribute(sysClr, null, 'lastClr');
+    const lastClr = normalizeShapeRgbColor(getAttribute(sysClr, null, 'lastClr'));
     if (lastClr) {
       return { rgb: lastClr };
     }
