@@ -1,6 +1,6 @@
-import { d, e } from './chunk-NKZV4F2C.js';
+import { d, e } from './chunk-MNPKVM4R.js';
 import { a } from './chunk-JOYPFQW2.js';
-import { q as q$1 } from './chunk-OECSQ2YK.js';
+import { r } from './chunk-HSGPG5BL.js';
 import { b } from './chunk-2QOEHCBX.js';
 import './chunk-Y6VCTLCJ.js';
 var u = { type: 'string', description: 'Document ID returned from docx_load' },
@@ -33,14 +33,14 @@ The document remains in session memory until closed.`,
       },
       required: ['content'],
     },
-    handler: async (r, s) => {
-      let { content: e, source: c } = r;
+    handler: async (r$1, s) => {
+      let { content: e, source: c } = r$1;
       try {
         let t = atob(e),
           n = new Uint8Array(t.length);
         for (let l = 0; l < t.length; l++) n[l] = t.charCodeAt(l);
         let o = n.buffer,
-          a = await q$1(o),
+          a = await r(o),
           d = `doc_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
         s.session.documents.set(d, {
           id: d,

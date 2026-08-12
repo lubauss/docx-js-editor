@@ -70,7 +70,8 @@
     "*.css"
   ],
   "files": [
-    "dist"
+    "dist",
+    ".questmind-docx-provenance.json"
   ],
   "scripts": {
     "build": "tsup && bun run build:css",

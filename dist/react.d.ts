@@ -49,7 +49,7 @@ export {
   ai as useSelectionHighlight,
   aj as useTableSelection,
   ak as useWheelZoom,
-} from './react-B-zSU9iO.js';
+} from './react-BMX9AG8e.js';
 export { f as DocxInput, t as toArrayBuffer } from './DocumentAgent-BHR0CMGb.js';
 export {
   d as AutoSaveStatus,

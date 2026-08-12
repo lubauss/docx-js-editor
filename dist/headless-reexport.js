@@ -20,7 +20,7 @@ export {
   f as getAgentContext,
   h as getDocumentSummary,
   k as getSelectionFormattingSummary,
-} from './chunk-667XFXTH.js';
+} from './chunk-VNL2HBE3.js';
 export {
   l as blendColors,
   q as colorsEqual,
@@ -60,16 +60,16 @@ export {
   l as removeVariables,
   k as replaceVariables,
   h as sanitizeVariableName,
-} from './chunk-YZ66KKSE.js';
+} from './chunk-O3CCYTBI.js';
 export {
   e as createDocx,
   d as repackDocx,
   b as serializeDocumentBody,
   c as serializeDocx,
   a as serializeSectionProperties,
-} from './chunk-NKZV4F2C.js';
+} from './chunk-MNPKVM4R.js';
 export { a as executeCommand, b as executeCommands } from './chunk-JOYPFQW2.js';
-export { q as parseDocx } from './chunk-OECSQ2YK.js';
+export { r as parseDocx } from './chunk-HSGPG5BL.js';
 export {
   a as PluginRegistry,
   d as createPluginRegistrar,
