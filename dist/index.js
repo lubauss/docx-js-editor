@@ -46,7 +46,7 @@ export {
   Q as useSelectionHighlight,
   h as useTableSelection,
   m as useWheelZoom,
-} from './chunk-UK46YKUJ.js';
+} from './chunk-54O2NFMU.js';
 import './chunk-Y2IOPU4P.js';
 export {
   q as ColorPicker,
@@ -251,7 +251,7 @@ export {
   a as createEmptyDocument,
   f as getAgentContext,
   h as getDocumentSummary,
-} from './chunk-Y42D6XBX.js';
+} from './chunk-STXVUPGQ.js';
 export {
   l as blendColors,
   q as colorsEqual,
@@ -281,7 +281,7 @@ export {
   b as serializeDocumentBody,
   c as serializeDocx,
   a as serializeSectionProperties,
-} from './chunk-7HNTWRSE.js';
+} from './chunk-ER2PAUVI.js';
 export { a as executeCommand, b as executeCommands } from './chunk-JOYPFQW2.js';
 export {
   m as canRenderFont,

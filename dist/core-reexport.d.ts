@@ -105,7 +105,7 @@ export {
   Z as twipsToEmu,
   _ as twipsToPixels,
   $ as validateTemplate,
-} from './colorResolver-CDv36I3c.js';
+} from './colorResolver-CNjQSjRJ.js';
 import {
   S as Subscribable,
   E as ErrorManagerSnapshot,
@@ -156,7 +156,7 @@ export {
   D as DocumentAgent,
   f as DocxInput,
   t as toArrayBuffer,
-} from './DocumentAgent-DruaaR5B.js';
+} from './DocumentAgent-Bw6bMx2r.js';
 export {
   I as InsertPosition,
   c as canRenderFont,
@@ -209,7 +209,7 @@ export {
   l as repackDocx,
   m as replaceVariables,
   s as sanitizeVariableName,
-} from './variableDetector-Hmj-UXPk.js';
+} from './variableDetector-DX7xClx_.js';
 export { docxtemplaterPlugin } from './core-plugins-reexport.js';
 import 'prosemirror-state';
 import 'prosemirror-model';

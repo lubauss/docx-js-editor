@@ -41,6 +41,10 @@ interface RepackOptions {
   updateModifiedDate?: boolean;
   /** Custom modifier name for lastModifiedBy */
   modifiedBy?: string;
+  /** Header/footer relationship IDs intentionally changed by the editor. */
+  modifiedHeaderFooterIds?: readonly string[];
+  /** Whether comments were intentionally changed by the editor. */
+  serializeComments?: boolean;
 }
 /**
  * Repack a Document into a valid DOCX file

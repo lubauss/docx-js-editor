@@ -1,4 +1,4 @@
-import { R as ReactEditorPlugin } from './react-Cs2eNr5W.js';
+import { R as ReactEditorPlugin } from './react-DN-p8H1R.js';
 export {
   D as DEFAULT_SELECTION_STYLE,
   a as DocxEditor,
@@ -74,12 +74,12 @@ export {
   ai as useSelectionHighlight,
   aj as useTableSelection,
   ak as useWheelZoom,
-} from './react-Cs2eNr5W.js';
+} from './react-DN-p8H1R.js';
 export {
   D as DocumentAgent,
   f as DocxInput,
   t as toArrayBuffer,
-} from './DocumentAgent-DruaaR5B.js';
+} from './DocumentAgent-Bw6bMx2r.js';
 export {
   A as AgentContextOptions,
   C as CreateEmptyDocumentOptions,
@@ -126,7 +126,7 @@ export {
   Z as twipsToEmu,
   _ as twipsToPixels,
   $ as validateTemplate,
-} from './colorResolver-CDv36I3c.js';
+} from './colorResolver-CNjQSjRJ.js';
 export {
   I as InsertPosition,
   c as canRenderFont,

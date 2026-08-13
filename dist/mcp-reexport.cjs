@@ -1,5 +1,5 @@
 'use strict';
-var chunkT5PKTXGQ_cjs = require('./chunk-T5PKTXGQ.cjs'),
+var chunk5O2GNSOK_cjs = require('./chunk-5O2GNSOK.cjs'),
   chunkGWBTKVFD_cjs = require('./chunk-GWBTKVFD.cjs'),
   chunkGILLFIXY_cjs = require('./chunk-GILLFIXY.cjs'),
   chunkWD2HTKRR_cjs = require('./chunk-WD2HTKRR.cjs');
@@ -86,8 +86,8 @@ Returns the document as a base64 string that can be saved to a file.`,
       try {
         let t;
         c.buffer
-          ? (t = await chunkT5PKTXGQ_cjs.d(c.document))
-          : (t = await chunkT5PKTXGQ_cjs.e(c.document));
+          ? (t = await chunk5O2GNSOK_cjs.d(c.document))
+          : (t = await chunk5O2GNSOK_cjs.e(c.document));
         let n = new Uint8Array(t),
           o = '';
         for (let d = 0; d < n.length; d++) o += String.fromCharCode(n[d]);

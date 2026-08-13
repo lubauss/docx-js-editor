@@ -1,5 +1,5 @@
 'use strict';
-var chunkS6OXCJXA_cjs = require('./chunk-S6OXCJXA.cjs');
+var chunkSAIADFDS_cjs = require('./chunk-SAIADFDS.cjs');
 require('./chunk-WVGMXGB2.cjs');
 var chunk2OAOUACL_cjs = require('./chunk-2OAOUACL.cjs'),
   chunk3BS5FKGU_cjs = require('./chunk-3BS5FKGU.cjs'),
@@ -7,10 +7,10 @@ var chunk2OAOUACL_cjs = require('./chunk-2OAOUACL.cjs'),
   chunkS26DZVRQ_cjs = require('./chunk-S26DZVRQ.cjs'),
   chunkJMHPSDOI_cjs = require('./chunk-JMHPSDOI.cjs');
 require('./chunk-T2HQYRA7.cjs');
-var chunkWBAREHXH_cjs = require('./chunk-WBAREHXH.cjs'),
+var chunkOPG7JB7V_cjs = require('./chunk-OPG7JB7V.cjs'),
   chunkIHVS6O3T_cjs = require('./chunk-IHVS6O3T.cjs'),
   chunk3V4TBEQV_cjs = require('./chunk-3V4TBEQV.cjs'),
-  chunkT5PKTXGQ_cjs = require('./chunk-T5PKTXGQ.cjs'),
+  chunk5O2GNSOK_cjs = require('./chunk-5O2GNSOK.cjs'),
   chunkGWBTKVFD_cjs = require('./chunk-GWBTKVFD.cjs'),
   chunkGILLFIXY_cjs = require('./chunk-GILLFIXY.cjs'),
   chunkWD2HTKRR_cjs = require('./chunk-WD2HTKRR.cjs'),
@@ -1080,283 +1080,283 @@ var Gi = '0.0.2';
 Object.defineProperty(exports, 'DEFAULT_SELECTION_STYLE', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.v;
+    return chunkSAIADFDS_cjs.v;
   },
 });
 Object.defineProperty(exports, 'DocxEditor', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.i;
+    return chunkSAIADFDS_cjs.i;
   },
 });
 Object.defineProperty(exports, 'ErrorBoundary', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.c;
+    return chunkSAIADFDS_cjs.c;
   },
 });
 Object.defineProperty(exports, 'ErrorProvider', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.b;
+    return chunkSAIADFDS_cjs.b;
   },
 });
 Object.defineProperty(exports, 'HIGH_CONTRAST_SELECTION_STYLE', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.w;
+    return chunkSAIADFDS_cjs.w;
   },
 });
 Object.defineProperty(exports, 'PLUGIN_HOST_STYLES', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.T;
+    return chunkSAIADFDS_cjs.T;
   },
 });
 Object.defineProperty(exports, 'ParseErrorDisplay', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.d;
+    return chunkSAIADFDS_cjs.d;
   },
 });
 Object.defineProperty(exports, 'PluginHost', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.U;
+    return chunkSAIADFDS_cjs.U;
   },
 });
 Object.defineProperty(exports, 'SELECTION_CSS_VARS', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.x;
+    return chunkSAIADFDS_cjs.x;
   },
 });
 Object.defineProperty(exports, 'UnsupportedFeatureWarning', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.e;
+    return chunkSAIADFDS_cjs.e;
   },
 });
 Object.defineProperty(exports, 'ZOOM_PRESETS', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.l;
+    return chunkSAIADFDS_cjs.l;
   },
 });
 Object.defineProperty(exports, 'areSelectionStylesInjected', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.O;
+    return chunkSAIADFDS_cjs.O;
   },
 });
 Object.defineProperty(exports, 'clampZoom', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.u;
+    return chunkSAIADFDS_cjs.u;
   },
 });
 Object.defineProperty(exports, 'clearSelection', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.J;
+    return chunkSAIADFDS_cjs.J;
   },
 });
 Object.defineProperty(exports, 'createSelectionChangeHandler', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.P;
+    return chunkSAIADFDS_cjs.P;
   },
 });
 Object.defineProperty(exports, 'findNearestZoomPreset', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.o;
+    return chunkSAIADFDS_cjs.o;
   },
 });
 Object.defineProperty(exports, 'formatZoom', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.r;
+    return chunkSAIADFDS_cjs.r;
   },
 });
 Object.defineProperty(exports, 'generateOverlayElements', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.R;
+    return chunkSAIADFDS_cjs.R;
   },
 });
 Object.defineProperty(exports, 'generateSelectionCSS', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.C;
+    return chunkSAIADFDS_cjs.C;
   },
 });
 Object.defineProperty(exports, 'getHighlightRectStyle', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.B;
+    return chunkSAIADFDS_cjs.B;
   },
 });
 Object.defineProperty(exports, 'getMergedSelectionRects', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.A;
+    return chunkSAIADFDS_cjs.A;
   },
 });
 Object.defineProperty(exports, 'getNextZoomPreset', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.p;
+    return chunkSAIADFDS_cjs.p;
   },
 });
 Object.defineProperty(exports, 'getPreviousZoomPreset', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.q;
+    return chunkSAIADFDS_cjs.q;
   },
 });
 Object.defineProperty(exports, 'getSelectedText', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.E;
+    return chunkSAIADFDS_cjs.E;
   },
 });
 Object.defineProperty(exports, 'getSelectionBoundingRect', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.G;
+    return chunkSAIADFDS_cjs.G;
   },
 });
 Object.defineProperty(exports, 'getSelectionRects', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.y;
+    return chunkSAIADFDS_cjs.y;
   },
 });
 Object.defineProperty(exports, 'getUserFriendlyMessage', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.g;
+    return chunkSAIADFDS_cjs.g;
   },
 });
 Object.defineProperty(exports, 'getZoomPresets', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.n;
+    return chunkSAIADFDS_cjs.n;
   },
 });
 Object.defineProperty(exports, 'hasActiveSelection', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.D;
+    return chunkSAIADFDS_cjs.D;
   },
 });
 Object.defineProperty(exports, 'highlightTextRange', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.H;
+    return chunkSAIADFDS_cjs.H;
   },
 });
 Object.defineProperty(exports, 'injectSelectionStyles', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.M;
+    return chunkSAIADFDS_cjs.M;
   },
 });
 Object.defineProperty(exports, 'isParseError', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.f;
+    return chunkSAIADFDS_cjs.f;
   },
 });
 Object.defineProperty(exports, 'isSelectionBackwards', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.K;
+    return chunkSAIADFDS_cjs.K;
   },
 });
 Object.defineProperty(exports, 'isSelectionWithin', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.F;
+    return chunkSAIADFDS_cjs.F;
   },
 });
 Object.defineProperty(exports, 'isZoomPreset', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.t;
+    return chunkSAIADFDS_cjs.t;
   },
 });
 Object.defineProperty(exports, 'mergeAdjacentRects', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.z;
+    return chunkSAIADFDS_cjs.z;
   },
 });
 Object.defineProperty(exports, 'normalizeSelectionDirection', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.L;
+    return chunkSAIADFDS_cjs.L;
   },
 });
 Object.defineProperty(exports, 'parseZoom', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.s;
+    return chunkSAIADFDS_cjs.s;
   },
 });
 Object.defineProperty(exports, 'removeSelectionStyles', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.N;
+    return chunkSAIADFDS_cjs.N;
   },
 });
 Object.defineProperty(exports, 'renderAsync', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.j;
+    return chunkSAIADFDS_cjs.j;
   },
 });
 Object.defineProperty(exports, 'selectRange', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.I;
+    return chunkSAIADFDS_cjs.I;
   },
 });
 Object.defineProperty(exports, 'useAutoSave', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.k;
+    return chunkSAIADFDS_cjs.k;
   },
 });
 Object.defineProperty(exports, 'useClipboard', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.S;
+    return chunkSAIADFDS_cjs.S;
   },
 });
 Object.defineProperty(exports, 'useErrorNotifications', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.a;
+    return chunkSAIADFDS_cjs.a;
   },
 });
 Object.defineProperty(exports, 'useSelectionHighlight', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.Q;
+    return chunkSAIADFDS_cjs.Q;
   },
 });
 Object.defineProperty(exports, 'useTableSelection', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.h;
+    return chunkSAIADFDS_cjs.h;
   },
 });
 Object.defineProperty(exports, 'useWheelZoom', {
   enumerable: true,
   get: function () {
-    return chunkS6OXCJXA_cjs.m;
+    return chunkSAIADFDS_cjs.m;
   },
 });
 Object.defineProperty(exports, 'ColorPicker', {
@@ -2484,43 +2484,43 @@ Object.defineProperty(exports, 'removePageBreak', {
 Object.defineProperty(exports, 'DocumentAgent', {
   enumerable: true,
   get: function () {
-    return chunkWBAREHXH_cjs.c;
+    return chunkOPG7JB7V_cjs.c;
   },
 });
 Object.defineProperty(exports, 'buildExtendedSelectionContext', {
   enumerable: true,
   get: function () {
-    return chunkWBAREHXH_cjs.j;
+    return chunkOPG7JB7V_cjs.j;
   },
 });
 Object.defineProperty(exports, 'buildSelectionContext', {
   enumerable: true,
   get: function () {
-    return chunkWBAREHXH_cjs.i;
+    return chunkOPG7JB7V_cjs.i;
   },
 });
 Object.defineProperty(exports, 'createDocumentWithText', {
   enumerable: true,
   get: function () {
-    return chunkWBAREHXH_cjs.b;
+    return chunkOPG7JB7V_cjs.b;
   },
 });
 Object.defineProperty(exports, 'createEmptyDocument', {
   enumerable: true,
   get: function () {
-    return chunkWBAREHXH_cjs.a;
+    return chunkOPG7JB7V_cjs.a;
   },
 });
 Object.defineProperty(exports, 'getAgentContext', {
   enumerable: true,
   get: function () {
-    return chunkWBAREHXH_cjs.f;
+    return chunkOPG7JB7V_cjs.f;
   },
 });
 Object.defineProperty(exports, 'getDocumentSummary', {
   enumerable: true,
   get: function () {
-    return chunkWBAREHXH_cjs.h;
+    return chunkOPG7JB7V_cjs.h;
   },
 });
 Object.defineProperty(exports, 'blendColors', {
@@ -2664,19 +2664,19 @@ Object.defineProperty(exports, 'docxtemplaterPlugin', {
 Object.defineProperty(exports, 'serializeDocumentBody', {
   enumerable: true,
   get: function () {
-    return chunkT5PKTXGQ_cjs.b;
+    return chunk5O2GNSOK_cjs.b;
   },
 });
 Object.defineProperty(exports, 'serializeDocx', {
   enumerable: true,
   get: function () {
-    return chunkT5PKTXGQ_cjs.c;
+    return chunk5O2GNSOK_cjs.c;
   },
 });
 Object.defineProperty(exports, 'serializeSectionProperties', {
   enumerable: true,
   get: function () {
-    return chunkT5PKTXGQ_cjs.a;
+    return chunk5O2GNSOK_cjs.a;
   },
 });
 Object.defineProperty(exports, 'executeCommand', {

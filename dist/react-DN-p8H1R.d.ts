@@ -26,7 +26,7 @@ import {
   T as TableAction,
   j as ParsedClipboardContent,
 } from './clipboard-BE8E-szx.js';
-import { f as DocxInput, D as DocumentAgent } from './DocumentAgent-DruaaR5B.js';
+import { f as DocxInput, D as DocumentAgent } from './DocumentAgent-Bw6bMx2r.js';
 import {
   g as EditorPluginCore,
   k as PluginPanelProps,

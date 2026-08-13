@@ -11,8 +11,8 @@ import {
   X as Theme,
   af as ThemeColorSlot,
   ab as ThemeColorScheme,
-} from './agentApi-DfsWRyrP.js';
-import { f as DocxInput } from './DocumentAgent-DruaaR5B.js';
+} from './agentApi-DfsWRyrP.cjs';
+import { f as DocxInput } from './DocumentAgent-DQZc41nU.cjs';
 
 /**
  * Main Parser Orchestrator - Unified parseDocx function

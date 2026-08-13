@@ -1,9 +1,9 @@
 'use strict';
 var chunkJMHPSDOI_cjs = require('./chunk-JMHPSDOI.cjs'),
-  chunkWBAREHXH_cjs = require('./chunk-WBAREHXH.cjs'),
+  chunkOPG7JB7V_cjs = require('./chunk-OPG7JB7V.cjs'),
   chunkIHVS6O3T_cjs = require('./chunk-IHVS6O3T.cjs'),
   chunk3V4TBEQV_cjs = require('./chunk-3V4TBEQV.cjs'),
-  chunkT5PKTXGQ_cjs = require('./chunk-T5PKTXGQ.cjs'),
+  chunk5O2GNSOK_cjs = require('./chunk-5O2GNSOK.cjs'),
   chunkGWBTKVFD_cjs = require('./chunk-GWBTKVFD.cjs'),
   chunkGILLFIXY_cjs = require('./chunk-GILLFIXY.cjs'),
   chunkWD2HTKRR_cjs = require('./chunk-WD2HTKRR.cjs'),
@@ -246,43 +246,43 @@ Object.defineProperty(exports, 'updateTableInDocument', {
 Object.defineProperty(exports, 'DocumentAgent', {
   enumerable: true,
   get: function () {
-    return chunkWBAREHXH_cjs.c;
+    return chunkOPG7JB7V_cjs.c;
   },
 });
 Object.defineProperty(exports, 'buildExtendedSelectionContext', {
   enumerable: true,
   get: function () {
-    return chunkWBAREHXH_cjs.j;
+    return chunkOPG7JB7V_cjs.j;
   },
 });
 Object.defineProperty(exports, 'buildSelectionContext', {
   enumerable: true,
   get: function () {
-    return chunkWBAREHXH_cjs.i;
+    return chunkOPG7JB7V_cjs.i;
   },
 });
 Object.defineProperty(exports, 'createDocumentWithText', {
   enumerable: true,
   get: function () {
-    return chunkWBAREHXH_cjs.b;
+    return chunkOPG7JB7V_cjs.b;
   },
 });
 Object.defineProperty(exports, 'createEmptyDocument', {
   enumerable: true,
   get: function () {
-    return chunkWBAREHXH_cjs.a;
+    return chunkOPG7JB7V_cjs.a;
   },
 });
 Object.defineProperty(exports, 'getAgentContext', {
   enumerable: true,
   get: function () {
-    return chunkWBAREHXH_cjs.f;
+    return chunkOPG7JB7V_cjs.f;
   },
 });
 Object.defineProperty(exports, 'getDocumentSummary', {
   enumerable: true,
   get: function () {
-    return chunkWBAREHXH_cjs.h;
+    return chunkOPG7JB7V_cjs.h;
   },
 });
 Object.defineProperty(exports, 'blendColors', {
@@ -528,31 +528,31 @@ Object.defineProperty(exports, 'sanitizeVariableName', {
 Object.defineProperty(exports, 'createDocx', {
   enumerable: true,
   get: function () {
-    return chunkT5PKTXGQ_cjs.e;
+    return chunk5O2GNSOK_cjs.e;
   },
 });
 Object.defineProperty(exports, 'repackDocx', {
   enumerable: true,
   get: function () {
-    return chunkT5PKTXGQ_cjs.d;
+    return chunk5O2GNSOK_cjs.d;
   },
 });
 Object.defineProperty(exports, 'serializeDocumentBody', {
   enumerable: true,
   get: function () {
-    return chunkT5PKTXGQ_cjs.b;
+    return chunk5O2GNSOK_cjs.b;
   },
 });
 Object.defineProperty(exports, 'serializeDocx', {
   enumerable: true,
   get: function () {
-    return chunkT5PKTXGQ_cjs.c;
+    return chunk5O2GNSOK_cjs.c;
   },
 });
 Object.defineProperty(exports, 'serializeSectionProperties', {
   enumerable: true,
   get: function () {
-    return chunkT5PKTXGQ_cjs.a;
+    return chunk5O2GNSOK_cjs.a;
   },
 });
 Object.defineProperty(exports, 'executeCommand', {

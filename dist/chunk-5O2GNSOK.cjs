@@ -1,6 +1,7 @@
-import { a as a$1, b as b$1 } from './chunk-HSGPG5BL.js';
-import { c } from './chunk-Y6VCTLCJ.js';
-function a(e) {
+'use strict';
+var chunkGILLFIXY_cjs = require('./chunk-GILLFIXY.cjs'),
+  chunkQEBO3EQP_cjs = require('./chunk-QEBO3EQP.cjs');
+function s(e) {
   return e
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -32,15 +33,15 @@ function ce(e) {
     t.length === 0 ? '' : `<w:shd ${t.join(' ')}/>`
   );
 }
-function b(e) {
+function v(e) {
   if (!e) return '';
   let t = [];
-  if ((e.styleId && t.push(`<w:rStyle w:val="${a(e.styleId)}"/>`), e.fontFamily)) {
+  if ((e.styleId && t.push(`<w:rStyle w:val="${s(e.styleId)}"/>`), e.fontFamily)) {
     let i = [];
-    (e.fontFamily.ascii && i.push(`w:ascii="${a(e.fontFamily.ascii)}"`),
-      e.fontFamily.hAnsi && i.push(`w:hAnsi="${a(e.fontFamily.hAnsi)}"`),
-      e.fontFamily.eastAsia && i.push(`w:eastAsia="${a(e.fontFamily.eastAsia)}"`),
-      e.fontFamily.cs && i.push(`w:cs="${a(e.fontFamily.cs)}"`),
+    (e.fontFamily.ascii && i.push(`w:ascii="${s(e.fontFamily.ascii)}"`),
+      e.fontFamily.hAnsi && i.push(`w:hAnsi="${s(e.fontFamily.hAnsi)}"`),
+      e.fontFamily.eastAsia && i.push(`w:eastAsia="${s(e.fontFamily.eastAsia)}"`),
+      e.fontFamily.cs && i.push(`w:cs="${s(e.fontFamily.cs)}"`),
       e.fontFamily.asciiTheme && i.push(`w:asciiTheme="${e.fontFamily.asciiTheme}"`),
       e.fontFamily.hAnsiTheme && i.push(`w:hAnsiTheme="${e.fontFamily.hAnsiTheme}"`),
       e.fontFamily.eastAsiaTheme && i.push(`w:eastAsiaTheme="${e.fontFamily.eastAsiaTheme}"`),
@@ -120,20 +121,20 @@ function fe(e) {
     r = n.length > 0 ? n : 'Unknown',
     i = typeof e.info.date == 'string' ? e.info.date.trim() : void 0,
     o = typeof e.info.rsid == 'string' ? e.info.rsid.trim() : void 0,
-    l = [`w:id="${t}"`, `w:author="${a(r)}"`];
-  (i && l.push(`w:date="${a(i)}"`), o && l.push(`w:rsid="${a(o)}"`));
-  let s = b(e.previousFormatting) || '<w:rPr/>';
-  return `<w:rPrChange ${l.join(' ')}>${s}</w:rPrChange>`;
+    l = [`w:id="${t}"`, `w:author="${s(r)}"`];
+  (i && l.push(`w:date="${s(i)}"`), o && l.push(`w:rsid="${s(o)}"`));
+  let c = v(e.previousFormatting) || '<w:rPr/>';
+  return `<w:rPrChange ${l.join(' ')}>${c}</w:rPrChange>`;
 }
 function ue(e, t) {
-  let n = b(e),
+  let n = v(e),
     r = n ? pe(n) : '',
     i = (t ?? []).map(fe).join(''),
     o = `${r}${i}`;
   return o ? `<w:rPr>${o}</w:rPr>` : '';
 }
 function me(e) {
-  return `<w:t${e.preserveSpace || e.text.startsWith(' ') || e.text.endsWith(' ') || e.text.includes('  ') ? ' xml:space="preserve"' : ''}>${a(e.text)}</w:t>`;
+  return `<w:t${e.preserveSpace || e.text.startsWith(' ') || e.text.endsWith(' ') || e.text.includes('  ') ? ' xml:space="preserve"' : ''}>${s(e.text)}</w:t>`;
 }
 function he(e) {
   return '<w:tab/>';
@@ -152,7 +153,7 @@ function de(e) {
   );
 }
 function we(e) {
-  return `<w:sym w:font="${a(e.font)}" w:char="${a(e.char)}"/>`;
+  return `<w:sym w:font="${s(e.font)}" w:char="${s(e.char)}"/>`;
 }
 function ge(e) {
   return e.type === 'footnoteRef'
@@ -168,7 +169,7 @@ function ye(e) {
   );
 }
 function xe(e) {
-  return `<w:instrText${e.text.startsWith(' ') || e.text.endsWith(' ') || e.text.includes('  ') ? ' xml:space="preserve"' : ''}>${a(e.text)}</w:instrText>`;
+  return `<w:instrText${e.text.startsWith(' ') || e.text.endsWith(' ') || e.text.includes('  ') ? ' xml:space="preserve"' : ''}>${s(e.text)}</w:instrText>`;
 }
 function $e(e) {
   return '<w:softHyphen/>';
@@ -176,7 +177,7 @@ function $e(e) {
 function Te(e) {
   return '<w:noBreakHyphen/>';
 }
-function I(e) {
+function B(e) {
   if (!e) return '';
   if (e.rgb) return `<a:srgbClr val="${e.rgb.replace('#', '')}"/>`;
   if (e.themeColor) {
@@ -194,22 +195,22 @@ function I(e) {
 }
 function Pe(e) {
   if (!e || e.type === 'none') return '<a:noFill/>';
-  if (e.type === 'solid' && e.color) return `<a:solidFill>${I(e.color)}</a:solidFill>`;
+  if (e.type === 'solid' && e.color) return `<a:solidFill>${B(e.color)}</a:solidFill>`;
   if (e.type === 'gradient' && e.gradient) {
     let t = e.gradient,
-      n = t.stops.map((i) => `<a:gs pos="${i.position}">${I(i.color)}</a:gs>`).join(''),
+      n = t.stops.map((i) => `<a:gs pos="${i.position}">${B(i.color)}</a:gs>`).join(''),
       r = t.type === 'linear' ? `<a:lin ang="${(t.angle || 0) * 6e4}" scaled="1"/>` : '';
     return `<a:gradFill><a:gsLst>${n}</a:gsLst>${r}</a:gradFill>`;
   }
   return '';
 }
-function X(e) {
+function L(e) {
   if (!e) return '';
   let t = [];
   (e.width != null && t.push(`w="${e.width}"`), e.cap && t.push(`cap="${e.cap}"`));
   let n = [];
   return (
-    e.color && n.push(`<a:solidFill>${I(e.color)}</a:solidFill>`),
+    e.color && n.push(`<a:solidFill>${B(e.color)}</a:solidFill>`),
     e.style && e.style !== 'solid' && n.push(`<a:prstDash val="${e.style}"/>`),
     e.headEnd &&
       n.push(
@@ -224,7 +225,7 @@ function X(e) {
       : `<a:ln${t.length ? ' ' + t.join(' ') : ''}>${n.join('')}</a:ln>`
   );
 }
-function L(e) {
+function O(e) {
   let t = [],
     n = e.horizontal;
   (t.push(`<wp:positionH relativeFrom="${n.relativeTo}">`),
@@ -242,7 +243,7 @@ function L(e) {
     t.join('')
   );
 }
-function O(e) {
+function M(e) {
   let t = e.wrapText ? ` wrapText="${e.wrapText}"` : ' wrapText="bothSides"';
   switch (e.type) {
     case 'square':
@@ -276,7 +277,7 @@ function be(e) {
       '<a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">',
       '<pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">',
       '<pic:nvPicPr>',
-      `<pic:cNvPr id="${i}" name="${a(o)}"${e.alt ? ` descr="${a(e.alt)}"` : ''}/>`,
+      `<pic:cNvPr id="${i}" name="${s(o)}"${e.alt ? ` descr="${s(e.alt)}"` : ''}/>`,
       '<pic:cNvPicPr/>',
       '</pic:nvPicPr>',
       '<pic:blipFill>',
@@ -289,7 +290,7 @@ function be(e) {
       `<a:ext cx="${t}" cy="${n}"/>`,
       '</a:xfrm>',
       '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom>',
-      e.outline ? X(e.outline) : '',
+      e.outline ? L(e.outline) : '',
       '</pic:spPr>',
       '</pic:pic>',
       '</a:graphicData>',
@@ -297,52 +298,52 @@ function be(e) {
     ].join('')
   );
 }
-function ve(e) {
+function Ce(e) {
   let t = e.image,
     n = t.wrap.type !== 'inline',
     r = t.size.width,
     i = t.size.height,
     o = t.padding?.top ?? t.wrap.distT ?? 0,
     l = t.padding?.bottom ?? t.wrap.distB ?? 0,
-    s = t.padding?.left ?? t.wrap.distL ?? 0,
+    c = t.padding?.left ?? t.wrap.distL ?? 0,
     p = t.padding?.right ?? t.wrap.distR ?? 0,
-    c = t.id || '1',
-    f = t.title || t.filename || `Picture ${c}`,
-    m = be(t);
+    a = t.id || '1',
+    f = t.title || t.filename || `Picture ${a}`,
+    u = be(t);
   if (!n)
     return [
       '<w:drawing>',
-      `<wp:inline distT="${o}" distB="${l}" distL="${s}" distR="${p}">`,
+      `<wp:inline distT="${o}" distB="${l}" distL="${c}" distR="${p}">`,
       `<wp:extent cx="${r}" cy="${i}"/>`,
       '<wp:effectExtent l="0" t="0" r="0" b="0"/>',
-      `<wp:docPr id="${c}" name="${a(f)}"${t.alt ? ` descr="${a(t.alt)}"` : ''}${t.decorative ? ' hidden="1"' : ''}/>`,
+      `<wp:docPr id="${a}" name="${s(f)}"${t.alt ? ` descr="${s(t.alt)}"` : ''}${t.decorative ? ' hidden="1"' : ''}/>`,
       '<wp:cNvGraphicFramePr><a:graphicFrameLocks xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" noChangeAspect="1"/></wp:cNvGraphicFramePr>',
-      m,
+      u,
       '</wp:inline>',
       '</w:drawing>',
     ].join('');
-  let u = t.wrap.type === 'behind' ? '1' : '0',
-    h = t.position
-      ? L(t.position)
+  let m = t.wrap.type === 'behind' ? '1' : '0',
+    g = t.position
+      ? O(t.position)
       : '<wp:positionH relativeFrom="column"><wp:posOffset>0</wp:posOffset></wp:positionH><wp:positionV relativeFrom="paragraph"><wp:posOffset>0</wp:posOffset></wp:positionV>',
-    g = O(t.wrap);
+    w = M(t.wrap);
   return [
     '<w:drawing>',
-    `<wp:anchor distT="${o}" distB="${l}" distL="${s}" distR="${p}" simplePos="0" relativeHeight="251658240" behindDoc="${u}" locked="0" layoutInCell="1" allowOverlap="1">`,
+    `<wp:anchor distT="${o}" distB="${l}" distL="${c}" distR="${p}" simplePos="0" relativeHeight="251658240" behindDoc="${m}" locked="0" layoutInCell="1" allowOverlap="1">`,
     '<wp:simplePos x="0" y="0"/>',
-    h,
+    g,
     `<wp:extent cx="${r}" cy="${i}"/>`,
     '<wp:effectExtent l="0" t="0" r="0" b="0"/>',
-    g,
-    `<wp:docPr id="${c}" name="${a(f)}"${t.alt ? ` descr="${a(t.alt)}"` : ''}/>`,
+    w,
+    `<wp:docPr id="${a}" name="${s(f)}"${t.alt ? ` descr="${s(t.alt)}"` : ''}/>`,
     '<wp:cNvGraphicFramePr><a:graphicFrameLocks xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" noChangeAspect="1"/></wp:cNvGraphicFramePr>',
-    m,
+    u,
     '</wp:anchor>',
     '</w:drawing>',
   ].join('');
 }
-function Ce(e) {
-  return e.map((t) => $(t)).join('');
+function ve(e) {
+  return e.map((t) => T(t)).join('');
 }
 function Fe(e) {
   let t = e.shape,
@@ -351,81 +352,81 @@ function Fe(e) {
     i = t.shapeType === 'textBox',
     o = t.wrap && t.wrap.type !== 'inline',
     l = t.wrap?.distT ?? 0,
-    s = t.wrap?.distB ?? 0,
+    c = t.wrap?.distB ?? 0,
     p = t.wrap?.distL ?? 0,
-    c = t.wrap?.distR ?? 0,
+    a = t.wrap?.distR ?? 0,
     f = t.id || '1',
-    m = t.name || (i ? `TextBox ${f}` : `Shape ${f}`),
-    u = '';
-  (t.transform?.rotation && (u += ` rot="${Math.round(t.transform.rotation * 6e4)}"`),
-    t.transform?.flipH && (u += ' flipH="1"'),
-    t.transform?.flipV && (u += ' flipV="1"'));
-  let h = [
+    u = t.name || (i ? `TextBox ${f}` : `Shape ${f}`),
+    m = '';
+  (t.transform?.rotation && (m += ` rot="${Math.round(t.transform.rotation * 6e4)}"`),
+    t.transform?.flipH && (m += ' flipH="1"'),
+    t.transform?.flipV && (m += ' flipV="1"'));
+  let g = [
       '<wps:spPr>',
-      `<a:xfrm${u}>`,
+      `<a:xfrm${m}>`,
       '<a:off x="0" y="0"/>',
       `<a:ext cx="${n}" cy="${r}"/>`,
       '</a:xfrm>',
       `<a:prstGeom prst="${t.shapeType === 'textBox' ? 'rect' : t.shapeType}"><a:avLst/></a:prstGeom>`,
       Pe(t.fill),
-      X(t.outline),
+      L(t.outline),
       '</wps:spPr>',
     ].join(''),
-    g = '';
+    w = '';
   if (t.textBody) {
-    let d = t.textBody,
-      x = ['rot="0"', 'vert="horz"'];
-    (d.anchor && x.push(`anchor="${d.anchor === 'middle' ? 'ctr' : d.anchor}"`),
-      d.anchorCenter && x.push('anchorCtr="1"'),
-      d.margins &&
-        (d.margins.left != null && x.push(`lIns="${d.margins.left}"`),
-        d.margins.top != null && x.push(`tIns="${d.margins.top}"`),
-        d.margins.right != null && x.push(`rIns="${d.margins.right}"`),
-        d.margins.bottom != null && x.push(`bIns="${d.margins.bottom}"`)),
+    let h = t.textBody,
+      $ = ['rot="0"', 'vert="horz"'];
+    (h.anchor && $.push(`anchor="${h.anchor === 'middle' ? 'ctr' : h.anchor}"`),
+      h.anchorCenter && $.push('anchorCtr="1"'),
+      h.margins &&
+        (h.margins.left != null && $.push(`lIns="${h.margins.left}"`),
+        h.margins.top != null && $.push(`tIns="${h.margins.top}"`),
+        h.margins.right != null && $.push(`rIns="${h.margins.right}"`),
+        h.margins.bottom != null && $.push(`bIns="${h.margins.bottom}"`)),
       i
-        ? (g = [
+        ? (w = [
             '<wps:txbx><w:txbxContent>',
-            Ce(d.content),
+            ve(h.content),
             '</w:txbxContent></wps:txbx>',
-            `<wps:bodyPr ${x.join(' ')}/>`,
+            `<wps:bodyPr ${$.join(' ')}/>`,
           ].join(''))
-        : (g = [`<wps:bodyPr ${x.join(' ')}/>`].join('')));
+        : (w = [`<wps:bodyPr ${$.join(' ')}/>`].join('')));
   }
-  let j = [
+  let C = [
     '<a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">',
     '<a:graphicData uri="http://schemas.microsoft.com/office/word/2010/wordprocessingShape">',
-    ['<wps:wsp>', `<wps:cNvSpPr${i ? ' txBox="1"' : ''}/>`, h, g, '</wps:wsp>'].join(''),
+    ['<wps:wsp>', `<wps:cNvSpPr${i ? ' txBox="1"' : ''}/>`, g, w, '</wps:wsp>'].join(''),
     '</a:graphicData>',
     '</a:graphic>',
   ].join('');
   if (!o)
     return [
       '<w:drawing>',
-      `<wp:inline distT="${l}" distB="${s}" distL="${p}" distR="${c}">`,
+      `<wp:inline distT="${l}" distB="${c}" distL="${p}" distR="${a}">`,
       `<wp:extent cx="${n}" cy="${r}"/>`,
       '<wp:effectExtent l="0" t="0" r="0" b="0"/>',
-      `<wp:docPr id="${f}" name="${a(m)}"/>`,
+      `<wp:docPr id="${f}" name="${s(u)}"/>`,
       '<wp:cNvGraphicFramePr/>',
-      j,
+      C,
       '</wp:inline>',
       '</w:drawing>',
     ].join('');
-  let re = t.wrap?.type === 'behind' ? '1' : '0',
+  let k = t.wrap?.type === 'behind' ? '1' : '0',
     ie = t.position
-      ? L(t.position)
+      ? O(t.position)
       : '<wp:positionH relativeFrom="column"><wp:posOffset>0</wp:posOffset></wp:positionH><wp:positionV relativeFrom="paragraph"><wp:posOffset>0</wp:posOffset></wp:positionV>',
-    oe = O(t.wrap);
+    oe = M(t.wrap);
   return [
     '<w:drawing>',
-    `<wp:anchor distT="${l}" distB="${s}" distL="${p}" distR="${c}" simplePos="0" relativeHeight="251658240" behindDoc="${re}" locked="0" layoutInCell="1" allowOverlap="1">`,
+    `<wp:anchor distT="${l}" distB="${c}" distL="${p}" distR="${a}" simplePos="0" relativeHeight="251658240" behindDoc="${k}" locked="0" layoutInCell="1" allowOverlap="1">`,
     '<wp:simplePos x="0" y="0"/>',
     ie,
     `<wp:extent cx="${n}" cy="${r}"/>`,
     '<wp:effectExtent l="0" t="0" r="0" b="0"/>',
     oe,
-    `<wp:docPr id="${f}" name="${a(m)}"/>`,
+    `<wp:docPr id="${f}" name="${s(u)}"/>`,
     '<wp:cNvGraphicFramePr/>',
-    j,
+    C,
     '</wp:anchor>',
     '</w:drawing>',
   ].join('');
@@ -452,14 +453,14 @@ function Se(e) {
     case 'noBreakHyphen':
       return Te();
     case 'drawing':
-      return ve(e);
+      return Ce(e);
     case 'shape':
       return Fe(e);
     default:
       return '';
   }
 }
-function y(e) {
+function x(e) {
   let t = [],
     n = ue(e.formatting, e.propertyChanges);
   n && t.push(n);
@@ -469,7 +470,7 @@ function y(e) {
   }
   return `<w:r>${t.join('')}</w:r>`;
 }
-function v(e, t) {
+function F(e, t) {
   if (!e || e.style === 'none' || e.style === 'nil') return '';
   let n = [`w:val="${e.style}"`];
   return (
@@ -489,27 +490,27 @@ function Re(e) {
   if (!e) return '';
   let t = [];
   if (e.top) {
-    let n = v(e.top, 'top');
+    let n = F(e.top, 'top');
     n && t.push(n);
   }
   if (e.left) {
-    let n = v(e.left, 'left');
+    let n = F(e.left, 'left');
     n && t.push(n);
   }
   if (e.bottom) {
-    let n = v(e.bottom, 'bottom');
+    let n = F(e.bottom, 'bottom');
     n && t.push(n);
   }
   if (e.right) {
-    let n = v(e.right, 'right');
+    let n = F(e.right, 'right');
     n && t.push(n);
   }
   if (e.between) {
-    let n = v(e.between, 'between');
+    let n = F(e.between, 'between');
     n && t.push(n);
   }
   if (e.bar) {
-    let n = v(e.bar, 'bar');
+    let n = F(e.bar, 'bar');
     n && t.push(n);
   }
   return t.length === 0 ? '' : `<w:pBdr>${t.join('')}</w:pBdr>`;
@@ -540,7 +541,7 @@ function Ae(e) {
         })
         .join('')}</w:tabs>`;
 }
-function De(e) {
+function Ie(e) {
   let t = [];
   return (
     e.spaceBefore !== void 0 && t.push(`w:before="${e.spaceBefore}"`),
@@ -552,7 +553,7 @@ function De(e) {
     t.length === 0 ? '' : `<w:spacing ${t.join(' ')}/>`
   );
 }
-function Ie(e) {
+function De(e) {
   let t = [];
   return (
     e.indentLeft !== void 0 && t.push(`w:left="${e.indentLeft}"`),
@@ -589,10 +590,10 @@ function Be(e) {
     t.length === 0 ? '' : `<w:framePr ${t.join(' ')}/>`
   );
 }
-function H(e, t) {
+function N(e, t) {
   let n = [];
   if (e) {
-    (e.styleId && n.push(`<w:pStyle w:val="${a(e.styleId)}"/>`),
+    (e.styleId && n.push(`<w:pStyle w:val="${s(e.styleId)}"/>`),
       e.keepNext && n.push('<w:keepNext/>'),
       e.keepLines && n.push('<w:keepLines/>'),
       e.contextualSpacing && n.push('<w:contextualSpacing/>'),
@@ -608,21 +609,21 @@ function H(e, t) {
     o && n.push(o);
     let l = ze(e.shading);
     l && n.push(l);
-    let s = Ae(e.tabs);
-    (s && n.push(s),
+    let c = Ae(e.tabs);
+    (c && n.push(c),
       e.suppressLineNumbers && n.push('<w:suppressLineNumbers/>'),
       e.suppressAutoHyphens && n.push('<w:suppressAutoHyphens/>'));
-    let p = De(e);
+    let p = Ie(e);
     p && n.push(p);
-    let c = Ie(e);
+    let a = De(e);
     if (
-      (c && n.push(c),
+      (a && n.push(a),
       e.bidi && n.push('<w:bidi/>'),
       e.alignment && n.push(`<w:jc w:val="${e.alignment}"/>`),
       e.outlineLevel !== void 0 && n.push(`<w:outlineLvl w:val="${e.outlineLevel}"/>`),
       e.runProperties)
     ) {
-      let f = b(e.runProperties);
+      let f = v(e.runProperties);
       f && n.push(f);
     }
   }
@@ -640,81 +641,81 @@ function je(e) {
     r = n.length > 0 ? n : 'Unknown',
     i = typeof e.info.date == 'string' ? e.info.date.trim() : void 0,
     o = typeof e.info.rsid == 'string' ? e.info.rsid.trim() : void 0,
-    l = [`w:id="${t}"`, `w:author="${a(r)}"`];
-  (i && l.push(`w:date="${a(i)}"`), o && l.push(`w:rsid="${a(o)}"`));
-  let s = H(e.previousFormatting) || '<w:pPr/>',
-    p = Ee(s),
-    c = p.length > 0 ? `<w:pPr>${p}</w:pPr>` : '<w:pPr/>';
-  return `<w:pPrChange ${l.join(' ')}>${c}</w:pPrChange>`;
+    l = [`w:id="${t}"`, `w:author="${s(r)}"`];
+  (i && l.push(`w:date="${s(i)}"`), o && l.push(`w:rsid="${s(o)}"`));
+  let c = N(e.previousFormatting) || '<w:pPr/>',
+    p = Ee(c),
+    a = p.length > 0 ? `<w:pPr>${p}</w:pPr>` : '<w:pPr/>';
+  return `<w:pPrChange ${l.join(' ')}>${a}</w:pPrChange>`;
 }
-function k(e) {
+function E(e) {
   let t = [];
   (e.rId && t.push(`r:id="${e.rId}"`),
-    e.anchor && t.push(`w:anchor="${a(e.anchor)}"`),
-    e.tooltip && t.push(`w:tooltip="${a(e.tooltip)}"`),
-    e.target && t.push(`w:tgtFrame="${a(e.target)}"`),
+    e.anchor && t.push(`w:anchor="${s(e.anchor)}"`),
+    e.tooltip && t.push(`w:tooltip="${s(e.tooltip)}"`),
+    e.target && t.push(`w:tgtFrame="${s(e.target)}"`),
     e.history === false && t.push('w:history="0"'),
-    e.docLocation && t.push(`w:docLocation="${a(e.docLocation)}"`));
+    e.docLocation && t.push(`w:docLocation="${s(e.docLocation)}"`));
   let n = e.children
     .map((i) =>
       i.type === 'run'
-        ? y(i)
+        ? x(i)
         : i.type === 'bookmarkStart'
-          ? N(i)
+          ? W(i)
           : i.type === 'bookmarkEnd'
-            ? W(i)
+            ? _(i)
             : ''
     )
     .join('');
   return `<w:hyperlink${t.length > 0 ? ' ' + t.join(' ') : ''}>${n}</w:hyperlink>`;
 }
-function N(e) {
-  let t = [`w:id="${e.id}"`, `w:name="${a(e.name)}"`];
+function W(e) {
+  let t = [`w:id="${e.id}"`, `w:name="${s(e.name)}"`];
   return (
     e.colFirst !== void 0 && t.push(`w:colFirst="${e.colFirst}"`),
     e.colLast !== void 0 && t.push(`w:colLast="${e.colLast}"`),
     `<w:bookmarkStart ${t.join(' ')}/>`
   );
 }
-function W(e) {
+function _(e) {
   return `<w:bookmarkEnd w:id="${e.id}"/>`;
 }
 function Xe(e) {
   let t = [],
-    n = e.content.find((s) => s.type === 'run'),
-    r = n?.formatting ? b(n.formatting) : '',
+    n = e.content.find((c) => c.type === 'run'),
+    r = n?.formatting ? v(n.formatting) : '',
     i = ['w:fldCharType="begin"'];
   (e.fldLock && i.push('w:fldLock="true"'), t.push(`<w:r>${r}<w:fldChar ${i.join(' ')}/></w:r>`));
   let l =
     e.instruction.startsWith(' ') || e.instruction.endsWith(' ') || e.instruction.includes('  ')
       ? ' xml:space="preserve"'
       : '';
-  (t.push(`<w:r>${r}<w:instrText${l}>${a(e.instruction)}</w:instrText></w:r>`),
+  (t.push(`<w:r>${r}<w:instrText${l}>${s(e.instruction)}</w:instrText></w:r>`),
     t.push(`<w:r>${r}<w:fldChar w:fldCharType="separate"/></w:r>`));
-  for (let s of e.content) s.type === 'run' && t.push(y(s));
+  for (let c of e.content) c.type === 'run' && t.push(x(c));
   return (t.push(`<w:r>${r}<w:fldChar w:fldCharType="end"/></w:r>`), t.join(''));
 }
 function Le(e) {
   let t = [],
     n = e.fieldResult?.[0]?.formatting,
-    r = n ? b(n) : '',
+    r = n ? v(n) : '',
     i = ['w:fldCharType="begin"'];
   if (
     (e.fldLock && i.push('w:fldLock="true"'),
     t.push(`<w:r>${r}<w:fldChar ${i.join(' ')}/></w:r>`),
     e.fieldCode.length > 0)
   )
-    t.push(...e.fieldCode.map((o) => y(o)));
+    t.push(...e.fieldCode.map((o) => x(o)));
   else {
     let l =
       e.instruction.startsWith(' ') || e.instruction.endsWith(' ') || e.instruction.includes('  ')
         ? ' xml:space="preserve"'
         : '';
-    t.push(`<w:r>${r}<w:instrText${l}>${a(e.instruction)}</w:instrText></w:r>`);
+    t.push(`<w:r>${r}<w:instrText${l}>${s(e.instruction)}</w:instrText></w:r>`);
   }
   return (
     t.push(`<w:r>${r}<w:fldChar w:fldCharType="separate"/></w:r>`),
-    t.push(...e.fieldResult.map((o) => y(o))),
+    t.push(...e.fieldResult.map((o) => x(o))),
     t.push(`<w:r>${r}<w:fldChar w:fldCharType="end"/></w:r>`),
     t.join('')
   );
@@ -723,8 +724,8 @@ function Oe(e) {
   let t = e.properties,
     n = [];
   switch (
-    (t.alias && n.push(`<w:alias w:val="${a(t.alias)}"/>`),
-    t.tag && n.push(`<w:tag w:val="${a(t.tag)}"/>`),
+    (t.alias && n.push(`<w:alias w:val="${s(t.alias)}"/>`),
+    t.tag && n.push(`<w:tag w:val="${s(t.tag)}"/>`),
     t.lock && t.lock !== 'unlocked' && n.push(`<w:lock w:val="${t.lock}"/>`),
     t.showingPlaceholder && n.push('<w:showingPlcHdr/>'),
     t.sdtType)
@@ -733,18 +734,18 @@ function Oe(e) {
       n.push('<w:text/>');
       break;
     case 'date':
-      t.dateFormat ? n.push(`<w:date w:fullDate="${a(t.dateFormat)}"/>`) : n.push('<w:date/>');
+      t.dateFormat ? n.push(`<w:date w:fullDate="${s(t.dateFormat)}"/>`) : n.push('<w:date/>');
       break;
     case 'dropdown': {
       let i = (t.listItems ?? [])
-        .map((o) => `<w:listItem w:displayText="${a(o.displayText)}" w:value="${a(o.value)}"/>`)
+        .map((o) => `<w:listItem w:displayText="${s(o.displayText)}" w:value="${s(o.value)}"/>`)
         .join('');
       n.push(`<w:dropDownList>${i}</w:dropDownList>`);
       break;
     }
     case 'comboBox': {
       let i = (t.listItems ?? [])
-        .map((o) => `<w:listItem w:displayText="${a(o.displayText)}" w:value="${a(o.value)}"/>`)
+        .map((o) => `<w:listItem w:displayText="${s(o.displayText)}" w:value="${s(o.value)}"/>`)
         .join('');
       n.push(`<w:comboBox>${i}</w:comboBox>`);
       break;
@@ -757,49 +758,49 @@ function Oe(e) {
       break;
   }
   let r = e.content
-    .map((i) => (i.type === 'run' ? y(i) : i.type === 'hyperlink' ? k(i) : ''))
+    .map((i) => (i.type === 'run' ? x(i) : i.type === 'hyperlink' ? E(i) : ''))
     .join('');
   return `<w:sdt><w:sdtPr>${n.join('')}</w:sdtPr><w:sdtContent>${r}</w:sdtContent></w:sdt>`;
 }
-function M(e, t) {
-  let n = [`w:id="${t.id}"`, `w:name="${a(t.name)}"`];
+function H(e, t) {
+  let n = [`w:id="${t.id}"`, `w:name="${s(t.name)}"`];
   return `<w:${e} ${n.join(' ')}/>`;
 }
-function z(e, t) {
+function A(e, t) {
   let n = t.info,
     r = Number.isInteger(n.id) && n.id >= 0 ? n.id : 0,
     i = typeof n.author == 'string' ? n.author.trim() : '',
     o = i.length > 0 ? i : 'Unknown',
     l = typeof n.date == 'string' ? n.date.trim() : void 0,
-    s = [`w:id="${r}"`, `w:author="${a(o)}"`];
-  l && s.push(`w:date="${a(l)}"`);
+    c = [`w:id="${r}"`, `w:author="${s(o)}"`];
+  l && c.push(`w:date="${s(l)}"`);
   let p = t.content
-    .map((c) =>
-      c.type === 'run'
+    .map((a) =>
+      a.type === 'run'
         ? e === 'del' || e === 'moveFrom'
-          ? y(c)
+          ? x(a)
               .replace(/<w:t\b/g, '<w:delText')
               .replace(/<\/w:t>/g, '</w:delText>')
               .replace(/<w:instrText\b/g, '<w:delInstrText')
               .replace(/<\/w:instrText>/g, '</w:delInstrText>')
-          : y(c)
-        : c.type === 'hyperlink'
-          ? k(c)
+          : x(a)
+        : a.type === 'hyperlink'
+          ? E(a)
           : ''
     )
     .join('');
-  return `<w:${e} ${s.join(' ')}>${p}</w:${e}>`;
+  return `<w:${e} ${c.join(' ')}>${p}</w:${e}>`;
 }
 function Me(e) {
   switch (e.type) {
     case 'run':
-      return y(e);
+      return x(e);
     case 'hyperlink':
-      return k(e);
+      return E(e);
     case 'bookmarkStart':
-      return N(e);
-    case 'bookmarkEnd':
       return W(e);
+    case 'bookmarkEnd':
+      return _(e);
     case 'simpleField':
       return Xe(e);
     case 'complexField':
@@ -811,19 +812,19 @@ function Me(e) {
     case 'commentRangeEnd':
       return `<w:commentRangeEnd w:id="${e.id}"/><w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="${e.id}"/></w:r>`;
     case 'insertion':
-      return z('ins', e);
+      return A('ins', e);
     case 'deletion':
-      return z('del', e);
+      return A('del', e);
     case 'moveFrom':
-      return z('moveFrom', e);
+      return A('moveFrom', e);
     case 'moveTo':
-      return z('moveTo', e);
+      return A('moveTo', e);
     case 'moveFromRangeStart':
-      return M('moveFromRangeStart', e);
+      return H('moveFromRangeStart', e);
     case 'moveFromRangeEnd':
       return `<w:moveFromRangeEnd w:id="${e.id}"/>`;
     case 'moveToRangeStart':
-      return M('moveToRangeStart', e);
+      return H('moveToRangeStart', e);
     case 'moveToRangeEnd':
       return `<w:moveToRangeEnd w:id="${e.id}"/>`;
     case 'mathEquation':
@@ -832,12 +833,12 @@ function Me(e) {
       return '';
   }
 }
-function $(e) {
+function T(e) {
   let t = [],
     n = [];
   (e.paraId && n.push(`w14:paraId="${e.paraId}"`), e.textId && n.push(`w14:textId="${e.textId}"`));
   let r = n.length > 0 ? ' ' + n.join(' ') : '',
-    i = H(e.formatting, e.propertyChanges);
+    i = N(e.formatting, e.propertyChanges);
   i && t.push(i);
   for (let o of e.content) {
     let l = Me(o);
@@ -852,21 +853,21 @@ function He(e) {
     i = typeof e.date == 'string' ? e.date.trim() : void 0;
   return { id: t, author: r, date: i };
 }
-function P(e, t) {
+function b(e, t) {
   let n = He(e),
-    r = [`w:id="${n.id}"`, `w:author="${a(n.author)}"`];
+    r = [`w:id="${n.id}"`, `w:author="${s(n.author)}"`];
   return (
-    n.date && r.push(`w:date="${a(n.date)}"`),
-    t && t.trim().length > 0 && r.push(`w:rsid="${a(t.trim())}"`),
+    n.date && r.push(`w:date="${s(n.date)}"`),
+    t && t.trim().length > 0 && r.push(`w:rsid="${s(t.trim())}"`),
     r.join(' ')
   );
 }
-function T(e, t) {
+function P(e, t) {
   if (!e) return '';
   let n = [`w:w="${e.value}"`, `w:type="${e.type}"`];
   return `<w:${t} ${n.join(' ')}/>`;
 }
-function C(e, t) {
+function S(e, t) {
   if (!e || e.style === 'none' || e.style === 'nil') return '';
   let n = [`w:val="${e.style}"`];
   return (
@@ -882,47 +883,47 @@ function C(e, t) {
     `<w:${t} ${n.join(' ')}/>`
   );
 }
-function _(e, t) {
+function G(e, t) {
   if (!e) return '';
   let n = [];
   if (e.top) {
-    let r = C(e.top, 'top');
+    let r = S(e.top, 'top');
     r && n.push(r);
   }
   if (e.left) {
-    let r = C(e.left, 'left');
+    let r = S(e.left, 'left');
     r && n.push(r);
   }
   if (e.bottom) {
-    let r = C(e.bottom, 'bottom');
+    let r = S(e.bottom, 'bottom');
     r && n.push(r);
   }
   if (e.right) {
-    let r = C(e.right, 'right');
+    let r = S(e.right, 'right');
     r && n.push(r);
   }
   if (e.insideH) {
-    let r = C(e.insideH, 'insideH');
+    let r = S(e.insideH, 'insideH');
     r && n.push(r);
   }
   if (e.insideV) {
-    let r = C(e.insideV, 'insideV');
+    let r = S(e.insideV, 'insideV');
     r && n.push(r);
   }
   return n.length === 0 ? '' : `<w:${t}>${n.join('')}</w:${t}>`;
 }
-function G(e, t) {
+function V(e, t) {
   if (!e) return '';
   let n = [];
   return (
-    e.top && n.push(T(e.top, 'top')),
-    e.left && n.push(T(e.left, 'left')),
-    e.bottom && n.push(T(e.bottom, 'bottom')),
-    e.right && n.push(T(e.right, 'right')),
+    e.top && n.push(P(e.top, 'top')),
+    e.left && n.push(P(e.left, 'left')),
+    e.bottom && n.push(P(e.bottom, 'bottom')),
+    e.right && n.push(P(e.right, 'right')),
     n.length === 0 ? '' : `<w:${t}>${n.join('')}</w:${t}>`
   );
 }
-function V(e) {
+function U(e) {
   if (!e) return '';
   let t = [];
   return (
@@ -965,24 +966,24 @@ function We(e) {
     t.length === 0 ? '' : `<w:tblpPr ${t.join(' ')}/>`
   );
 }
-function U(e, t) {
+function Z(e, t) {
   let n = [];
   if (e) {
-    e.styleId && n.push(`<w:tblStyle w:val="${a(e.styleId)}"/>`);
+    e.styleId && n.push(`<w:tblStyle w:val="${s(e.styleId)}"/>`);
     let r = We(e.floating);
     (r && n.push(r), e.bidi && n.push('<w:bidiVisual/>'));
-    let i = T(e.width, 'tblW');
+    let i = P(e.width, 'tblW');
     (i && n.push(i), e.justification && n.push(`<w:jc w:val="${e.justification}"/>`));
-    let o = T(e.cellSpacing, 'tblCellSpacing');
+    let o = P(e.cellSpacing, 'tblCellSpacing');
     o && n.push(o);
-    let l = T(e.indent, 'tblInd');
+    let l = P(e.indent, 'tblInd');
     l && n.push(l);
-    let s = _(e.borders, 'tblBorders');
-    s && n.push(s);
-    let p = G(e.cellMargins, 'tblCellMar');
-    (p && n.push(p), e.layout && n.push(`<w:tblLayout w:type="${e.layout}"/>`));
-    let c = V(e.shading);
+    let c = G(e.borders, 'tblBorders');
     c && n.push(c);
+    let p = V(e.cellMargins, 'tblCellMar');
+    (p && n.push(p), e.layout && n.push(`<w:tblLayout w:type="${e.layout}"/>`));
+    let a = U(e.shading);
+    a && n.push(a);
     let f = Ne(e.look);
     (f && n.push(f), e.overlap && n.push(`<w:tblOverlap w:val="${e.overlap}"/>`));
   }
@@ -995,13 +996,13 @@ function _e(e) {
   return !e.startsWith('<w:tblPr>') || !e.endsWith('</w:tblPr>') ? '' : e.slice(9, -10);
 }
 function Ge(e) {
-  let t = P(e.info, e.info.rsid),
-    n = U(e.previousFormatting) || '<w:tblPr/>',
+  let t = b(e.info, e.info.rsid),
+    n = Z(e.previousFormatting) || '<w:tblPr/>',
     r = _e(n),
     i = r.length > 0 ? `<w:tblPr>${r}</w:tblPr>` : '<w:tblPr/>';
   return `<w:tblPrChange ${t}>${i}</w:tblPrChange>`;
 }
-function Z(e, t, n) {
+function Y(e, t, n) {
   let r = [];
   if (e) {
     if ((e.cantSplit && r.push('<w:cantSplit/>'), e.header && r.push('<w:tblHeader/>'), e.height)) {
@@ -1014,8 +1015,8 @@ function Z(e, t, n) {
   return (
     n &&
       (n.type === 'tableRowInsertion'
-        ? r.push(`<w:ins ${P(n.info)}/>`)
-        : n.type === 'tableRowDeletion' && r.push(`<w:del ${P(n.info)}/>`)),
+        ? r.push(`<w:ins ${b(n.info)}/>`)
+        : n.type === 'tableRowDeletion' && r.push(`<w:del ${b(n.info)}/>`)),
     t && t.length > 0 && r.push(...t.map((i) => Ue(i))),
     r.length === 0 ? '' : `<w:trPr>${r.join('')}</w:trPr>`
   );
@@ -1024,8 +1025,8 @@ function Ve(e) {
   return !e.startsWith('<w:trPr>') || !e.endsWith('</w:trPr>') ? '' : e.slice(8, -9);
 }
 function Ue(e) {
-  let t = P(e.info, e.info.rsid),
-    n = Z(e.previousFormatting) || '<w:trPr/>',
+  let t = b(e.info, e.info.rsid),
+    n = Y(e.previousFormatting) || '<w:trPr/>',
     r = Ve(n),
     i = r.length > 0 ? `<w:trPr>${r}</w:trPr>` : '<w:trPr/>';
   return `<w:trPrChange ${t}>${i}</w:trPrChange>`;
@@ -1048,21 +1049,21 @@ function Ze(e) {
   ].join('');
   return n === '000000000000' ? '' : `<w:cnfStyle w:val="${n}"/>`;
 }
-function Y(e, t, n) {
+function q(e, t, n) {
   let r = [];
   if (e) {
     let i = Ze(e.conditionalFormat);
     i && r.push(i);
-    let o = T(e.width, 'tcW');
+    let o = P(e.width, 'tcW');
     (o && r.push(o),
       e.gridSpan && e.gridSpan > 1 && r.push(`<w:gridSpan w:val="${e.gridSpan}"/>`),
       e.vMerge &&
         (e.vMerge === 'restart' ? r.push('<w:vMerge w:val="restart"/>') : r.push('<w:vMerge/>')));
-    let l = _(e.borders, 'tcBorders');
+    let l = G(e.borders, 'tcBorders');
     l && r.push(l);
-    let s = V(e.shading);
-    (s && r.push(s), e.noWrap && r.push('<w:noWrap/>'));
-    let p = G(e.margins, 'tcMar');
+    let c = U(e.shading);
+    (c && r.push(c), e.noWrap && r.push('<w:noWrap/>'));
+    let p = V(e.margins, 'tcMar');
     (p && r.push(p),
       e.textDirection && r.push(`<w:textDirection w:val="${e.textDirection}"/>`),
       e.fitText && r.push('<w:tcFitText/>'),
@@ -1072,10 +1073,10 @@ function Y(e, t, n) {
   return (
     n &&
       (n.type === 'tableCellInsertion'
-        ? r.push(`<w:cellIns ${P(n.info)}/>`)
+        ? r.push(`<w:cellIns ${b(n.info)}/>`)
         : n.type === 'tableCellDeletion'
-          ? r.push(`<w:cellDel ${P(n.info)}/>`)
-          : n.type === 'tableCellMerge' && r.push(`<w:cellMerge ${P(n.info)}/>`)),
+          ? r.push(`<w:cellDel ${b(n.info)}/>`)
+          : n.type === 'tableCellMerge' && r.push(`<w:cellMerge ${b(n.info)}/>`)),
     t && t.length > 0 && r.push(...t.map((i) => qe(i))),
     r.length === 0 ? '' : `<w:tcPr>${r.join('')}</w:tcPr>`
   );
@@ -1084,8 +1085,8 @@ function Ye(e) {
   return !e.startsWith('<w:tcPr>') || !e.endsWith('</w:tcPr>') ? '' : e.slice(8, -9);
 }
 function qe(e) {
-  let t = P(e.info, e.info.rsid),
-    n = Y(e.previousFormatting) || '<w:tcPr/>',
+  let t = b(e.info, e.info.rsid),
+    n = q(e.previousFormatting) || '<w:tcPr/>',
     r = Ye(n),
     i = r.length > 0 ? `<w:tcPr>${r}</w:tcPr>` : '<w:tcPr/>';
   return `<w:tcPrChange ${t}>${i}</w:tcPrChange>`;
@@ -1097,31 +1098,31 @@ function Je(e) {
 }
 function Ke(e) {
   let t = [];
-  for (let n of e) n.type === 'paragraph' ? t.push($(n)) : n.type === 'table' && t.push(S(n));
+  for (let n of e) n.type === 'paragraph' ? t.push(T(n)) : n.type === 'table' && t.push(R(n));
   return (t.length === 0 && t.push('<w:p/>'), t.join(''));
 }
 function Qe(e) {
   let t = [],
-    n = Y(e.formatting, e.propertyChanges, e.structuralChange);
+    n = q(e.formatting, e.propertyChanges, e.structuralChange);
   return (n && t.push(n), t.push(Ke(e.content)), `<w:tc>${t.join('')}</w:tc>`);
 }
 function et(e) {
   let t = [],
-    n = Z(e.formatting, e.propertyChanges, e.structuralChange);
+    n = Y(e.formatting, e.propertyChanges, e.structuralChange);
   n && t.push(n);
   for (let r of e.cells) t.push(Qe(r));
   return `<w:tr>${t.join('')}</w:tr>`;
 }
-function S(e) {
+function R(e) {
   let t = [],
-    n = U(e.formatting, e.propertyChanges);
+    n = Z(e.formatting, e.propertyChanges);
   n && t.push(n);
   let r = Je(e.columnWidths);
   r && t.push(r);
   for (let i of e.rows) t.push(et(i));
   return `<w:tbl>${t.join('')}</w:tbl>`;
 }
-var w = {
+var d = {
   wpc: 'http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas',
   mc: 'http://schemas.openxmlformats.org/markup-compatibility/2006',
   o: 'urn:schemas-microsoft-com:office:office',
@@ -1139,26 +1140,26 @@ var w = {
 };
 function tt() {
   let e = {
-    wpc: w.wpc,
-    mc: w.mc,
-    o: w.o,
-    r: w.r,
-    m: w.m,
-    v: w.v,
-    wp14: w.wp14,
-    wp: w.wp,
-    w10: w.w10,
-    w: w.w,
-    w14: w.w14,
-    w15: w.w15,
-    wpg: w.wpg,
-    wps: w.wps,
+    wpc: d.wpc,
+    mc: d.mc,
+    o: d.o,
+    r: d.r,
+    m: d.m,
+    v: d.v,
+    wp14: d.wp14,
+    wp: d.wp,
+    w10: d.w10,
+    w: d.w,
+    w14: d.w14,
+    w15: d.w15,
+    wpg: d.wpg,
+    wps: d.wps,
   };
   return Object.entries(e)
     .map(([t, n]) => `xmlns:${t}="${n}"`)
     .join(' ');
 }
-function A(e, t) {
+function I(e, t) {
   if (!e || e.style === 'none' || e.style === 'nil') return '';
   let n = [`w:val="${e.style}"`];
   return (
@@ -1271,19 +1272,19 @@ function pt(e) {
     t.zOrder && n.push(`w:zOrder="${t.zOrder}"`),
     t.top)
   ) {
-    let o = A(t.top, 'top');
+    let o = I(t.top, 'top');
     o && r.push(o);
   }
   if (t.left) {
-    let o = A(t.left, 'left');
+    let o = I(t.left, 'left');
     o && r.push(o);
   }
   if (t.bottom) {
-    let o = A(t.bottom, 'bottom');
+    let o = I(t.bottom, 'bottom');
     o && r.push(o);
   }
   if (t.right) {
-    let o = A(t.right, 'right');
+    let o = I(t.right, 'right');
     o && r.push(o);
   }
   return r.length === 0
@@ -1321,13 +1322,13 @@ function ut(e) {
   }
   let l = pt(e);
   l && t.push(l);
-  let s = ct(e);
-  s && t.push(s);
+  let c = ct(e);
+  c && t.push(c);
   let p = lt(e);
   p && t.push(p);
-  let c = ft(e);
+  let a = ft(e);
   return (
-    c && t.push(c),
+    a && t.push(a),
     e.verticalAlign && t.push(`<w:vAlign w:val="${e.verticalAlign}"/>`),
     e.bidi && t.push('<w:bidi/>'),
     e.titlePg && t.push('<w:titlePg/>'),
@@ -1335,11 +1336,11 @@ function ut(e) {
     t.length === 0 ? '' : `<w:sectPr>${t.join('')}</w:sectPr>`
   );
 }
-function q(e) {
-  if (e.type === 'paragraph') return $(e);
-  if (e.type === 'table') return S(e);
+function J(e) {
+  if (e.type === 'paragraph') return T(e);
+  if (e.type === 'table') return R(e);
   if (e.type === 'blockSdt') {
-    let t = e.content.map((i) => q(i)).join(''),
+    let t = e.content.map((i) => J(i)).join(''),
       n = e.properties,
       r = [];
     return (
@@ -1351,7 +1352,7 @@ function q(e) {
   return '';
 }
 function mt(e) {
-  return e.map((t) => q(t)).join('');
+  return e.map((t) => J(t)).join('');
 }
 function ht(e) {
   let t = [];
@@ -1361,7 +1362,7 @@ function ht(e) {
     t.join('')
   );
 }
-function J(e) {
+function K(e) {
   let t = [];
   t.push('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
   let n = tt();
@@ -1374,7 +1375,7 @@ function J(e) {
     t.join('')
   );
 }
-var D = c(a$1(), 1);
+var D = chunkQEBO3EQP_cjs.c(chunkGILLFIXY_cjs.a(), 1);
 var dt = {
   wpc: 'http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas',
   mc: 'http://schemas.openxmlformats.org/markup-compatibility/2006',
@@ -1397,9 +1398,9 @@ function wt() {
     .join(' ');
 }
 function gt(e) {
-  return e.type === 'paragraph' ? $(e) : e.type === 'table' ? S(e) : '';
+  return e.type === 'paragraph' ? T(e) : e.type === 'table' ? R(e) : '';
 }
-function B(e) {
+function j(e) {
   let t = e.type === 'header' ? 'w:hdr' : 'w:ftr',
     n = wt(),
     r = e.content.map((i) => gt(i)).join('');
@@ -1409,7 +1410,7 @@ function B(e) {
 <${t} ${n}>${r}</${t}>`
   );
 }
-function Q(e) {
+function ee(e) {
   let t = '<w:r>',
     n = [];
   (e.formatting?.bold && n.push('<w:b/>'),
@@ -1418,26 +1419,26 @@ function Q(e) {
   for (let r of e.content)
     if (r.type === 'text') {
       let i = r.text !== r.text.trim() || r.text.includes('  ');
-      t += i ? `<w:t xml:space="preserve">${a(r.text)}</w:t>` : `<w:t>${a(r.text)}</w:t>`;
+      t += i ? `<w:t xml:space="preserve">${s(r.text)}</w:t>` : `<w:t>${s(r.text)}</w:t>`;
     } else r.type === 'break' && (t += '<w:br/>');
   return ((t += '</w:r>'), t);
 }
 function yt(e) {
   let t = '<w:p>';
-  for (let n of e.content) n.type === 'run' && (t += Q(n));
+  for (let n of e.content) n.type === 'run' && (t += ee(n));
   return ((t += '</w:p>'), t);
 }
 function xt(e) {
   let t = '<w:p>';
   t += '<w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:annotationRef/></w:r>';
-  for (let n of e.content) n.type === 'run' && (t += Q(n));
+  for (let n of e.content) n.type === 'run' && (t += ee(n));
   return ((t += '</w:p>'), t);
 }
-function K(e) {
+function Q(e) {
   let t = [`w:id="${e.id}"`];
-  (e.author && t.push(`w:author="${a(e.author)}"`),
-    e.initials && t.push(`w:initials="${a(e.initials)}"`),
-    e.date && t.push(`w:date="${a(e.date)}"`));
+  (e.author && t.push(`w:author="${s(e.author)}"`),
+    e.initials && t.push(`w:initials="${s(e.initials)}"`),
+    e.date && t.push(`w:date="${s(e.date)}"`));
   let n = `<w:comment ${t.join(' ')}>`;
   if (e.content && e.content.length > 0) {
     n += xt(e.content[0]);
@@ -1447,18 +1448,18 @@ function K(e) {
       '<w:p><w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:annotationRef/></w:r></w:p>';
   return ((n += '</w:comment>'), n);
 }
-function ee(e) {
+function te(e) {
   if (!e || e.length === 0) return '';
   let t = [],
     n = [];
   for (let i of e) (i.parentId == null ? t : n).push(i);
   let r = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <w:comments xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 wp14">`;
-  for (let i of t) r += K(i);
-  for (let i of n) r += K(i);
+  for (let i of t) r += Q(i);
+  for (let i of n) r += Q(i);
   return ((r += '</w:comments>'), r);
 }
-function E(e) {
+function X(e) {
   let t = 0;
   for (let n of e.matchAll(/Id="rId(\d+)"/g)) {
     let r = parseInt(n[1], 10);
@@ -1469,11 +1470,11 @@ function E(e) {
 async function $t(e, t, n) {
   let r = e.package.document.comments;
   if (!r || r.length === 0) return;
-  let i = ee(r);
+  let i = te(r);
   (t.file('word/comments.xml', i, { compression: 'DEFLATE', compressionOptions: { level: n } }),
     await Promise.all([Rt(t, n), zt(t, n)]));
 }
-function te(e) {
+function ne(e) {
   let t = [];
   for (let n of e)
     if (n.type === 'paragraph') {
@@ -1485,7 +1486,7 @@ function te(e) {
               i.image.src?.startsWith('data:') &&
               t.push(i.image);
     } else if (n.type === 'table')
-      for (let r of n.rows) for (let i of r.cells) t.push(...te(i.content));
+      for (let r of n.rows) for (let i of r.cells) t.push(...ne(i.content));
   return t;
 }
 var Tt = {
@@ -1511,117 +1512,123 @@ async function bt(e, t, n) {
     i = t.file(r);
   if (!i) return;
   let o = await i.async('text'),
-    l = E(o),
-    s = 0;
+    l = X(o),
+    c = 0;
   t.forEach((f) => {
-    let m = f.match(/^word\/media\/image(\d+)\./);
-    if (m) {
-      let u = parseInt(m[1], 10);
-      u > s && (s = u);
+    let u = f.match(/^word\/media\/image(\d+)\./);
+    if (u) {
+      let m = parseInt(u[1], 10);
+      m > c && (c = m);
     }
   });
   let p = [],
-    c = new Set();
+    a = new Set();
   for (let f of e) {
-    let { data: m, extension: u } = Pt(f.src);
-    (s++, l++);
-    let h = `image${s}.${u}`,
-      g = `word/media/${h}`,
-      F = `rId${l}`;
-    (t.file(g, m, { compression: 'DEFLATE', compressionOptions: { level: n } }),
+    let { data: u, extension: m } = Pt(f.src);
+    (c++, l++);
+    let g = `image${c}.${m}`,
+      w = `word/media/${g}`,
+      y = `rId${l}`;
+    (t.file(w, u, { compression: 'DEFLATE', compressionOptions: { level: n } }),
       p.push(
-        `<Relationship Id="${F}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/${h}"/>`
+        `<Relationship Id="${y}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/${g}"/>`
       ),
-      c.add(u),
-      (f.rId = F));
+      a.add(m),
+      (f.rId = y));
   }
   if (
     (p.length > 0 &&
       ((o = o.replace('</Relationships>', p.join('') + '</Relationships>')),
       t.file(r, o, { compression: 'DEFLATE', compressionOptions: { level: n } })),
-    c.size > 0)
+    a.size > 0)
   ) {
     let f = t.file('[Content_Types].xml');
     if (f) {
-      let m = await f.async('text');
-      for (let u of c)
-        if (!m.includes(`Extension="${u}"`)) {
-          let h = It(u);
-          m = m.replace('</Types>', `<Default Extension="${u}" ContentType="${h}"/></Types>`);
+      let u = await f.async('text');
+      for (let m of a)
+        if (!u.includes(`Extension="${m}"`)) {
+          let g = Dt(m);
+          u = u.replace('</Types>', `<Default Extension="${m}" ContentType="${g}"/></Types>`);
         }
-      t.file('[Content_Types].xml', m, {
+      t.file('[Content_Types].xml', u, {
         compression: 'DEFLATE',
         compressionOptions: { level: n },
       });
     }
   }
 }
-function ne(e) {
+function re(e) {
   let t = [];
   for (let n of e)
     if (n.type === 'paragraph')
       for (let r of n.content) r.type === 'hyperlink' && r.href && !r.rId && !r.anchor && t.push(r);
     else if (n.type === 'table')
-      for (let r of n.rows) for (let i of r.cells) t.push(...ne(i.content));
+      for (let r of n.rows) for (let i of r.cells) t.push(...re(i.content));
   return t;
 }
-async function vt(e, t, n) {
+async function Ct(e, t, n) {
   if (e.length === 0) return;
   let r = 'word/_rels/document.xml.rels',
     i = t.file(r);
   if (!i) return;
   let o = await i.async('text'),
-    l = E(o),
-    s = [];
+    l = X(o),
+    c = [];
   for (let p of e) {
     l++;
-    let c = `rId${l}`;
-    (s.push(
-      `<Relationship Id="${c}" Type="${b$1.hyperlink}" Target="${a(p.href)}" TargetMode="External"/>`
+    let a = `rId${l}`;
+    (c.push(
+      `<Relationship Id="${a}" Type="${chunkGILLFIXY_cjs.b.hyperlink}" Target="${s(p.href)}" TargetMode="External"/>`
     ),
-      (p.rId = c));
+      (p.rId = a));
   }
-  s.length > 0 &&
-    ((o = o.replace('</Relationships>', s.join('') + '</Relationships>')),
+  c.length > 0 &&
+    ((o = o.replace('</Relationships>', c.join('') + '</Relationships>')),
     t.file(r, o, { compression: 'DEFLATE', compressionOptions: { level: n } }));
 }
-async function Ct(e, t = {}) {
+async function vt(e, t = {}) {
   if (!e.originalBuffer)
     throw new Error(
       'Cannot repack document: no original buffer for round-trip. Use createDocx() for new documents.'
     );
-  let { compressionLevel: n = 6, updateModifiedDate: r = true, modifiedBy: i } = t,
-    o = e,
-    l = await D.default.loadAsync(e.originalBuffer),
-    s = new D.default();
-  for (let [u, h] of Object.entries(l.files)) {
-    if (h.dir) {
-      s.folder(u.replace(/\/$/, ''));
+  let {
+      compressionLevel: n = 6,
+      updateModifiedDate: r = true,
+      modifiedBy: i,
+      modifiedHeaderFooterIds: o,
+      serializeComments: l = true,
+    } = t,
+    c = e,
+    p = await D.default.loadAsync(e.originalBuffer),
+    a = new D.default();
+  for (let [w, y] of Object.entries(p.files)) {
+    if (y.dir) {
+      a.folder(w.replace(/\/$/, ''));
       continue;
     }
-    let g = await h.async('arraybuffer');
-    s.file(u, g, { compression: 'DEFLATE', compressionOptions: { level: n } });
+    let C = await y.async('arraybuffer');
+    a.file(w, C, { compression: 'DEFLATE', compressionOptions: { level: n } });
   }
-  let p = te(o.package.document.content);
-  await bt(p, s, n);
-  let c = ne(o.package.document.content);
-  await vt(c, s, n);
-  let f = J(o);
+  let f = ne(c.package.document.content);
+  await bt(f, a, n);
+  let u = re(c.package.document.content);
+  await Ct(u, a, n);
+  let m = K(c);
   if (
-    (s.file('word/document.xml', f, { compression: 'DEFLATE', compressionOptions: { level: n } }),
-    At(o, s, n),
-    await $t(o, s, n),
+    (a.file('word/document.xml', m, { compression: 'DEFLATE', compressionOptions: { level: n } }),
+    At(c, a, n, o),
+    l && (await $t(c, a, n)),
     r)
   ) {
-    let u = 'docProps/core.xml',
-      h = l.file(u);
-    if (h) {
-      let g = await h.async('text'),
-        F = Dt(g, { updateModifiedDate: r, modifiedBy: i });
-      s.file(u, F, { compression: 'DEFLATE', compressionOptions: { level: n } });
+    let w = 'docProps/core.xml',
+      y = p.file(w);
+    if (y) {
+      let C = await y.async('text'),
+        k = It(C, { updateModifiedDate: r, modifiedBy: i });
+      a.file(w, k, { compression: 'DEFLATE', compressionOptions: { level: n } });
     }
   }
-  return await s.generateAsync({
+  return await a.generateAsync({
     type: 'arraybuffer',
     compression: 'DEFLATE',
     compressionOptions: { level: n },
@@ -1646,37 +1653,40 @@ async function zt(e, t) {
   if (!r) return;
   let i = await r.async('text');
   if (i.includes('comments.xml')) return;
-  let o = `rId${E(i) + 1}`;
+  let o = `rId${X(i) + 1}`;
   ((i = i.replace(
     '</Relationships>',
     `<Relationship Id="${o}" Type="${St}" Target="comments.xml"/></Relationships>`
   )),
     e.file(n, i, { compression: 'DEFLATE', compressionOptions: { level: t } }));
 }
-function At(e, t, n) {
-  let r = e.package.relationships;
-  if (!r) return;
-  let i = { level: n };
+function At(e, t, n, r) {
+  let i = e.package.relationships;
+  if (!i) return;
+  let o = { level: n },
+    l = r ? new Set(r) : null;
   if (e.package.headers)
-    for (let [o, l] of e.package.headers.entries()) {
-      let s = r.get(o);
-      if (s && s.type === b$1.header && s.target) {
-        let p = s.target.startsWith('/') ? s.target.slice(1) : `word/${s.target}`,
-          c = B(l);
-        t.file(p, c, { compression: 'DEFLATE', compressionOptions: i });
+    for (let [c, p] of e.package.headers.entries()) {
+      if (l && !l.has(c)) continue;
+      let a = i.get(c);
+      if (a && a.type === chunkGILLFIXY_cjs.b.header && a.target) {
+        let f = a.target.startsWith('/') ? a.target.slice(1) : `word/${a.target}`,
+          u = j(p);
+        t.file(f, u, { compression: 'DEFLATE', compressionOptions: o });
       }
     }
   if (e.package.footers)
-    for (let [o, l] of e.package.footers.entries()) {
-      let s = r.get(o);
-      if (s && s.type === b$1.footer && s.target) {
-        let p = s.target.startsWith('/') ? s.target.slice(1) : `word/${s.target}`,
-          c = B(l);
-        t.file(p, c, { compression: 'DEFLATE', compressionOptions: i });
+    for (let [c, p] of e.package.footers.entries()) {
+      if (l && !l.has(c)) continue;
+      let a = i.get(c);
+      if (a && a.type === chunkGILLFIXY_cjs.b.footer && a.target) {
+        let f = a.target.startsWith('/') ? a.target.slice(1) : `word/${a.target}`,
+          u = j(p);
+        t.file(f, u, { compression: 'DEFLATE', compressionOptions: o });
       }
     }
 }
-function Dt(e, t) {
+function It(e, t) {
   let n = e;
   if (t.updateModifiedDate) {
     let r = new Date().toISOString();
@@ -1695,16 +1705,16 @@ function Dt(e, t) {
       (n.includes('<cp:lastModifiedBy')
         ? (n = n.replace(
             /<cp:lastModifiedBy>[^<]*<\/cp:lastModifiedBy>/,
-            `<cp:lastModifiedBy>${a(t.modifiedBy)}</cp:lastModifiedBy>`
+            `<cp:lastModifiedBy>${s(t.modifiedBy)}</cp:lastModifiedBy>`
           ))
         : (n = n.replace(
             '</cp:coreProperties>',
-            `<cp:lastModifiedBy>${a(t.modifiedBy)}</cp:lastModifiedBy></cp:coreProperties>`
+            `<cp:lastModifiedBy>${s(t.modifiedBy)}</cp:lastModifiedBy></cp:coreProperties>`
           ))),
     n
   );
 }
-function It(e, t) {
+function Dt(e, t) {
   return (
     {
       png: 'image/png',
@@ -1819,7 +1829,11 @@ async function kt() {
 async function rn(e) {
   let t = await kt(),
     n = { ...e, originalBuffer: t };
-  return Ct(n);
+  return vt(n);
 }
-export { ut as a, ht as b, J as c, Ct as d, rn as e }; //# sourceMappingURL=chunk-7HNTWRSE.js.map
-//# sourceMappingURL=chunk-7HNTWRSE.js.map
+exports.a = ut;
+exports.b = ht;
+exports.c = K;
+exports.d = vt;
+exports.e = rn; //# sourceMappingURL=chunk-5O2GNSOK.cjs.map
+//# sourceMappingURL=chunk-5O2GNSOK.cjs.map

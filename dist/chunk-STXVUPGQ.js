@@ -1,9 +1,9 @@
 import { a } from './chunk-O3CCYTBI.js';
-import { d as d$2, e } from './chunk-7HNTWRSE.js';
+import { d as d$2, e } from './chunk-ER2PAUVI.js';
 import { b, a as a$1 } from './chunk-JOYPFQW2.js';
 import { r } from './chunk-HSGPG5BL.js';
 import { d as d$1 } from './chunk-Y6VCTLCJ.js';
-function L() {
+function z() {
   return [
     {
       styleId: 'Normal',
@@ -87,7 +87,7 @@ function L() {
     },
   ];
 }
-function z() {
+function L() {
   return {
     pageWidth: 12240,
     pageHeight: 15840,
@@ -107,7 +107,7 @@ function z() {
   };
 }
 function W(r = {}) {
-  let t = z();
+  let t = L();
   (r.pageWidth !== void 0 && (t.pageWidth = r.pageWidth),
     r.pageHeight !== void 0 && (t.pageHeight = r.pageHeight),
     r.orientation !== void 0 && (t.orientation = r.orientation),
@@ -139,7 +139,7 @@ function W(r = {}) {
           rPr: { fontSize: 22, fontFamily: { ascii: 'Arial', hAnsi: 'Arial' } },
           pPr: { lineSpacing: 276 },
         },
-        styles: L(),
+        styles: z(),
       },
     },
     templateVariables: [],
@@ -356,7 +356,7 @@ var A = class r$1 {
     return t.preserveOriginal && this._document.originalBuffer
       ? this._document.originalBuffer.slice(0)
       : this._document.originalBuffer
-        ? d$2(this._document)
+        ? d$2(this._document, t)
         : e(this._document);
   }
   async toBlob(t = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
@@ -1079,5 +1079,5 @@ export {
   ot as i,
   Ht as j,
   Bt as k,
-}; //# sourceMappingURL=chunk-Y42D6XBX.js.map
-//# sourceMappingURL=chunk-Y42D6XBX.js.map
+}; //# sourceMappingURL=chunk-STXVUPGQ.js.map
+//# sourceMappingURL=chunk-STXVUPGQ.js.map

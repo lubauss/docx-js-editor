@@ -1,10 +1,10 @@
 'use strict';
 var chunk3V4TBEQV_cjs = require('./chunk-3V4TBEQV.cjs'),
-  chunkT5PKTXGQ_cjs = require('./chunk-T5PKTXGQ.cjs'),
+  chunk5O2GNSOK_cjs = require('./chunk-5O2GNSOK.cjs'),
   chunkGWBTKVFD_cjs = require('./chunk-GWBTKVFD.cjs'),
   chunkGILLFIXY_cjs = require('./chunk-GILLFIXY.cjs'),
   chunkQEBO3EQP_cjs = require('./chunk-QEBO3EQP.cjs');
-function L() {
+function z() {
   return [
     {
       styleId: 'Normal',
@@ -88,7 +88,7 @@ function L() {
     },
   ];
 }
-function z() {
+function L() {
   return {
     pageWidth: 12240,
     pageHeight: 15840,
@@ -108,7 +108,7 @@ function z() {
   };
 }
 function W(r = {}) {
-  let t = z();
+  let t = L();
   (r.pageWidth !== void 0 && (t.pageWidth = r.pageWidth),
     r.pageHeight !== void 0 && (t.pageHeight = r.pageHeight),
     r.orientation !== void 0 && (t.orientation = r.orientation),
@@ -140,7 +140,7 @@ function W(r = {}) {
           rPr: { fontSize: 22, fontFamily: { ascii: 'Arial', hAnsi: 'Arial' } },
           pPr: { lineSpacing: 276 },
         },
-        styles: L(),
+        styles: z(),
       },
     },
     templateVariables: [],
@@ -357,8 +357,8 @@ var A = class r {
     return t.preserveOriginal && this._document.originalBuffer
       ? this._document.originalBuffer.slice(0)
       : this._document.originalBuffer
-        ? chunkT5PKTXGQ_cjs.d(this._document)
-        : chunkT5PKTXGQ_cjs.e(this._document);
+        ? chunk5O2GNSOK_cjs.d(this._document, t)
+        : chunk5O2GNSOK_cjs.e(this._document);
   }
   async toBlob(t = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
     let e = await this.toBuffer();
@@ -1078,5 +1078,5 @@ exports.g = _t;
 exports.h = V;
 exports.i = ot;
 exports.j = Ht;
-exports.k = Bt; //# sourceMappingURL=chunk-WBAREHXH.cjs.map
-//# sourceMappingURL=chunk-WBAREHXH.cjs.map
+exports.k = Bt; //# sourceMappingURL=chunk-OPG7JB7V.cjs.map
+//# sourceMappingURL=chunk-OPG7JB7V.cjs.map

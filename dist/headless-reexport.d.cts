@@ -113,7 +113,7 @@ export {
   Z as twipsToEmu,
   _ as twipsToPixels,
   $ as validateTemplate,
-} from './colorResolver-OlSRTYp4.cjs';
+} from './colorResolver-Ba4cvOhA.cjs';
 export {
   b as CommandHandler,
   d as CommandResult,
@@ -149,7 +149,7 @@ export {
   c as InsertTextOptions,
   d as createAgent,
   e as createAgentFromDocument,
-} from './DocumentAgent-BXqlE-B9.cjs';
+} from './DocumentAgent-DQZc41nU.cjs';
 export {
   P as PluginRegistry,
   c as createPluginRegistrar,
@@ -174,7 +174,7 @@ export {
   l as repackDocx,
   m as replaceVariables,
   s as sanitizeVariableName,
-} from './variableDetector-C4TdUWdd.cjs';
+} from './variableDetector-Vm7vljtn.cjs';
 
 /**
  * Shared Text Utilities for Agent Module
