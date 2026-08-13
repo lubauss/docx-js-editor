@@ -1,5 +1,5 @@
 import { a } from './chunk-O3CCYTBI.js';
-import { d as d$2, e } from './chunk-MNPKVM4R.js';
+import { d as d$2, e } from './chunk-7HNTWRSE.js';
 import { b, a as a$1 } from './chunk-JOYPFQW2.js';
 import { r } from './chunk-HSGPG5BL.js';
 import { d as d$1 } from './chunk-Y6VCTLCJ.js';
@@ -352,8 +352,12 @@ var A = class r$1 {
       s = new r$1(i);
     return ((s._pendingVariables = {}), s);
   }
-  async toBuffer() {
-    return this._document.originalBuffer ? d$2(this._document) : e(this._document);
+  async toBuffer(t = {}) {
+    return t.preserveOriginal && this._document.originalBuffer
+      ? this._document.originalBuffer.slice(0)
+      : this._document.originalBuffer
+        ? d$2(this._document)
+        : e(this._document);
   }
   async toBlob(t = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
     let e = await this.toBuffer();
@@ -473,7 +477,7 @@ function N(r, t = {}) {
     hasHyperlinks: l,
   };
 }
-function Ft(r, t, e = {}) {
+function _t(r, t, e = {}) {
   let { contextChars: n = 200, includeSuggestions: a = true } = e,
     i = r.package.document.content.filter((f) => f.type === 'paragraph'),
     s = i[t.start.paragraphIndex];
@@ -484,9 +488,9 @@ function Ft(r, t, e = {}) {
   else {
     let f = [];
     for (let b = t.start.paragraphIndex; b <= t.end.paragraphIndex; b++) {
-      let B = i[b];
-      if (!B) continue;
-      let D = g(B);
+      let R = i[b];
+      if (!R) continue;
+      let D = g(R);
       b === t.start.paragraphIndex
         ? f.push(D.slice(t.start.offset))
         : b === t.end.paragraphIndex
@@ -800,7 +804,7 @@ function ot(r, t, e = {}) {
       index: t.start.paragraphIndex,
       fullText: d(c),
       style: c.formatting?.styleId,
-      wordCount: R(d(c)),
+      wordCount: B(d(c)),
     },
     x = lt(i, t.start),
     k = gt(c, t.start.offset),
@@ -822,7 +826,7 @@ function Ht(r, t, e = {}) {
   let n = ot(r, t, e),
     { includeDocumentSummary: a = true } = e,
     i = r.package.document.content.filter((l) => l.type === 'paragraph'),
-    s = R(n.selectedText),
+    s = B(n.selectedText),
     c = n.selectedText.length,
     p = t.start.paragraphIndex !== t.end.paragraphIndex,
     u = [];
@@ -841,7 +845,7 @@ function Ht(r, t, e = {}) {
     contentType: h,
   };
 }
-function Rt(r, t) {
+function Bt(r, t) {
   let n = r.package.document.content.filter((s) => s.type === 'paragraph'),
     a = [];
   for (let s = t.start.paragraphIndex; s <= t.end.paragraphIndex; s++) {
@@ -969,7 +973,7 @@ function mt(r, t, e) {
     { id: 'askAI', label: 'Ask AI', description: 'Ask AI about this text', priority: 11 },
     { id: 'rewrite', label: 'Rewrite', description: 'Rewrite this text differently', priority: 10 }
   );
-  let a = R(r);
+  let a = B(r);
   return (
     a > 50 &&
       n.push({
@@ -1049,7 +1053,7 @@ function S(r) {
   for (let e of r.children) e.type === 'run' && t.push(C(e));
   return t.join('');
 }
-function R(r) {
+function B(r) {
   return r.split(/\s+/).filter((t) => t.length > 0).length;
 }
 function ht(r, t) {
@@ -1070,10 +1074,10 @@ export {
   Tt as d,
   St as e,
   N as f,
-  Ft as g,
+  _t as g,
   V as h,
   ot as i,
   Ht as j,
-  Rt as k,
-}; //# sourceMappingURL=chunk-VNL2HBE3.js.map
-//# sourceMappingURL=chunk-VNL2HBE3.js.map
+  Bt as k,
+}; //# sourceMappingURL=chunk-Y42D6XBX.js.map
+//# sourceMappingURL=chunk-Y42D6XBX.js.map

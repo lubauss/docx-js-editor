@@ -1,4 +1,4 @@
-import { R as ReactEditorPlugin } from './react-CYyj3irA.cjs';
+import { R as ReactEditorPlugin } from './react-BLOPCRzR.cjs';
 export {
   D as DEFAULT_SELECTION_STYLE,
   a as DocxEditor,
@@ -74,12 +74,12 @@ export {
   ai as useSelectionHighlight,
   aj as useTableSelection,
   ak as useWheelZoom,
-} from './react-CYyj3irA.cjs';
+} from './react-BLOPCRzR.cjs';
 export {
   D as DocumentAgent,
   f as DocxInput,
   t as toArrayBuffer,
-} from './DocumentAgent-Biwj6DbV.cjs';
+} from './DocumentAgent-BXqlE-B9.cjs';
 export {
   A as AgentContextOptions,
   C as CreateEmptyDocumentOptions,
@@ -126,7 +126,7 @@ export {
   Z as twipsToEmu,
   _ as twipsToPixels,
   $ as validateTemplate,
-} from './colorResolver-Dwjlk13_.cjs';
+} from './colorResolver-OlSRTYp4.cjs';
 export {
   I as InsertPosition,
   c as canRenderFont,

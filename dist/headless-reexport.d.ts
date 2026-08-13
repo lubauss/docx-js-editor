@@ -113,7 +113,7 @@ export {
   Z as twipsToEmu,
   _ as twipsToPixels,
   $ as validateTemplate,
-} from './colorResolver-yA-tN-lX.js';
+} from './colorResolver-CDv36I3c.js';
 export {
   b as CommandHandler,
   d as CommandResult,
@@ -149,7 +149,7 @@ export {
   c as InsertTextOptions,
   d as createAgent,
   e as createAgentFromDocument,
-} from './DocumentAgent-BHR0CMGb.js';
+} from './DocumentAgent-DruaaR5B.js';
 export {
   P as PluginRegistry,
   c as createPluginRegistrar,

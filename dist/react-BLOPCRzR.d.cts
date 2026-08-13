@@ -15,7 +15,7 @@ import {
   D as Document,
   X as Theme,
   e as Table,
-} from './agentApi-DfsWRyrP.js';
+} from './agentApi-DfsWRyrP.cjs';
 import {
   P as PageIndicatorPosition,
   e as PageNavigatorPosition,
@@ -25,8 +25,8 @@ import {
   o as TableContext,
   T as TableAction,
   j as ParsedClipboardContent,
-} from './clipboard-BE8E-szx.js';
-import { f as DocxInput, D as DocumentAgent } from './DocumentAgent-BHR0CMGb.js';
+} from './clipboard-DkfAv07F.cjs';
+import { f as DocxInput, D as DocumentAgent } from './DocumentAgent-BXqlE-B9.cjs';
 import {
   g as EditorPluginCore,
   k as PluginPanelProps,
@@ -36,7 +36,7 @@ import {
   m as SavedDocumentData,
   d as AutoSaveStatus,
   e as ClipboardSelection,
-} from './ClipboardManager-jqJVxB6g.js';
+} from './ClipboardManager-B1jZrC6h.cjs';
 import * as react_jsx_runtime from 'react/jsx-runtime';
 
 /**

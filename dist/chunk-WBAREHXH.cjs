@@ -1,6 +1,6 @@
 'use strict';
 var chunk3V4TBEQV_cjs = require('./chunk-3V4TBEQV.cjs'),
-  chunkEGME6OXC_cjs = require('./chunk-EGME6OXC.cjs'),
+  chunkT5PKTXGQ_cjs = require('./chunk-T5PKTXGQ.cjs'),
   chunkGWBTKVFD_cjs = require('./chunk-GWBTKVFD.cjs'),
   chunkGILLFIXY_cjs = require('./chunk-GILLFIXY.cjs'),
   chunkQEBO3EQP_cjs = require('./chunk-QEBO3EQP.cjs');
@@ -353,10 +353,12 @@ var A = class r {
       s = new r(i);
     return ((s._pendingVariables = {}), s);
   }
-  async toBuffer() {
-    return this._document.originalBuffer
-      ? chunkEGME6OXC_cjs.d(this._document)
-      : chunkEGME6OXC_cjs.e(this._document);
+  async toBuffer(t = {}) {
+    return t.preserveOriginal && this._document.originalBuffer
+      ? this._document.originalBuffer.slice(0)
+      : this._document.originalBuffer
+        ? chunkT5PKTXGQ_cjs.d(this._document)
+        : chunkT5PKTXGQ_cjs.e(this._document);
   }
   async toBlob(t = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
     let e = await this.toBuffer();
@@ -476,7 +478,7 @@ function N(r, t = {}) {
     hasHyperlinks: l,
   };
 }
-function Ft(r, t, e = {}) {
+function _t(r, t, e = {}) {
   let { contextChars: n = 200, includeSuggestions: a = true } = e,
     i = r.package.document.content.filter((f) => f.type === 'paragraph'),
     s = i[t.start.paragraphIndex];
@@ -487,9 +489,9 @@ function Ft(r, t, e = {}) {
   else {
     let f = [];
     for (let b = t.start.paragraphIndex; b <= t.end.paragraphIndex; b++) {
-      let B = i[b];
-      if (!B) continue;
-      let D = g(B);
+      let R = i[b];
+      if (!R) continue;
+      let D = g(R);
       b === t.start.paragraphIndex
         ? f.push(D.slice(t.start.offset))
         : b === t.end.paragraphIndex
@@ -803,7 +805,7 @@ function ot(r, t, e = {}) {
       index: t.start.paragraphIndex,
       fullText: d(c),
       style: c.formatting?.styleId,
-      wordCount: R(d(c)),
+      wordCount: B(d(c)),
     },
     x = lt(i, t.start),
     k = gt(c, t.start.offset),
@@ -825,7 +827,7 @@ function Ht(r, t, e = {}) {
   let n = ot(r, t, e),
     { includeDocumentSummary: a = true } = e,
     i = r.package.document.content.filter((l) => l.type === 'paragraph'),
-    s = R(n.selectedText),
+    s = B(n.selectedText),
     c = n.selectedText.length,
     p = t.start.paragraphIndex !== t.end.paragraphIndex,
     u = [];
@@ -844,7 +846,7 @@ function Ht(r, t, e = {}) {
     contentType: h,
   };
 }
-function Rt(r, t) {
+function Bt(r, t) {
   let n = r.package.document.content.filter((s) => s.type === 'paragraph'),
     a = [];
   for (let s = t.start.paragraphIndex; s <= t.end.paragraphIndex; s++) {
@@ -972,7 +974,7 @@ function mt(r, t, e) {
     { id: 'askAI', label: 'Ask AI', description: 'Ask AI about this text', priority: 11 },
     { id: 'rewrite', label: 'Rewrite', description: 'Rewrite this text differently', priority: 10 }
   );
-  let a = R(r);
+  let a = B(r);
   return (
     a > 50 &&
       n.push({
@@ -1052,7 +1054,7 @@ function S(r) {
   for (let e of r.children) e.type === 'run' && t.push(C(e));
   return t.join('');
 }
-function R(r) {
+function B(r) {
   return r.split(/\s+/).filter((t) => t.length > 0).length;
 }
 function ht(r, t) {
@@ -1072,9 +1074,9 @@ exports.c = A;
 exports.d = Tt;
 exports.e = St;
 exports.f = N;
-exports.g = Ft;
+exports.g = _t;
 exports.h = V;
 exports.i = ot;
 exports.j = Ht;
-exports.k = Rt; //# sourceMappingURL=chunk-7ZUMO3AY.cjs.map
-//# sourceMappingURL=chunk-7ZUMO3AY.cjs.map
+exports.k = Bt; //# sourceMappingURL=chunk-WBAREHXH.cjs.map
+//# sourceMappingURL=chunk-WBAREHXH.cjs.map

@@ -177,7 +177,7 @@ function $e(e) {
 function Te(e) {
   return '<w:noBreakHyphen/>';
 }
-function k(e) {
+function I(e) {
   if (!e) return '';
   if (e.rgb) return `<a:srgbClr val="${e.rgb.replace('#', '')}"/>`;
   if (e.themeColor) {
@@ -195,10 +195,10 @@ function k(e) {
 }
 function Pe(e) {
   if (!e || e.type === 'none') return '<a:noFill/>';
-  if (e.type === 'solid' && e.color) return `<a:solidFill>${k(e.color)}</a:solidFill>`;
+  if (e.type === 'solid' && e.color) return `<a:solidFill>${I(e.color)}</a:solidFill>`;
   if (e.type === 'gradient' && e.gradient) {
     let t = e.gradient,
-      n = t.stops.map((i) => `<a:gs pos="${i.position}">${k(i.color)}</a:gs>`).join(''),
+      n = t.stops.map((i) => `<a:gs pos="${i.position}">${I(i.color)}</a:gs>`).join(''),
       r = t.type === 'linear' ? `<a:lin ang="${(t.angle || 0) * 6e4}" scaled="1"/>` : '';
     return `<a:gradFill><a:gsLst>${n}</a:gsLst>${r}</a:gradFill>`;
   }
@@ -210,7 +210,7 @@ function X(e) {
   (e.width != null && t.push(`w="${e.width}"`), e.cap && t.push(`cap="${e.cap}"`));
   let n = [];
   return (
-    e.color && n.push(`<a:solidFill>${k(e.color)}</a:solidFill>`),
+    e.color && n.push(`<a:solidFill>${I(e.color)}</a:solidFill>`),
     e.style && e.style !== 'solid' && n.push(`<a:prstDash val="${e.style}"/>`),
     e.headEnd &&
       n.push(
@@ -553,7 +553,7 @@ function De(e) {
     t.length === 0 ? '' : `<w:spacing ${t.join(' ')}/>`
   );
 }
-function ke(e) {
+function Ie(e) {
   let t = [];
   return (
     e.indentLeft !== void 0 && t.push(`w:left="${e.indentLeft}"`),
@@ -565,7 +565,7 @@ function ke(e) {
     t.length === 0 ? '' : `<w:ind ${t.join(' ')}/>`
   );
 }
-function Ie(e) {
+function ke(e) {
   if (!e) return '';
   let t = [];
   return (
@@ -603,7 +603,7 @@ function H(e, t) {
       e.widowControl === false
         ? n.push('<w:widowControl w:val="0"/>')
         : e.widowControl === true && n.push('<w:widowControl/>'));
-    let i = Ie(e.numPr);
+    let i = ke(e.numPr);
     i && n.push(i);
     let o = Re(e.borders);
     o && n.push(o);
@@ -615,7 +615,7 @@ function H(e, t) {
       e.suppressAutoHyphens && n.push('<w:suppressAutoHyphens/>'));
     let p = De(e);
     p && n.push(p);
-    let c = ke(e);
+    let c = Ie(e);
     if (
       (c && n.push(c),
       e.bidi && n.push('<w:bidi/>'),
@@ -648,7 +648,7 @@ function je(e) {
     c = p.length > 0 ? `<w:pPr>${p}</w:pPr>` : '<w:pPr/>';
   return `<w:pPrChange ${l.join(' ')}>${c}</w:pPrChange>`;
 }
-function I(e) {
+function k(e) {
   let t = [];
   (e.rId && t.push(`r:id="${e.rId}"`),
     e.anchor && t.push(`w:anchor="${a(e.anchor)}"`),
@@ -758,7 +758,7 @@ function Oe(e) {
       break;
   }
   let r = e.content
-    .map((i) => (i.type === 'run' ? y(i) : i.type === 'hyperlink' ? I(i) : ''))
+    .map((i) => (i.type === 'run' ? y(i) : i.type === 'hyperlink' ? k(i) : ''))
     .join('');
   return `<w:sdt><w:sdtPr>${n.join('')}</w:sdtPr><w:sdtContent>${r}</w:sdtContent></w:sdt>`;
 }
@@ -785,7 +785,7 @@ function z(e, t) {
               .replace(/<\/w:instrText>/g, '</w:delInstrText>')
           : y(c)
         : c.type === 'hyperlink'
-          ? I(c)
+          ? k(c)
           : ''
     )
     .join('');
@@ -796,7 +796,7 @@ function Me(e) {
     case 'run':
       return y(e);
     case 'hyperlink':
-      return I(e);
+      return k(e);
     case 'bookmarkStart':
       return N(e);
     case 'bookmarkEnd':
@@ -1481,7 +1481,10 @@ function te(e) {
       for (let r of n.content)
         if (r.type === 'run')
           for (let i of r.content)
-            i.type === 'drawing' && i.image.src?.startsWith('data:') && t.push(i.image);
+            i.type === 'drawing' &&
+              !i.image.rId &&
+              i.image.src?.startsWith('data:') &&
+              t.push(i.image);
     } else if (n.type === 'table')
       for (let r of n.rows) for (let i of r.cells) t.push(...te(i.content));
   return t;
@@ -1544,7 +1547,7 @@ async function bt(e, t, n) {
       let m = await f.async('text');
       for (let u of c)
         if (!m.includes(`Extension="${u}"`)) {
-          let h = kt(u);
+          let h = It(u);
           m = m.replace('</Types>', `<Default Extension="${u}" ContentType="${h}"/></Types>`);
         }
       t.file('[Content_Types].xml', m, {
@@ -1702,7 +1705,7 @@ function Dt(e, t) {
     n
   );
 }
-function kt(e, t) {
+function It(e, t) {
   return (
     {
       png: 'image/png',
@@ -1719,7 +1722,7 @@ function kt(e, t) {
     }[e] || 'application/octet-stream'
   );
 }
-async function It() {
+async function kt() {
   let e = new D.default();
   (e.file(
     '[Content_Types].xml',
@@ -1815,7 +1818,7 @@ async function It() {
   );
 }
 async function rn(e) {
-  let t = await It(),
+  let t = await kt(),
     n = { ...e, originalBuffer: t };
   return Ct(n);
 }
@@ -1823,5 +1826,5 @@ exports.a = ut;
 exports.b = ht;
 exports.c = J;
 exports.d = Ct;
-exports.e = rn; //# sourceMappingURL=chunk-EGME6OXC.cjs.map
-//# sourceMappingURL=chunk-EGME6OXC.cjs.map
+exports.e = rn; //# sourceMappingURL=chunk-T5PKTXGQ.cjs.map
+//# sourceMappingURL=chunk-T5PKTXGQ.cjs.map

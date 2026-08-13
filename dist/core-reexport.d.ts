@@ -105,7 +105,7 @@ export {
   Z as twipsToEmu,
   _ as twipsToPixels,
   $ as validateTemplate,
-} from './colorResolver-yA-tN-lX.js';
+} from './colorResolver-CDv36I3c.js';
 import {
   S as Subscribable,
   E as ErrorManagerSnapshot,
@@ -156,7 +156,7 @@ export {
   D as DocumentAgent,
   f as DocxInput,
   t as toArrayBuffer,
-} from './DocumentAgent-BHR0CMGb.js';
+} from './DocumentAgent-DruaaR5B.js';
 export {
   I as InsertPosition,
   c as canRenderFont,

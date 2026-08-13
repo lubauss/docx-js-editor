@@ -49,8 +49,8 @@ export {
   ai as useSelectionHighlight,
   aj as useTableSelection,
   ak as useWheelZoom,
-} from './react-CYyj3irA.cjs';
-export { f as DocxInput, t as toArrayBuffer } from './DocumentAgent-Biwj6DbV.cjs';
+} from './react-BLOPCRzR.cjs';
+export { f as DocxInput, t as toArrayBuffer } from './DocumentAgent-BXqlE-B9.cjs';
 export {
   d as AutoSaveStatus,
   e as ClipboardSelection,

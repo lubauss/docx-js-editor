@@ -7,7 +7,7 @@ import {
   R as Range,
   w as ParagraphFormatting,
   A as AgentCommand,
-} from './agentApi-DfsWRyrP.js';
+} from './agentApi-DfsWRyrP.cjs';
 
 /**
  * Flexible input types for DOCX documents.
@@ -355,7 +355,7 @@ declare class DocumentAgent {
    *
    * @returns Promise resolving to DOCX file as ArrayBuffer
    */
-  toBuffer(): Promise<ArrayBuffer>;
+  toBuffer(options?: { preserveOriginal?: boolean }): Promise<ArrayBuffer>;
   /**
    * Export document to Blob
    *

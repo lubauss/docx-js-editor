@@ -47,7 +47,7 @@ export {
   a as createEmptyDocument,
   f as getAgentContext,
   h as getDocumentSummary,
-} from './chunk-VNL2HBE3.js';
+} from './chunk-Y42D6XBX.js';
 export {
   l as blendColors,
   q as colorsEqual,
@@ -98,7 +98,7 @@ export {
   b as serializeDocumentBody,
   c as serializeDocx,
   a as serializeSectionProperties,
-} from './chunk-MNPKVM4R.js';
+} from './chunk-7HNTWRSE.js';
 export { a as executeCommand, b as executeCommands } from './chunk-JOYPFQW2.js';
 export {
   m as canRenderFont,
