@@ -52,6 +52,7 @@ import { HorizontalRuler } from './ui/HorizontalRuler';
 import { VerticalRuler } from './ui/VerticalRuler';
 import { type PrintOptions } from './ui/PrintPreview';
 import { useUnsavedChanges } from './ui/UnsavedIndicator';
+import { saveEditorDocument } from './saveDocument';
 // Dialog hooks and utilities (static imports — lightweight, no UI)
 import {
   useFindReplace,
@@ -2056,28 +2057,24 @@ export const DocxEditor = forwardRef<DocxEditorRef, DocxEditorProps>(function Do
     if (!agentRef.current) return null;
 
     try {
-      const agentDoc = agentRef.current.getDocument();
-
       // Get the document from the PM editor state — this runs fromProseDoc which
       // converts PM comment marks into commentRangeStart/End in the document body.
       // The agent's internal document has the original parsed content and won't
       // include markers for newly added comments.
       const pmDoc = pagedEditorRef.current?.getDocument();
-      if (pmDoc?.package?.document) {
-        agentDoc.package.document.content = pmDoc.package.document.content;
-      }
-
-      // Sync React comments state (including new replies) back to the document model
-      agentDoc.package.document.comments = comments;
-
-      const buffer = await agentRef.current.toBuffer();
+      const buffer = await saveEditorDocument({
+        agent: agentRef.current,
+        hasDocumentChanges: unsavedChanges.hasUnsavedChanges,
+        comments,
+        editorContent: pmDoc?.package?.document.content,
+      });
       onSave?.(buffer);
       return buffer;
     } catch (error) {
       onError?.(error instanceof Error ? error : new Error('Failed to save document'));
       return null;
     }
-  }, [onSave, onError, comments]);
+  }, [onSave, onError, comments, unsavedChanges.hasUnsavedChanges]);
 
   // Handle error from editor
   const handleEditorError = useCallback(
