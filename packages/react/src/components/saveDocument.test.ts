@@ -51,7 +51,10 @@ describe('saveEditorDocument', () => {
     });
 
     expect(document.package.document.content).toEqual(content);
-    expect(toBuffer).toHaveBeenCalledWith();
+    expect(toBuffer).toHaveBeenCalledWith({
+      modifiedHeaderFooterIds: [],
+      serializeComments: false,
+    });
   });
 
   test('serializes comment-only changes instead of returning the original package', async () => {
@@ -79,6 +82,26 @@ describe('saveEditorDocument', () => {
     });
 
     expect(document.package.document.comments).toEqual(comments);
-    expect(toBuffer).toHaveBeenCalledWith();
+    expect(toBuffer).toHaveBeenCalledWith({
+      modifiedHeaderFooterIds: [],
+      serializeComments: true,
+    });
+  });
+
+  test('forwards only the header and footer parts intentionally edited by the user', async () => {
+    const document = documentWith('original');
+    const toBuffer = mock(async () => new Uint8Array([4]).buffer);
+
+    await saveEditorDocument({
+      agent: { getDocument: () => document, toBuffer },
+      hasDocumentChanges: true,
+      comments: [],
+      modifiedHeaderFooterIds: ['rId9'],
+    });
+
+    expect(toBuffer).toHaveBeenCalledWith({
+      modifiedHeaderFooterIds: ['rId9'],
+      serializeComments: false,
+    });
   });
 });

@@ -769,6 +769,7 @@ export const DocxEditor = forwardRef<DocxEditorRef, DocxEditorProps>(function Do
   const pagedEditorRef = useRef<PagedEditorRef>(null);
   const hfEditorRef = useRef<InlineHeaderFooterEditorRef>(null);
   const agentRef = useRef<DocumentAgent | null>(null);
+  const modifiedHeaderFooterIdsRef = useRef(new Set<string>());
   const containerRef = useRef<HTMLDivElement>(null);
   // Save the last known selection for restoring after toolbar interactions
   const lastSelectionRef = useRef<{ from: number; to: number } | null>(null);
@@ -870,7 +871,10 @@ export const DocxEditor = forwardRef<DocxEditorRef, DocxEditorProps>(function Do
 
     const parseDocument = async () => {
       try {
-        const doc = await parseDocx(documentBuffer);
+        // Font loading is controlled by loadExternalFonts below. Parsing must
+        // not independently contact an external font provider.
+        const doc = await parseDocx(documentBuffer, { preloadFonts: false });
+        modifiedHeaderFooterIdsRef.current.clear();
         history.reset(doc);
         setState((prev) => ({
           ...prev,
@@ -2067,6 +2071,7 @@ export const DocxEditor = forwardRef<DocxEditorRef, DocxEditorProps>(function Do
         hasDocumentChanges: unsavedChanges.hasUnsavedChanges,
         comments,
         editorContent: pmDoc?.package?.document.content,
+        modifiedHeaderFooterIds: [...modifiedHeaderFooterIdsRef.current],
       });
       onSave?.(buffer);
       return buffer;
@@ -2330,7 +2335,10 @@ body { background: white; }
       },
       openPrintPreview: handleDirectPrint,
       print: handleDirectPrint,
-      markAsSaved: () => unsavedChanges.markAsSaved(),
+      markAsSaved: () => {
+        modifiedHeaderFooterIdsRef.current.clear();
+        unsavedChanges.markAsSaved();
+      },
       hasUnsavedChanges: () => unsavedChanges.hasUnsavedChanges,
     }),
     [
@@ -2467,6 +2475,7 @@ body { background: white; }
         };
         const newMap = new Map(map);
         newMap.set(defaultRef.rId, updated);
+        modifiedHeaderFooterIdsRef.current.add(defaultRef.rId);
 
         const newDoc: Document = {
           ...history.state,

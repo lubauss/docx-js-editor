@@ -315,6 +315,10 @@ export interface RepackOptions {
   updateModifiedDate?: boolean;
   /** Custom modifier name for lastModifiedBy */
   modifiedBy?: string;
+  /** Header/footer relationship IDs intentionally changed by the editor. */
+  modifiedHeaderFooterIds?: readonly string[];
+  /** Whether comments were intentionally changed by the editor. */
+  serializeComments?: boolean;
 }
 
 /**
@@ -334,7 +338,13 @@ export async function repackDocx(doc: Document, options: RepackOptions = {}): Pr
     );
   }
 
-  const { compressionLevel = 6, updateModifiedDate = true, modifiedBy } = options;
+  const {
+    compressionLevel = 6,
+    updateModifiedDate = true,
+    modifiedBy,
+    modifiedHeaderFooterIds,
+    serializeComments = true,
+  } = options;
   const exportDocument = doc;
 
   // Load the original ZIP
@@ -379,10 +389,12 @@ export async function repackDocx(doc: Document, options: RepackOptions = {}): Pr
   });
 
   // Serialize and update modified headers/footers
-  serializeHeadersFootersToZip(exportDocument, newZip, compressionLevel);
+  serializeHeadersFootersToZip(exportDocument, newZip, compressionLevel, modifiedHeaderFooterIds);
 
   // Serialize comments
-  await serializeCommentsToZip(exportDocument, newZip, compressionLevel);
+  if (serializeComments) {
+    await serializeCommentsToZip(exportDocument, newZip, compressionLevel);
+  }
 
   // Optionally update modification date in docProps/core.xml
   if (updateModifiedDate) {
@@ -426,7 +438,13 @@ export async function repackDocxFromRaw(
   rawContent: RawDocxContent,
   options: RepackOptions = {}
 ): Promise<ArrayBuffer> {
-  const { compressionLevel = 6, updateModifiedDate = true, modifiedBy } = options;
+  const {
+    compressionLevel = 6,
+    updateModifiedDate = true,
+    modifiedBy,
+    modifiedHeaderFooterIds,
+    serializeComments = true,
+  } = options;
   const exportDocument = doc;
 
   // Create a new ZIP with all original files
@@ -464,10 +482,12 @@ export async function repackDocxFromRaw(
   });
 
   // Serialize and update modified headers/footers
-  serializeHeadersFootersToZip(exportDocument, newZip, compressionLevel);
+  serializeHeadersFootersToZip(exportDocument, newZip, compressionLevel, modifiedHeaderFooterIds);
 
   // Serialize comments
-  await serializeCommentsToZip(exportDocument, newZip, compressionLevel);
+  if (serializeComments) {
+    await serializeCommentsToZip(exportDocument, newZip, compressionLevel);
+  }
 
   // Optionally update core properties
   if (updateModifiedDate && rawContent.corePropsXml) {
@@ -781,15 +801,22 @@ export async function addMedia(
  * Maps rId → filename via relationships, then serializes each
  * HeaderFooter object to its corresponding word/header*.xml or word/footer*.xml
  */
-function serializeHeadersFootersToZip(doc: Document, zip: JSZip, compressionLevel: number): void {
+function serializeHeadersFootersToZip(
+  doc: Document,
+  zip: JSZip,
+  compressionLevel: number,
+  modifiedHeaderFooterIds?: readonly string[]
+): void {
   const rels = doc.package.relationships;
   if (!rels) return;
 
   const compressionOptions = { level: compressionLevel };
+  const modifiedIds = modifiedHeaderFooterIds ? new Set(modifiedHeaderFooterIds) : null;
 
   // Serialize headers
   if (doc.package.headers) {
     for (const [rId, headerFooter] of doc.package.headers.entries()) {
+      if (modifiedIds && !modifiedIds.has(rId)) continue;
       const rel = rels.get(rId);
       if (rel && rel.type === RELATIONSHIP_TYPES.header && rel.target) {
         const filename = rel.target.startsWith('/') ? rel.target.slice(1) : `word/${rel.target}`;
@@ -802,6 +829,7 @@ function serializeHeadersFootersToZip(doc: Document, zip: JSZip, compressionLeve
   // Serialize footers
   if (doc.package.footers) {
     for (const [rId, headerFooter] of doc.package.footers.entries()) {
+      if (modifiedIds && !modifiedIds.has(rId)) continue;
       const rel = rels.get(rId);
       if (rel && rel.type === RELATIONSHIP_TYPES.footer && rel.target) {
         const filename = rel.target.startsWith('/') ? rel.target.slice(1) : `word/${rel.target}`;

@@ -132,4 +132,28 @@ describe('DOCX serializer fidelity', () => {
       semanticModel(document.package.document)
     );
   });
+
+  test('preserves untouched footer and footnote parts during a body edit', async () => {
+    const source = fixture('EP_ZMVZ_MULTI_v4.docx');
+    const document = await parseDocx(source, { preloadFonts: false });
+    const originalText = collectText(document.package.document)[0];
+    expect(originalText).toBeTruthy();
+    expect(replaceFirstText(document.package.document, originalText!, 'Qualified body edit')).toBe(
+      true
+    );
+
+    const saved = await repackDocx(document, {
+      updateModifiedDate: false,
+      modifiedHeaderFooterIds: [],
+      serializeComments: false,
+    });
+    const [before, after] = await Promise.all([JSZip.loadAsync(source), JSZip.loadAsync(saved)]);
+
+    expect(await entryBytes(after, 'word/footer1.xml')).toEqual(
+      await entryBytes(before, 'word/footer1.xml')
+    );
+    expect(await entryBytes(after, 'word/footnotes.xml')).toEqual(
+      await entryBytes(before, 'word/footnotes.xml')
+    );
+  });
 });

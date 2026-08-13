@@ -3,7 +3,11 @@ import type { Document } from '@eigenpal/docx-core/types/document';
 
 export interface EditorExportAgent {
   getDocument(): Document;
-  toBuffer(options?: { preserveOriginal?: boolean }): Promise<ArrayBuffer>;
+  toBuffer(options?: {
+    preserveOriginal?: boolean;
+    modifiedHeaderFooterIds?: readonly string[];
+    serializeComments?: boolean;
+  }): Promise<ArrayBuffer>;
 }
 
 export interface SaveEditorDocumentInput {
@@ -11,6 +15,7 @@ export interface SaveEditorDocumentInput {
   hasDocumentChanges: boolean;
   comments: Comment[];
   editorContent?: BlockContent[];
+  modifiedHeaderFooterIds?: readonly string[];
 }
 
 export async function saveEditorDocument({
@@ -18,6 +23,7 @@ export async function saveEditorDocument({
   hasDocumentChanges,
   comments,
   editorContent,
+  modifiedHeaderFooterIds = [],
 }: SaveEditorDocumentInput): Promise<ArrayBuffer> {
   const document = agent.getDocument();
   const initialComments = document.package.document.comments ?? [];
@@ -29,5 +35,8 @@ export async function saveEditorDocument({
 
   if (editorContent) document.package.document.content = editorContent;
   document.package.document.comments = comments;
-  return agent.toBuffer();
+  return agent.toBuffer({
+    modifiedHeaderFooterIds,
+    serializeComments: commentsChanged,
+  });
 }

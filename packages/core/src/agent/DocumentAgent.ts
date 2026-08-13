@@ -671,12 +671,18 @@ export class DocumentAgent {
    *
    * @returns Promise resolving to DOCX file as ArrayBuffer
    */
-  async toBuffer(options: { preserveOriginal?: boolean } = {}): Promise<ArrayBuffer> {
+  async toBuffer(
+    options: {
+      preserveOriginal?: boolean;
+      modifiedHeaderFooterIds?: readonly string[];
+      serializeComments?: boolean;
+    } = {}
+  ): Promise<ArrayBuffer> {
     if (options.preserveOriginal && this._document.originalBuffer) {
       return this._document.originalBuffer.slice(0);
     }
     if (this._document.originalBuffer) {
-      return repackDocx(this._document);
+      return repackDocx(this._document, options);
     }
     return createDocx(this._document);
   }
