@@ -46,7 +46,7 @@ export {
   Q as useSelectionHighlight,
   h as useTableSelection,
   m as useWheelZoom,
-} from './chunk-EEPHPEEQ.js';
+} from './chunk-HGTF2AXF.js';
 import './chunk-Y2IOPU4P.js';
 export {
   q as ColorPicker,
@@ -251,7 +251,7 @@ export {
   a as createEmptyDocument,
   f as getAgentContext,
   h as getDocumentSummary,
-} from './chunk-NOZHM4W2.js';
+} from './chunk-VNL2HBE3.js';
 export {
   l as blendColors,
   q as colorsEqual,
@@ -276,12 +276,12 @@ export {
   w as twipsToEmu,
   r as twipsToPixels,
 } from './chunk-CXJ6TLVT.js';
-export { o as docxtemplaterPlugin } from './chunk-3ZHAPGW5.js';
+export { o as docxtemplaterPlugin } from './chunk-O3CCYTBI.js';
 export {
   b as serializeDocumentBody,
   c as serializeDocx,
   a as serializeSectionProperties,
-} from './chunk-C7FAMM6C.js';
+} from './chunk-MNPKVM4R.js';
 export { a as executeCommand, b as executeCommands } from './chunk-JOYPFQW2.js';
 export {
   m as canRenderFont,
@@ -295,7 +295,7 @@ export {
   r as parseDocx,
   o as preloadCommonFonts,
   q as toArrayBuffer,
-} from './chunk-22OGO3BP.js';
+} from './chunk-HSGPG5BL.js';
 export {
   a as PluginRegistry,
   b as pluginRegistry,

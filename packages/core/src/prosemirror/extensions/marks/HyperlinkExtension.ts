@@ -7,6 +7,7 @@ import { isMarkActive } from './markUtils';
 import type { HyperlinkAttrs } from '../../schema/marks';
 import type { Command, EditorState } from 'prosemirror-state';
 import type { ExtensionContext, ExtensionRuntime } from '../types';
+import { isSafeHyperlinkUrl } from '../../../docx/hyperlinkParser';
 
 // ============================================================================
 // HYPERLINK QUERY HELPERS (exported for toolbar)
@@ -83,6 +84,9 @@ export const HyperlinkExtension = createMarkExtension({
     ],
     toDOM(mark) {
       const attrs = mark.attrs as HyperlinkAttrs;
+      if (!isSafeHyperlinkUrl(attrs.href)) {
+        return ['span', { 'data-docx-passive-hyperlink': 'true' }, 0];
+      }
       const domAttrs: Record<string, string> = {
         href: attrs.href,
         target: '_blank',

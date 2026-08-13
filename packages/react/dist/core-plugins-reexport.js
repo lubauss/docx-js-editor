@@ -1,5 +1,5 @@
-export { o as docxtemplaterPlugin, n as isZodSchema } from './chunk-3ZHAPGW5.js';
-import './chunk-22OGO3BP.js';
+export { o as docxtemplaterPlugin, n as isZodSchema } from './chunk-O3CCYTBI.js';
+import './chunk-HSGPG5BL.js';
 export {
   a as PluginRegistry,
   d as createPluginRegistrar,

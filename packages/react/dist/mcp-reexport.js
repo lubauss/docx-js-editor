@@ -1,6 +1,6 @@
-import { d, e } from './chunk-C7FAMM6C.js';
+import { d, e } from './chunk-MNPKVM4R.js';
 import { a } from './chunk-JOYPFQW2.js';
-import { r } from './chunk-22OGO3BP.js';
+import { r } from './chunk-HSGPG5BL.js';
 import { b } from './chunk-2QOEHCBX.js';
 import './chunk-Y6VCTLCJ.js';
 var u = { type: 'string', description: 'Document ID returned from docx_load' },
